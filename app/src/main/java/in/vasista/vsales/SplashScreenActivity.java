@@ -1,22 +1,19 @@
 package in.vasista.vsales;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import in.vasista.vsales.R; 
-import in.vasista.vsales.sync.ServerSync;
-import in.vasista.vsales.sync.xmlrpc.XMLRPCApacheAdapter;
-import in.vasista.vsales.sync.xmlrpc.XMLRPCMethodCallback;
-import android.app.Activity;  
-import android.app.ProgressDialog;  
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.AsyncTask;  
-import android.os.Bundle;   
+import android.os.AsyncTask;
+import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import in.vasista.vsales.sync.xmlrpc.XMLRPCApacheAdapter;
 
 public class SplashScreenActivity extends Activity  
 {  
@@ -97,7 +94,7 @@ public class SplashScreenActivity extends Activity
 					    		prefEditor.putString(MainActivity.SALESREP_DB_PERM, salesRepPerm);
 					    		prefEditor.putString(MainActivity.HR_DB_PERM, hrPerm);		
 					    		prefEditor.putString(MainActivity.INVENTORY_DB_PERM, inventoryPerm);					    		  		
-					    		prefEditor.commit();
+					    		prefEditor.apply();
 							}
 						}
 					}

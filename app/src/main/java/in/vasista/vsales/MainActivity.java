@@ -92,14 +92,14 @@ public class MainActivity extends DashboardAppCompatActivity  {
     	String serverURL;
     	serverURL = prefs.getString("serverURL", "");	    	
     	if (serverURL.isEmpty()) {
-    		serverURL = "milkosoft.motherdairykmf.in";
+    		serverURL = "nhdc.vasista.in";
     		prefEditor.putString("serverURL", serverURL);
     		prefEditor.commit();
     	}
     	String tenantId;
     	tenantId = prefs.getString("tenantId", "");	    	
     	if (tenantId.isEmpty()) {
-    		tenantId = "MDKMF";
+    		tenantId = "ndhc";
     		prefEditor.putString("tenantId", tenantId);
     		prefEditor.commit();
     	}  
@@ -198,6 +198,7 @@ public class MainActivity extends DashboardAppCompatActivity  {
 		getMenuInflater().inflate(R.menu.main, menu);
 		menu.removeItem(R.id.homeSearch);
 		menu.removeItem(R.id.action_refresh);
+		menu.removeItem(R.id.action_about);
 		return super.onCreateOptionsMenu(menu);
 	}
 	public boolean onOptionsItemSelected(MenuItem item){
