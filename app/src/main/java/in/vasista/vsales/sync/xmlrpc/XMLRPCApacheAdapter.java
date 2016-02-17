@@ -1,14 +1,5 @@
 package in.vasista.vsales.sync.xmlrpc;
 
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
-
-import org.apache.xmlrpc.client.XmlRpcClient;
-import org.apache.xmlrpc.client.XmlRpcClientConfigImpl;
-
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Handler;
@@ -17,6 +8,14 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+
+import org.apache.xmlrpc.client.XmlRpcClient;
+import org.apache.xmlrpc.client.XmlRpcClientConfigImpl;
+
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 
 public class XMLRPCApacheAdapter {
 	public static final String module = XMLRPCApacheAdapter.class.getName();
@@ -28,7 +27,7 @@ public class XMLRPCApacheAdapter {
 	public XMLRPCApacheAdapter(Context context) throws MalformedURLException  {
 		this.context = context;		
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-		String urlStr = "http://" + prefs.getString("serverURL", "") + ":58080/webtools/control/xmlrpc"; //::TODO::
+		String urlStr = "http://" + prefs.getString("serverURL", "") + ":45080/webtools/control/xmlrpc"; //::TODO::
 		String userName = prefs.getString("userName", "");
 		String password = prefs.getString("password", "");
 		String tenantId = prefs.getString("tenantId", "");		

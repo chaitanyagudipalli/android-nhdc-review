@@ -534,6 +534,7 @@ public class ServerSync {
 			adapter.call("getActiveEmployees", paramMap, progressBar, new XMLRPCMethodCallback() {
 				public void callFinished(Object result, ProgressBar progressBar) {
 					if (result != null) {
+						Log.v("Upendra","Res" + result);
 						SimpleDateFormat  format = new SimpleDateFormat("yyyy-MM-dd");  		    	  
 				    	Map employeesResult = (Map)((Map)result).get("employeesResult");
 				    	Log.d(module, "employeesResult.size() = " + employeesResult.size());
@@ -581,10 +582,11 @@ public class ServerSync {
 					    				employee.setLeaveBalanceDate(leaveBalanceDate);
 				    					employee.setEarnedLeave(earnedLeaveBalance.floatValue());
 				    					employee.setCasualLeave(casualLeaveBalance.floatValue());
-				    					employee.setHalfPayLeave(halfPayLeaveBalance.floatValue());	
-				    					employees.add(employee);
+				    					employee.setHalfPayLeave(halfPayLeaveBalance.floatValue());
 					    			}
-				    		  	}   
+									// Changed by Upendra
+									employees.add(employee);
+				    		  	}
 				    			datasource.insertEmployees(employees);
 				    		}	
 				    	}
@@ -593,6 +595,9 @@ public class ServerSync {
 					    	//Log.d(module, "calling listFragment notifyChange..." + listFragment.getClass().getName());						    		
 				    		listFragment.notifyChange();
 				    	}
+					}else{
+						Log.v("Upendra","Res null");
+
 					}
 					if (progressBar != null) {
 						progressBar.setVisibility(View.INVISIBLE);

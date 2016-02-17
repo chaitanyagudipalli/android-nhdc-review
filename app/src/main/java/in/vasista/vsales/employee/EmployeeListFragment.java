@@ -122,7 +122,11 @@ public class EmployeeListFragment extends ListFragment {
 		setListAdapter(null);
 	}
 	public void syncEmployees(MenuItem menuItem){
-		ProgressBar progressBar=(ProgressBar)menuItem.getActionView().findViewById(R.id.menuitem_progress);
+		ProgressBar progressBar = null;
+		if(menuItem != null) {
+			menuItem.setActionView(R.layout.progressbar);
+			progressBar = (ProgressBar) menuItem.getActionView().findViewById(R.id.menuitem_progress);
+		}
 		menuItem.expandActionView();
 		ServerSync serverSync = new ServerSync(getActivity());
 		serverSync.updateEmployees(menuItem,progressBar, employeeListFragment);

@@ -24,6 +24,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import in.vasista.global.GlobalApplication;
 import in.vasista.vsales.adapter.FacilityAutoAdapter;
 import in.vasista.vsales.db.FacilityDataSource;
 import in.vasista.vsales.db.IndentsDataSource;
@@ -114,9 +115,7 @@ public class SalesDashboardActivity extends DashboardAppCompatActivity  {
     	}
     	else if (salesRepPerm.equals("N")) {
     	    AutoCompleteTextView actv = (AutoCompleteTextView) findViewById(R.id.autoCompleteRetailer); 	     
-    	    actv.setVisibility(View.GONE);     		         
-    		ImageButton searchButton = (ImageButton)findViewById(R.id.homeSearch);
-    		searchButton.setVisibility(View.GONE); 
+    	    actv.setVisibility(View.GONE);
     		Button outletsButton = (Button)findViewById(R.id.home_btn_outlets);
     		outletsButton.setVisibility(View.GONE);     
     	    TextView accSum = (TextView) findViewById(R.id.accntSummary); 	     
@@ -165,7 +164,7 @@ Log.d(module, "onlySalesDashboard equals " + onlySalesDashboard);
     		prefEditor.putString("storeId", storeId);
     		prefEditor.commit(); 
     	} 
-	    setupDashboard();
+	    //setupDashboard();
 	}
 	    
 	/**
@@ -222,6 +221,14 @@ Log.d(module, "onlySalesDashboard equals " + onlySalesDashboard);
 	protected void onResume ()
 	{
 	   super.onResume();
+		setupDashboard();
+		if(((GlobalApplication)getApplication()).isPrefChange()){
+			((GlobalApplication)getApplication()).setPrefChange(false);
+			Intent i = new Intent(this.getBaseContext(), SplashScreenActivity.class);
+			startActivity(i);
+			finish();
+		}
+
 	}
 
 	/**
@@ -297,7 +304,9 @@ public boolean onCreateOptionsMenu(Menu menu) {
 					actv.setVisibility(View.VISIBLE);
 				}
 				return true;
-
+			case R.id.action_about:
+				onClickAbout();
+				return true;
 		}
 		return false;
 	}
@@ -383,7 +392,7 @@ public boolean onCreateOptionsMenu(Menu menu) {
     	}
     	SharedPreferences.Editor prefEditor = prefs.edit();
     	prefEditor.putString("storeId", retailerId);  
-    	prefEditor.commit();          
+    	prefEditor.apply();
     	
 		TextView accountSummaryView = (TextView)findViewById(R.id.accntSummary);
 		Facility facility = (Facility)facilityMap.get(retailerId);
@@ -426,4 +435,6 @@ public boolean onCreateOptionsMenu(Menu menu) {
     		amountView.setText(String.format("Rs %.2f", fdrAmount));  
     	}	    	
     }
+
+
 }
