@@ -2,9 +2,7 @@ package in.vasista.hr.payslip;
 
 import android.app.ListFragment;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -12,8 +10,8 @@ import android.widget.ProgressBar;
 
 import java.util.List;
 
+import in.vasista.nhdc.R;
 import in.vasista.vsales.PayslipItemsListActivity;
-import in.vasista.vsales.R;
 import in.vasista.vsales.adapter.PayslipAdapter;
 import in.vasista.vsales.db.PayslipDataSource;
 

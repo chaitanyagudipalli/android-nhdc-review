@@ -13,6 +13,7 @@ import android.widget.ProgressBar;
 import java.util.HashMap;
 import java.util.Map;
 
+import in.vasista.nhdc.R;
 import in.vasista.vsales.sync.xmlrpc.XMLRPCApacheAdapter;
 
 public class SplashScreenActivity extends Activity  

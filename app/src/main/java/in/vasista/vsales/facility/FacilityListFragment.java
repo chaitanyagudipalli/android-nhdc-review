@@ -18,8 +18,8 @@ import android.widget.ProgressBar;
 
 import java.util.List;
 
+import in.vasista.nhdc.R;
 import in.vasista.vsales.FacilityDetailsActivity;
-import in.vasista.vsales.R;
 import in.vasista.vsales.adapter.FacilityAdapter;
 import in.vasista.vsales.db.FacilityDataSource;
 import in.vasista.vsales.sync.ServerSync;

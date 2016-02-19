@@ -3,6 +3,7 @@ package in.vasista.vsales;
 import android.os.Bundle;
 
 import in.vasista.hr.payslip.Payslip;
+import in.vasista.nhdc.R;
 import in.vasista.vsales.db.PayslipDataSource;
 
 public class PayslipItemsListActivity extends DashboardAppCompatActivity  {

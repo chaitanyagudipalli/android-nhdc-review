@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.ProgressBar;
 
 import in.vasista.global.GlobalApplication;
+import in.vasista.nhdc.R;
 import in.vasista.vsales.preference.FragmentPreferences;
 import in.vasista.vsales.sync.ServerSync;
 

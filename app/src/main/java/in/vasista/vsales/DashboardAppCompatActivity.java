@@ -13,6 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import in.vasista.inventory.InventoryActivity;
+import in.vasista.nhdc.R;
 
 
 /**

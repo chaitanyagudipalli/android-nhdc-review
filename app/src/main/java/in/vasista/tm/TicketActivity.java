@@ -16,16 +16,10 @@
 
 package in.vasista.tm;
 
-import in.vasista.vsales.DashboardActivity;
-import in.vasista.vsales.R;
-import in.vasista.vsales.catalog.CatalogListFragment;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v4.app.FragmentTransaction;
+
+import in.vasista.nhdc.R;
+import in.vasista.vsales.DashboardActivity;
 
 /**
  * This is the activity for feature 4 in the dashboard application.

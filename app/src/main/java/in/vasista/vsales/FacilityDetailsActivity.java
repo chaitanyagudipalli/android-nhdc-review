@@ -22,6 +22,7 @@ import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import in.vasista.nhdc.R;
 import in.vasista.vsales.db.FacilityDataSource;
 import in.vasista.vsales.facility.Facility;
 

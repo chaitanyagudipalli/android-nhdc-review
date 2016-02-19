@@ -16,23 +16,21 @@
 
 package in.vasista.vsales;
 
-import in.vasista.inventory.InventoryActivity;
-import in.vasista.location.LocationActivity;
-import in.vasista.tm.TicketDashboardActivity;
-import in.vasista.vsales.R;
-import in.vasista.vsales.preference.FragmentPreferences;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import in.vasista.inventory.InventoryActivity;
+import in.vasista.location.LocationActivity;
+import in.vasista.nhdc.R;
+import in.vasista.vsales.preference.FragmentPreferences;
 
 /**
  * This is the base class for activities in the dashboard application.

@@ -17,8 +17,8 @@ import android.widget.ProgressBar;
 
 import java.util.List;
 
+import in.vasista.nhdc.R;
 import in.vasista.vsales.EmployeeDetailsActivity;
-import in.vasista.vsales.R;
 import in.vasista.vsales.adapter.EmployeeAdapter;
 import in.vasista.vsales.db.EmployeeDataSource;
 import in.vasista.vsales.sync.ServerSync;
@@ -110,11 +110,12 @@ public class EmployeeListFragment extends ListFragment {
 	    datasource.open();
 	    employeeItems = datasource.getAllEmployees();
     	Log.d(module, "employeeItems.size() = " + employeeItems.size());
-	    
-	    adapter = new EmployeeAdapter(getActivity(),
-                R.layout.employeelist_item,
-                employeeItems);	
-		setListAdapter(adapter); 
+		if (getActivity() != null) {
+			adapter = new EmployeeAdapter(getActivity(),
+					R.layout.employeelist_item,
+					employeeItems);
+			setListAdapter(adapter);
+		}
 	}
 	
 	public void onDestroyView() {

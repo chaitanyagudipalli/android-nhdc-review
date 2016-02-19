@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
 xmlns:tools="http://schemas.android.com/tools"
-    package="in.vasista.vsales">
+    package="in.vasista.nhdc">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
@@ -123,7 +123,7 @@ xmlns:tools="http://schemas.android.com/tools"
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="in.vasista.vsales.IndentActivity" />
-    	</activity>  
+    	</activity>
         <activity android:name="in.vasista.vsales.OrderItemsListActivity"
             android:parentActivityName="in.vasista.vsales.OrderActivity"
             tools:ignore="UnusedAttribute"
@@ -131,7 +131,7 @@ xmlns:tools="http://schemas.android.com/tools"
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="in.vasista.vsales.OrderActivity" />
-    	</activity> 
+    	</activity>
         <activity android:name="in.vasista.vsales.FacilityDetailsActivity"
             android:parentActivityName="in.vasista.vsales.FacilityActivity"
             tools:ignore="UnusedAttribute"
@@ -139,7 +139,7 @@ xmlns:tools="http://schemas.android.com/tools"
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="in.vasista.vsales.FacilityActivity" />
-    	</activity>   
+    	</activity>
         <activity android:name="in.vasista.vsales.EmployeeDetailsActivity"
             android:parentActivityName="in.vasista.vsales.EmployeeActivity"
             tools:ignore="UnusedAttribute"
@@ -147,7 +147,7 @@ xmlns:tools="http://schemas.android.com/tools"
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="in.vasista.vsales.EmployeeActivity" />
-    	</activity> 
+    	</activity>
         <activity android:name="in.vasista.vsales.MyEmployeeDetailsActivity"
             android:parentActivityName="in.vasista.vsales.HRDashboardActivity"
             tools:ignore="UnusedAttribute"
@@ -155,7 +155,7 @@ xmlns:tools="http://schemas.android.com/tools"
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="in.vasista.vsales.HRDashboardActivity" />
-    	</activity> 
+    	</activity>
          <activity android:name="in.vasista.vsales.LeaveActivity"
              android:parentActivityName="in.vasista.vsales.HRDashboardActivity"
              tools:ignore="UnusedAttribute"

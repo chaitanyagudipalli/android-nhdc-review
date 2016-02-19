@@ -13,6 +13,7 @@ import android.widget.Button;
 import java.util.HashMap;
 import java.util.Map;
 
+import in.vasista.nhdc.R;
 import in.vasista.vsales.facility.Facility;
 import in.vasista.vsales.preference.FragmentPreferences;
 
@@ -92,16 +93,16 @@ public class MainActivity extends DashboardAppCompatActivity  {
     	String serverURL;
     	serverURL = prefs.getString("serverURL", "");	    	
     	if (serverURL.isEmpty()) {
-    		serverURL = "nhdc.vasista.in";
+    		serverURL = "nhdc-test.vasista.in";
     		prefEditor.putString("serverURL", serverURL);
-    		prefEditor.commit();
+    		prefEditor.apply();
     	}
     	String tenantId;
     	tenantId = prefs.getString("tenantId", "");	    	
     	if (tenantId.isEmpty()) {
-    		tenantId = "ndhc";
+    		tenantId = "nhdc-test";
     		prefEditor.putString("tenantId", tenantId);
-    		prefEditor.commit();
+    		prefEditor.apply();
     	}  
 	    setupDashboard();
 	    

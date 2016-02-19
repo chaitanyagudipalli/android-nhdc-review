@@ -1,17 +1,16 @@
 package in.vasista.vsales.db;
 
-import in.vasista.vsales.indent.Indent;
-import in.vasista.vsales.payment.Payment;
-
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import in.vasista.vsales.payment.Payment;
 
 public class PaymentsDataSource {
 	public static final String module = IndentsDataSource.class.getName();	

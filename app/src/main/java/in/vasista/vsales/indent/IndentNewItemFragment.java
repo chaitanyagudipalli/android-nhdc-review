@@ -1,10 +1,5 @@
 package in.vasista.vsales.indent;
 
-import in.vasista.vsales.R;
-import in.vasista.vsales.catalog.Product;
-import in.vasista.vsales.db.ProductsDataSource;
-
-import java.util.List;
 
 import android.app.Fragment;
 import android.os.Bundle;
@@ -13,6 +8,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+
+import java.util.List;
+
+import in.vasista.nhdc.R;
+import in.vasista.vsales.catalog.Product;
+import in.vasista.vsales.db.ProductsDataSource;
 
 
 public class IndentNewItemFragment extends Fragment{

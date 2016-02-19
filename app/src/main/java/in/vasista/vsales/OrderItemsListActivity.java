@@ -2,6 +2,8 @@ package in.vasista.vsales;
 
 import android.os.Bundle;
 
+import in.vasista.nhdc.R;
+
 public class OrderItemsListActivity extends DashboardAppCompatActivity  {
 	
 	public void onCreate(Bundle savedInstanceState) { 

@@ -1,20 +1,19 @@
 package in.vasista.vsales.db;
 
-import in.vasista.location.Location;
-
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
+
+import in.vasista.location.Location;
 
 public class LocationsDataSource {
 	public static final String module = LocationsDataSource.class.getName();

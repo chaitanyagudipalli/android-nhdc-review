@@ -22,6 +22,8 @@ import android.support.v7.app.ActionBar;
 import android.view.Gravity;
 import android.widget.ProgressBar;
 
+import in.vasista.nhdc.R;
+
 /**
  * This is the activity for feature 1 in the dashboard application.
  * It displays some text and provides a way to get back to the home activity.

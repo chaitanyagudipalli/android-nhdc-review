@@ -1,6 +1,5 @@
 package in.vasista.vsales.db;
 
-import in.vasista.vsales.catalog.Product;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;

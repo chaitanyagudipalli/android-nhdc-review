@@ -1,18 +1,16 @@
 package in.vasista.vsales.db;
 
-import in.vasista.vsales.facility.Facility;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import in.vasista.vsales.facility.Facility;
 
 public class FacilityDataSource {
 	public static final String module = FacilityDataSource.class.getName();	  

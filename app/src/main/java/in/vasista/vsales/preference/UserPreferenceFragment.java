@@ -1,9 +1,10 @@
 package in.vasista.vsales.preference;
 
-import in.vasista.vsales.R;
+
 import android.os.Bundle;
 import android.preference.PreferenceFragment;
 
+import in.vasista.nhdc.R;
 
 public class UserPreferenceFragment extends PreferenceFragment{
 
