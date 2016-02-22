@@ -199,7 +199,6 @@ public class MainActivity extends DashboardAppCompatActivity  {
 		getMenuInflater().inflate(R.menu.main, menu);
 		menu.removeItem(R.id.homeSearch);
 		menu.removeItem(R.id.action_refresh);
-		menu.removeItem(R.id.action_about);
 		return super.onCreateOptionsMenu(menu);
 	}
 	public boolean onOptionsItemSelected(MenuItem item){

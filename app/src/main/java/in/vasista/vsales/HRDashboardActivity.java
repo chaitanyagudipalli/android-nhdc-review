@@ -191,7 +191,6 @@ Log.d(module, "onlyHRDashboard equals " + onlyHRDashboard);
 		getMenuInflater().inflate(R.menu.main, menu);
 		menu.removeItem(R.id.homeSearch);
 		menu.removeItem(R.id.action_refresh);
-		menu.removeItem(R.id.action_about);
 		if (!settings_menu){
 			menu.removeItem(R.id.action_settings);
 

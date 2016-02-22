@@ -283,7 +283,6 @@ Log.d(module, "onlySalesDashboard equals " + onlySalesDashboard);
 @Override
 public boolean onCreateOptionsMenu(Menu menu) {
 	getMenuInflater().inflate(R.menu.main, menu);
-	menu.removeItem(R.id.action_about);
 	menu.removeItem(R.id.action_refresh);
 	if (!settings_menu){
 		menu.removeItem(R.id.action_settings);
