@@ -13,9 +13,9 @@ import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import in.vasista.nhdc.R;
 import in.vasista.rest.ServerRestSync;
 import in.vasista.vsales.DashboardAppCompatActivity;
-import in.vasista.vsales.R;
 import in.vasista.vsales.catalog.Product;
 
 public class InventoryDetailsActivity extends DashboardAppCompatActivity {

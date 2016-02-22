@@ -1,10 +1,11 @@
 package in.vasista.vsales.db;
 
-import in.vasista.vsales.catalog.Product;
-import in.vasista.vsales.indent.IndentItem;
-import in.vasista.vsales.order.Order;
-import in.vasista.vsales.order.OrderItem;
-import in.vasista.vsales.util.DateUtil;
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.Cursor;
+import android.database.SQLException;
+import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import java.math.BigDecimal;
 import java.text.ParseException;
@@ -15,15 +16,11 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
 import java.util.Map.Entry;
 
-import android.content.ContentValues;
-import android.content.Context;
-import android.database.Cursor;
-import android.database.SQLException;
-import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
+import in.vasista.vsales.catalog.Product;
+import in.vasista.vsales.order.Order;
+import in.vasista.vsales.order.OrderItem;
 
 public class OrdersDataSource {
 	public static final String module = OrdersDataSource.class.getName();	

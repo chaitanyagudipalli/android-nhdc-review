@@ -1,27 +1,18 @@
 package in.vasista.vsales.adapter;
 
 
-import in.vasista.hr.payslip.PayslipItem;
-import in.vasista.vsales.R;
-import in.vasista.vsales.indent.IndentItem;
-import in.vasista.vsales.order.OrderItem;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-
 import android.content.Context;
-import android.content.res.Configuration;
-import android.text.InputType;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnFocusChangeListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import java.util.List;
+
+import in.vasista.hr.payslip.PayslipItem;
+import in.vasista.nhdc.R;
 
 
 public class PayslipItemAdapter extends ArrayAdapter<PayslipItem>{

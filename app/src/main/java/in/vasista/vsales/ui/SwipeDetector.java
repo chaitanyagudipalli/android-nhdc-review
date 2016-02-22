@@ -1,6 +1,5 @@
 package in.vasista.vsales.ui;
 
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 

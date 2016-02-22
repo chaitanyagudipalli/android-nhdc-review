@@ -25,6 +25,7 @@ import java.util.List;
 import java.util.Map;
 
 import in.vasista.global.GlobalApplication;
+import in.vasista.nhdc.R;
 import in.vasista.vsales.adapter.FacilityAutoAdapter;
 import in.vasista.vsales.db.FacilityDataSource;
 import in.vasista.vsales.db.IndentsDataSource;
@@ -282,7 +283,6 @@ Log.d(module, "onlySalesDashboard equals " + onlySalesDashboard);
 @Override
 public boolean onCreateOptionsMenu(Menu menu) {
 	getMenuInflater().inflate(R.menu.main, menu);
-	menu.removeItem(R.id.action_about);
 	menu.removeItem(R.id.action_refresh);
 	if (!settings_menu){
 		menu.removeItem(R.id.action_settings);

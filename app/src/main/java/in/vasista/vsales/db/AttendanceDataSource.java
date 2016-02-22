@@ -1,17 +1,17 @@
 package in.vasista.vsales.db;
 
-import in.vasista.hr.attendance.Attendance;
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.Cursor;
+import android.database.SQLException;
+import android.database.sqlite.SQLiteDatabase;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import android.content.ContentValues;
-import android.content.Context;
-import android.database.Cursor;
-import android.database.SQLException;
-import android.database.sqlite.SQLiteDatabase;
+import in.vasista.hr.attendance.Attendance;
 
 public class AttendanceDataSource {
 	public static final String module = AttendanceDataSource.class.getName();	

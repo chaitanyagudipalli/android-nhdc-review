@@ -18,6 +18,8 @@ package in.vasista.vsales;
 
 import android.os.Bundle;
 
+import in.vasista.nhdc.R;
+
 /**
  * This is the Search activity in the dashboard application.
  * It displays some text and provides a way to get back to the home activity.

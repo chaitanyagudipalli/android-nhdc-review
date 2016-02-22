@@ -19,6 +19,8 @@ package in.vasista.vsales;
 import android.os.Bundle;
 import android.webkit.WebView;
 
+import in.vasista.nhdc.R;
+
 /**
  * This is the About activity in the dashboard application.
  * It displays some text and provides a way to get back to the home activity.
@@ -53,5 +55,5 @@ protected void onCreate(Bundle savedInstanceState)
     view.loadUrl("file:///android_asset/about.html");         
 }
 
-    
+
 } // end class  

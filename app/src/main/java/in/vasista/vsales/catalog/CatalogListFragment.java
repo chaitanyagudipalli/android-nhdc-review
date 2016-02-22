@@ -12,7 +12,7 @@ import android.widget.ProgressBar;
 
 import java.util.List;
 
-import in.vasista.vsales.R;
+import in.vasista.nhdc.R;
 import in.vasista.vsales.adapter.ProductAdapter;
 import in.vasista.vsales.db.ProductsDataSource;
 import in.vasista.vsales.sync.ServerSync;

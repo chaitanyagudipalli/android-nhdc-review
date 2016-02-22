@@ -1,19 +1,19 @@
 package in.vasista.vsales.adapter;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-
-import in.vasista.vsales.R;
-import in.vasista.vsales.facility.Facility;
 import android.content.Context;
-import android.view.LayoutInflater;
-import android.view.View;
+import android.view.LayoutInflater;import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Filter;
 import android.widget.LinearLayout;
-import android.widget.TextView;  
+import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+
+import in.vasista.nhdc.R;
+import in.vasista.vsales.facility.Facility;
 
 
 public class FacilityAdapter extends ArrayAdapter<Facility> {

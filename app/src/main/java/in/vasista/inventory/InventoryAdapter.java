@@ -1,23 +1,20 @@
 package in.vasista.inventory;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-
-import in.vasista.vsales.R;
-import in.vasista.vsales.catalog.Product;
-import in.vasista.vsales.employee.Employee;
-import in.vasista.vsales.facility.Facility;
-import in.vasista.vsales.facility.FacilityListFragment;
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Filter;
 import android.widget.LinearLayout;
-import android.widget.TextView;  
+import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+
+import in.vasista.nhdc.R;
+import in.vasista.vsales.catalog.Product;
 
 
 public class InventoryAdapter extends ArrayAdapter<Product> {

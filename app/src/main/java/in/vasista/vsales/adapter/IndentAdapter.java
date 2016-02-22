@@ -1,19 +1,19 @@
 package in.vasista.vsales.adapter;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-
-import in.vasista.vsales.R;
-import in.vasista.vsales.indent.Indent;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+
+import in.vasista.nhdc.R;
+import in.vasista.vsales.indent.Indent;
 
 
 
