@@ -1,6 +1,5 @@
 package in.vasista.vsales.indent;
 
-
 import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -29,7 +28,7 @@ public class IndentNewItemFragment extends Fragment{
 		Spinner spinner = (Spinner) view.findViewById(R.id.indentitemSpinnerProductId);
 		ProductsDataSource datasource = new ProductsDataSource(getActivity());
 	    datasource.open();
-	    List<Product> catalogItems = datasource.getAllSaleProducts();		
+	    List<Product> catalogItems = datasource.getAllProducts();
 		ArrayAdapter<Product> dataAdapter = new ArrayAdapter<Product>(getActivity(),
 			android.R.layout.simple_spinner_item, catalogItems);
 		dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

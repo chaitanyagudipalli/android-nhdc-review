@@ -1,5 +1,6 @@
 package in.vasista.vsales.order;
 
+import android.annotation.SuppressLint;
 import android.app.ListFragment;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -97,7 +98,7 @@ public class OrderListFragment extends ListFragment{
 		setListAdapter(null);
 	}
 	
-    @Override
+    @SuppressLint("NewApi") @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         setUserVisibleHint(true);

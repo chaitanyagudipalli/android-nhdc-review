@@ -69,7 +69,6 @@ public class AttendanceActivity extends DashboardAppCompatActivity
 				AttendanceListFragment attendanceListFragment = (AttendanceListFragment) fm.findFragmentById(R.id.attendance_list_fragment);
 				attendanceListFragment.syncAttendance(menuItem);
 				return true;
-
 		}
 		return false;
 	}

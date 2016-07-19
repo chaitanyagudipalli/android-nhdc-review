@@ -1,7 +1,6 @@
 package in.vasista.vsales;
 
 
-import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -46,11 +45,11 @@ public class MyEmployeeDetailsActivity extends DashboardAppCompatActivity  {
 		// Inflate your view   
 		setContentChildView(R.layout.myemployeedetails_layout);
 		actionBarHomeEnabled();
-		final Activity myActivity = this; 
+		//final Activity myActivity = this;
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this); 
-		String employeeId = "";		
-    	prefs = PreferenceManager.getDefaultSharedPreferences(this);
-    	employeeId = prefs.getString("employeeId", "");
+		String employeeId = prefs.getString("employeeId", "");
+    	//prefs = PreferenceManager.getDefaultSharedPreferences(this);
+    	//employeeId = prefs.getString("employeeId", "");
    	    	
 Log.d(module, "employeeId=" + employeeId);	    	
 		Employee employee =null;
@@ -80,4 +79,5 @@ Log.d(module, "employeeId=" + employeeId);
 	{
 	   super.onResume ();
 	}
+
 }

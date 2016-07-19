@@ -96,11 +96,10 @@ public class OrdersDataSource {
 
 	  
 	  private Order cursorToOrder(Cursor cursor) {
-	    Order order = new Order(cursor.getInt(0), 
-	    		new Date(cursor.getLong(1)),
-	    				cursor.getString(2),    				
-	    				cursor.getDouble(3));
-	    return order;
+	    return new Order(cursor.getInt(0),
+				new Date(cursor.getLong(1)),
+				cursor.getString(2),
+				cursor.getDouble(3));
 	  }
 	  
 	  void insertOrderItems(long orderId, List<OrderItem> orderItems) {
@@ -131,7 +130,7 @@ public class OrdersDataSource {
 		  Map productsMap = new HashMap();
 		  final ProductsDataSource prodDataSource = new ProductsDataSource (context);
 		  prodDataSource.open();
-		  List<Product> products = prodDataSource.getAllSaleProducts();
+		  List<Product> products = prodDataSource.getAllProducts();
 		  for (int i =0; i < products.size(); ++i) {
 			  Product product = products.get(i);
 			  productsMap.put(product.getId(), product);
@@ -146,7 +145,7 @@ public class OrdersDataSource {
 	    	  String productId = (String)itemEntry.getKey();
 	    	  Map productItem = (Map)itemEntry.getValue();
 	    	  int quantity = ((BigDecimal)productItem.get("packetQuantity")).intValue();
-	    	  double amount = ((BigDecimal)productItem.get("totalRevenue")).doubleValue();	       
+	    	  double amount = ((BigDecimal)productItem.get("totalRevenue")).intValue();	
 	    	  orderTotal += amount;
 Log.d(module, "Order Item: [" + orderDateStr + ";" + productId + ";" + quantity + ";" + amount + "]");				    	  
 	    	  Product product = (Product)productsMap.get(productId);
@@ -211,11 +210,10 @@ Log.d(module, "Order Item: [" + orderDateStr + ";" + productId + ";" + quantity 
 		  if (productMap.containsKey(productId)) {
 			  productName = productMap.get(productId).getName();
 		  }
-		  OrderItem orderItem = new OrderItem(productId,
-				  productName,
-				  cursor.getInt(3),
-				  cursor.getDouble(4));
-		    return orderItem;
+		    return new OrderItem(productId,
+					productName,
+					cursor.getInt(3),
+					cursor.getDouble(4));
 	  }	  	
 	  
 }

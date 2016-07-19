@@ -88,7 +88,6 @@ protected void onResume ()
 				EmployeeListFragment employeeListFragment = (EmployeeListFragment) fm.findFragmentById(R.id.facility_list_fragment);
 				employeeListFragment.syncEmployees(menuItem);
 				return true;
-
 		}
 		return false;
 	}

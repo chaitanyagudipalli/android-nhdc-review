@@ -16,7 +16,6 @@
 
 package in.vasista.vsales;
 
-
 import android.app.FragmentManager;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -51,7 +50,6 @@ public class LeaveActivity extends DashboardAppCompatActivity
  * 
  * Always followed by onStart().
  *
- * @param savedInstanceState Bundle
  */
 MenuItem menuItem;
 protected void onCreate(Bundle savedInstanceState) 
@@ -62,9 +60,9 @@ protected void onCreate(Bundle savedInstanceState)
 	setContentChildView(R.layout.leave_layout);
 	setPageTitle(R.string.title_employeeleave);
 	SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this); 
-	String employeeId = "";		
-	prefs = PreferenceManager.getDefaultSharedPreferences(this);
-	employeeId = prefs.getString("employeeId", "");
+	String employeeId = prefs.getString("employeeId", "");
+	//prefs = PreferenceManager.getDefaultSharedPreferences(this);
+	//employeeId = prefs.getString("employeeId", "");
 	    	
 	Employee employee =null;
 	if (! employeeId.isEmpty()) { 

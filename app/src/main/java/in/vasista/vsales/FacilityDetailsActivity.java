@@ -2,9 +2,11 @@ package in.vasista.vsales;
 
 import android.Manifest;
 import android.content.Intent;
+import android.content.IntentSender;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
@@ -14,6 +16,16 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.PendingResult;
+import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.location.LocationSettingsRequest;
+import com.google.android.gms.location.LocationSettingsResult;
+import com.google.android.gms.location.LocationSettingsStatusCodes;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -26,10 +38,13 @@ import in.vasista.nhdc.R;
 import in.vasista.vsales.db.FacilityDataSource;
 import in.vasista.vsales.facility.Facility;
 
-public class FacilityDetailsActivity extends DashboardAppCompatActivity {
+public class FacilityDetailsActivity extends DashboardAppCompatActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
 
 	MapView mapView;
 	GoogleMap map;
+	GoogleApiClient googleApiClient;
+	static final int REQUEST_CODE_FINELOCATION = 1;
+	//static final int REQUEST_CODE_COARSELOCATION = 2;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -39,8 +54,7 @@ public class FacilityDetailsActivity extends DashboardAppCompatActivity {
 		actionBarHomeEnabled();
 
 		Intent facilityDetailsIntent = getIntent();
-		String facilityId = "";
-		facilityId = facilityDetailsIntent.getStringExtra("facilityId");
+		String facilityId = facilityDetailsIntent.getStringExtra("facilityId");
 		final Facility facility;
 		FacilityDataSource datasource = new FacilityDataSource(this);
 		datasource.open();
@@ -49,7 +63,7 @@ public class FacilityDetailsActivity extends DashboardAppCompatActivity {
 		if (facility == null) {
 			return;
 		}
-		setTitle(facilityId + " Details");
+		setTitle(facilityId+" Details");
 		TextView idView = (TextView) findViewById(R.id.facilityId);
 		idView.setText(facilityId);
 		TextView nameView = (TextView) findViewById(R.id.facilityName);
@@ -67,11 +81,19 @@ public class FacilityDetailsActivity extends DashboardAppCompatActivity {
 
 		map = ((com.google.android.gms.maps.MapFragment) getFragmentManager().findFragmentById(R.id.map_view)).getMap();
 		if (map != null) {
+
+			if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+				ActivityCompat.requestPermissions(this,
+						new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+						REQUEST_CODE_FINELOCATION);
+				return;
+			}
+
 			String latStr = facility.getLatitude();
 			String longStr = facility.getLongitude();
-			double latitude = 12.914133; // default MD coordinates
-			double longitude = 74.855949;
-			if (latStr != null && !latStr.isEmpty() && longStr != null && !longStr.isEmpty()) {
+			double latitude = 13.095042; // default MD coordinates
+			double longitude = 77.573120;
+			if ( latStr != null && !latStr.isEmpty() && longStr != null && !longStr.isEmpty())  {
 				latitude = Double.valueOf(latStr);
 				longitude = Double.valueOf(longStr);
 
@@ -93,6 +115,7 @@ public class FacilityDetailsActivity extends DashboardAppCompatActivity {
 			map.animateCamera(cameraUpdate);
 			map.addMarker(new MarkerOptions().position(new LatLng(latitude, longitude))
 					.title(facilityId)).showInfoWindow();
+			getLoactionviaGPS();
 		}
 		
 		Button callBtn = (Button) findViewById(R.id.callButton);
@@ -129,7 +152,22 @@ public class FacilityDetailsActivity extends DashboardAppCompatActivity {
 
 
 	}
-	
+
+	@Override
+	public void onConnected(Bundle bundle) {
+
+	}
+
+	@Override
+	public void onConnectionSuspended(int i) {
+
+	}
+
+	@Override
+	public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+
+	}
+
 	private class MyPhoneListener extends PhoneStateListener {
 		 
 		private boolean onCall = false;
@@ -152,7 +190,7 @@ public class FacilityDetailsActivity extends DashboardAppCompatActivity {
 				// in initialization of the class and at the end of phone call 
 				  
 				// detect flag from CALL_STATE_OFFHOOK
-				if (onCall == true) {    
+				if (onCall) {
  
 					// restart our application
 					Intent restart = getBaseContext().getPackageManager().
@@ -168,5 +206,78 @@ public class FacilityDetailsActivity extends DashboardAppCompatActivity {
 			}
 			
 		}
-	}	
+	}
+
+	@Override
+	public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+		if (requestCode == REQUEST_CODE_FINELOCATION ) {
+			if (grantResults.length == 1
+					&& grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+				// success!
+				if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+					// TODO: Consider calling
+					return;
+				}
+				map.setMyLocationEnabled(true);
+				map.getUiSettings().setAllGesturesEnabled(true);
+				getLoactionviaGPS();
+			}
+
+		}
+	}
+
+	private void getLoactionviaGPS() {
+		if (googleApiClient == null) {
+			googleApiClient = new GoogleApiClient.Builder(this)
+					.addApi(LocationServices.API)
+					.addConnectionCallbacks(this)
+					.addOnConnectionFailedListener(this).build();
+			googleApiClient.connect();
+
+			LocationRequest locationRequest = LocationRequest.create();
+			locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+			locationRequest.setInterval(30 * 1000);
+			locationRequest.setFastestInterval(5 * 1000);
+			LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder()
+					.addLocationRequest(locationRequest);
+
+			//**************************
+			builder.setAlwaysShow(true); //this is the key ingredient
+			//**************************
+
+			PendingResult<LocationSettingsResult> result =
+					LocationServices.SettingsApi.checkLocationSettings(googleApiClient, builder.build());
+
+			result.setResultCallback(new ResultCallback<LocationSettingsResult>() {
+				@Override
+				public void onResult(LocationSettingsResult result) {
+
+					final Status status = result.getStatus();
+//					final LocationSettingsStates state = result.getLocationSettingsStates();
+					switch (status.getStatusCode()) {
+						case LocationSettingsStatusCodes.SUCCESS:
+							// All location settings are satisfied. The client can initialize location
+							// requests here.
+							break;
+						case LocationSettingsStatusCodes.RESOLUTION_REQUIRED:
+							// Location settings are not satisfied. But could be fixed by showing the user
+							// a dialog.
+							try {
+								// Show the dialog by calling startResolutionForResult(),
+								// and check the result in onActivityResult().
+								status.startResolutionForResult(
+										FacilityDetailsActivity.this, 1000);
+							} catch (IntentSender.SendIntentException e) {
+								// Ignore the error.
+							}
+							break;
+						case LocationSettingsStatusCodes.SETTINGS_CHANGE_UNAVAILABLE:
+							// Location settings are not satisfied. However, we have no way to fix the
+							// settings so we won't show the dialog.
+							break;
+					}
+				}
+			});
+		}
+	}
 }

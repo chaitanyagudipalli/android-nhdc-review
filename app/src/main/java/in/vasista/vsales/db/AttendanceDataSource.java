@@ -6,7 +6,6 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -15,7 +14,7 @@ import in.vasista.hr.attendance.Attendance;
 
 public class AttendanceDataSource {
 	public static final String module = AttendanceDataSource.class.getName();	
-	private Context context;	
+	//private Context context;	
 	  // Database fields
 	  private SQLiteDatabase database;
 	  private MySQLiteHelper dbHelper;
@@ -26,7 +25,7 @@ public class AttendanceDataSource {
 	      MySQLiteHelper.COLUMN_EMPLOYEE_ATTENDANCE_DURATION};
 	  
 	  public AttendanceDataSource(Context context) {
-		  this.context = context;		  
+		  //this.context = context;		  
 	    dbHelper = new MySQLiteHelper(context); 
 	  }
 
@@ -65,11 +64,10 @@ public class AttendanceDataSource {
 	  }
 	  
 	  private Attendance cursorToPunch(Cursor cursor) {
-		    Attendance punch = new Attendance(cursor.getString(1), 
-		    			cursor.getString(2),
-		    			cursor.getString(3),
-		    			cursor.getString(4));
-		    return punch;
+		    return new Attendance(cursor.getString(1),
+					cursor.getString(2),
+					cursor.getString(3),
+					cursor.getString(4));
 	  }	  
 	  
 	  public void deleteAllPunches() {
@@ -77,7 +75,7 @@ public class AttendanceDataSource {
 	  }
 	  
 	  public void insertPunches(String employeeId, Object[] punches) {
-		  SimpleDateFormat  format = new SimpleDateFormat("yyyy-MM-dd");  		    	  
+		  //SimpleDateFormat  format = new SimpleDateFormat("yyyy-MM-dd");
 		  for (int i = 0; i < punches.length; ++i) {
 			  Map punchMap = (Map)punches[i];
 			  if (punchMap != null) {

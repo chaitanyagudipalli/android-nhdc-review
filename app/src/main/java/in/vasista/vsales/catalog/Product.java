@@ -2,66 +2,64 @@ package in.vasista.vsales.catalog;
 
 public class Product {
 	String id;
-	String name = "";
-	String description = "";
+	String name = "",internalname ="", brandname = "";
+	String description = "",typeid="",UOMid = "";
 	float price;
-	float mrpPrice;	
-	int sequenceNum;
-
+	float includedquantity;
 
 	String productCategoryId = "";
-	boolean trackInventory;
-	boolean trackSales;
-	
-	
-	public Product(String id, String name, String description, int sequenceNum, float price, float mrpPrice,
-			String productCategoryId, boolean trackInventory, boolean trackSales) {
+
+
+	public Product(String id, String name, String internalname, String brandname, String description, String typeid, String UOMid, float price, float includedquantity, String productCategoryId) {
 		this.id = id;
 		this.name = name;
+		this.internalname = internalname;
+		this.brandname = brandname;
 		this.description = description;
-		this.sequenceNum = sequenceNum;
+		this.typeid = typeid;
+		this.UOMid = UOMid;
 		this.price = price;
-		this.mrpPrice = mrpPrice;
+		this.includedquantity = includedquantity;
 		this.productCategoryId = productCategoryId;
-		this.trackInventory = trackInventory;
-		this.trackSales = trackSales;
 	}
-	
+
 	public String getId() {
 		return id;
 	}
+
 	public String getName() {
-		return (name == null) ? "" : name;
+		return name;
 	}
+
+	public String getInternalname() {
+		return internalname;
+	}
+
+	public String getBrandname() {
+		return brandname;
+	}
+
 	public String getDescription() {
-		return (description == null) ? "" : description;
+		return description;
 	}
-	
-	public int getSequenceNum() {
-		return sequenceNum;
+
+	public String getTypeid() {
+		return typeid;
 	}
-	
+
+	public String getUOMid() {
+		return UOMid;
+	}
+
 	public float getPrice() {
 		return price;
 	}
 
-	public float getMrpPrice() {
-		return mrpPrice;
+	public float getIncludedquantity() {
+		return includedquantity;
 	}
-	
+
 	public String getProductCategoryId() {
-		return (productCategoryId == null) ? "" : productCategoryId;
-	}
-
-	public boolean isTrackInventory() {
-		return trackInventory;
-	}
-
-	public boolean isTrackSales() {
-		return trackSales;
-	}	
-	
-	public String toString() {
-		return id + " " + name + " " + description + " " + price + " " + mrpPrice;
+		return productCategoryId;
 	}
 }

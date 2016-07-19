@@ -1,9 +1,7 @@
 package in.vasista.tm;
 
 import android.app.ListFragment;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -28,7 +26,7 @@ public class TicketListFragment extends ListFragment {
 	public void onActivityCreated(Bundle savedInstanceState) {
 		
 		super.onActivityCreated(savedInstanceState);  
-    	SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());		
+    	//SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
 		final ListView listView = getListView();
 		final TicketListFragment catalogListFragment = this; 
 		if (listView.getHeaderViewsCount() == 0) {           

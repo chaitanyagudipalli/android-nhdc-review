@@ -21,7 +21,7 @@ import in.vasista.hr.payslip.PayslipItem;
 
 public class PayslipDataSource {
 	public static final String module = PayslipDataSource.class.getName();	
-	private Context context;	
+	//private Context context;
 	  // Database fields
 	  private SQLiteDatabase database;
 	  private MySQLiteHelper dbHelper;
@@ -37,7 +37,7 @@ public class PayslipDataSource {
 		      MySQLiteHelper.COLUMN_PAYROLL_ITEM_AMOUNT};	
 	  
 	  public PayslipDataSource(Context context) {
-		  this.context = context;		  
+		  //this.context = context;
 	    dbHelper = new MySQLiteHelper(context); 
 	  }
 
@@ -99,12 +99,11 @@ public class PayslipDataSource {
 
 	  
 	  private Payslip cursorToPayslip(Cursor cursor) {
-	    Payslip payslip = new Payslip(cursor.getString(0), 
-	    		cursor.getString(1),
-	    		new Date(cursor.getLong(2)),
-	    		cursor.getString(3),    				
-	    		cursor.getFloat(4));
-	    return payslip;
+	    return new Payslip(cursor.getString(0),
+				cursor.getString(1),
+				new Date(cursor.getLong(2)),
+				cursor.getString(3),
+				cursor.getFloat(4));
 	  }
 
 	  public void insertPayslips(String employeeId, Object[] payslips) {
@@ -170,8 +169,7 @@ public class PayslipDataSource {
 	  }
 	  
 	  private PayslipItem cursorToPayslipItem(Cursor cursor) {
-		  PayslipItem payslipItem = new PayslipItem(cursor.getString(2),
-				  cursor.getFloat(3));
-		    return payslipItem;
+		    return new PayslipItem(cursor.getString(2),
+					cursor.getFloat(3));
 	  }		  
 }

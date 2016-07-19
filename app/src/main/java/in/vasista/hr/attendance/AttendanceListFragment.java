@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.app.ListFragment;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.ListView;
 import android.widget.ProgressBar;
 
 import java.util.List;
@@ -24,11 +23,11 @@ public class AttendanceListFragment extends ListFragment {
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);		
 		if (adapter == null) {			
-    	    datasource = new AttendanceDataSource(getActivity());   
+    	    datasource = new AttendanceDataSource(getActivity());
     	    datasource.open();
     	    punchItems = datasource.getAllPunches();
 		}
-		final ListView listView = getListView(); 
+		//final ListView listView = getListView();
 		if (adapter == null) {			   	    
 		    adapter = new AttendanceAdapter(getActivity(),
                     R.layout.attendancelist_item, 
@@ -45,7 +44,7 @@ public class AttendanceListFragment extends ListFragment {
 			return; // nothing to do since most probably fragment is not yet created
 		}
 		setListAdapter(null);    
-	    datasource.open();  
+	    datasource.open();
 	    punchItems = datasource.getAllPunches();
 	    
 	    adapter = new AttendanceAdapter(getActivity(),

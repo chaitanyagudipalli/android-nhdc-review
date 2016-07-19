@@ -1,6 +1,7 @@
 package in.vasista.vsales.indent;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.ListFragment;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -97,7 +98,7 @@ public class IndentItemsListFragment extends ListFragment{
 					 
 		if (indent != null) { 
 			SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMdd");
-			boolean isActiveIndent =  fmt.format(new Date()).compareTo(fmt.format(indent.getSupplyDate())) <= 0;
+//			boolean isActiveIndent =  fmt.format(new Date()).compareTo(fmt.format(indent.getSupplyDate())) <= 0;
 	    	//Log.d(module, "now = " + fmt.format(new Date()));
 	    	//Log.d(module, "supplyDate = " + fmt.format(indent.getSupplyDate()));
 //			if (!isActiveIndent) {
@@ -118,7 +119,7 @@ public class IndentItemsListFragment extends ListFragment{
 						.getItemAtPosition(position);
 
 				alert.setTitle("Enter quantity for "  + item.getProductName());
-				alert.setMessage("Quantity (Pkts)"); 
+				alert.setMessage(R.string.indent_edit_alert_message);
 
 				// Set an EditText view to get user input
 				final EditText input = new EditText(getActivity());
@@ -157,7 +158,12 @@ public class IndentItemsListFragment extends ListFragment{
 							}
 						});
 
-				alert.show();
+				Dialog d =  alert.show();
+
+
+				int textViewId = d.getContext().getResources().getIdentifier("android:id/alertTitle", null, null);
+				TextView tv = (TextView) d.findViewById(textViewId);
+				tv.setTextColor(getResources().getColor(R.color.colorPrimary));
 			}
 
 		});
@@ -192,12 +198,12 @@ public class IndentItemsListFragment extends ListFragment{
 		Date date = DateUtil.addDays(new Date(), 1);
 		String indentSupply = "";
 		String synced = ""; 
-		if (indent != null) {  
-			indent.setTotal(total); 
-			date = indent.getSupplyDate();    
-			indentSupply = "Supply: " + indent.getSubscriptionType();  
-			synced = "Synced: " + (indent.isSynced() ? "Y":"N"); 
-		}
+//		if (indent != null) {
+//			indent.setTotal(total);
+//			date = indent.getSupplyDate();
+//			indentSupply = "Supply: " + indent.getSubscriptionType();
+//			synced = "Synced: " + (indent.isSynced() ? "Y":"N");
+//		}
 	    SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMM, yyyy");   
 	    String indentDateStr = dateFormat.format(date);
 		TextView totalView = (TextView)listView.getRootView().findViewById(R.id.indentitemsTotal);
@@ -222,9 +228,10 @@ public class IndentItemsListFragment extends ListFragment{
 	void initializeIndentItems() {  
 		ProductsDataSource prodsDatasource = new ProductsDataSource(getActivity());
 		prodsDatasource.open();
-		List<Product> products = prodsDatasource.getAllSaleProducts();
+		List<Product> products = prodsDatasource.getAllProducts();
 		for (int i = 0; i < products.size(); ++i) {
 			Product product = products.get(i);
+			//IndentItem item = new IndentItem(product.getId(), product.getName(), -1, product.getPrice());
 			IndentItem item = new IndentItem(product.getId(), product.getName(), -1, product.getPrice());
 			indentItems.add(item);
 		}
@@ -237,7 +244,7 @@ public class IndentItemsListFragment extends ListFragment{
 		List <IndentItem> newItemsList = new ArrayList<IndentItem>();
 		ProductsDataSource prodsDatasource = new ProductsDataSource(getActivity());
 		prodsDatasource.open();
-		List<Product> products = prodsDatasource.getAllSaleProducts();
+		List<Product> products = prodsDatasource.getAllProducts();
 		for (int i = 0; i < products.size(); ++i) {
 			Product product = products.get(i);
 			boolean productExists = false;
@@ -248,6 +255,7 @@ public class IndentItemsListFragment extends ListFragment{
 				}         
 			}                
 			if (!productExists) {
+				//IndentItem item = new IndentItem(product.getId(), product.getName(), -1, product.getPrice());
 				IndentItem item = new IndentItem(product.getId(), product.getName(), -1, product.getPrice());
 				newItemsList.add(item);
 			}
@@ -289,16 +297,16 @@ public class IndentItemsListFragment extends ListFragment{
 	}
 	public void doneIndentAction(){
 		datasource.open();
-		if (indent == null) {
-			long indentId = datasource.insertIndent("Created", getTotal(), "AM");
-			datasource.insertIndentItems(indentId, indentItems);
-			indent = datasource.getIndentDetails(indentId);
-		}
-		else {
-			indent.setSynced(false);
-			indent.setTotal(getTotal());
-			datasource.updateIndentAndIndentItems(indent, indentItems);
-		}
+//		if (indent == null) {
+//			long indentId = datasource.insertIndent("Created", getTotal(), "AM");
+//			datasource.insertIndentItems(indentId, indentItems);
+//			indent = datasource.getIndentDetails(indentId);
+//		}
+//		else {
+//			indent.setSynced(false);
+//			indent.setTotal(getTotal());
+//			datasource.updateIndentAndIndentItems(indent, indentItems);
+//		}
 
 		notifyChange();
 		updateIndentHeaderViewInternal(indent);

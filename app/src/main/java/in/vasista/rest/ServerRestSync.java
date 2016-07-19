@@ -21,7 +21,7 @@ import retrofit.client.Response;
 
 public class ServerRestSync {
 	public static final String module = ServerRestSync.class.getName();	
-	private RestAdapter restAdapter;
+	//private RestAdapter restAdapter;
 	private VbizAPI api; 		
 	private Context context;
 
@@ -34,8 +34,7 @@ public class ServerRestSync {
 		final String userName = prefs.getString("userName", "");
 		final String password = prefs.getString("password", "");
 		final String tenantId = prefs.getString("tenantId", "");		
-		Log.d( module, "serverURL=" + urlStr +"; userName=" + userName + "; password=" + password +
-				";tenantid=" + tenantId); 
+		Log.d( module, "serverURL=" + urlStr +"; userName=" + userName + "; password=" + password + ";tenantid=" + tenantId);
 		RequestInterceptor requestInterceptor = new RequestInterceptor() {
 			  @Override
 			  public void intercept(RequestFacade request) {
@@ -44,7 +43,7 @@ public class ServerRestSync {
 			    request.addHeader("tenantId", tenantId);			    
 			  }
 		};
-		restAdapter = new RestAdapter.Builder()
+		RestAdapter restAdapter = new RestAdapter.Builder()
 	    	.setEndpoint(urlStr)
 	    	.setRequestInterceptor(requestInterceptor)
 	    	.build();
@@ -57,7 +56,7 @@ public class ServerRestSync {
 			Log.d(module, "products.size = " + products.size());
 			final ProductsDataSource datasource = new ProductsDataSource(context);
 	    	datasource.open();
-	    	datasource.deleteAllInventoryProducts();
+	    	//datasource.deleteAllInventoryProducts();
 	    	datasource.insertProducts(products);
 			datasource.close();
 	    	Log.d(module, "products loaded into db");	

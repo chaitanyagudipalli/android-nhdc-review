@@ -34,12 +34,13 @@ public class PaymentAdapter extends ArrayAdapter<Payment> {
 	   Payment item = getItem(position);
 
 	    String id = item.getId();
-	    Date date = item.getPaymentDate();
+	    Date date = item.getDate();
 	    SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMM, yyyy");
 	    String dateStr = dateFormat.format(date);
-	    String paymentMethod = item.getPaymentMethodType();
+	    String paymentMethod = item.getType();
 	        
-	    String amount = String.format("%.2f", item.getAmount());
+	    String amount_paid = String.format("%.2f", item.getAmount_paid());
+		  String amount_balance = String.format("%.2f", item.getAmount_balance());
 
 
 	    if (convertView == null) {
@@ -60,7 +61,7 @@ public class PaymentAdapter extends ArrayAdapter<Payment> {
 	    idView.setText(id);
 	    dateView.setText(dateStr);
 	    pymentMethodView.setText(paymentMethod);
-	    amountView.setText(amount);
+	    amountView.setText(amount_paid);
 	    return paymentView;
 	  }
 }

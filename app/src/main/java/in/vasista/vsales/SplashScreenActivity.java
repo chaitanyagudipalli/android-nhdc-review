@@ -14,12 +14,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 import in.vasista.nhdc.R;
+import in.vasista.vsales.preference.FragmentPreferences;
 import in.vasista.vsales.sync.xmlrpc.XMLRPCApacheAdapter;
 
 public class SplashScreenActivity extends Activity  
 {  
 	public static final String module = SplashScreenActivity.class.getName();		
-	private ProgressBar progressBar;  
+	private ProgressBar progressBar;
+
+	private static final int SHOW_PREFERENCES = 1;
 
 	/** Called when the activity is first created. */  
 	@Override  
@@ -57,20 +60,22 @@ public class SplashScreenActivity extends Activity
 				//Get the current thread's token  
 				synchronized (this)  
 				{
-					Map paramMap = new HashMap();		
+					Map paramMap = new HashMap();
+					SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+					SharedPreferences.Editor prefEditor = prefs.edit();
 					XMLRPCApacheAdapter adapter = new XMLRPCApacheAdapter(getBaseContext());
 					Object result = adapter.callSync("getMobilePermissions", paramMap);	
 					if (result != null) { 
 						Map  permissions = (Map)((Map)result).get("permissionResults");
 						if (permissions != null) {
 							Log.d(module, "permissions.size() = " + permissions.size());
-							Object[]  permissionList = (Object[] )((Map)permissions).get("permissionList");
+							Object[]  permissionList = (Object[] ) permissions.get("permissionList");
 							if (permissionList != null)  {
 								Log.d(module, "permissionList.length = " + permissionList.length);	
 						    	String retailerPerm = "N";
 						    	String salesRepPerm = "N";
 						    	String hrPerm = "N";
-						    	String inventoryPerm = "N";
+						    	String inventoryPerm = "N", locationPerm = "N";
 						    	
 								for (int i = 0; i < permissionList.length; ++i) {
 									String dashboardPermission = (String)permissionList[i];
@@ -86,18 +91,32 @@ public class SplashScreenActivity extends Activity
 									}
 									else if (MainActivity.INVENTORY_DB_PERM.equals(dashboardPermission)) {
 										inventoryPerm = "Y";
-									}									
+									}
+									else if (MainActivity.LOCATION_DB_PERM.equals(dashboardPermission)) {
+										locationPerm = "Y";
+									}
 								}
 								// refresh permissions prefs
-						    	SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());								
-								SharedPreferences.Editor prefEditor = prefs.edit();
+
 					    		prefEditor.putString(MainActivity.RETAILER_DB_PERM, retailerPerm);
 					    		prefEditor.putString(MainActivity.SALESREP_DB_PERM, salesRepPerm);
 					    		prefEditor.putString(MainActivity.HR_DB_PERM, hrPerm);		
-					    		prefEditor.putString(MainActivity.INVENTORY_DB_PERM, inventoryPerm);					    		  		
-					    		prefEditor.apply();
+					    		prefEditor.putString(MainActivity.INVENTORY_DB_PERM, inventoryPerm);
+								prefEditor.putString(MainActivity.LOCATION_DB_PERM, locationPerm);
+
 							}
 						}
+
+						String name = (String)((Map)result).get("name");
+
+						if(name != null)
+							prefEditor.putString(MainActivity.USER_FULLNAME, name);
+
+						String contactNumber = (String)((Map)result).get("contactNumber");
+						if (contactNumber != null)
+							prefEditor.putString(MainActivity.USER_MOBILE, contactNumber);
+
+						prefEditor.apply();
 					}
 					
 					/*
@@ -134,11 +153,30 @@ public class SplashScreenActivity extends Activity
 		//after executing the code in the thread  
 		@Override  
 		protected void onPostExecute(Void result)  
-		{  
-  
-			progressBar.setVisibility(View.INVISIBLE);
-			Intent i = new Intent(SplashScreenActivity.this, MainActivity.class);
-            startActivity(i); 
+		{
+			progressBar.setVisibility(View.GONE);
+
+			SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(SplashScreenActivity.this);
+			String serverURL = prefs.getString("serverURL", "nhdc-test.vasista.in");
+			String userName = prefs.getString("userName", "");
+			String password = prefs.getString("password", "");
+			String tenantId = prefs.getString("tenantId", "nhdc-test");
+
+			/*if (serverURL.isEmpty() || userName.isEmpty() || password.isEmpty() || tenantId.isEmpty()){
+				//show settings
+				SharedPreferences.Editor prefEditor = prefs.edit();
+				prefEditor.putString("serverURL", serverURL).apply();
+				startActivityForResult( new Intent(getApplicationContext(), FragmentPreferences.class), SHOW_PREFERENCES);
+			}else {*/
+				Intent i = new Intent(SplashScreenActivity.this, MainActivity.class);
+				startActivity(i);
+				if (serverURL.isEmpty() || userName.isEmpty() || password.isEmpty() || tenantId.isEmpty()){
+					//show settings
+					SharedPreferences.Editor prefEditor = prefs.edit();
+					prefEditor.putString("serverURL", serverURL).apply();
+					startActivityForResult( new Intent(getApplicationContext(), FragmentPreferences.class), SHOW_PREFERENCES);
+				}
+			//}
             
          // close this activity
             finish();

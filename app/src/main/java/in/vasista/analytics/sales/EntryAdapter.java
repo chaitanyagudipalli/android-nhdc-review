@@ -1,0 +1,82 @@
+package in.vasista.analytics.sales;
+
+/**
+ * Created by Bekkam on 17/5/16.
+ */
+
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.Collections;
+
+import in.vasista.nhdc.R;
+
+public class EntryAdapter extends ArrayAdapter<Item> {
+
+    private Context context;
+    private ArrayList<Item> items;
+    private LayoutInflater vi;
+
+    public EntryAdapter(Context context, ArrayList<Item> items) {
+        super(context, 0, items);
+        this.context = context;
+        this.items = items;
+        vi = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+    }
+
+
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        View v = convertView;
+
+        final Item i = items.get(position);
+        if (i != null) {
+            if (i.isSection()) {
+                SectionItem si = (SectionItem) i;
+                v = vi.inflate(R.layout.analytic_sales_list_item_section, null);
+
+                v.setOnClickListener(null);
+                v.setOnLongClickListener(null);
+                v.setLongClickable(false);
+
+                final TextView sectionCategoryTitle = (TextView) v.findViewById(R.id.list_item_section_text);
+                final TextView sectionQuantity = (TextView) v.findViewById(R.id.list_item_section_quantity);
+                final TextView sectionRevenue = (TextView) v.findViewById(R.id.list_item_section_revenue);
+
+                if (sectionCategoryTitle != null)
+                    sectionCategoryTitle.setText(si.getTitle());
+                if (sectionQuantity != null)
+                    sectionQuantity.setText(si.getTotelQuantity());
+                if (sectionRevenue != null)
+                    sectionRevenue.setText(si.getTotelRevenue());
+
+            } else {
+                EntryItem ei = (EntryItem) i;
+
+                v = vi.inflate(R.layout.analytic_sales_list_item, null);
+                final TextView title = (TextView) v.findViewById(R.id.categoryName);
+                final TextView subtitle = (TextView) v.findViewById(R.id.categoryTotalQuantity);
+                final TextView subtitle2 = (TextView) v.findViewById(R.id.categoryTotalRevenue);
+
+                if (title != null)
+                    title.setText(ei.productCategoryName);
+
+                double currentQuantity = Double.parseDouble(ei.productCategoryTQ);
+                double currentRevenue = Double.parseDouble(ei.productCategoryTR);
+
+
+                if (subtitle != null)
+                    subtitle.setText(String.format("%.2f", currentQuantity));
+                if (subtitle2 != null)
+                    subtitle2.setText(String.format("%.2f", currentRevenue));
+            }
+        }
+        return v;
+    }
+
+}

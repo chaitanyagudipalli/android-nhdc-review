@@ -19,6 +19,8 @@ package in.vasista.vsales;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 
 import in.vasista.nhdc.R;
@@ -54,9 +56,20 @@ protected void onCreate(Bundle savedInstanceState)
     setSalesDashboardTitle(R.string.title_feature4);
 
 }
+    protected void onResume ()
+    {
+        super.onResume ();
+        final FrameLayout inputSearchFrame = (FrameLayout) findViewById(R.id.inputSearchFrame);
+        //final EditText inputSearch = (EditText) findViewById(R.id.inputSearch);
+        if (inputSearchFrame != null) {
+            inputSearchFrame.setVisibility(View.GONE);
+            //inputSearchFrame.setText("");
+        }
+
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.refresh, menu);
+        getMenuInflater().inflate(R.menu.main, menu);
         return super.onCreateOptionsMenu(menu);
     }
     public boolean onOptionsItemSelected(MenuItem item){
@@ -69,7 +82,15 @@ protected void onCreate(Bundle savedInstanceState)
                 CatalogListFragment catalogListFragment = (CatalogListFragment) fm.findFragmentById(R.id.catalog_list_fragment);
                 catalogListFragment.syncCatalog(item);
                 return true;
-
+            case  R.id.homeSearch:
+                final FrameLayout inputSearchFrame = (FrameLayout) findViewById(R.id.inputSearchFrame);
+                if (inputSearchFrame.isShown()) {
+                    inputSearchFrame.setVisibility(View.GONE);
+                }
+                else {
+                    inputSearchFrame.setVisibility(View.VISIBLE);
+                }
+                return true;
         }
         return false;
     }

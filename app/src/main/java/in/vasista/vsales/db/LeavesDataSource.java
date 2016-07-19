@@ -18,7 +18,7 @@ import in.vasista.hr.leave.Leave;
 
 public class LeavesDataSource {
 	public static final String module = LeavesDataSource.class.getName();	
-	private Context context;	
+	//private Context context;
 	  // Database fields
 	  private SQLiteDatabase database;
 	  private MySQLiteHelper dbHelper;
@@ -30,7 +30,7 @@ public class LeavesDataSource {
 	      MySQLiteHelper.COLUMN_EMPLOYEE_LEAVE_THRU_DATE};
 	  
 	  public LeavesDataSource(Context context) {
-		  this.context = context;		  
+		  //this.context = context;
 	    dbHelper = new MySQLiteHelper(context); 
 	  }
 
@@ -70,12 +70,11 @@ public class LeavesDataSource {
 	  }
 	  
 	  private Leave cursorToLeave(Cursor cursor) {
-		    Leave leave = new Leave(cursor.getString(1), 
-		    			cursor.getString(2),
-		    			cursor.getString(3),
-		    			new Date(cursor.getLong(4)),
-		    			new Date(cursor.getLong(5)));
-		    return leave;
+		    return new Leave(cursor.getString(1),
+					cursor.getString(2),
+					cursor.getString(3),
+					new Date(cursor.getLong(4)),
+					new Date(cursor.getLong(5)));
 	  }	  
 	  
 	  public void deleteAllLeaves() {

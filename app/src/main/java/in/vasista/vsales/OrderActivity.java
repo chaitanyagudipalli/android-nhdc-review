@@ -43,9 +43,7 @@ public class OrderActivity extends DashboardAppCompatActivity
  * 
  * Always followed by onStart().
  *
- * @param savedInstanceState Bundle
  */
-private MenuItem menuItem;
     ProgressBar progressBar;
 protected void onCreate(Bundle savedInstanceState) 
 {
@@ -65,14 +63,13 @@ protected void onCreate(Bundle savedInstanceState)
         super.onOptionsItemSelected(item);
         switch (item.getItemId()) {
             case R.id.action_refresh:
-                menuItem = item;
+                MenuItem menuItem = item;
                 menuItem.setActionView(R.layout.progressbar);
                 progressBar=(ProgressBar)menuItem.getActionView().findViewById(R.id.menuitem_progress);
                 FragmentManager fm = getFragmentManager();
                 OrderListFragment indentListFragment = (OrderListFragment) fm.findFragmentById(R.id.order_list_fragment);
                 indentListFragment.syncOrder(menuItem);
                 return true;
-
         }
         return false;
     }

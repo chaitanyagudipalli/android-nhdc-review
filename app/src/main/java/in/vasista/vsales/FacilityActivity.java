@@ -46,9 +46,7 @@ public class FacilityActivity extends DashboardAppCompatActivity
  * 
  * Always followed by onStart().
  *
- * @param savedInstanceState Bundle
  */
-private MenuItem menuItem;
 	ProgressBar progressBar;
 protected void onCreate(Bundle savedInstanceState) 
 {
@@ -83,20 +81,17 @@ protected void onResume ()
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.main, menu);
-		menu.removeItem(R.id.action_about);
-		menu.removeItem(R.id.action_settings);
 		return super.onCreateOptionsMenu(menu);
 	}
 	public boolean onOptionsItemSelected(MenuItem item){
 		super.onOptionsItemSelected(item);
 		switch (item.getItemId()) {
 			case R.id.action_refresh:
-				menuItem = item;
-				menuItem.setActionView(R.layout.progressbar);
-				progressBar=(ProgressBar)menuItem.getActionView().findViewById(R.id.menuitem_progress);
+				item.setActionView(R.layout.progressbar);
+				progressBar=(ProgressBar) item.getActionView().findViewById(R.id.menuitem_progress);
 				FragmentManager fm = getFragmentManager();
 				FacilityListFragment facilityListFragment = (FacilityListFragment) fm.findFragmentById(R.id.facility_list_fragment);
-				facilityListFragment.syncOutlets(menuItem);
+				facilityListFragment.syncOutlets(item);
 				return true;
 			case  R.id.homeSearch:
 				final FrameLayout inputSearchFrame = (FrameLayout) findViewById(R.id.inputSearchFrame);
@@ -107,7 +102,6 @@ protected void onResume ()
 					inputSearchFrame.setVisibility(View.VISIBLE);
 				}
 				return true;
-
 		}
 		return false;
 	}

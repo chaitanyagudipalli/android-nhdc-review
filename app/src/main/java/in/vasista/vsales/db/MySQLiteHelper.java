@@ -10,25 +10,37 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 	  public static final String TABLE_PRODUCT = "PRODUCT";
 	  public static final String COLUMN_PRODUCT_ID = "PRODUCT_ID";
 	  public static final String COLUMN_PRODUCT_NAME = "PRODUCT_NAME";
+	  public static final String COLUMN_PRODUCT_BRAND_NAME = "PRODUCT_BRAND_NAME";
+	  public static final String COLUMN_PRODUCT_INRENAL_NAME = "PRODUCT_INTERNAL_NAME";
 	  public static final String COLUMN_PRODUCT_DESC = "PRODUCT_DESC";	  
 	  public static final String COLUMN_PRODUCT_PRICE = "PRODUCT_PRICE";
-	  public static final String COLUMN_PRODUCT_MRP_PRICE = "PRODUCT_MRP_PRICE";	  
-	  public static final String COLUMN_PRODUCT_SEQUENCE_NUM = "PRODUCT_SEQ_NUM";
 	  public static final String COLUMN_PRODUCT_CATEGORY_ID = "PRODUCT_CATEGORY_ID";
-	  public static final String COLUMN_PRODUCT_TRACK_INVENTORY = "PRODUCT_TRACK_INVENTORY";
-	  public static final String COLUMN_PRODUCT_TRACK_SALES = "PRODUCT_TRACK_SALES";
+	public static final String COLUMN_PRODUCT_TYPE_ID = "PRODUCT_TYPE_ID";
+	public static final String COLUMN_PRODUCT_QUANTITY_UOM_ID = "PRODUCT_QUANTITY_UOM_ID";
+	public static final String COLUMN_PRODUCT_QUANTITY_INCLUDED = "PRODUCT_QUANTITY_INCLUDED";
+
+
   
 	  
-	  public static final String TABLE_INDENT = "INDENT";
-	  public static final String COLUMN_INDENT_ID = "INDENT_ID";
-	  public static final String COLUMN_INDENT_CRDATE = "INDENT_CRDATE";
-	  public static final String COLUMN_INDENT_SUPPLYDATE = "INDENT_SUPPLYDATE";	
-	  public static final String COLUMN_INDENT_SUBSCRIPTIONTYPE = "INDENT_SUBTYPE";	  	  
-	  public static final String COLUMN_INDENT_STATUS = "INDENT_STATUS";
-	  public static final String COLUMN_INDENT_IS_SYNCED = "INDENT_IS_SYNCED";	  	  
-	  public static final String COLUMN_INDENT_TOTAL = "INDENT_TOTAL";	  
-	  
-	  public static final String TABLE_INDENT_ITEM = "INDENT_ITEM";
+	public static final String TABLE_INDENT = "INDENT";
+	public static final String COLUMN_INDENT_ID = "INDENT_ID";
+	public static final String COLUMN_INDENT_TALLY_REFNO = "INDENT_TALLY_REFNO";
+	public static final String COLUMN_INDENT_PO_ORDER = "INDENT_PO_ORDER";
+	public static final String COLUMN_INDENT_PO_SEQ_NO = "INDENT_PO_SEQ_NO";
+	public static final String COLUMN_INDENT_IS_GEN_PO = "INDENT_IS_GEN_PO";
+	public static final String COLUMN_INDENT_SUPP_PARTY_ID = "INDENT_SUPP_PARTY_ID";
+	public static final String COLUMN_INDENT_STORENAME = "INDENT_STORENAME";
+	public static final String COLUMN_INDENT_SUPP_PARTY_NAME = "INDENT_SUPP_PARTY_NAME";
+	public static final String COLUMN_INDENT_ORDER_NO = "INDENT_ORDER_NO";
+	public static final String COLUMN_INDENT_ORDER_ID = "INDENT_ORDER_ID";
+	public static final String COLUMN_INDENT_ORDER_DATE = "INDENT_ORDER_DATE";
+	public static final String COLUMN_INDENT_STATUS_ID = "INDENT_STATUS_ID";
+	public static final String COLUMN_INDENT_ORDER_TOTAL = "INDENT_ORDER_TOTAL";
+	public static final String COLUMN_INDENT_PAID = "INDENT_PAID";
+	public static final String COLUMN_INDENT_BALANCE = "INDENT_BALANCE";
+
+
+	public static final String TABLE_INDENT_ITEM = "INDENT_ITEM";
 	  public static final String COLUMN_INDENT_ITEM_ID = "_ID";	  
 	  public static final String COLUMN_INDENT_ITEM_QTY = "QTY";
 	  public static final String COLUMN_INDENT_ITEM_UNIT_PRICE = "UNIT_PRICE";		
@@ -48,7 +60,11 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 	  public static final String COLUMN_PAYMENT_ID = "PAYMENT_ID";
 	  public static final String COLUMN_PAYMENT_DATE = "PAYMENT_DATE";
 	  public static final String COLUMN_PAYMENT_METHOD = "PAYMENT_METHOD";		  	  
-	  public static final String COLUMN_PAYMENT_AMOUNT = "PAYMENT_AMOUNT";	 
+	  public static final String COLUMN_PAYMENT_AMOUNT_PAID = "PAYMENT_AMOUNT_PAID";
+	public static final String COLUMN_PAYMENT_AMOUNT_BALANCE = "PAYMENT_AMOUNT_BALANCE";
+	public static final String COLUMN_PAYMENT_FROM = "PAYMENT_FROM";
+	public static final String COLUMN_PAYMENT_TO = "PAYMENT_TO";
+	public static final String COLUMN_PAYMENT_STATUS = "PAYMENT_STATUS";
 	  
 	  public static final String TABLE_FACILITY = "FACILITY";
 	  public static final String COLUMN_FACILITY_ID = "FACILITY_ID";
@@ -59,7 +75,13 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 	  public static final String COLUMN_FACILITY_AM_ROUTE = "AM_ROUTE_ID";		  	  
 	  public static final String COLUMN_FACILITY_PM_ROUTE = "PM_ROUTE_ID";	
 	  public static final String COLUMN_FACILITY_LATITUDE = "LATITUDE";		  	  
-	  public static final String COLUMN_FACILITY_LONGITUDE = "LONGITUDE";		  	  
+	  public static final String COLUMN_FACILITY_LONGITUDE = "LONGITUDE";
+
+	public static final String TABLE_SUPPLIER = "SUPPLIER";
+	public static final String COLUMN_SUPPLIER_ID = "SUPPLIER_ID";
+	public static final String COLUMN_SUPPLIER_GROUPNAME = "SUPPLIER_GROUPNAME";
+	public static final String COLUMN_SUPPLIER_ROLETYPEID = "ROLETYPEID";
+	public static final String COLUMN_SUPPLIER_PARTYTYPEID = "PARTYTYPEID";
 	  
 	  public static final String TABLE_EMPLOYEE = "EMPLOYEE";
 	  public static final String COLUMN_EMPLOYEE_ID = "EMPLOYEE_ID";
@@ -124,25 +146,34 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 	  private static final String DATABASE_CREATE_PRODUCT = "create table "
 	      + TABLE_PRODUCT + " (" + COLUMN_PRODUCT_ID
 	      + " text primary key, " + COLUMN_PRODUCT_NAME
-	      + " text not null, " + COLUMN_PRODUCT_DESC	
-	      + " text, " + COLUMN_PRODUCT_SEQUENCE_NUM
-	      + " integer, " + COLUMN_PRODUCT_PRICE
-	      + " real, " + COLUMN_PRODUCT_MRP_PRICE	      
-	      + " real not null, " + COLUMN_PRODUCT_CATEGORY_ID	
-	      + " text, " + COLUMN_PRODUCT_TRACK_INVENTORY    
-	      + " integer not null, " + COLUMN_PRODUCT_TRACK_SALES   
-	      + " integer not null);"; 
+		  + " text not null, " + COLUMN_PRODUCT_DESC
+		  + " text, " + COLUMN_PRODUCT_INRENAL_NAME
+	      + " text, " + COLUMN_PRODUCT_BRAND_NAME
+	      + " text, " + COLUMN_PRODUCT_PRICE
+	      + " real, "+ COLUMN_PRODUCT_CATEGORY_ID
+	      + " text,"+ COLUMN_PRODUCT_TYPE_ID +" text," + COLUMN_PRODUCT_QUANTITY_UOM_ID +" text,"+
+			  COLUMN_PRODUCT_QUANTITY_INCLUDED+" real"
+			  +");";
+
 
 	  
 	  private static final String DATABASE_CREATE_INDENT = "create table "
 		      + TABLE_INDENT + " (" + COLUMN_INDENT_ID
-		      + " integer primary key autoincrement, " + COLUMN_INDENT_CRDATE
-		      + " integer not null, " + COLUMN_INDENT_SUPPLYDATE
-		      + " text not null, " + COLUMN_INDENT_SUBSCRIPTIONTYPE		      
-		      + " integer not null, " + COLUMN_INDENT_STATUS
-		      + " integer not null, " + COLUMN_INDENT_IS_SYNCED	      		      
-		      + " text not null, " + COLUMN_INDENT_TOTAL	      
-		      + " real not null);";
+		      + " integer primary key autoincrement, " + COLUMN_INDENT_TALLY_REFNO
+		      + " text, " + COLUMN_INDENT_PO_ORDER
+		      + " text, " + COLUMN_INDENT_PO_SEQ_NO
+		      + " text, " + COLUMN_INDENT_IS_GEN_PO
+		      + " text, " + COLUMN_INDENT_SUPP_PARTY_ID
+			  + " text, " + COLUMN_INDENT_STORENAME
+			  + " text, " + COLUMN_INDENT_SUPP_PARTY_NAME
+			  + " text, " + COLUMN_INDENT_ORDER_NO
+			  + " text, " + COLUMN_INDENT_ORDER_ID
+			  + " text, " + COLUMN_INDENT_ORDER_DATE
+			  + " text, " + COLUMN_INDENT_STATUS_ID
+			  + " text, " + COLUMN_INDENT_ORDER_TOTAL
+			  + " real not null, " + COLUMN_INDENT_PAID
+		      + " real, " + COLUMN_INDENT_BALANCE
+		      + " real);";
 	  
 	  private static final String DATABASE_CREATE_INDENT_ITEM = "create table "
 		      + TABLE_INDENT_ITEM + " (" + COLUMN_INDENT_ITEM_ID
@@ -172,9 +203,20 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 	      + TABLE_PAYMENT + " (" + COLUMN_PAYMENT_ID
 	      + " text primary key, " + COLUMN_PAYMENT_DATE
 	      + " integer not null, " + COLUMN_PAYMENT_METHOD	
-	      + " text, " + COLUMN_PAYMENT_AMOUNT
-	      + " real not null);";   
-	  
+	      + " text, " + COLUMN_PAYMENT_AMOUNT_PAID
+			  + " real not null, " + COLUMN_PAYMENT_AMOUNT_BALANCE
+			  + " real, " + COLUMN_PAYMENT_FROM
+			  + " text, " + COLUMN_PAYMENT_TO
+			  + " text, " + COLUMN_PAYMENT_STATUS
+	      + " text);";
+
+	private static final String DATABASE_CREATE_SUPPLIER = "create table "
+			+ TABLE_SUPPLIER + " (" + COLUMN_SUPPLIER_ID
+			+ " text primary key, " + COLUMN_SUPPLIER_GROUPNAME
+			+ " text, " + COLUMN_SUPPLIER_ROLETYPEID
+			+ " text, " + COLUMN_SUPPLIER_PARTYTYPEID
+			+ " text);";
+
 	  private static final String DATABASE_CREATE_FACILITY = "create table "
 		      + TABLE_FACILITY + " (" + COLUMN_FACILITY_ID
 		      + " text primary key, " + COLUMN_FACILITY_NAME
@@ -257,9 +299,11 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 	  
 
 	  private static final String DATABASE_NAME = "vsalesagent.db";
-	  private static final int DATABASE_VERSION = 24; 
-	  
-	  public MySQLiteHelper(Context context) {
+//	  private static final int DATABASE_VERSION = 24;
+
+		private static final int DATABASE_VERSION = 25; // For Indent Crates
+
+	public MySQLiteHelper(Context context) {
 	    super(context, DATABASE_NAME, null, DATABASE_VERSION); 
 	  } 
 
@@ -270,7 +314,8 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 	    database.execSQL(DATABASE_CREATE_INDENT_ITEM);	 
 	    database.execSQL(DATABASE_CREATE_ORDER);	
 	    database.execSQL(DATABASE_CREATE_ORDER_ITEM);		    
-	    database.execSQL(DATABASE_CREATE_PAYMENT);		
+	    database.execSQL(DATABASE_CREATE_PAYMENT);
+		  database.execSQL(DATABASE_CREATE_SUPPLIER);
 	    database.execSQL(DATABASE_CREATE_FACILITY);		 
 	    database.execSQL(DATABASE_CREATE_EMPLOYEE);		
 	    database.execSQL(DATABASE_CREATE_PAYROLL_HEADER);		    	    	    
@@ -305,6 +350,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 	    
 	    onCreate(db);
 	    }
+
 
 	    //if (oldVersion > 20) {
 	    //	db.execSQL("drop table LOCATION");		    	    	    	    

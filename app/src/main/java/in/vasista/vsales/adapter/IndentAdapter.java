@@ -1,6 +1,7 @@
 package in.vasista.vsales.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,15 +35,15 @@ public class IndentAdapter extends ArrayAdapter<Indent> {
 	   Indent item = getItem(position);
 
 	    String id = Integer.toString(item.getId());
-	    Date date = item.getSupplyDate();
+	    Date date = item.getOrderDate();
 	    SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMM, yyyy");
 	    String dateStr = dateFormat.format(date);
-	    String status = item.getStatus();
-	    String subscriptionType = item.getSubscriptionType();
-	    
-	    boolean isSynced = item.isSynced();	 
-	    String syncStr = isSynced?"Y":"N";	    
-	    String total = String.format("%.2f", item.getTotal());
+//	    String status = item.getStatus();
+	    String tallyRefNo = item.getTallyRefNo();
+
+	    boolean isgeneratedPO = item.isgeneratedPO();
+	    String syncStr = isgeneratedPO?"Y":"N";
+	    String totalOrder = String.format("%.2f", item.getOrderTotal());
 
 
 	    if (convertView == null) {
@@ -57,13 +58,13 @@ public class IndentAdapter extends ArrayAdapter<Indent> {
 
 	    TextView dateView = (TextView)indentView.findViewById(R.id.indentRowDate);
 	    TextView subscriptionTypeView = (TextView)indentView.findViewById(R.id.indentRowSupply);	    
-	    //TextView syncedView = (TextView)indentView.findViewById(R.id.indentRowSynced);	    	    
+	    //TextView syncedView = (TextView)indentView.findViewById(R.id.indentRowSynced);
 	    TextView totalView = (TextView)indentView.findViewById(R.id.indentRowTotal);
 	    
 	    dateView.setText(dateStr);
-	    subscriptionTypeView.setText(subscriptionType);
-	    //syncedView.setText(syncStr);      	    
-	    totalView.setText(total);        
+	    subscriptionTypeView.setText(tallyRefNo);
+	    //syncedView.setText(syncStr);
+	    totalView.setText(totalOrder);
 	    return indentView;
 	  }
 }

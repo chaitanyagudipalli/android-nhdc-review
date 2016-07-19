@@ -2,64 +2,120 @@ package in.vasista.vsales.indent;
 
 import java.util.Date;
 
+import in.vasista.vsales.db.MySQLiteHelper;
+
 public class Indent {
 	int id;
-	Date createdDate;
-	Date supplyDate;
-	String subscriptionType;	
-	String status;
-	boolean isSynced;
-	double total;
-	
-	public Indent (int id, Date createdDate, Date supplyDate, String subscriptionType, String status, boolean isSynced, double total) {
+
+	String tallyRefNo, POorder, poSquenceNo;
+	boolean isgeneratedPO;
+	String supplierPartyId, storeName, supplierPartyName,orderNo, orderId;
+	Date orderDate;
+	String statusId;
+
+	double orderTotal, paidAmt, balance;
+
+
+	public Indent(int id, String tallyRefNo, String POorder, String poSquenceNo, boolean isgeneratedPO, String supplierPartyId, String storeName, String supplierPartyName, String orderNo, String orderId, Date orderDate, String statusId, double orderTotal, double paidAmt, double balance) {
 		this.id = id;
-		this.supplyDate = supplyDate;
-		this.subscriptionType = subscriptionType;		
-		this.createdDate = createdDate;
-		this.status = status;
-		this.isSynced = isSynced;
-		this.total = total;
+		this.tallyRefNo = tallyRefNo;
+		this.POorder = POorder;
+		this.poSquenceNo = poSquenceNo;
+		this.isgeneratedPO = isgeneratedPO;
+		this.supplierPartyId = supplierPartyId;
+		this.storeName = storeName;
+		this.supplierPartyName = supplierPartyName;
+		this.orderNo = orderNo;
+		this.orderId = orderId;
+		this.orderDate = orderDate;
+		this.statusId = statusId;
+		this.orderTotal = orderTotal;
+		this.paidAmt = paidAmt;
+		this.balance = balance;
 	}
 
-	public Date getSupplyDate() {
-		return supplyDate;
+	public void setId(int id) {
+		this.id = id;
 	}
 
-	public String getSubscriptionType() {
-		return subscriptionType;
-	}
-	
 	public int getId() {
 		return id;
 	}
 
-	public Date getCreatedDate() {
-		return createdDate;
+	public Date getOrderDate() {
+		return orderDate;
 	}
 
-	public String getStatus() {
-		return status;
-	}
-	
-	public boolean isSynced() {
-		return isSynced;
+	public boolean isgeneratedPO() {
+		return isgeneratedPO;
 	}
 
-	public void setSynced(boolean isSynced) {
-		this.isSynced = isSynced;
+	public double getOrderTotal() {
+		return orderTotal;
 	}
-	
-	public double getTotal() {
-		return total;
+
+	public double getPaidAmt() {
+		return paidAmt;
 	}
-	
-	public void setTotal(double total) {
-		this.total = total;
-	}	
+
+	public double getBalance() {
+		return balance;
+	}
+
+	public String getTallyRefNo() {
+		return tallyRefNo;
+	}
+
+	public String getPOorder() {
+		return POorder;
+	}
+
+	public String getPoSquenceNo() {
+		return poSquenceNo;
+	}
+
+	public String getSupplierPartyId() {
+		return supplierPartyId;
+	}
+
+	public String getStoreName() {
+		return storeName;
+	}
+
+	public String getSupplierPartyName() {
+		return supplierPartyName;
+	}
+
+	public String getOrderNo() {
+		return orderNo;
+	}
+
+	public String getOrderId() {
+		return orderId;
+	}
+
+	public String getStatusId() {
+		return statusId;
+	}
 
 	@Override
 	public String toString() {
-		return "Order [id=" + id + ", createDate=" + createdDate + ", status=" + status
-				+ ", total=" + total + "]";
+		return "Indent{" +
+				"id=" + id +
+				", tallyRefNo='" + tallyRefNo + '\'' +
+				", POorder='" + POorder + '\'' +
+				", poSquenceNo='" + poSquenceNo + '\'' +
+				", isgeneratedPO=" + isgeneratedPO +
+				", supplierPartyId='" + supplierPartyId + '\'' +
+				", storeName='" + storeName + '\'' +
+				", supplierPartyName='" + supplierPartyName + '\'' +
+				", orderNo='" + orderNo + '\'' +
+				", orderId='" + orderId + '\'' +
+				", orderDate=" + orderDate +
+				", statusId='" + statusId + '\'' +
+				", orderTotal=" + orderTotal +
+				", paidAmt=" + paidAmt +
+				", balance=" + balance +
+				'}';
 	}
 }

@@ -26,12 +26,22 @@ public class IndentsDataSource {
 	  private SQLiteDatabase database;
 	  private MySQLiteHelper dbHelper;
 	  private String[] allColumns = { MySQLiteHelper.COLUMN_INDENT_ID,
-	      MySQLiteHelper.COLUMN_INDENT_CRDATE,
-	      MySQLiteHelper.COLUMN_INDENT_SUPPLYDATE,
-	      MySQLiteHelper.COLUMN_INDENT_SUBSCRIPTIONTYPE,	      
-	      MySQLiteHelper.COLUMN_INDENT_STATUS,
-	      MySQLiteHelper.COLUMN_INDENT_IS_SYNCED,	      
-	      MySQLiteHelper.COLUMN_INDENT_TOTAL};
+	      MySQLiteHelper.COLUMN_INDENT_TALLY_REFNO,
+	      MySQLiteHelper.COLUMN_INDENT_PO_ORDER,
+	      MySQLiteHelper.COLUMN_INDENT_PO_SEQ_NO,
+	      MySQLiteHelper.COLUMN_INDENT_IS_GEN_PO,
+	      MySQLiteHelper.COLUMN_INDENT_SUPP_PARTY_ID,
+	      MySQLiteHelper.COLUMN_INDENT_STORENAME,
+			  MySQLiteHelper.COLUMN_INDENT_SUPP_PARTY_NAME,
+			  MySQLiteHelper.COLUMN_INDENT_ORDER_NO,
+			  MySQLiteHelper.COLUMN_INDENT_ORDER_ID,
+			  MySQLiteHelper.COLUMN_INDENT_ORDER_DATE,
+			  MySQLiteHelper.COLUMN_INDENT_STATUS_ID,
+			  MySQLiteHelper.COLUMN_INDENT_ORDER_TOTAL,
+			  MySQLiteHelper.COLUMN_INDENT_PAID,
+			  MySQLiteHelper.COLUMN_INDENT_BALANCE
+
+	  };
 
 	  private String[] allIndentItemColumns = { MySQLiteHelper.COLUMN_INDENT_ITEM_ID,
 		      MySQLiteHelper.COLUMN_INDENT_ID,
@@ -56,53 +66,78 @@ public class IndentsDataSource {
 		  database.delete(MySQLiteHelper.TABLE_INDENT, null, null);
 	  }
 	  
-	  static public void insertIndent(SQLiteDatabase database, String indentStatus, double indentTotal) {
-		    ContentValues values = new ContentValues();
-		    values.put(MySQLiteHelper.COLUMN_INDENT_CRDATE, System.currentTimeMillis());
-		    values.put(MySQLiteHelper.COLUMN_INDENT_STATUS, indentStatus);			    
-		    values.put(MySQLiteHelper.COLUMN_INDENT_IS_SYNCED, 0);			    
-		    values.put(MySQLiteHelper.COLUMN_INDENT_TOTAL, indentTotal);		    
-		    database.insert(MySQLiteHelper.TABLE_INDENT, null, values);
-	  }
+//	  static public void insertIndent(SQLiteDatabase database, String indentStatus, double indentTotal) {
+//		    ContentValues values = new ContentValues();
+//		    values.put(MySQLiteHelper.COLUMN_INDENT_CRDATE, System.currentTimeMillis());
+//		    values.put(MySQLiteHelper.COLUMN_INDENT_STATUS, indentStatus);
+//		    values.put(MySQLiteHelper.COLUMN_INDENT_IS_SYNCED, 0);
+//		    values.put(MySQLiteHelper.COLUMN_INDENT_TOTAL, indentTotal);
+//		    database.insert(MySQLiteHelper.TABLE_INDENT, null, values);
+//	  }
 
-	  public long insertIndent(String indentStatus, double indentTotal, String subscriptionType) {
-		  	Date now = new Date();
-			Date supplyDate = DateUtil.addDays(now, 1);
-			return insertIndent(indentStatus, indentTotal, subscriptionType, supplyDate);
-	  }  
+//	  public long insertIndent(String indentStatus, double indentTotal, String subscriptionType) {
+//		  	Date now = new Date();
+//			Date supplyDate = DateUtil.addDays(now, 1);
+//			return insertIndent(indentStatus, indentTotal, subscriptionType, supplyDate);
+//	  }
 	  
-	  public long insertIndent(String indentStatus, double indentTotal, String subscriptionType, Date supplyDate) {
-		    ContentValues values = new ContentValues();
-		    values.put(MySQLiteHelper.COLUMN_INDENT_CRDATE, System.currentTimeMillis());
-		    values.put(MySQLiteHelper.COLUMN_INDENT_SUPPLYDATE, supplyDate.getTime());
-		    values.put(MySQLiteHelper.COLUMN_INDENT_SUBSCRIPTIONTYPE, subscriptionType);		    		    
-		    values.put(MySQLiteHelper.COLUMN_INDENT_STATUS, indentStatus);	
-		    values.put(MySQLiteHelper.COLUMN_INDENT_IS_SYNCED, 0);			    
-		    values.put(MySQLiteHelper.COLUMN_INDENT_TOTAL, indentTotal);		    
-		    return database.insert(MySQLiteHelper.TABLE_INDENT, null, values);
-	  }  
+//	  public long insertIndent(String indentStatus, double indentTotal, String subscriptionType, Date supplyDate) {
+//		    ContentValues values = new ContentValues();
+//		    values.put(MySQLiteHelper.COLUMN_INDENT_CRDATE, System.currentTimeMillis());
+//		    values.put(MySQLiteHelper.COLUMN_INDENT_SUPPLYDATE, supplyDate.getTime());
+//		    values.put(MySQLiteHelper.COLUMN_INDENT_SUBSCRIPTIONTYPE, subscriptionType);
+//		    values.put(MySQLiteHelper.COLUMN_INDENT_STATUS, indentStatus);
+//		    values.put(MySQLiteHelper.COLUMN_INDENT_IS_SYNCED, 0);
+//		    values.put(MySQLiteHelper.COLUMN_INDENT_TOTAL, indentTotal);
+//		    return database.insert(MySQLiteHelper.TABLE_INDENT, null, values);
+//	  }
+
+	public void insertIndents(List<Indent> indents){
+		ContentValues values = new ContentValues();
+		for (int i=0; i < indents.size(); ++i) {
+			Indent indent = indents.get(i);
+
+			values.put(MySQLiteHelper.COLUMN_INDENT_TALLY_REFNO, indent.getTallyRefNo());
+			values.put(MySQLiteHelper.COLUMN_INDENT_PO_ORDER, indent.getPOorder());
+			values.put(MySQLiteHelper.COLUMN_INDENT_PO_SEQ_NO, indent.getPoSquenceNo());
+			values.put(MySQLiteHelper.COLUMN_INDENT_IS_GEN_PO, indent.isgeneratedPO());
+			values.put(MySQLiteHelper.COLUMN_INDENT_SUPP_PARTY_ID, indent.getSupplierPartyId());
+			values.put(MySQLiteHelper.COLUMN_INDENT_STORENAME, indent.getStoreName());
+			values.put(MySQLiteHelper.COLUMN_INDENT_SUPP_PARTY_NAME, indent.getSupplierPartyName());
+			values.put(MySQLiteHelper.COLUMN_INDENT_ORDER_NO, indent.getOrderNo());
+			values.put(MySQLiteHelper.COLUMN_INDENT_ORDER_ID, indent.getOrderId());
+			values.put(MySQLiteHelper.COLUMN_INDENT_ORDER_DATE, indent.getOrderDate().getTime());
+			values.put(MySQLiteHelper.COLUMN_INDENT_STATUS_ID, indent.getStatusId());
+			values.put(MySQLiteHelper.COLUMN_INDENT_ORDER_TOTAL, indent.getOrderTotal());
+			values.put(MySQLiteHelper.COLUMN_INDENT_PAID, indent.getPaidAmt());
+			values.put(MySQLiteHelper.COLUMN_INDENT_BALANCE, indent.getBalance());
+
+			database.insert(MySQLiteHelper.TABLE_INDENT, null, values);
+ 		}
+
+	}
 	         
 	  /*
 	   * Returns the indent if it exists for the supplydate and shift, else
 	   * null
 	   */
-	  public Indent fetchIndent(Date supplyDate, String subscriptionType) {
-		  Indent indent = null;
-		  Cursor cursor = database.rawQuery("SELECT * FROM " + MySQLiteHelper.TABLE_INDENT 
-				  + " WHERE " 
-				  + MySQLiteHelper.COLUMN_INDENT_SUBSCRIPTIONTYPE + "= '" + subscriptionType + "'"
-				  + " AND date(datetime(" 
-				  + MySQLiteHelper.COLUMN_INDENT_SUPPLYDATE + " / 1000 , 'unixepoch','localtime')) = date(datetime(" 
-				  + supplyDate.getTime()/1000 + ", 'unixepoch','localtime'))", null);
-		  if ( cursor.moveToFirst()) {
-			  indent = cursorToIndent(cursor);
-		  }
-		  cursor.close();
-		  Log.d( module, "supplyDate=" + supplyDate); 	
-		  Log.d( module, "subscriptionType=" + subscriptionType); 		  		  		  		  
-		  Log.d( module, "indent=" + indent); 
-		  return indent;
-	  }
+//	  public Indent fetchIndent(Date supplyDate, String subscriptionType) {
+//		  Indent indent = null;
+//		  Cursor cursor = database.rawQuery("SELECT * FROM " + MySQLiteHelper.TABLE_INDENT
+//				  + " WHERE "
+//				  + MySQLiteHelper.COLUMN_INDENT_SUBSCRIPTIONTYPE + "= '" + subscriptionType + "'"
+//				  + " AND date(datetime("
+//				  + MySQLiteHelper.COLUMN_INDENT_SUPPLYDATE + " / 1000 , 'unixepoch','localtime')) = date(datetime("
+//				  + supplyDate.getTime()/1000 + ", 'unixepoch','localtime'))", null);
+//		  if ( cursor.moveToFirst()) {
+//			  indent = cursorToIndent(cursor);
+//		  }
+//		  cursor.close();
+//		  Log.d( module, "supplyDate=" + supplyDate);
+//		  Log.d( module, "subscriptionType=" + subscriptionType);
+//		  Log.d( module, "indent=" + indent);
+//		  return indent;
+//	  }
 	  
 	  public List<Indent> getAllIndents() {
 	    List<Indent> indents = new ArrayList<Indent>();
@@ -121,7 +156,7 @@ public class IndentsDataSource {
 	    return indents;
 	  }
 
-	  public Indent getIndentDetails(long indentId) {
+	  public Indent getIndentDetails(int indentId) {
 		    Cursor cursor = database.query(MySQLiteHelper.TABLE_INDENT,
 		        allColumns, MySQLiteHelper.COLUMN_INDENT_ID + " = " + indentId, null, null, null, null);
 
@@ -133,75 +168,82 @@ public class IndentsDataSource {
 	  }
 	  
 	  private Indent cursorToIndent(Cursor cursor) {
-	    Indent indent = new Indent(cursor.getInt(0), 
-	    		new Date(cursor.getLong(1)),
-	    		new Date(cursor.getLong(2)),
-	    				cursor.getString(3),
-	    				cursor.getString(4),	    				
-	    				(cursor.getInt(5) == 1) ? true : false,	    				
-	    				cursor.getDouble(6));
-	    return indent;
+	    return new Indent(cursor.getInt(0),
+				cursor.getString(1),
+				cursor.getString(2),
+				cursor.getString(3),
+				(cursor.getInt(4) == 1),
+				cursor.getString(5),
+				cursor.getString(6),
+				cursor.getString(7),
+				cursor.getString(8),
+				cursor.getString(9),
+				new Date(cursor.getLong(10)),
+				cursor.getString(11),
+				cursor.getDouble(12),
+				cursor.getDouble(13),
+				cursor.getDouble(14));
 	  }
 	  
-	  public void updateIndentStatus(long indentId, String indentStatus) {
-		    ContentValues values = new ContentValues();
-		    values.put(MySQLiteHelper.COLUMN_INDENT_STATUS, indentStatus);		    	    
-		    final String[] whereArgs = { Long.toString(indentId)};
-		    database.update(MySQLiteHelper.TABLE_INDENT, values, MySQLiteHelper.COLUMN_INDENT_ID + " = ?", whereArgs);
-	  }	  
+//	  public void updateIndentStatus(long indentId, String indentStatus) {
+//		    ContentValues values = new ContentValues();
+//		    values.put(MySQLiteHelper.COLUMN_INDENT_STATUS, indentStatus);
+//		    final String[] whereArgs = { Long.toString(indentId)};
+//		    database.update(MySQLiteHelper.TABLE_INDENT, values, MySQLiteHelper.COLUMN_INDENT_ID + " = ?", whereArgs);
+//	  }
 	  
-	  public void updateIndentTotal(long indentId, double indentTotal) {
-		    ContentValues values = new ContentValues();
-		    values.put(MySQLiteHelper.COLUMN_INDENT_TOTAL, indentTotal);		    	    
-		    final String[] whereArgs = { Long.toString(indentId)};
-		    database.update(MySQLiteHelper.TABLE_INDENT, values, MySQLiteHelper.COLUMN_INDENT_ID + " = ?", whereArgs);
-	  }	 	  
+//	  public void updateIndentTotal(long indentId, double indentTotal) {
+//		    ContentValues values = new ContentValues();
+//		    values.put(MySQLiteHelper.COLUMN_INDENT_TOTAL, indentTotal);
+//		    final String[] whereArgs = { Long.toString(indentId)};
+//		    database.update(MySQLiteHelper.TABLE_INDENT, values, MySQLiteHelper.COLUMN_INDENT_ID + " = ?", whereArgs);
+//	  }
+//
+//	  public void setIndentSyncStatus(long indentId, boolean isSynced) {
+//		    ContentValues values = new ContentValues();
+//		    values.put(MySQLiteHelper.COLUMN_INDENT_IS_SYNCED, isSynced?1:0);
+//		    final String[] whereArgs = { Long.toString(indentId)};
+//		    database.update(MySQLiteHelper.TABLE_INDENT, values, MySQLiteHelper.COLUMN_INDENT_ID + " = ?", whereArgs);
+//	  }
+//
+//	  public void updateIndentAndIndentItems(Indent indent, List<IndentItem> indentItems) {
+//			Log.d( module, "indent=" + indent);
+//		    ContentValues values = new ContentValues();
+//		    values.put(MySQLiteHelper.COLUMN_INDENT_IS_SYNCED, indent.isSynced()?1:0);
+//		    values.put(MySQLiteHelper.COLUMN_INDENT_STATUS, indent.getStatus());
+//		    values.put(MySQLiteHelper.COLUMN_INDENT_TOTAL, indent.getTotal());
+//		    final String[] whereArgs = { Long.toString(indent.getId())};
+//		    database.update(MySQLiteHelper.TABLE_INDENT, values, MySQLiteHelper.COLUMN_INDENT_ID + " = ?", whereArgs);
+//
+//			database.delete(MySQLiteHelper.TABLE_INDENT_ITEM, MySQLiteHelper.COLUMN_INDENT_ID + " = ?", whereArgs);
+//		  	for (int i=0; i < indentItems.size(); ++i) {
+//		  		IndentItem indentItem = indentItems.get(i);
+//		  		if (indentItem.getQty() == -1) {
+//		  			continue;
+//		  		}
+//		  		ContentValues itemValues = new ContentValues();
+//		  		itemValues.put(MySQLiteHelper.COLUMN_INDENT_ID, indent.getId());
+//		  		itemValues.put(MySQLiteHelper.COLUMN_PRODUCT_ID, indentItem.getProductId());
+//		  		itemValues.put(MySQLiteHelper.COLUMN_INDENT_ITEM_QTY, indentItem.getQty());
+//		  		itemValues.put(MySQLiteHelper.COLUMN_INDENT_ITEM_UNIT_PRICE, indentItem.getUnitPrice());
+//		  		database.insert(MySQLiteHelper.TABLE_INDENT_ITEM, null, itemValues);
+//		  	}
+//	  }
 	  
-	  public void setIndentSyncStatus(long indentId, boolean isSynced) {
-		    ContentValues values = new ContentValues();
-		    values.put(MySQLiteHelper.COLUMN_INDENT_IS_SYNCED, isSynced?1:0);		    	    
-		    final String[] whereArgs = { Long.toString(indentId)};
-		    database.update(MySQLiteHelper.TABLE_INDENT, values, MySQLiteHelper.COLUMN_INDENT_ID + " = ?", whereArgs);
-	  }
-
-	  public void updateIndentAndIndentItems(Indent indent, List<IndentItem> indentItems) {
-			Log.d( module, "indent=" + indent); 		  		  
-		    ContentValues values = new ContentValues();
-		    values.put(MySQLiteHelper.COLUMN_INDENT_IS_SYNCED, indent.isSynced()?1:0);		    	    		    
-		    values.put(MySQLiteHelper.COLUMN_INDENT_STATUS, indent.getStatus());
-		    values.put(MySQLiteHelper.COLUMN_INDENT_TOTAL, indent.getTotal());		    		    
-		    final String[] whereArgs = { Long.toString(indent.getId())};
-		    database.update(MySQLiteHelper.TABLE_INDENT, values, MySQLiteHelper.COLUMN_INDENT_ID + " = ?", whereArgs);
-
-			database.delete(MySQLiteHelper.TABLE_INDENT_ITEM, MySQLiteHelper.COLUMN_INDENT_ID + " = ?", whereArgs);
-		  	for (int i=0; i < indentItems.size(); ++i) {
-		  		IndentItem indentItem = indentItems.get(i); 
-		  		if (indentItem.getQty() == -1) {
-		  			continue;
-		  		}
-		  		ContentValues itemValues = new ContentValues();
-		  		itemValues.put(MySQLiteHelper.COLUMN_INDENT_ID, indent.getId());
-		  		itemValues.put(MySQLiteHelper.COLUMN_PRODUCT_ID, indentItem.getProductId());		    		  		
-		  		itemValues.put(MySQLiteHelper.COLUMN_INDENT_ITEM_QTY, indentItem.getQty());	
-		  		itemValues.put(MySQLiteHelper.COLUMN_INDENT_ITEM_UNIT_PRICE, indentItem.getUnitPrice());		    		  		
-		  		database.insert(MySQLiteHelper.TABLE_INDENT_ITEM, null, itemValues);
-		  	}			
-	  }	
-	  
-	  public void insertIndentItems(long indentId, List<IndentItem> indentItems) {
-		  	for (int i=0; i < indentItems.size(); ++i) {
-		  		IndentItem indentItem = indentItems.get(i);
-		  		if (indentItem.getQty() == -1) {
-		  			continue;
-		  		}
-		  		ContentValues values = new ContentValues();
-		  		values.put(MySQLiteHelper.COLUMN_INDENT_ID, indentId);
-		  		values.put(MySQLiteHelper.COLUMN_PRODUCT_ID, indentItem.getProductId());		    		  		
-		  		values.put(MySQLiteHelper.COLUMN_INDENT_ITEM_QTY, indentItem.getQty());	
-		  		values.put(MySQLiteHelper.COLUMN_INDENT_ITEM_UNIT_PRICE, indentItem.getUnitPrice());		    		  		
-		  		database.insert(MySQLiteHelper.TABLE_INDENT_ITEM, null, values);
-		  	}
-	  }	
+//	  public void insertIndentItems(long indentId, List<IndentItem> indentItems) {
+//		  	for (int i=0; i < indentItems.size(); ++i) {
+//		  		IndentItem indentItem = indentItems.get(i);
+//		  		if (indentItem.getQty() == -1) {
+//		  			continue;
+//		  		}
+//		  		ContentValues values = new ContentValues();
+//		  		values.put(MySQLiteHelper.COLUMN_INDENT_ID, indentId);
+//		  		values.put(MySQLiteHelper.COLUMN_PRODUCT_ID, indentItem.getProductId());
+//		  		values.put(MySQLiteHelper.COLUMN_INDENT_ITEM_QTY, indentItem.getQty());
+//		  		values.put(MySQLiteHelper.COLUMN_INDENT_ITEM_UNIT_PRICE, indentItem.getUnitPrice());
+//		  		database.insert(MySQLiteHelper.TABLE_INDENT_ITEM, null, values);
+//		  	}
+//	  }
 	  
 	  public List<IndentItem> getIndentItems(int indentId) {
 		  List<IndentItem> indentItems = new ArrayList<IndentItem>();	
@@ -209,7 +251,7 @@ public class IndentsDataSource {
 		        allIndentItemColumns, MySQLiteHelper.COLUMN_INDENT_ID + " = " + indentId, null, null, null, null);
 		  ProductsDataSource datasource = new ProductsDataSource(context);
 		  datasource.open();
-		  Map productMap = datasource.getSaleProductMap();	
+		  Map productMap = datasource.getSaleProductMap();
 		  cursor.moveToFirst();
 		  while (!cursor.isAfterLast()) {
 			  IndentItem indentItem = cursorToIndentItem(cursor, productMap);
@@ -255,37 +297,36 @@ public class IndentsDataSource {
 	  }
 	  
 	  private IndentItem cursorToIndentItem(Cursor cursor,  Map<String, Product> productMap) {
-		  IndentItem indentItem = new IndentItem(cursor.getString(2),
+		  return new IndentItem(cursor.getString(2),
 				  productMap.get(cursor.getString(2)).getName(),
 				  cursor.getInt(3),
 				  cursor.getDouble(4));
-		    return indentItem;
-	  }	  	
+	  }
 	  
 	  /*
 	   * This method will insert a new indent and items for the given day and shift.
 	   * Note: Any existing indent for the given day and shift will be deleted
 	   */
-	  public long insertIndentAndItems(Date supplyDate, String subscriptionType, List<IndentItem> indentItems) {
-
-		double indentTotal = 0;
-		for (int i = 0; i < indentItems.size(); ++i) {
-			IndentItem indentItem = indentItems.get(i);
-			indentTotal += indentItem.getUnitPrice()*indentItem.getQty();
-		}
-		indentTotal = Math.round(indentTotal * 100.0) / 100.0;
-		long indentId = -1;
-		Indent indent = fetchIndent(supplyDate, subscriptionType);
-		if (indent != null) {
-			indentId = indent.getId();
-		    final String[] whereArgs = { Long.toString(indent.getId())};
-			database.delete(MySQLiteHelper.TABLE_INDENT_ITEM, MySQLiteHelper.COLUMN_INDENT_ID + " = ?", whereArgs);
-			updateIndentTotal(indentId, indentTotal);
-		}
-		else {
-			indentId = insertIndent("Created", indentTotal, subscriptionType, supplyDate);
-		}
-		insertIndentItems(indentId, indentItems);
-		return indentId;
-	}
+//	  public long insertIndentAndItems(Date supplyDate, String subscriptionType, List<IndentItem> indentItems) {
+//
+//		double indentTotal = 0;
+//		for (int i = 0; i < indentItems.size(); ++i) {
+//			IndentItem indentItem = indentItems.get(i);
+//			indentTotal += indentItem.getUnitPrice()*indentItem.getQty();
+//		}
+//		indentTotal = Math.round(indentTotal * 100.0) / 100.0;
+//		long indentId = -1;
+//		Indent indent = fetchIndent(supplyDate, subscriptionType);
+//		if (indent != null) {
+//			indentId = indent.getId();
+//		    final String[] whereArgs = { Long.toString(indent.getId())};
+//			database.delete(MySQLiteHelper.TABLE_INDENT_ITEM, MySQLiteHelper.COLUMN_INDENT_ID + " = ?", whereArgs);
+//			updateIndentTotal(indentId, indentTotal);
+//		}
+//		else {
+//			indentId = insertIndent("Created", indentTotal, subscriptionType, supplyDate);
+//		}
+//		insertIndentItems(indentId, indentItems);
+//		return indentId;
+//	}
 }

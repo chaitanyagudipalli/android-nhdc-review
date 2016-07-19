@@ -27,8 +27,7 @@ import in.vasista.nhdc.R;
  *
  */
 
-public class AboutActivity extends DashboardAppCompatActivity
-{
+public class AboutActivity extends DashboardAppCompatActivity {
 
 /**
  * onCreate
@@ -55,5 +54,5 @@ protected void onCreate(Bundle savedInstanceState)
     view.loadUrl("file:///android_asset/about.html");         
 }
 
-
+    
 } // end class  

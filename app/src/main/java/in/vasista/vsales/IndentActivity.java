@@ -50,9 +50,8 @@ public class IndentActivity extends DashboardAppCompatActivity
  * 
  * Always followed by onStart().
  *
- * @param savedInstanceState Bundle 
  */
-private MenuItem menuItem;
+//private MenuItem menuItem;
 ProgressBar progressBar;
 protected void onCreate(Bundle savedInstanceState) 
 {
@@ -66,8 +65,6 @@ protected void onCreate(Bundle savedInstanceState)
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.main, menu);
-		menu.removeItem(R.id.action_about);
-		menu.removeItem(R.id.action_settings);
 		menu.removeItem(R.id.homeSearch);
 		return super.onCreateOptionsMenu(menu);
 	}
@@ -76,13 +73,13 @@ protected void onCreate(Bundle savedInstanceState)
 		super.onOptionsItemSelected(item);
 		switch (item.getItemId()) {
 			case R.id.action_refresh:
-				menuItem = item;
-				menuItem.setActionView(R.layout.progressbar);
-				progressBar=(ProgressBar)menuItem.getActionView().findViewById(R.id.menuitem_progress);
+				item.setActionView(R.layout.progressbar);
+				progressBar=(ProgressBar) item.getActionView().findViewById(R.id.menuitem_progress);
 				FragmentManager fm = getFragmentManager();
 				IndentListFragment indentListFragment = (IndentListFragment) fm.findFragmentById(R.id.indent_list_fragment);
-				indentListFragment.syncIndent(menuItem);
+				indentListFragment.syncIndent(item);
 				return true;
+
 
 		}
 		return false;
@@ -98,11 +95,11 @@ protected void onResume ()
 	   SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
 	   for (int i=0; i < indents.size(); ++i) {
 		   Indent indent = indents.get(i);
-		   boolean isInactiveIndent =  fmt.format(new Date()).compareTo(fmt.format(indent.getSupplyDate())) > 0;
-		   if (isInactiveIndent) {
-			   fetchIndents = true;
-			   break;
-		   }
+//		   boolean isInactiveIndent =  fmt.format(new Date()).compareTo(fmt.format(indent.getSupplyDate())) > 0;
+//		   if (isInactiveIndent) {
+//			   fetchIndents = true;
+//			   break;
+//		   }
 	   }
    }
    else {     

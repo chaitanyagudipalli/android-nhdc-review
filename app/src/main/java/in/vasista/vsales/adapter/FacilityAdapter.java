@@ -1,7 +1,8 @@
 package in.vasista.vsales.adapter;
 
 import android.content.Context;
-import android.view.LayoutInflater;import android.view.View;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Filter;
@@ -18,9 +19,9 @@ import in.vasista.vsales.facility.Facility;
 
 public class FacilityAdapter extends ArrayAdapter<Facility> {
 	  int resource;
-	  public ArrayList<Facility> items = new ArrayList<Facility>();;
-	    public ArrayList<Facility> filtered = new ArrayList<Facility>();;
-	    private Context context;
+	  public ArrayList<Facility> items = new ArrayList<Facility>();
+	public ArrayList<Facility> filtered = new ArrayList<Facility>();
+	//private Context context;
 	    private Filter filter;
 
 	    public FacilityAdapter(Context context, int resource, List<Facility> items)
@@ -29,7 +30,7 @@ public class FacilityAdapter extends ArrayAdapter<Facility> {
 		    this.resource = resource;	        
 	        this.filtered.addAll(items);
 	        this.items.addAll(items);
-	        this.context = context;
+	        //this.context = context;
 	        this.filter = new FacilityAutoFilter();
 	    }
 	    
@@ -52,9 +53,9 @@ public class FacilityAdapter extends ArrayAdapter<Facility> {
 		    String id = item.getId();
 		    String name = item.getName();
 		    String category = item.getCategory();	    
-		    String phoneNum = item.getOwnerPhone();	 
-		    String amRouteId = item.getAmRouteId();	    
-		    String pmRouteId = item.getPmRouteId();	     
+//		    String phoneNum = item.getOwnerPhone();
+//		    String amRouteId = item.getAmRouteId();
+//		    String pmRouteId = item.getPmRouteId();
 		    
 
 		    if (convertView == null) { 

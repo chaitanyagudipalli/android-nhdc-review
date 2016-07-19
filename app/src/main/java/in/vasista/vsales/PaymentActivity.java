@@ -44,7 +44,6 @@ public class PaymentActivity extends DashboardAppCompatActivity
  * Always followed by onStart().
  *
  */
-private MenuItem menuItem;
     ProgressBar progressBar;
 protected void onCreate(Bundle savedInstanceState) 
 {
@@ -65,14 +64,12 @@ protected void onCreate(Bundle savedInstanceState)
         super.onOptionsItemSelected(item);
         switch (item.getItemId()) {
             case R.id.action_refresh:
-                menuItem = item;
-                menuItem.setActionView(R.layout.progressbar);
-                progressBar=(ProgressBar)menuItem.getActionView().findViewById(R.id.menuitem_progress);
+                item.setActionView(R.layout.progressbar);
+                progressBar=(ProgressBar) item.getActionView().findViewById(R.id.menuitem_progress);
                 FragmentManager fm = getFragmentManager();
                 PaymentListFragment paymentListFragment = (PaymentListFragment) fm.findFragmentById(R.id.payment_list_fragment);
-                paymentListFragment.syncPayments(menuItem);
+                paymentListFragment.syncPayments(item);
                 return true;
-
         }
         return false;
     }

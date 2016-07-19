@@ -28,5 +28,4 @@ public class PayslipItemsListActivity extends DashboardAppCompatActivity  {
         }*/		
 	}
 	
-	
 }

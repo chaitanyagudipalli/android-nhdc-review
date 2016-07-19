@@ -9,7 +9,6 @@ import android.widget.FrameLayout;
 import in.vasista.nhdc.R;
 import in.vasista.vsales.DashboardAppCompatActivity;
 
-
 public class InventoryActivity extends DashboardAppCompatActivity
 {
 
@@ -69,7 +68,6 @@ protected void onResume ()
 				InventoryListFragment inventoryListFragment = (InventoryListFragment) fm.findFragmentById(R.id.inventory_list_fragment);
 				inventoryListFragment.syncInventory(menuItem);
 				return true;
-
 		}
 		return false;
 	}

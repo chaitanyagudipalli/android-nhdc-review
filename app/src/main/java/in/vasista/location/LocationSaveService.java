@@ -17,41 +17,42 @@ import android.util.Log;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Locale;
 
 import in.vasista.vsales.db.LocationsDataSource;
 
 public class LocationSaveService extends IntentService {
-	public static String TAG = "LOCATION_SAVE_SERVICE";
+	 public static String TAG = "LOCATION_SAVE_SERVICE";
+	  
+	  public LocationSaveService() {
+	    super("LocationSaveService");    
+	  }
 
-	public LocationSaveService() {
-		super("LocationSaveService");
-	}
+	  public LocationSaveService(String name) {
+	    super(name);
+	  }
+	  
+	  @Override
+	  protected void onHandleIntent(Intent intent) {
+	    addNewLocation();
+	  }
 
-	public LocationSaveService(String name) {
-		super(name);
-	}
+	  @Override
+	  public IBinder onBind(Intent intent) {
+	    return null;
+	  }
+	  
+	  private void addNewLocation() {
+		  Context context = getApplicationContext();
+Log.d(TAG, "Alarm!!!!!");       
 
-	@Override
-	protected void onHandleIntent(Intent intent) {
-		addNewLocation();
-	}
+		  LocationManager manager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+	      List<String> providers = manager.getAllProviders();
+	      android.location.Location latestLocation = null;
 
-	@Override
-	public IBinder onBind(Intent intent) {
-		return null;
-	}
-
-	private void addNewLocation() {
-		Context context = getApplicationContext();
-		Log.d(TAG, "Alarm!!!!!");
-
-		LocationManager manager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-		List<String> providers = manager.getAllProviders();
-		android.location.Location latestLocation = null;
-
-		for (int i = 0; i < providers.size(); i++) {
-			android.location.Location loc;
-			if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+	      for (int i = 0; i < providers.size(); i++) {
+		      android.location.Location loc;
+if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 				// TODO: Consider calling
 				//    ActivityCompat#requestPermissions
 				// here to request the missing permissions, and then overriding
@@ -73,12 +74,12 @@ public class LocationSaveService extends IntentService {
 	          }
 	      }
 	      if (latestLocation != null) {
-	    	  SimpleDateFormat timeFormat = new SimpleDateFormat("dd MMM, yyyy HH:mm:ss");
+	    	  SimpleDateFormat timeFormat = new SimpleDateFormat("dd MMM, yyyy HH:mm:ss", Locale.getDefault());
 	    	  String timeStr = timeFormat.format(latestLocation.getTime());
 	    	  Log.d(TAG, "Alarm!!! " + latestLocation.getLatitude() + " " + latestLocation.getLongitude() + " " + timeStr);
 	    	  LocationsDataSource datasource = new LocationsDataSource(context);
 	    	  datasource.open();
-	    	  long locationId = datasource.insertLocation(latestLocation.getLatitude(), latestLocation.getLongitude(), latestLocation.getTime());
+	    	  //long locationId = datasource.insertLocation(latestLocation.getLatitude(), latestLocation.getLongitude(), latestLocation.getTime());
 	    	  datasource.close();
 	      }
 	  }
@@ -104,10 +105,10 @@ public class LocationSaveService extends IntentService {
 	      alarmManager.cancel(alarmIntent);    
 	    }
 	    return super.onStartCommand(intent, flags, startId);
-	  };
+	  }
 
 
-	  private AlarmManager alarmManager;
+	private AlarmManager alarmManager;
 	  private PendingIntent alarmIntent;
 
 	  @Override

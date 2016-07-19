@@ -1,12 +1,12 @@
 package in.vasista.vsales;
 
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.design.widget.NavigationView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -27,27 +27,31 @@ import java.util.Map;
 import in.vasista.global.GlobalApplication;
 import in.vasista.nhdc.R;
 import in.vasista.vsales.adapter.FacilityAutoAdapter;
+import in.vasista.vsales.adapter.SupplierAutoAdapter;
 import in.vasista.vsales.db.FacilityDataSource;
 import in.vasista.vsales.db.IndentsDataSource;
 import in.vasista.vsales.db.OrdersDataSource;
 import in.vasista.vsales.db.PaymentsDataSource;
 import in.vasista.vsales.db.ProductsDataSource;
+import in.vasista.vsales.db.SupplierDataSource;
 import in.vasista.vsales.facility.Facility;
-import in.vasista.vsales.preference.FragmentPreferences;
+import in.vasista.vsales.supplier.Supplier;
 import in.vasista.vsales.sync.ServerSync;
 
-public class SalesDashboardActivity extends DashboardAppCompatActivity  {   
+public class SalesDashboardActivity extends DrawerCompatActivity  {
 	public static final String module = SalesDashboardActivity.class.getName();
 
     static final private int MENU_PREFERENCES = Menu.FIRST+1;
     private static final int SHOW_PREFERENCES = 1;
+
+	SharedPreferences prefs;
     
     public static final String RETAILER_DB_PERM = "MOB_RTLR_DB_VIEW";    
-    public static final String SALESREP_DB_PERM = "MOB_SREP_DB_VIEW"; 
+    public static final String SALESREP_DB_PERM = "MOB_SREP_DB_VIEW";
+	public static final String LOCATION_DB_PERM = "MOB_LOCATION_VIEW";
     
 	private Map facilityMap = new HashMap<String, Facility> ();
 	AutoCompleteTextView actv;
-	boolean settings_menu = true;
     
 	private void setupFacilityDashboard() {
     	FacilityDataSource facilityDS = new FacilityDataSource(this);
@@ -58,17 +62,17 @@ public class SalesDashboardActivity extends DashboardAppCompatActivity  {
 			  Facility facility = facilityList.get(i);
 			  facilityMap.put(facility.getId(), facility);   
 		  }
-		  
+
 	    final String[] retailers = new String[facilityList.size()];
-	    int index = 0;       
+	    int index = 0;
 	    for (Facility facility : facilityList) { 
 	    	retailers[index] = facility.getId();
 	      index++;
-	    }	               
+	    }
 	    final SalesDashboardActivity mainActivity = this;      
 	    final FacilityAutoAdapter adapter = new FacilityAutoAdapter(this, R.layout.autocomplete_item, facilityList);
 	    actv = (AutoCompleteTextView) findViewById(R.id.autoCompleteRetailer);
-	    actv.setAdapter(adapter); 
+	    actv.setAdapter(adapter);
 	    actv.setVisibility(View.GONE);                   
 	    
 	    actv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -89,9 +93,48 @@ public class SalesDashboardActivity extends DashboardAppCompatActivity  {
 
 	    initializeRetailer(null, false);		
 	}
-	
+	private void setupSupplierDashboard() {
+		SupplierDataSource facilityDS = new SupplierDataSource(this);
+		facilityDS.open();
+		List<Supplier> facilityList = facilityDS.getAllSuppliers();
+		facilityDS.close();
+		for (int i = 0; i < facilityList.size(); ++i) {
+			Supplier facility = facilityList.get(i);
+			facilityMap.put(facility.getId(), facility);
+		}
+
+		final String[] retailers = new String[facilityList.size()];
+		int index = 0;
+		for (Supplier facility : facilityList) {
+			retailers[index] = facility.getId();
+			index++;
+		}
+		final SalesDashboardActivity mainActivity = this;
+		final SupplierAutoAdapter adapter = new SupplierAutoAdapter(this, R.layout.autocomplete_item, facilityList);
+		actv = (AutoCompleteTextView) findViewById(R.id.autoCompleteRetailer);
+		actv.setAdapter(adapter);
+		actv.setVisibility(View.GONE);
+
+		actv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+				InputMethodManager in = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+				in.hideSoftInputFromWindow(actv.getWindowToken(), 0);
+				actv.clearFocus();
+				Supplier retailer =  (Supplier)parent.getItemAtPosition(position);
+				mainActivity.initializeRetailer(retailer.getId(), true);
+				actv.setText("");
+				actv.setVisibility(View.GONE);
+			}
+
+		});
+
+
+
+		initializeRetailer(null, false);
+	}
     void setupDashboard() {
-    	SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);    	
+    	prefs = PreferenceManager.getDefaultSharedPreferences(this);
     	String retailerPerm = prefs.getString(RETAILER_DB_PERM, "N");
     	String salesRepPerm = prefs.getString(SALESREP_DB_PERM, "N");
 
@@ -108,11 +151,14 @@ public class SalesDashboardActivity extends DashboardAppCompatActivity  {
     	    
     	    AutoCompleteTextView actv = (AutoCompleteTextView) findViewById(R.id.autoCompleteRetailer); 
     	    ((LinearLayout)actv.getParent()).removeView(actv);    	    
-    	    
-    		ImageButton searchButton = (ImageButton)findViewById(R.id.homeSearch);
-    		searchButton.setVisibility(View.GONE); 
-    		Button outletsButton = (Button)findViewById(R.id.home_btn_outlets);
-    		outletsButton.setVisibility(View.GONE);  
+    	    try {
+				ImageButton searchButton = (ImageButton) findViewById(R.id.homeSearch);
+				searchButton.setVisibility(View.GONE);
+				Button outletsButton = (Button) findViewById(R.id.home_btn_outlets);
+				outletsButton.setVisibility(View.GONE);
+			}catch (NullPointerException e){
+				e.printStackTrace();
+			}
     	}
     	else if (salesRepPerm.equals("N")) {
     	    AutoCompleteTextView actv = (AutoCompleteTextView) findViewById(R.id.autoCompleteRetailer); 	     
@@ -125,7 +171,8 @@ public class SalesDashboardActivity extends DashboardAppCompatActivity  {
     	
     	// Do facility dashboard initialization if required
     	if (salesRepPerm.equals("Y") || retailerPerm.equals("Y")) {
-    		setupFacilityDashboard();
+    		//setupFacilityDashboard();
+			setupSupplierDashboard();
     	}
     }
 	
@@ -142,30 +189,38 @@ public class SalesDashboardActivity extends DashboardAppCompatActivity  {
 	protected void onCreate(Bundle savedInstanceState) 
 	{   
 	    super.onCreate(savedInstanceState);   	    
-    	SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this); 
-    	String onlySalesDashboard = prefs.getString("onlySalesDashboard", "N");	
-Log.d(module, "onlySalesDashboard equals " + onlySalesDashboard);						    		    		    		    	
+    	prefs = PreferenceManager.getDefaultSharedPreferences(this);
+    	String onlySalesDashboard = prefs.getString("onlySalesDashboard", "N");
+Log.d(module, "onlySalesDashboard equals " + onlySalesDashboard);
     	if (onlySalesDashboard.equals("Y")) {
     	    setContentChildView(R.layout.activity_sales_home);
 			getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-    	} 
+    	}
     	else {
 			setContentChildView(R.layout.activity_sales_home_alt);
 			actionBarHomeEnabled();
-			settings_menu = false;
-			invalidateOptionsMenu();
+
+			// back button functionality
+			toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					finish();
+				}
+			});
     	}
 
 
-		SharedPreferences.Editor prefEditor = prefs.edit(); 
-    	String storeId; 
-    	storeId = prefs.getString("storeId", "");	    	
+		SharedPreferences.Editor prefEditor = prefs.edit();
+    	String storeId;
+    	storeId = prefs.getString("storeId", "");
     	if (storeId.isEmpty()) {
-    		storeId = "B80504";
+    		storeId = "V01608";
     		prefEditor.putString("storeId", storeId);
-    		prefEditor.commit(); 
-    	} 
-	    //setupDashboard();
+    		prefEditor.apply();
+    	}
+//	    setupDashboard();
+
+
 	}
 	    
 	/**
@@ -179,7 +234,7 @@ Log.d(module, "onlySalesDashboard equals " + onlySalesDashboard);
 
 	protected void onDestroy ()
 	{
-	   super.onDestroy ();
+	   super.onDestroy();
 	}
 
 	/**
@@ -229,6 +284,11 @@ Log.d(module, "onlySalesDashboard equals " + onlySalesDashboard);
 			startActivity(i);
 			finish();
 		}
+		NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+		String locationPerm = prefs.getString(LOCATION_DB_PERM, "N");
+		if (locationPerm.equals("Y")) {
+			navigationView.getMenu().setGroupVisible(R.id.group_location, true);
+		}
 
 	}
 
@@ -241,7 +301,7 @@ Log.d(module, "onlySalesDashboard equals " + onlySalesDashboard);
 
 	protected void onStart ()
 	{
-	   super.onStart();
+	   super.onStart ();
 	}
 
 	/**
@@ -257,7 +317,7 @@ Log.d(module, "onlySalesDashboard equals " + onlySalesDashboard);
  
 	protected void onStop () 
 	{
-	   super.onStop();
+	   super.onStop ();
 	}
   
 /*    @Override
@@ -283,19 +343,18 @@ Log.d(module, "onlySalesDashboard equals " + onlySalesDashboard);
 @Override
 public boolean onCreateOptionsMenu(Menu menu) {
 	getMenuInflater().inflate(R.menu.main, menu);
+
 	menu.removeItem(R.id.action_refresh);
-	if (!settings_menu){
-		menu.removeItem(R.id.action_settings);
+	SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+	String salesrepPerm = prefs.getString(SALESREP_DB_PERM, "N");
+	if (salesrepPerm.equals("N")) {
+		menu.removeItem(R.id.homeSearch);
 	}
 	return super.onCreateOptionsMenu(menu);
 }
 	public boolean onOptionsItemSelected(MenuItem item){
 		super.onOptionsItemSelected(item);
 		switch (item.getItemId()) {
-			case R.id.action_settings:
-				Intent i = new Intent(this.getBaseContext(), FragmentPreferences.class);
-				startActivityForResult(i, SHOW_PREFERENCES);
-				return true;
 			case R.id.homeSearch:
 				if (actv.isShown()) {
 					actv.setVisibility(View.GONE);
@@ -304,15 +363,12 @@ public boolean onCreateOptionsMenu(Menu menu) {
 					actv.setVisibility(View.VISIBLE);
 				}
 				return true;
-			case R.id.action_about:
-				onClickAbout();
-				return true;
 		}
 		return false;
 	}
 	// Click Methods
     public void onClick(View v) {
-    	SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+    	prefs = PreferenceManager.getDefaultSharedPreferences(this);
     	String retailerId = prefs.getString("storeId", "");
         if (!retailerId.isEmpty()) { 
         	Intent facilityDetailsIntent = new Intent(this, FacilityDetailsActivity.class);
@@ -339,7 +395,7 @@ public boolean onCreateOptionsMenu(Menu menu) {
                startActivity (new Intent(getApplicationContext(), CatalogActivity.class));
                break;
           case R.id.home_btn_outlets :
-               startActivity (new Intent(getApplicationContext(), FacilityActivity.class));
+               startActivity (new Intent(getApplicationContext(), SupplierActivity.class));
                break;
           default:    
         	   break;    
@@ -349,7 +405,7 @@ public boolean onCreateOptionsMenu(Menu menu) {
     public void cleanupRetailerProducts() {
     	ProductsDataSource productDS = new ProductsDataSource(this);
     	productDS.open();
-    	productDS.deleteAllSaleProducts();
+    	//productDS.deleteAllSaleProducts();
     	productDS.close();    	
     }
 
@@ -395,7 +451,7 @@ public boolean onCreateOptionsMenu(Menu menu) {
     	prefEditor.apply();
     	
 		TextView accountSummaryView = (TextView)findViewById(R.id.accntSummary);
-		Facility facility = (Facility)facilityMap.get(retailerId);
+		Supplier facility = (Supplier)facilityMap.get(retailerId);
 		String facilityName = "";
 		if (facility != null) {
 			facilityName = facility.getName();
@@ -404,18 +460,18 @@ public boolean onCreateOptionsMenu(Menu menu) {
 			// check if Store Name is set in preferences
 			facilityName = prefs.getString("storeName", "");
 		}
-		accountSummaryView.setText("" + retailerId + 
-				" [" + facilityName +  "] :");
-		accountSummaryView.setPaintFlags(accountSummaryView.getPaintFlags()| Paint.UNDERLINE_TEXT_FLAG);
-		
-		ProgressBar progressBar = (ProgressBar) findViewById(R.id.getDuesProgress);
-		progressBar.setVisibility(View.VISIBLE);
-		ServerSync serverSync = new ServerSync(this);
-		serverSync.getFacilityDues(progressBar, this);	   
-		if (fetchProducts) {
-			cleanupRetailerData();
-			serverSync.updateProducts(null, progressBar, null);
-		}    	
+//		accountSummaryView.setText("" + retailerId +
+//				" [" + facilityName +  "] :");
+//		accountSummaryView.setPaintFlags(accountSummaryView.getPaintFlags()| Paint.UNDERLINE_TEXT_FLAG);
+
+//		ProgressBar progressBar = (ProgressBar) findViewById(R.id.getDuesProgress);
+//		progressBar.setVisibility(View.VISIBLE);
+		//ServerSync serverSync = new ServerSync(this);
+//		serverSync.getSupplierDues(progressBar, this);
+//		if (fetchProducts) {
+//			cleanupRetailerData();
+//			serverSync.updateProducts(null, progressBar, null);
+//		}
     }
     
     public void updateDues(Map boothDues, Map boothTotalDues) {
@@ -429,11 +485,11 @@ public boolean onCreateOptionsMenu(Menu menu) {
     		TextView amountView = (TextView)findViewById(R.id.totalDues);
     		amountView.setText(String.format("Rs %.2f", totalDues));
     	}	
-    	if (boothTotalDues != null && boothTotalDues.get("fdrAmount") != null) { 
+    	/*if (boothTotalDues != null && boothTotalDues.get("fdrAmount") != null) {
     		double fdrAmount = (Double)boothTotalDues.get("fdrAmount");
     		TextView amountView = (TextView)findViewById(R.id.fdrAmount);
     		amountView.setText(String.format("Rs %.2f", fdrAmount));  
-    	}	    	
+    	}*/
     }
 
 

@@ -21,7 +21,7 @@ public class XMLRPCApacheAdapter {
 	public static final String module = XMLRPCApacheAdapter.class.getName();
 	private XmlRpcClient client;
 	private Context context;
-	private URL url; 
+	//private URL url;
     private final Map<String, Object> credentialsMap;
 
 	public XMLRPCApacheAdapter(Context context) throws MalformedURLException  {
@@ -31,14 +31,13 @@ public class XMLRPCApacheAdapter {
 		String userName = prefs.getString("userName", "");
 		String password = prefs.getString("password", "");
 		String tenantId = prefs.getString("tenantId", "");		
-		Log.d( module, "serverURL=" + urlStr +"; userName=" + userName + "; password=" + password +
-				";tenantid=" + tenantId); 
+		Log.d( module, "serverURL=" + urlStr +"; userName=" + userName + "; password=" + password + ";tenantid=" + tenantId);
 		credentialsMap = new HashMap<String, Object>();
 		credentialsMap.put("login.username", userName);
 		credentialsMap.put("login.password", password);
-		credentialsMap.put("tenantId", tenantId);		
-		
-		this.url = new URL(urlStr);
+		credentialsMap.put("tenantId", tenantId);
+
+		URL url = new URL(urlStr);
 	    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
 	    config.setServerURL(url);
 	    config.setEnabledForExceptions(true);
@@ -65,7 +64,8 @@ public class XMLRPCApacheAdapter {
 			Log.d( module, "XML-RPC call took " + (t1-t0) + "ms");			
 		} catch (final Exception e) {
 			Log.e( module, "Error " + e, e);
-			Toast.makeText( context, "Remote call failed: " + e.getMessage(), Toast.LENGTH_SHORT ).show();	    		    			
+			System.out.println("XMLRPError " + e.getMessage());
+			Toast.makeText( context, "Remote call failed: " + e.getMessage(), Toast.LENGTH_SHORT ).show();
 		}
 		return result;
 	}

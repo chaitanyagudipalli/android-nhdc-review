@@ -1,6 +1,5 @@
 package in.vasista.vsales;
 
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -13,20 +12,17 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 
-import in.vasista.global.GlobalApplication;
 import in.vasista.nhdc.R;
-import in.vasista.vsales.preference.FragmentPreferences;
 import in.vasista.vsales.sync.ServerSync;
 
-public class HRDashboardActivity extends DashboardAppCompatActivity  {   
+public class HRDashboardActivity extends DrawerCompatActivity  {
 	public static final String module = HRDashboardActivity.class.getName();
 
     static final private int MENU_PREFERENCES = Menu.FIRST+1;
     private static final int SHOW_PREFERENCES = 1;
 	private boolean hideMenu = false;
 	MenuItem menuItem;
-	boolean settings_menu = true;
-	
+
 	/**
 	 * onCreate - called when the activity is first created.
 	 * Called when the activity is first created. 
@@ -52,8 +48,15 @@ Log.d(module, "onlyHRDashboard equals " + onlyHRDashboard);
     	else { 
 //    	    setContentView(R.layout.activity_hr_home_alt);
 			setContentChildView(R.layout.activity_hr_home_alt);
-			settings_menu = false;
 			actionBarHomeEnabled();
+
+			// back button functionality
+			toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					finish();
+				}
+			});
     	}
 
 		ProgressBar progressBar = new ProgressBar(this);
@@ -114,7 +117,7 @@ Log.d(module, "onlyHRDashboard equals " + onlyHRDashboard);
 
 	protected void onRestart ()
 	{
-	   super.onRestart ();
+	   super.onRestart();
 	}
 
 	/**
@@ -127,14 +130,7 @@ Log.d(module, "onlyHRDashboard equals " + onlyHRDashboard);
 
 	protected void onResume ()
 	{
-	   super.onResume ();
-
-		if(((GlobalApplication)getApplication()).isPrefChange()){
-			((GlobalApplication)getApplication()).setPrefChange(false);
-			Intent i = new Intent(this.getBaseContext(), SplashScreenActivity.class);
-			startActivity(i);
-			finish();
-		}
+	   super.onResume();
 	}
 
 	/**
@@ -146,7 +142,7 @@ Log.d(module, "onlyHRDashboard equals " + onlyHRDashboard);
 
 	protected void onStart ()
 	{
-	   super.onStart ();
+	   super.onStart();
 	}
 
 	/**
@@ -162,7 +158,7 @@ Log.d(module, "onlyHRDashboard equals " + onlyHRDashboard);
  
 	protected void onStop () 
 	{
-	   super.onStop ();   
+	   super.onStop();
 	}
 
 /*    @Override
@@ -191,22 +187,11 @@ Log.d(module, "onlyHRDashboard equals " + onlyHRDashboard);
 		getMenuInflater().inflate(R.menu.main, menu);
 		menu.removeItem(R.id.homeSearch);
 		menu.removeItem(R.id.action_refresh);
-		if (!settings_menu){
-			menu.removeItem(R.id.action_settings);
-
-		}
 		return super.onCreateOptionsMenu(menu);
 	}
 	public boolean onOptionsItemSelected(MenuItem item){
 		super.onOptionsItemSelected(item);
 		switch (item.getItemId()) {
-			case R.id.action_settings:
-				Intent i = new Intent(this.getBaseContext(), FragmentPreferences.class);
-				startActivityForResult(i, SHOW_PREFERENCES);
-				return true;
-			case R.id.action_about:
-				onClickAbout();
-				return true;
 		}
 		return false;
 	}

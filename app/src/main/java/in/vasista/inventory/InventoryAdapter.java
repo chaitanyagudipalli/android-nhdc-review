@@ -21,9 +21,9 @@ public class InventoryAdapter extends ArrayAdapter<Product> {
 	public static final String module = InventoryAdapter.class.getName();	
 	
 	  int resource;
-	  public ArrayList<Product> items = new ArrayList<Product>();;
-	    public ArrayList<Product> filtered = new ArrayList<Product>();;
-	    private Context context;
+	  public ArrayList<Product> items = new ArrayList<Product>();
+	public ArrayList<Product> filtered = new ArrayList<Product>();
+	//private Context context;
 	    private Filter filter;
 
 	    public InventoryAdapter(Context context, int resource, List<Product> items)
@@ -32,7 +32,7 @@ public class InventoryAdapter extends ArrayAdapter<Product> {
 		    this.resource = resource;	        
 	        this.filtered.addAll(items);
 	        this.items.addAll(items);
-	        this.context = context;
+	        //this.context = context;
 	        this.filter = new InventoryAutoFilter();
 	    }
 	    
@@ -52,7 +52,7 @@ public class InventoryAdapter extends ArrayAdapter<Product> {
 		    LinearLayout inventoryView;
 
 		    Product item = getItem(pos);
-		    String id = item.getId();
+//		    String id = item.getId();
 		    String name = item.getName();
 		    String category = item.getProductCategoryId();	    
 		    String description = item.getDescription();	     

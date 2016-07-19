@@ -1,5 +1,6 @@
 package in.vasista.vsales.payment;
 
+import android.annotation.SuppressLint;
 import android.app.ListFragment;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -27,7 +28,7 @@ public class PaymentListFragment extends ListFragment {
 		
 		super.onActivityCreated(savedInstanceState);
     	SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
-    	String retailerId = prefs.getString("storeId", "");
+    	//String retailerId = prefs.getString("storeId", "");
 		
 		if (adapter == null) {			
     	    datasource = new PaymentsDataSource(getActivity());   
@@ -75,7 +76,7 @@ public class PaymentListFragment extends ListFragment {
 		setListAdapter(null);
 	}
 	
-    @Override
+    @SuppressLint("NewApi") @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         setUserVisibleHint(true);

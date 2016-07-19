@@ -44,7 +44,7 @@ public class InventoryListFragment extends ListFragment {
 		if (adapter == null) {  
     	    datasource = new ProductsDataSource(getActivity()); 
     	    datasource.open(); 
-    	    inventoryItems = datasource.getAllInventoryProducts();   
+    	   // inventoryItems = datasource.getAllInventoryProducts();
     	    
 		    adapter = new InventoryAdapter(getActivity(),
                     R.layout.inventorylist_item,
@@ -107,7 +107,7 @@ public class InventoryListFragment extends ListFragment {
 	public void notifyChange() {
 		setListAdapter(null);
 	    datasource.open();
-	    inventoryItems = datasource.getAllInventoryProducts();
+	    //inventoryItems = datasource.getAllInventoryProducts();
     	Log.d(module, "inventoryItems.size() = " + inventoryItems.size());
 	    
 	    adapter = new InventoryAdapter(getActivity(),

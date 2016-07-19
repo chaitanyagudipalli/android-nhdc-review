@@ -17,9 +17,9 @@ import in.vasista.vsales.facility.Facility;
 
 
 public class FacilityAutoAdapter extends ArrayAdapter<Facility> {
-	  public ArrayList<Facility> items = new ArrayList<Facility>();;
-	    public ArrayList<Facility> filtered = new ArrayList<Facility>();;
-	    private Context context;
+	  public ArrayList<Facility> items = new ArrayList<Facility>();
+	public ArrayList<Facility> filtered = new ArrayList<Facility>();
+	private Context context;
 	    private Filter filter;
 
 	    public FacilityAutoAdapter(Context context, int textViewResourceId, List<Facility> items)

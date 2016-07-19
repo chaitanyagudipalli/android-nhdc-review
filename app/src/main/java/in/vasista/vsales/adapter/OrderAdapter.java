@@ -33,7 +33,7 @@ public class OrderAdapter extends ArrayAdapter<Order> {
 
 	   Order item = getItem(position);
 
-	    String id = Integer.toString(item.getId());
+	    //String id = Integer.toString(item.getId());
 	    Date date = item.getSupplyDate();
 	    SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMM, yyyy");
 	    String dateStr = dateFormat.format(date);

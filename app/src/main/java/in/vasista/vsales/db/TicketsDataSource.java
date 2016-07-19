@@ -19,7 +19,7 @@ import in.vasista.tm.Ticket;
 public class TicketsDataSource {
 	public static final String module = TicketsDataSource.class.getName();
 
-	private Context context;
+	//private Context context;
 	// Database fields
 	private SQLiteDatabase database;
 	private MySQLiteHelper dbHelper;
@@ -34,7 +34,7 @@ public class TicketsDataSource {
 			MySQLiteHelper.COLUMN_TICKET_IS_SYNCED };
 
 	public TicketsDataSource(Context context) {
-		this.context = context;
+		//this.context = context;
 		dbHelper = new MySQLiteHelper(context);
 	}
 
@@ -78,11 +78,10 @@ public class TicketsDataSource {
 	}
 
 	private Ticket cursorToTicket(Cursor cursor) {
-		Ticket ticket = new Ticket(cursor.getInt(0), cursor.getString(1),
+		return new Ticket(cursor.getInt(0), cursor.getString(1),
 				new Date(cursor.getLong(2)), cursor.getDouble(3), cursor.getDouble(4),
 				cursor.getString(5), cursor.getString(6),
-				cursor.getString(7), (cursor.getInt(8) == 1) ? true : false);
-		return ticket;
+				cursor.getString(7), (cursor.getInt(8) == 1) );
 	}
 	
 	public List<Ticket> getUnsyncedTickets() {
@@ -106,7 +105,7 @@ public class TicketsDataSource {
 		  if (ticketItems.isEmpty()) {
 			  return null;
 		  }
-		Log.d( module, "ticketItems=" + ticketItems); 	
+		//Log.d( module, "ticketItems=" + ticketItems); 	
 		Map [] result = new TreeMap[ticketItems.size()];
 		/*
 		  for (int i = 0; i < ticketItems.size(); ++i) {

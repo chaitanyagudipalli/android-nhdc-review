@@ -121,11 +121,14 @@ public class FacilityListFragment extends ListFragment {
 	    datasource.open();
 	    facilityItems = datasource.getAllFacilities();
     	Log.d(module, "catalogItems.size() = " + facilityItems.size());
-	    
-	    adapter = new FacilityAdapter(getActivity(),
-                R.layout.facilitylist_item,
-                facilityItems);	
-		setListAdapter(adapter);
+	    try {
+			adapter = new FacilityAdapter(getActivity(),
+					R.layout.facilitylist_item,
+					facilityItems);
+			setListAdapter(adapter);
+		}catch (NullPointerException e){
+			e.printStackTrace();
+		}
 	}
 	
 	public void onDestroyView() {

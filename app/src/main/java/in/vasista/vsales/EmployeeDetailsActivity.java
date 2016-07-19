@@ -30,8 +30,7 @@ public class EmployeeDetailsActivity extends DashboardAppCompatActivity  {
 		actionBarHomeEnabled();    
 		
 		Intent employeeDetailsIntent= getIntent();
-		String employeeId = "";
-		employeeId = employeeDetailsIntent.getStringExtra("employeeId");	
+		String employeeId = employeeDetailsIntent.getStringExtra("employeeId");
 		final Employee employee;
 		
 		EmployeeDataSource datasource = new EmployeeDataSource(this);  
@@ -119,7 +118,7 @@ public class EmployeeDetailsActivity extends DashboardAppCompatActivity  {
 				// in initialization of the class and at the end of phone call 
 				  
 				// detect flag from CALL_STATE_OFFHOOK
-				if (onCall == true) {    
+				if (onCall) {
  
 					// restart our application
 					Intent restart = getBaseContext().getPackageManager().
@@ -145,4 +144,5 @@ public class EmployeeDetailsActivity extends DashboardAppCompatActivity  {
 			employeePunchTimeView.setText(text);
 		}
 	}
+
 }

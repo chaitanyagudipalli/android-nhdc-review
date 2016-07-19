@@ -1,5 +1,6 @@
 package in.vasista.hr.payslip;
 
+import android.annotation.SuppressLint;
 import android.app.ListFragment;
 import android.content.Intent;
 import android.os.Bundle;
@@ -75,7 +76,7 @@ public class PayslipListFragment extends ListFragment {
 		setListAdapter(null);
 	}
 	
-    @Override
+    @SuppressLint("NewApi") @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         setUserVisibleHint(true);

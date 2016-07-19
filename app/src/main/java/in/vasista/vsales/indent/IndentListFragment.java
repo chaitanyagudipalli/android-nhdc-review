@@ -1,5 +1,6 @@
 package in.vasista.vsales.indent;
 
+import android.annotation.SuppressLint;
 import android.app.ListFragment;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -14,6 +15,7 @@ import android.widget.ProgressBar;
 import java.util.List;
 
 import in.vasista.nhdc.R;
+import in.vasista.vsales.IndentDetailed;
 import in.vasista.vsales.IndentItemsListActivity;
 import in.vasista.vsales.adapter.IndentAdapter;
 import in.vasista.vsales.db.IndentsDataSource;
@@ -61,7 +63,7 @@ public class IndentListFragment extends ListFragment{
 		    Indent indent = (Indent)listView.getItemAtPosition(position);
 			//Toast.makeText( getActivity(), "Clicked item [" +order.getId() + "]", Toast.LENGTH_SHORT ).show();	
             if (indent != null) {
-            	Intent indentItemsIntent = new Intent(getActivity(), IndentItemsListActivity.class);
+            	Intent indentItemsIntent = new Intent(getActivity(), IndentDetailed.class);
             	indentItemsIntent.putExtra("indentId", indent.getId());
             	indentItemsIntent.putExtra("retailerId", retailerId);
             	startActivity(indentItemsIntent);
@@ -84,11 +86,15 @@ public class IndentListFragment extends ListFragment{
 		setListAdapter(null);
 	    datasource.open();
 	    indentItems = datasource.getAllIndents();
-	    
-	    adapter = new IndentAdapter(getActivity(),
-                R.layout.indentlist_item,
-                indentItems);	
-		setListAdapter(adapter);
+		// Added try-catch block handling exception  -  Upendra
+	    try {
+			adapter = new IndentAdapter(getActivity(),
+					R.layout.indentlist_item,
+					indentItems);
+			setListAdapter(adapter);
+		}catch (Exception e){
+			e.printStackTrace();
+		}
 	} 
 	
 	public void onDestroyView() {
@@ -96,7 +102,7 @@ public class IndentListFragment extends ListFragment{
 		setListAdapter(null);
 	}
 	
-    @Override
+    @SuppressLint("NewApi") @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         setUserVisibleHint(true);

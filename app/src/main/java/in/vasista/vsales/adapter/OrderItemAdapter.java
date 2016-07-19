@@ -43,7 +43,7 @@ public class OrderItemAdapter extends ArrayAdapter<OrderItem>{
 
 	    OrderItem item = getItem(position);
 
-	    String productId = item.getProductId();
+	    //String productId = item.getProductId();
 	    String productName = item.getProductName();
 	    String qty = Integer.toString(item.getQty());
 	    double unitPrice = item.getUnitPrice();

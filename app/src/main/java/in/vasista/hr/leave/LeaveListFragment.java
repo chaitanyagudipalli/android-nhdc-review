@@ -1,5 +1,6 @@
 package in.vasista.hr.leave;
 
+import android.annotation.SuppressLint;
 import android.app.ListFragment;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -59,7 +60,7 @@ public class LeaveListFragment extends ListFragment {
 		setListAdapter(null);
 	}
 	
-    @Override
+    @SuppressLint("NewApi") @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         setUserVisibleHint(true);

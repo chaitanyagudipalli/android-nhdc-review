@@ -19,9 +19,9 @@ import in.vasista.vsales.employee.Employee;
 
 public class EmployeeAdapter extends ArrayAdapter<Employee> {
 	  int resource;
-	  public ArrayList<Employee> items = new ArrayList<Employee>();;
-	    public ArrayList<Employee> filtered = new ArrayList<Employee>();;
-	    private Context context;
+	  public ArrayList<Employee> items = new ArrayList<Employee>();
+	public ArrayList<Employee> filtered = new ArrayList<Employee>();
+	//private Context context;
 	    private Filter filter;
 
 	    public EmployeeAdapter(Context context, int resource, List<Employee> items)
@@ -30,7 +30,7 @@ public class EmployeeAdapter extends ArrayAdapter<Employee> {
 		    this.resource = resource;	        
 	        this.filtered.addAll(items);
 	        this.items.addAll(items);
-	        this.context = context;
+	       // this.context = context;
 	        this.filter = new EmployeeAutoFilter();
 	    }
 	    
@@ -50,7 +50,7 @@ public class EmployeeAdapter extends ArrayAdapter<Employee> {
 		    LinearLayout employeeView;
 
 		    Employee item = getItem(pos);
-		    String id = item.getId();
+		    //String id = item.getId();
 		    String name = item.getName();
 		    String department = item.getDept();	    
 		    String position = item.getPosition();	     

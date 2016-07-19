@@ -1,6 +1,7 @@
 package in.vasista.vsales.adapter;
 
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,13 +38,13 @@ public class IndentItemAdapter extends ArrayAdapter<IndentItem>{
 			this.isEditable = isEditable;
 		}
 		
-	  @Override
+	  @SuppressLint("NewApi") @Override
 	  public View getView(int position, View convertView, ViewGroup parent) {
 	    LinearLayout indentItemView;
 
 	    IndentItem item = getItem(position);
 
-	    String productId = item.getProductId();
+//	    String productId = item.getProductId();
 	    String productName = item.getProductName();
 	    String qty = Integer.toString(item.getQty());
 	    double unitPrice = item.getUnitPrice();

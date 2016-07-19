@@ -1,10 +1,10 @@
 package in.vasista.vsales;
 
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.design.widget.NavigationView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -13,11 +13,11 @@ import android.widget.Button;
 import java.util.HashMap;
 import java.util.Map;
 
+import in.vasista.global.GlobalApplication;
 import in.vasista.nhdc.R;
 import in.vasista.vsales.facility.Facility;
-import in.vasista.vsales.preference.FragmentPreferences;
 
-public class MainActivity extends DashboardAppCompatActivity  {   
+public class MainActivity extends DrawerCompatActivity  {
 	public static final String module = MainActivity.class.getName();
 
     static final private int MENU_PREFERENCES = Menu.FIRST+1;
@@ -27,6 +27,11 @@ public class MainActivity extends DashboardAppCompatActivity  {
     public static final String SALESREP_DB_PERM = "MOB_SREP_DB_VIEW";
     public static final String HR_DB_PERM = "MOB_HR_DB_VIEW";
     public static final String INVENTORY_DB_PERM = "MOB_INVENTORY_DB_VIEW";
+
+	public static final String LOCATION_DB_PERM = "MOB_LOCATION_VIEW";
+
+	public static final String USER_FULLNAME = "USER_FULLNAME";
+	public static final String USER_MOBILE = "USER_MOBILE";
     
     
 	private Map facilityMap = new HashMap<String, Facility> ();
@@ -42,18 +47,18 @@ public class MainActivity extends DashboardAppCompatActivity  {
 //inventoryPerm = "Y"; //::TODO::
     	prefEditor.putString("onlySalesDashboard", "N");
     	prefEditor.putString("onlyHRDashboard", "N");
-    	prefEditor.commit();   		
+    	prefEditor.apply();
 
     	if ((salesRepPerm.equals("Y") || retailerPerm.equals("Y")) && hrPerm.equals("N") && inventoryPerm.equals("N")) {
         	prefEditor.putString("onlySalesDashboard", "Y");
-        	prefEditor.commit();   		
+        	prefEditor.apply();
     	    startActivity (new Intent(getApplicationContext(), SalesDashboardActivity.class));
             finish();    	    
     	    return;
     	}
     	if ((salesRepPerm.equals("N") && retailerPerm.equals("N")) && inventoryPerm.equals("N") && hrPerm.equals("Y")) {
         	prefEditor.putString("onlyHRDashboard", "Y");
-        	prefEditor.commit();   	    		
+        	prefEditor.apply();
     	    startActivity (new Intent(getApplicationContext(), HRDashboardActivity.class));
             finish();    	    
     	    return;
@@ -105,6 +110,16 @@ public class MainActivity extends DashboardAppCompatActivity  {
     		prefEditor.apply();
     	}  
 	    setupDashboard();
+
+		/*NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+		String locationPerm = prefs.getString(LOCATION_DB_PERM, "N");
+		if (locationPerm.equals("Y")) {
+			navigationView.getMenu().setGroupVisible(R.id.group_location, true);
+		}
+		String analyticSalesPerm = prefs.getString(SALESREP_DB_PERM, "N");
+		if (analyticSalesPerm.equals("Y")){
+			navigationView.getMenu().setGroupVisible(R.id.group_analytics_sales, true);
+		}*/
 	    
 //	    ServerRestSync sync = new ServerRestSync(this);
 //	    sync.fetchMaterials(); 
@@ -150,7 +165,7 @@ public class MainActivity extends DashboardAppCompatActivity  {
 
 	protected void onRestart ()
 	{
-	   super.onRestart();
+	   super.onRestart ();
 	}
 
 	/**
@@ -163,7 +178,14 @@ public class MainActivity extends DashboardAppCompatActivity  {
 
 	protected void onResume ()
 	{
-	   super.onResume();
+		super.onResume();
+		if(((GlobalApplication)getApplication()).isPrefChange()){
+			((GlobalApplication)getApplication()).setPrefChange(false);
+			Intent i = new Intent(this.getBaseContext(), SplashScreenActivity.class);
+			startActivity(i);
+			finish();
+		}
+
 	}
 
 	/**
@@ -175,7 +197,7 @@ public class MainActivity extends DashboardAppCompatActivity  {
 
 	protected void onStart ()
 	{
-	   super.onStart();
+	   super.onStart ();
 	}
 
 	/**
@@ -191,7 +213,7 @@ public class MainActivity extends DashboardAppCompatActivity  {
  
 	protected void onStop () 
 	{
-	   super.onStop();
+	   super.onStop ();  
 	}
 
 	@Override
@@ -204,13 +226,6 @@ public class MainActivity extends DashboardAppCompatActivity  {
 	public boolean onOptionsItemSelected(MenuItem item){
 		super.onOptionsItemSelected(item);
 		switch (item.getItemId()) {
-			case R.id.action_settings:
-				Intent i = new Intent(this.getBaseContext(), FragmentPreferences.class);
-				startActivityForResult(i, SHOW_PREFERENCES);
-				return true;
-			case R.id.action_about:
-				onClickAbout();
-				return true;
 
 		}
 		return false;
