@@ -42,7 +42,7 @@
                     style="@style/HomeButton"
                     android:drawableTop="@drawable/inventory_button"
                     android:onClick="onClickFeature"
-                    android:text="Inventory" />             
+                    android:text="@string/title_inventory" />
             </LinearLayout>                  
                                  
     </LinearLayout>
