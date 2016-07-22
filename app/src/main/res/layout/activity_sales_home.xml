@@ -147,7 +147,7 @@
                     style="@style/HomeButton"
                     android:drawableTop="@drawable/indent_button"
                     android:onClick="onClickFeature"
-                    android:text="@string/title_feature1" />
+                    android:text="@string/title_feature1_plurer" />
 
                 <Button
                     android:id="@+id/home_btn_orders"
