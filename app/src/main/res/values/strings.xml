@@ -233,4 +233,5 @@
     <string name="order_total">Order Total</string>
     <string name="paid_ammount">Paid Ammount</string>
     <string name="balance_ammount">Balance Ammount</string>
+    <string name="indent_details">Indent Details</string>
 </resources>

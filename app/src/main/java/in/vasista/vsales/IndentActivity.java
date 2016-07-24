@@ -18,8 +18,10 @@ package in.vasista.vsales;
 
 import android.app.FragmentManager;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ProgressBar;
 
 import java.text.SimpleDateFormat;
@@ -53,6 +55,7 @@ public class IndentActivity extends DashboardAppCompatActivity
  */
 //private MenuItem menuItem;
 ProgressBar progressBar;
+	FloatingActionButton fab;
 protected void onCreate(Bundle savedInstanceState) 
 {
     super.onCreate(savedInstanceState);
@@ -61,6 +64,19 @@ protected void onCreate(Bundle savedInstanceState)
 	setContentChildView(R.layout.indent_layout);
 
 	setSalesDashboardTitle(R.string.title_feature1_plurer);
+
+	fab = (FloatingActionButton) findViewById(R.id.fab);
+	fab.show();
+	//fab.setImageResource(R.drawable.title_upload);
+
+	fab.setOnClickListener(new View.OnClickListener() {
+		@Override
+		public void onClick(View view) {
+			// editMode = true;
+			invalidateOptionsMenu();
+			fab.hide();
+		}
+	});
 }
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

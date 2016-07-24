@@ -23,7 +23,8 @@ public class IndentDetailed extends DashboardAppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentChildView(R.layout.activity_indent_detailed);
-        setSalesDashboardTitle(R.string.title_feature1_plurer);
+        //setSalesDashboardTitle(R.string.title_feature1_plurer);
+        setPageTitle(getString(R.string.indent_details));
 
         int[] ids = {R.id.tally_ref_id, R.id.order_date, R.id.order_id, R.id.order_number,R.id.order_total,R.id.supplier_party_id,
         R.id.supplier_name,R.id.store_name,R.id.generated_po,R.id.po_order,R.id.po_sequence_no,R.id.status_id,R.id.balance_ammount,R.id.paid_ammount};
