@@ -20,14 +20,19 @@ public class ProductsDataSource {
 	  private MySQLiteHelper dbHelper;
 	  private String[] allColumns = { MySQLiteHelper.COLUMN_PRODUCT_ID,
 	      MySQLiteHelper.COLUMN_PRODUCT_NAME,
-	      MySQLiteHelper.COLUMN_PRODUCT_DESC,
+
 	      MySQLiteHelper.COLUMN_PRODUCT_INRENAL_NAME,
 		  MySQLiteHelper.COLUMN_PRODUCT_BRAND_NAME,
+			  MySQLiteHelper.COLUMN_PRODUCT_DESC,
+			  MySQLiteHelper.COLUMN_PRODUCT_TYPE_ID,
+			  MySQLiteHelper.COLUMN_PRODUCT_QUANTITY_UOM_ID,
 	      MySQLiteHelper.COLUMN_PRODUCT_PRICE,
+			  MySQLiteHelper.COLUMN_PRODUCT_QUANTITY_INCLUDED,
 	      MySQLiteHelper.COLUMN_PRODUCT_CATEGORY_ID,
-	      MySQLiteHelper.COLUMN_PRODUCT_TYPE_ID,
-	      MySQLiteHelper.COLUMN_PRODUCT_QUANTITY_UOM_ID,
-	      MySQLiteHelper.COLUMN_PRODUCT_QUANTITY_INCLUDED,
+			  MySQLiteHelper.COLUMN_PRODUCT_PARENT_CATEGORY_ID,
+
+
+
 	      };
 	  
 	  public ProductsDataSource(Context context) {
@@ -52,6 +57,7 @@ public class ProductsDataSource {
 		    values.put(MySQLiteHelper.COLUMN_PRODUCT_PRICE, product.getPrice());
 		    values.put(MySQLiteHelper.COLUMN_PRODUCT_TYPE_ID, product.getTypeid());
 		    values.put(MySQLiteHelper.COLUMN_PRODUCT_CATEGORY_ID, product.getProductCategoryId());
+		  values.put(MySQLiteHelper.COLUMN_PRODUCT_PARENT_CATEGORY_ID, product.getProductParentCategoryId());
 		  values.put(MySQLiteHelper.COLUMN_PRODUCT_QUANTITY_UOM_ID, product.getUOMid());
 		  values.put(MySQLiteHelper.COLUMN_PRODUCT_QUANTITY_INCLUDED, product.getIncludedquantity());
 
@@ -68,6 +74,7 @@ public class ProductsDataSource {
 		  values.put(MySQLiteHelper.COLUMN_PRODUCT_PRICE, product.getPrice());
 		  values.put(MySQLiteHelper.COLUMN_PRODUCT_TYPE_ID, product.getTypeid());
 		  values.put(MySQLiteHelper.COLUMN_PRODUCT_CATEGORY_ID, product.getProductCategoryId());
+		  values.put(MySQLiteHelper.COLUMN_PRODUCT_PARENT_CATEGORY_ID, product.getProductParentCategoryId());
 		  values.put(MySQLiteHelper.COLUMN_PRODUCT_QUANTITY_UOM_ID, product.getUOMid());
 		  values.put(MySQLiteHelper.COLUMN_PRODUCT_QUANTITY_INCLUDED, product.getIncludedquantity());
 		    database.insert(MySQLiteHelper.TABLE_PRODUCT, null, values);    
@@ -87,6 +94,7 @@ public class ProductsDataSource {
 				  values.put(MySQLiteHelper.COLUMN_PRODUCT_PRICE, product.getPrice());
 				  values.put(MySQLiteHelper.COLUMN_PRODUCT_TYPE_ID, product.getTypeid());
 				  values.put(MySQLiteHelper.COLUMN_PRODUCT_CATEGORY_ID, product.getProductCategoryId());
+				  values.put(MySQLiteHelper.COLUMN_PRODUCT_PARENT_CATEGORY_ID, product.getProductParentCategoryId());
 				  values.put(MySQLiteHelper.COLUMN_PRODUCT_QUANTITY_UOM_ID, product.getUOMid());
 				  values.put(MySQLiteHelper.COLUMN_PRODUCT_QUANTITY_INCLUDED, product.getIncludedquantity());
 				  database.insert(MySQLiteHelper.TABLE_PRODUCT, null, values);   
@@ -132,7 +140,7 @@ public class ProductsDataSource {
 	    		cursor.getString(4),
 				  cursor.getString(5),
 	    		cursor.getString(6),
-				  (float)cursor.getDouble(7), (float)cursor.getDouble(8),cursor.getString(9));
+				  (float)cursor.getDouble(7), (float)cursor.getDouble(8),cursor.getString(9),cursor.getString(10));
 	  }
 	   
 	  public Map getSaleProductMap() {

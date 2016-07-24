@@ -82,8 +82,7 @@
     <string name="column_product_id_header">Product Code</string>
     <string name="column_product_name_header">Name</string>
     <string name="column_product_description_header">Description</string>
-    <string name="column_product_price_header">Price (Pkts)</string>
-    <string name="column_product_mrp_price_header">Price (Crates)</string>
+    <string name="column_product_category_header">Category</string>
 
 
     <string name="column_order_id_header">Order Id</string>

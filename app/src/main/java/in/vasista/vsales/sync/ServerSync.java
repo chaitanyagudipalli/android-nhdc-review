@@ -165,10 +165,11 @@ public class ServerSync {
 							String brandName = (String)value.get("brandName");
 							String quantityUomId = (String)value.get("quantityUomId");
 							String productTypeId = (String)value.get("productTypeId");
+							String productParentTypeId = (String)value.get("primaryParentCategoryId");
 
 				    	  float price = 0.0f;
 				    	  float quantityIncluded = ((BigDecimal)value.get("quantityIncluded")).setScale(2,BigDecimal.ROUND_HALF_UP).floatValue();
-				    	  Product product = new Product(productId, name, internalName, brandName,description,productTypeId,quantityUomId , price, quantityIncluded, primaryProductCategoryId);
+				    	  Product product = new Product(productId, name, internalName, brandName,description,productTypeId,quantityUomId , price, quantityIncluded, primaryProductCategoryId,productParentTypeId);
 				    	  //Log.d(module, "product = " + product);
 							ls.add(product);
 				    	  //datasource.insertProduct(product);

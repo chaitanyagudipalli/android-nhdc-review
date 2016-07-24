@@ -15,6 +15,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 	  public static final String COLUMN_PRODUCT_DESC = "PRODUCT_DESC";	  
 	  public static final String COLUMN_PRODUCT_PRICE = "PRODUCT_PRICE";
 	  public static final String COLUMN_PRODUCT_CATEGORY_ID = "PRODUCT_CATEGORY_ID";
+	public static final String COLUMN_PRODUCT_PARENT_CATEGORY_ID = "PRODUCT_PARENT_CATEGORY_ID";
 	public static final String COLUMN_PRODUCT_TYPE_ID = "PRODUCT_TYPE_ID";
 	public static final String COLUMN_PRODUCT_QUANTITY_UOM_ID = "PRODUCT_QUANTITY_UOM_ID";
 	public static final String COLUMN_PRODUCT_QUANTITY_INCLUDED = "PRODUCT_QUANTITY_INCLUDED";
@@ -146,13 +147,12 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 	  private static final String DATABASE_CREATE_PRODUCT = "create table "
 	      + TABLE_PRODUCT + " (" + COLUMN_PRODUCT_ID
 	      + " text primary key, " + COLUMN_PRODUCT_NAME
-		  + " text not null, " + COLUMN_PRODUCT_DESC
-		  + " text, " + COLUMN_PRODUCT_INRENAL_NAME
+		  + " text not null, "  + COLUMN_PRODUCT_INRENAL_NAME
 	      + " text, " + COLUMN_PRODUCT_BRAND_NAME
-	      + " text, " + COLUMN_PRODUCT_PRICE
-	      + " real, "+ COLUMN_PRODUCT_CATEGORY_ID
-	      + " text,"+ COLUMN_PRODUCT_TYPE_ID +" text," + COLUMN_PRODUCT_QUANTITY_UOM_ID +" text,"+
-			  COLUMN_PRODUCT_QUANTITY_INCLUDED+" real"
+	      + " text, "+ COLUMN_PRODUCT_DESC
+			  + " text, " +COLUMN_PRODUCT_TYPE_ID +" text," + COLUMN_PRODUCT_QUANTITY_UOM_ID +" text,"+ COLUMN_PRODUCT_PRICE
+			  + " real, "+ COLUMN_PRODUCT_QUANTITY_INCLUDED+" real," + COLUMN_PRODUCT_CATEGORY_ID
+			  + " text, "+ COLUMN_PRODUCT_PARENT_CATEGORY_ID+" text"
 			  +");";
 
 
