@@ -114,7 +114,7 @@ public class SplashScreenActivity extends Activity
 
 						String contactNumber = (String)((Map)result).get("contactNumber");
 						if (contactNumber != null)
-							prefEditor.putString(MainActivity.USER_MOBILE, contactNumber);
+							prefEditor.putString(MainActivity.USER_PASSBOOK, contactNumber);
 
 						prefEditor.apply();
 					}

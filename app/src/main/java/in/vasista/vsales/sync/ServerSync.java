@@ -27,6 +27,7 @@ import in.vasista.nhdc.R;
 import in.vasista.vsales.EmployeeDetailsActivity;
 import in.vasista.vsales.HRDashboardActivity;
 import in.vasista.vsales.LeaveActivity;
+import in.vasista.vsales.MainActivity;
 import in.vasista.vsales.SalesDashboardActivity;
 import in.vasista.vsales.catalog.CatalogListFragment;
 import in.vasista.vsales.catalog.Product;
@@ -378,24 +379,28 @@ public class ServerSync {
     		listFragment.notifyChange();
     	}
 	}
-	public void getSupplierDues(ProgressBar progressBar, final SalesDashboardActivity activity) {
+	public void getWeaverDetails(ProgressBar progressBar, final SalesDashboardActivity activity) {
 		Map paramMap = new HashMap();
-		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-		String storeId = prefs.getString("storeId", "");
-		paramMap.put("boothId", storeId);
+		final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+		String partyId = prefs.getString("storeId", "");
+		paramMap.put("partyId", partyId);
+		paramMap.put("effectiveDate", (new Date()).getTime());
 
 		try {
 			XMLRPCApacheAdapter adapter = new XMLRPCApacheAdapter(context);
-			adapter.call("getFacilityDues", paramMap, progressBar, new XMLRPCMethodCallback() {
+			adapter.call("getWeaverDetails", paramMap, progressBar, new XMLRPCMethodCallback() {
 				public void callFinished(Object result, ProgressBar progressBar) {
 					if (result != null) {
-						Map boothDues = (Map)((Map)result).get("boothDues");
-						Map boothTotalDues = (Map)((Map)result).get("boothTotalDues");
-						Log.d(module, "boothDues.size() = " + boothDues.size() + ";boothDues=" + boothDues);
-						Log.d(module, "boothTotalDues.size() = " + boothTotalDues.size() + ";boothTotalDues=" + boothTotalDues);
+						Map weaverDetails = (Map)((Map)result).get("weaverDetails");
+						//Log.d(module, "boothDues.size() = " + boothDues.size() + ";boothDues=" + boothDues);
 						if (activity != null) {
+							SharedPreferences.Editor prefEditor = prefs.edit();
+							prefEditor.putString("weaverDetailsMap", ""+ weaverDetails);
+							prefEditor.putString(MainActivity.USER_FULLNAME, ""+ weaverDetails.get("partyName"));
+							prefEditor.putString(MainActivity.USER_PASSBOOK, ""+ weaverDetails.get("passBookNo"));
+							prefEditor.apply();
 							//Log.d(module, "calling listFragment notifyChange..." + listFragment.getClass().getName());
-							activity.updateDues(boothDues, boothTotalDues);
+							//activity.updateDues(boothDues, boothTotalDues);
 						}
 					}
 					if (progressBar != null) {

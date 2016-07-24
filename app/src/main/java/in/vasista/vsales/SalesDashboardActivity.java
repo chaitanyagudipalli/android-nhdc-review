@@ -155,7 +155,7 @@ public class SalesDashboardActivity extends DrawerCompatActivity  {
 				ImageButton searchButton = (ImageButton) findViewById(R.id.homeSearch);
 				searchButton.setVisibility(View.GONE);
 				Button outletsButton = (Button) findViewById(R.id.home_btn_outlets);
-				outletsButton.setVisibility(View.GONE);
+				//outletsButton.setVisibility(View.GONE);
 			}catch (NullPointerException e){
 				e.printStackTrace();
 			}
@@ -164,7 +164,7 @@ public class SalesDashboardActivity extends DrawerCompatActivity  {
     	    AutoCompleteTextView actv = (AutoCompleteTextView) findViewById(R.id.autoCompleteRetailer); 	     
     	    actv.setVisibility(View.GONE);
     		Button outletsButton = (Button)findViewById(R.id.home_btn_outlets);
-    		outletsButton.setVisibility(View.GONE);     
+    		//outletsButton.setVisibility(View.GONE);
     	    TextView accSum = (TextView) findViewById(R.id.accntSummary); 	     
     	    accSum.setClickable(false);      		
     	}		
@@ -405,7 +405,7 @@ public boolean onCreateOptionsMenu(Menu menu) {
     public void cleanupRetailerProducts() {
     	ProductsDataSource productDS = new ProductsDataSource(this);
     	productDS.open();
-    	//productDS.deleteAllSaleProducts();
+    	productDS.deleteAllProducts();
     	productDS.close();    	
     }
 
@@ -464,14 +464,14 @@ public boolean onCreateOptionsMenu(Menu menu) {
 //				" [" + facilityName +  "] :");
 //		accountSummaryView.setPaintFlags(accountSummaryView.getPaintFlags()| Paint.UNDERLINE_TEXT_FLAG);
 
-//		ProgressBar progressBar = (ProgressBar) findViewById(R.id.getDuesProgress);
-//		progressBar.setVisibility(View.VISIBLE);
-		//ServerSync serverSync = new ServerSync(this);
-//		serverSync.getSupplierDues(progressBar, this);
-//		if (fetchProducts) {
-//			cleanupRetailerData();
-//			serverSync.updateProducts(null, progressBar, null);
-//		}
+		ProgressBar progressBar = (ProgressBar) findViewById(R.id.getDuesProgress);
+		progressBar.setVisibility(View.VISIBLE);
+		ServerSync serverSync = new ServerSync(this);
+		serverSync.getWeaverDetails(progressBar, this);
+		if (fetchProducts) {
+			cleanupRetailerData();
+			serverSync.updateProducts(null, progressBar, null);
+		}
     }
     
     public void updateDues(Map boothDues, Map boothTotalDues) {
