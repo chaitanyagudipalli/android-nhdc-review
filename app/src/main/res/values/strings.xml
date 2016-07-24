@@ -205,7 +205,7 @@
     <string name="text_map_filter_clear">Clear filter</string>
 
     <string name="text_map_infowindow">%1$d. %2$s</string>
-    <string name="text_contactnum">Contact :%1$s</string>
+    <string name="text_contactnum">Passbook :%1$s</string>
     <string name="indent_edit_alert_message">Milk in crates and Product in Pkts</string>
 
 
@@ -220,9 +220,9 @@
     <string name="column_analytic_sales_qty_header">Qty(Pkts)</string>
     <string name="supplier_roletypeid">Role type</string>
     <string name="tally_ref_no">Tally Ref No.</string>
-    <string name="order_date">Order Date</string>
-    <string name="order_id">Order Id</string>
-    <string name="order_number">Order Number</string>
+    <string name="order_date">Indent Date</string>
+    <string name="order_id">Indent Id</string>
+    <string name="order_number">Indent Number</string>
     <string name="generated_po">Generated PO</string>
     <string name="po_order">PO Order</string>
     <string name="po_sequence_no">PO Sequence No.</string>
@@ -230,7 +230,7 @@
     <string name="store_name">Store Name</string>
     <string name="supplier_name">Supplier Name</string>
     <string name="status_id">Status ID</string>
-    <string name="order_total">Order Total</string>
+    <string name="order_total">Indent Total</string>
     <string name="paid_ammount">Paid Ammount</string>
     <string name="balance_ammount">Balance Ammount</string>
     <string name="indent_details">Indent Details</string>
