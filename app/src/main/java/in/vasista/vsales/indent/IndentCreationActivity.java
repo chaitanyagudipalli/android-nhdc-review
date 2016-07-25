@@ -13,6 +13,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -29,6 +30,7 @@ import in.vasista.vsales.catalog.Product;
 import in.vasista.vsales.db.ProductsDataSource;
 import in.vasista.vsales.db.SupplierDataSource;
 import in.vasista.vsales.supplier.Supplier;
+import in.vasista.vsales.sync.ServerSync;
 
 public class IndentCreationActivity extends DashboardAppCompatActivity implements AdapterView.OnItemSelectedListener {
 
@@ -37,7 +39,7 @@ public class IndentCreationActivity extends DashboardAppCompatActivity implement
     private static final String[]schemes = {"MGPS + 10%", "MGPS", "General"};
     private static final String[]uoms = {"KGS", "Bale", "Half Bale","Bundle"};
     Boolean silk = false, cotton = false, other = false;
-    List<IndentItemNHDC> list;
+    List<HashMap> list;
     Button addIndent;
     String productId = "",quantity= "",remarks = "", baleQuantity = "",
             bundleWeight = "", bundleUnitPrice = "", yarnUOM = "", basicPrice = "",
@@ -145,8 +147,19 @@ public class IndentCreationActivity extends DashboardAppCompatActivity implement
                 bundleWeight = ((EditText)findViewById(R.id.bundlewt)).getText().toString();
                 bundleUnitPrice = ((EditText)findViewById(R.id.bundleUnitPrice)).getText().toString();
                 basicPrice = ((EditText)findViewById(R.id.unitprice)).getText().toString();
+                HashMap<String,String> hm = new HashMap<String, String>();
+                hm.put("productId",productId);
+                hm.put("quantity",quantity);
+                hm.put("remarks",remarks);
+                hm.put("baleQuantity",baleQuantity);
+                hm.put("bundleWeight",bundleWeight);
+                hm.put("bundleUnitPrice",bundleUnitPrice);hm.put("yarnUOM",yarnUOM);
+                hm.put("basicPrice",basicPrice);hm.put("serviceCharge",serviceCharge);
+                hm.put("serviceChargeAmt",serviceChargeAmt);
+
+
                 IndentItemNHDC IN = new IndentItemNHDC(productId,quantity, remarks, baleQuantity, bundleWeight, bundleUnitPrice, yarnUOM, basicPrice, serviceCharge, serviceChargeAmt);
-                list.add(IN);
+                list.add(hm);
                 editMode = true;
                 invalidateOptionsMenu();
                 indentinfo.setText("Selected :"+list.size());
@@ -292,6 +305,10 @@ public class IndentCreationActivity extends DashboardAppCompatActivity implement
                 editMode = false;
                 invalidateOptionsMenu();
                 //indentItemsListFragment.uploadIndentAction(item);
+
+                ServerSync serverSync = new ServerSync(IndentCreationActivity.this);
+                serverSync.uploadNHDCIndent(item, null, list,supplierPartyId,schemeType);
+
                 return true;
         }
         return false;

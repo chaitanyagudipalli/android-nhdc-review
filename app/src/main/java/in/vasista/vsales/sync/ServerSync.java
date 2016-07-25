@@ -48,6 +48,7 @@ import in.vasista.vsales.facility.Facility;
 import in.vasista.vsales.facility.FacilityListFragment;
 import in.vasista.vsales.indent.Indent;
 import in.vasista.vsales.indent.IndentItem;
+import in.vasista.vsales.indent.IndentItemNHDC;
 import in.vasista.vsales.indent.IndentItemsListFragment;
 import in.vasista.vsales.indent.IndentListFragment;
 import in.vasista.vsales.order.OrderListFragment;
@@ -69,6 +70,53 @@ public class ServerSync {
 	public ServerSync(Context context) {
 		this.context = context; 
 	    //dbHelper = new MySQLiteHelper(context); 		
+	}
+
+	public  void uploadNHDCIndent(final MenuItem menuItem, ProgressBar progressBar, List<HashMap> list, String supplierPartyId, String schemeCategory){
+				SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+		String storeId = prefs.getString("storeId", "");
+		Map paramMap = new HashMap();
+		paramMap.put("partyId", storeId);
+		Date supplyDate = new Date();
+		paramMap.put("effectiveDate", ""+supplyDate.getTime());
+		paramMap.put("salesChannel", "MOBILE_SALES_CHANNEL");
+		paramMap.put("supplierPartyId", supplierPartyId);
+		paramMap.put("schemeCategory", schemeCategory);
+	    paramMap.put("indentItems", list);
+
+		try {
+			XMLRPCApacheAdapter adapter = new XMLRPCApacheAdapter(context);
+			adapter.call("createBranchSalesIndent", paramMap, progressBar, new XMLRPCMethodCallback() {
+				public void callFinished(Object result, ProgressBar progressBar) {
+					if (result != null) {
+
+					}
+					if (progressBar != null) {
+						progressBar.setVisibility(View.INVISIBLE);
+					}
+					if(menuItem !=null){
+						if (progressBar != null) {
+							progressBar.setVisibility(View.VISIBLE);
+						}
+						menuItem.setActionView(null);
+					}
+					Toast.makeText( context, "Indent upload succeeded!", Toast.LENGTH_LONG ).show();
+				}
+			});
+		}
+		catch (Exception e) {
+			Log.e(module, "Exception: ", e);
+			if (progressBar != null) {
+				progressBar.setVisibility(View.INVISIBLE);
+			}
+			if(menuItem !=null){
+				if (progressBar != null) {
+					progressBar.setVisibility(View.VISIBLE);
+				}
+				menuItem.setActionView(null);
+			}
+			Toast.makeText( context, "Upload failed: " + e, Toast.LENGTH_LONG ).show();
+		}
 	}
 	
 	public void uploadIndent(final MenuItem menuItem, final Indent indent, ProgressBar progressBar, final IndentItemsListFragment listFragment) {

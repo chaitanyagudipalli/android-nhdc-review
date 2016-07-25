@@ -78,7 +78,7 @@ protected void onCreate(Bundle savedInstanceState)
 			Intent intent = new Intent(IndentActivity.this,IndentCreationActivity.class);
 			// editMode = true;
 			invalidateOptionsMenu();
-			fab.hide();
+			//fab.hide();
 			startActivity(intent);
 		}
 	});
