@@ -17,6 +17,8 @@
 package in.vasista.vsales;
 
 import android.app.FragmentManager;
+import android.app.IntentService;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.view.Menu;
@@ -31,6 +33,7 @@ import java.util.List;
 import in.vasista.nhdc.R;
 import in.vasista.vsales.db.IndentsDataSource;
 import in.vasista.vsales.indent.Indent;
+import in.vasista.vsales.indent.IndentCreationActivity;
 import in.vasista.vsales.indent.IndentListFragment;
 import in.vasista.vsales.sync.ServerSync;
 
@@ -72,9 +75,11 @@ protected void onCreate(Bundle savedInstanceState)
 	fab.setOnClickListener(new View.OnClickListener() {
 		@Override
 		public void onClick(View view) {
+			Intent intent = new Intent(IndentActivity.this,IndentCreationActivity.class);
 			// editMode = true;
 			invalidateOptionsMenu();
 			fab.hide();
+			startActivity(intent);
 		}
 	});
 }

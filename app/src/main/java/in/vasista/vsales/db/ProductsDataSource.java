@@ -130,6 +130,42 @@ public class ProductsDataSource {
 	    return products;
 	  }
 
+	public List<Product> getProducts(String category) {
+		List<Product> products = new ArrayList<Product>();
+		String orderBy =  MySQLiteHelper.COLUMN_PRODUCT_ID + " ASC";
+
+		Cursor cursor = database.query(MySQLiteHelper.TABLE_PRODUCT,
+				allColumns, MySQLiteHelper.COLUMN_PRODUCT_PARENT_CATEGORY_ID + " = '" + category + "'", null, null, null, orderBy);
+
+		cursor.moveToFirst();
+		while (!cursor.isAfterLast()) {
+			Product product = cursorToProduct(cursor);
+			products.add(product);
+			cursor.moveToNext();
+		}
+		// Make sure to close the cursor
+		cursor.close();
+		return products;
+	}
+
+	public List<Product> getOtherProducts() {
+		List<Product> products = new ArrayList<Product>();
+		String orderBy =  MySQLiteHelper.COLUMN_PRODUCT_ID + " ASC";
+
+		Cursor cursor = database.query(MySQLiteHelper.TABLE_PRODUCT,
+				allColumns, MySQLiteHelper.COLUMN_PRODUCT_PARENT_CATEGORY_ID + " !='SILK' and "+MySQLiteHelper.COLUMN_PRODUCT_PARENT_CATEGORY_ID + " !='COTTON'", null, null, null, orderBy);
+
+		cursor.moveToFirst();
+		while (!cursor.isAfterLast()) {
+			Product product = cursorToProduct(cursor);
+			products.add(product);
+			cursor.moveToNext();
+		}
+		// Make sure to close the cursor
+		cursor.close();
+		return products;
+	}
+
 
 	  
 	  private Product cursorToProduct(Cursor cursor) {

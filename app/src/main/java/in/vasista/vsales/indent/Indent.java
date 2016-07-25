@@ -2,6 +2,7 @@ package in.vasista.vsales.indent;
 
 import java.util.Date;
 
+import in.vasista.vsales.IndentActivity;
 import in.vasista.vsales.db.MySQLiteHelper;
 
 public class Indent {
@@ -33,6 +34,8 @@ public class Indent {
 		this.paidAmt = paidAmt;
 		this.balance = balance;
 	}
+
+
 
 	public void setId(int id) {
 		this.id = id;

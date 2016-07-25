@@ -1,7 +1,6 @@
 package in.vasista.vsales.adapter;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,22 +13,23 @@ import java.util.List;
 import java.util.Locale;
 
 import in.vasista.nhdc.R;
+import in.vasista.vsales.catalog.Product;
 import in.vasista.vsales.supplier.Supplier;
 
 
-public class SupplierAutoAdapter extends ArrayAdapter<Supplier> {
-	  public ArrayList<Supplier> items = new ArrayList<Supplier>();
-	public ArrayList<Supplier> filtered = new ArrayList<Supplier>();
+public class ProductAutoAdapter extends ArrayAdapter<Product> {
+	  public ArrayList<Product> items = new ArrayList<Product>();
+	public ArrayList<Product> filtered = new ArrayList<Product>();
 	private Context context;
 	    private Filter filter;
 
-	    public SupplierAutoAdapter(Context context, int textViewResourceId, List<Supplier> items)
+	    public ProductAutoAdapter(Context context, int textViewResourceId, List<Product> items)
 	    {
 	        super(context, textViewResourceId, items);
 	        this.filtered.addAll(items);
 	        this.items.addAll(items);
 	        this.context = context;
-	        this.filter = new FacilityAutoFilter();
+	        this.filter = new ProductAutoFilter();
 	    }
 	    
 	    @Override
@@ -38,7 +38,7 @@ public class SupplierAutoAdapter extends ArrayAdapter<Supplier> {
 	    }
 	 
 	    @Override
-	    public Supplier getItem(int position) {
+	    public Product getItem(int position) {
 	        return filtered.get(position);
 	    }	    
 
@@ -52,7 +52,7 @@ public class SupplierAutoAdapter extends ArrayAdapter<Supplier> {
 	            facilityView = vi.inflate(R.layout.autocomplete_item, null);
 	        }
 
-			Supplier facility = getItem(position);
+			Product facility = getItem(position);
 	        if(facility != null)
 	        {
 	    	    TextView tview = (TextView)facilityView.findViewById(R.id.facilityAutocompleteLabel);
@@ -66,34 +66,29 @@ public class SupplierAutoAdapter extends ArrayAdapter<Supplier> {
 	    public Filter getFilter()
 	    {
 	        if(filter == null)
-	            filter = new FacilityAutoFilter();
+	            filter = new ProductAutoFilter();
 	        return filter;
 	    }
 
-	    private class FacilityAutoFilter extends Filter
+	    private class ProductAutoFilter extends Filter
 	    {
 
 	        @Override
 	        protected FilterResults performFiltering(CharSequence constraint) {
-
-
-				// NOTE: this function is *always* called from a background thread, and
+	            // NOTE: this function is *always* called from a background thread, and
 	            // not the UI thread.
 	            FilterResults result = new FilterResults();
 	            if(constraint != null && constraint.toString().length() > 0)
 	            {
-	                ArrayList<Supplier> filt = new ArrayList<Supplier>();
-	                ArrayList<Supplier> lItems = new ArrayList<Supplier>();
+	                ArrayList<Product> filt = new ArrayList<Product>();
+	                ArrayList<Product> lItems = new ArrayList<Product>();
 	                //synchronized (this)
 	                {
 	                    lItems.addAll(items);
 	                }
 	                for(int i = 0, l = lItems.size(); i < l; i++)
 	                {
-						Supplier facility = lItems.get(i);
-						if(facility.getName() == null || facility.getName() == "null")
-							continue;
-
+						Product facility = lItems.get(i);
     	                if (facility.getId().toLowerCase(Locale.getDefault()).contains(constraint.toString().toLowerCase(Locale.getDefault())) ||
     	                		facility.getName().toLowerCase(Locale.getDefault()).contains(constraint.toString().toLowerCase(Locale.getDefault()))	) {
     	                	filt.add(facility); 
@@ -118,7 +113,7 @@ public class SupplierAutoAdapter extends ArrayAdapter<Supplier> {
 	        protected void publishResults(CharSequence constraint, FilterResults results) {
 	            // NOTE: this function is *always* called from the UI thread.
                 if (results != null && results.count > 0) {
-                	filtered = (ArrayList<Supplier>)results.values;
+                	filtered = (ArrayList<Product>)results.values;
                 	clear();
                 	addAll(filtered);
                 }
