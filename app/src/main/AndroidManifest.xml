@@ -170,7 +170,7 @@
         </activity>
         <activity
             android:name="in.vasista.vsales.SupplierDetailsActivity"
-            android:label="Facility Details"
+            android:label="Supplier Details"
             android:parentActivityName="in.vasista.vsales.SupplierActivity"
             tools:ignore="UnusedAttribute">
             <meta-data
@@ -305,7 +305,6 @@
             android:name="in.vasista.location.LocationService"
             android:enabled="true" />
 
-
         <activity
             android:name="in.vasista.vsales.indent.IndentCreationActivity"
             android:label="Indent Details"
@@ -315,6 +314,13 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="in.vasista.vsales.IndentActivity" />
         </activity>
+        <activity android:name="in.vasista.vsales.indent.IndentCreateProduct"
+            android:label="Add product"
+            android:parentActivityName="in.vasista.vsales.indent.IndentCreationActivity"
+            tools:ignore="UnusedAttribute">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="in.vasista.vsales.indent.IndentCreationActivity" /></activity>
     </application>
 
 </manifest>

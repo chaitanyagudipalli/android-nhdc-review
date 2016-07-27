@@ -17,6 +17,7 @@ import java.util.TreeMap;
 import in.vasista.vsales.catalog.Product;
 import in.vasista.vsales.indent.Indent;
 import in.vasista.vsales.indent.IndentItem;
+import in.vasista.vsales.indent.IndentItemNHDC;
 import in.vasista.vsales.util.DateUtil;
 
 public class IndentsDataSource {
@@ -47,7 +48,15 @@ public class IndentsDataSource {
 		      MySQLiteHelper.COLUMN_INDENT_ID,
 		      MySQLiteHelper.COLUMN_PRODUCT_ID,
 		      MySQLiteHelper.COLUMN_INDENT_ITEM_QTY,
-		      MySQLiteHelper.COLUMN_INDENT_ITEM_UNIT_PRICE};	  
+		      MySQLiteHelper.COLUMN_INDENT_ITEM_REMARKS,
+			  MySQLiteHelper.COLUMN_INDENT_ITEM_BALE_QTY,
+			  MySQLiteHelper.COLUMN_INDENT_ITEM_BUNDLE_WEIGHT,
+			  MySQLiteHelper.COLUMN_INDENT_ITEM_BUNDLE_UNITPRICE,
+			  MySQLiteHelper.COLUMN_INDENT_ITEM_UOM,
+			  MySQLiteHelper.COLUMN_INDENT_ITEM_BASICPRICE,
+			  MySQLiteHelper.COLUMN_INDENT_ITEM_TAXRATELIST,
+			  MySQLiteHelper.COLUMN_INDENT_ITEM_SERVICECHARGE,
+			  MySQLiteHelper.COLUMN_INDENT_ITEM_SERVICECHARGE_AMT};
 	  
 	  public IndentsDataSource(Context context) {
 		  this.context = context;		  
@@ -91,6 +100,29 @@ public class IndentsDataSource {
 //		    values.put(MySQLiteHelper.COLUMN_INDENT_TOTAL, indentTotal);
 //		    return database.insert(MySQLiteHelper.TABLE_INDENT, null, values);
 //	  }
+
+	public long insertIndent(Indent indent){
+		ContentValues values = new ContentValues();
+
+			values.put(MySQLiteHelper.COLUMN_INDENT_TALLY_REFNO, indent.getTallyRefNo());
+			values.put(MySQLiteHelper.COLUMN_INDENT_PO_ORDER, indent.getPOorder());
+			values.put(MySQLiteHelper.COLUMN_INDENT_PO_SEQ_NO, indent.getPoSquenceNo());
+			values.put(MySQLiteHelper.COLUMN_INDENT_IS_GEN_PO, indent.isgeneratedPO());
+			values.put(MySQLiteHelper.COLUMN_INDENT_SUPP_PARTY_ID, indent.getSupplierPartyId());
+			values.put(MySQLiteHelper.COLUMN_INDENT_STORENAME, indent.getStoreName());
+			values.put(MySQLiteHelper.COLUMN_INDENT_SUPP_PARTY_NAME, indent.getSupplierPartyName());
+			values.put(MySQLiteHelper.COLUMN_INDENT_ORDER_NO, indent.getOrderNo());
+			values.put(MySQLiteHelper.COLUMN_INDENT_ORDER_ID, indent.getOrderId());
+			values.put(MySQLiteHelper.COLUMN_INDENT_ORDER_DATE, indent.getOrderDate().getTime());
+			values.put(MySQLiteHelper.COLUMN_INDENT_STATUS_ID, indent.getStatusId());
+			values.put(MySQLiteHelper.COLUMN_INDENT_ORDER_TOTAL, indent.getOrderTotal());
+			values.put(MySQLiteHelper.COLUMN_INDENT_PAID, indent.getPaidAmt());
+			values.put(MySQLiteHelper.COLUMN_INDENT_BALANCE, indent.getBalance());
+
+			return database.insert(MySQLiteHelper.TABLE_INDENT, null, values);
+
+
+	}
 
 	public void insertIndents(List<Indent> indents){
 		ContentValues values = new ContentValues();
@@ -230,20 +262,23 @@ public class IndentsDataSource {
 //		  	}
 //	  }
 	  
-//	  public void insertIndentItems(long indentId, List<IndentItem> indentItems) {
-//		  	for (int i=0; i < indentItems.size(); ++i) {
-//		  		IndentItem indentItem = indentItems.get(i);
-//		  		if (indentItem.getQty() == -1) {
-//		  			continue;
-//		  		}
-//		  		ContentValues values = new ContentValues();
-//		  		values.put(MySQLiteHelper.COLUMN_INDENT_ID, indentId);
-//		  		values.put(MySQLiteHelper.COLUMN_PRODUCT_ID, indentItem.getProductId());
-//		  		values.put(MySQLiteHelper.COLUMN_INDENT_ITEM_QTY, indentItem.getQty());
-//		  		values.put(MySQLiteHelper.COLUMN_INDENT_ITEM_UNIT_PRICE, indentItem.getUnitPrice());
-//		  		database.insert(MySQLiteHelper.TABLE_INDENT_ITEM, null, values);
-//		  	}
-//	  }
+	  public void insertIndentItem(long indentId, IndentItemNHDC indentItem) {
+
+		  		ContentValues values = new ContentValues();
+		  		values.put(MySQLiteHelper.COLUMN_INDENT_ID, indentId);
+		  		values.put(MySQLiteHelper.COLUMN_PRODUCT_ID, indentItem.getProductId());
+		  		values.put(MySQLiteHelper.COLUMN_INDENT_ITEM_QTY, indentItem.getQuantity());
+		  		values.put(MySQLiteHelper.COLUMN_INDENT_ITEM_REMARKS, indentItem.getRemarks());
+				values.put(MySQLiteHelper.COLUMN_INDENT_ITEM_BALE_QTY, indentItem.getBaleQuantity());
+				values.put(MySQLiteHelper.COLUMN_INDENT_ITEM_BUNDLE_WEIGHT, indentItem.getBundleWeight());
+				values.put(MySQLiteHelper.COLUMN_INDENT_ITEM_BUNDLE_UNITPRICE, indentItem.getBundleUnitPrice());
+				values.put(MySQLiteHelper.COLUMN_INDENT_ITEM_UOM, indentItem.getYarnUOM());
+				values.put(MySQLiteHelper.COLUMN_INDENT_ITEM_BASICPRICE, indentItem.getBasicPrice());
+				values.put(MySQLiteHelper.COLUMN_INDENT_ITEM_TAXRATELIST, indentItem.getTaxRateList());
+				values.put(MySQLiteHelper.COLUMN_INDENT_ITEM_SERVICECHARGE, indentItem.getServiceCharge());
+				values.put(MySQLiteHelper.COLUMN_INDENT_ITEM_SERVICECHARGE_AMT, indentItem.getServiceChargeAmt());
+		  		database.insert(MySQLiteHelper.TABLE_INDENT_ITEM, null, values);
+	  }
 	  
 	  public List<IndentItem> getIndentItems(int indentId) {
 		  List<IndentItem> indentItems = new ArrayList<IndentItem>();	

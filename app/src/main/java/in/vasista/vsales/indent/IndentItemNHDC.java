@@ -4,7 +4,8 @@ package in.vasista.vsales.indent;
  * Created by upendra on 25/7/16.
  */
 public class IndentItemNHDC {
-    String productId,quantity,remarks,baleQuantity,bundleWeight,bundleUnitPrice,yarnUOM,basicPrice,serviceCharge,serviceChargeAmt;
+    String productId,remarks,yarnUOM,taxRateList;
+    String quantity,baleQuantity,bundleWeight,bundleUnitPrice,basicPrice,serviceCharge,serviceChargeAmt;
 
     public IndentItemNHDC(String productId, String quantity, String remarks, String baleQuantity, String bundleWeight, String bundleUnitPrice, String yarnUOM, String basicPrice, String serviceCharge, String serviceChargeAmt) {
         this.productId = productId;
@@ -49,6 +50,10 @@ public class IndentItemNHDC {
 
     public String getBasicPrice() {
         return basicPrice;
+    }
+
+    public String getTaxRateList() {
+        return taxRateList;
     }
 
     public String getServiceCharge() {

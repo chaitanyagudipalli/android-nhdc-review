@@ -30,6 +30,6 @@
         android:layout_gravity="bottom|end"
         app:layout_behavior="in.vasista.helper.FABScrollBehavior"
         android:layout_margin="@dimen/fab_margin"
-        android:src="@drawable/title_edit" />
+        android:src="@drawable/ic_add_white_24dp" />
 
 </android.support.design.widget.CoordinatorLayout>

@@ -57,6 +57,7 @@ public class SupplierAutoAdapter extends ArrayAdapter<Supplier> {
 	        {
 	    	    TextView tview = (TextView)facilityView.findViewById(R.id.facilityAutocompleteLabel);
 	    	    tview.setText(facility.getId() + " [" + facility.getName() + "]");
+				tview.setMaxLines(4);
 	        }
 	        return facilityView;
 	    }
