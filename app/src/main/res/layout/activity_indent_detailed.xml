@@ -192,4 +192,9 @@
                 android:layout_margin="2dp" />
         </TableRow>
     </TableLayout>
+    <fragment
+        android:id="@+id/indentitems_list_fragment"
+        android:name="in.vasista.vsales.indent.IndentItemsListFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 </LinearLayout>

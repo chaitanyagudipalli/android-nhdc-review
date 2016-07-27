@@ -2,7 +2,9 @@ package in.vasista.vsales.indent;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.util.Log;
 import android.view.Menu;
@@ -51,6 +53,9 @@ public class IndentCreationActivity extends DashboardAppCompatActivity implement
     FloatingActionButton fab;
 
     IndentsDataSource datasource;
+    SharedPreferences.Editor prefEditor;
+
+    SharedPreferences prefs;
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +65,12 @@ public class IndentCreationActivity extends DashboardAppCompatActivity implement
         fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.hide();
         //fab.setImageResource(R.drawable.title_upload);
+
+        prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        prefEditor = prefs.edit();
+
+        prefEditor.putInt("IndentId",0);
+        prefEditor.apply();
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -221,7 +232,7 @@ public class IndentCreationActivity extends DashboardAppCompatActivity implement
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.indent_menu, menu);
         menu.findItem(R.id.action_indent_done).setVisible(false);
-        menu.findItem(R.id.action_indent_upload).setVisible(false);
+       // menu.findItem(R.id.action_indent_upload).setVisible(false);
         if (editMode){
             menu.findItem(R.id.action_indent_upload).setVisible(true);
         }else{
@@ -239,7 +250,26 @@ public class IndentCreationActivity extends DashboardAppCompatActivity implement
                 editMode = false;
                 invalidateOptionsMenu();
                 //indentItemsListFragment.uploadIndentAction(item);
+                datasource.open();
+                List<IndentItemNHDC> indentItems = datasource.getIndentItems(prefs.getInt("IndentId",0));
+                datasource.close();
+                for (int i=0;i<indentItems.size();i++) {
+                    IndentItemNHDC indentItemNHDC=indentItems.get(i);
+                    HashMap<String, String> hm = new HashMap<String, String>();
+                    hm.put("productId", indentItemNHDC.getProductId());
+                    hm.put("quantity", indentItemNHDC.getQuantity());
+                    hm.put("remarks", indentItemNHDC.getRemarks());
+                    hm.put("baleQuantity", indentItemNHDC.getBaleQuantity());
+                    hm.put("bundleWeight", indentItemNHDC.getBundleWeight());
+                    hm.put("bundleUnitPrice", indentItemNHDC.getBundleUnitPrice());
+                    hm.put("yarnUOM", indentItemNHDC.getYarnUOM());
+                    hm.put("basicPrice", indentItemNHDC.getBasicPrice());
+                    hm.put("serviceCharge", indentItemNHDC.getServiceCharge());
+                    hm.put("serviceChargeAmt", indentItemNHDC.getServiceChargeAmt());
 
+
+                    list.add(hm);
+                }
                 ServerSync serverSync = new ServerSync(IndentCreationActivity.this);
                 serverSync.uploadNHDCIndent(item, null, list,supplierPartyId,schemeType);
 

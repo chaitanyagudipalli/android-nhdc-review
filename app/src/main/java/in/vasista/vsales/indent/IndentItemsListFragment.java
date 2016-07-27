@@ -5,8 +5,11 @@ import android.app.Dialog;
 import android.app.ListFragment;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.text.InputType;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -34,23 +37,24 @@ public class IndentItemsListFragment extends ListFragment{
 	public static final String module = IndentItemsListFragment.class.getName();	
 	
 	IndentItemAdapter adapter;
-    List<IndentItem> indentItems;	
+    List<IndentItemNHDC> indentItems;
     Indent indent;   
 	IndentsDataSource datasource;
 	boolean isEditableList;
 	ListView listView;
+	int indentId = -1;
 	final IndentItemsListFragment indentItemsListFragment = this;
 	public void onActivityCreated(Bundle savedInstanceState) {
 		
 		super.onActivityCreated(savedInstanceState);  
 		Intent indentItemsIntent= getActivity().getIntent();
-		int indentId = -1;
+
 		indentId = indentItemsIntent.getIntExtra("indentId", indentId);	
 		final String retailerId = indentItemsIntent.getStringExtra("retailerId");	 			
 		if (adapter == null) {		  
 			datasource = new IndentsDataSource(getActivity());
 			if (indentId == -1) {  
-				indentItems = new ArrayList<IndentItem>();	
+				indentItems = new ArrayList<IndentItemNHDC>();
 				initializeIndentItems();
 			}
 			else {  
@@ -110,60 +114,17 @@ public class IndentItemsListFragment extends ListFragment{
 		listView.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> arg0, View view,
 					int position, long arg) {
-				if (!isEditableList) {
-					return;
-				}
-				AlertDialog.Builder alert = new AlertDialog.Builder(
-						getActivity());
-				final IndentItem item = (IndentItem) listView
+
+				final IndentItemNHDC item = (IndentItemNHDC) listView
 						.getItemAtPosition(position);
 
-				alert.setTitle("Enter quantity for "  + item.getProductName());
-				alert.setMessage(R.string.indent_edit_alert_message);
-
-				// Set an EditText view to get user input
-				final EditText input = new EditText(getActivity());
-				input.setInputType(InputType.TYPE_CLASS_NUMBER);
-				String qtyStr = Integer.toString(item.getQty());
-				if (item.getQty() == -1) { 
-					qtyStr = "";
-				} 
-				input.setText(qtyStr);
-				input.requestFocus();
-				input.selectAll();
-				alert.setView(input);
-
-				alert.setPositiveButton("Ok",
-						new DialogInterface.OnClickListener() {
-							public void onClick(DialogInterface dialog,
-									int whichButton) {
-								String value = input.getText().toString();
-								int newQty = -1;
-								try {
-									newQty = Integer.parseInt(value);
-								} catch (NumberFormatException e) {
-									//
-								}
-								item.setQty(newQty);
-								adapter.notifyDataSetChanged();
-								updateIndentHeaderView();
-							}
-						});
-
-				alert.setNegativeButton("Cancel",
-						new DialogInterface.OnClickListener() {
-							public void onClick(DialogInterface dialog,
-									int whichButton) {
-								// Canceled.
-							}
-						});
-
-				Dialog d =  alert.show();
 
 
-				int textViewId = d.getContext().getResources().getIdentifier("android:id/alertTitle", null, null);
-				TextView tv = (TextView) d.findViewById(textViewId);
-				tv.setTextColor(getResources().getColor(R.color.colorPrimary));
+				Intent intent = new Intent(getActivity(),IndentCreateProduct.class);
+				intent.putExtra("indentId",indentId);
+				intent.putExtra("indentitem_id",item.getId());
+
+				startActivity(intent);
 			}
 
 		});
@@ -175,26 +136,26 @@ public class IndentItemsListFragment extends ListFragment{
 		setListAdapter(null);     
 	}
 	
-	public double getTotal() {                       
-		double retVal = 0;
-		for (int i = 0; i < indentItems.size(); ++i) {
-			IndentItem item = indentItems.get(i);
-			if (item.getQty() == -1) {
-				continue;               
-			}
-			retVal += item.getUnitPrice() * item.getQty();
-		}
-		retVal = Math.round(retVal * 100.0) / 100.0;
-		return retVal;
-	}
+//	public double getTotal() {
+//		double retVal = 0;
+//		for (int i = 0; i < indentItems.size(); ++i) {
+//			IndentItemNHDC item = indentItems.get(i);
+////			if (item.getQty() == -1) {
+////				continue;
+////			}
+//			retVal += item.getUnitPrice() * item.getQty();
+//		}
+//		retVal = Math.round(retVal * 100.0) / 100.0;
+//		return retVal;
+//	}
 	
 	public void updateIndentHeaderView() {
 		updateIndentHeaderViewInternal(indent);	
 	}
 	
 	void updateIndentHeaderViewInternal(Indent indent) {
-		double total = getTotal();
-		String totalStr = "Total: Rs " + total;
+		//double total = getTotal();
+		String totalStr = "Total: Rs ";
 		Date date = DateUtil.addDays(new Date(), 1);
 		String indentSupply = "";
 		String synced = ""; 
@@ -225,23 +186,27 @@ public class IndentItemsListFragment extends ListFragment{
 		}	
 	}		
 	
-	void initializeIndentItems() {  
-		ProductsDataSource prodsDatasource = new ProductsDataSource(getActivity());
-		prodsDatasource.open();
-		List<Product> products = prodsDatasource.getAllProducts();
-		for (int i = 0; i < products.size(); ++i) {
-			Product product = products.get(i);
-			//IndentItem item = new IndentItem(product.getId(), product.getName(), -1, product.getPrice());
-			IndentItem item = new IndentItem(product.getId(), product.getName(), -1, product.getPrice());
-			indentItems.add(item);
-		}
+	void initializeIndentItems() {
+//		ProductsDataSource prodsDatasource = new ProductsDataSource(getActivity());
+//		prodsDatasource.open();
+//		List<Product> products = prodsDatasource.getAllProducts();
+//		for (int i = 0; i < products.size(); ++i) {
+//			Product product = products.get(i);
+//			//IndentItem item = new IndentItem(product.getId(), product.getName(), -1, product.getPrice());
+//			IndentItemNHDC item = new IndentItem(product.getId(), product.getName(), -1, product.getPrice());
+//			indentItems.add(item);
+//		}
+		IndentsDataSource indentsDataSource = new IndentsDataSource(this.getActivity());
+		indentsDataSource.open();
+		indentItems = indentsDataSource.getIndentItems(indentId);
+		indentsDataSource.close();
 	}
 
 	void makeIndentItemsEditable() {  
 		if (indent == null) {
 			return;
 		}
-		List <IndentItem> newItemsList = new ArrayList<IndentItem>();
+		List <IndentItemNHDC> newItemsList = new ArrayList<IndentItemNHDC>();
 		ProductsDataSource prodsDatasource = new ProductsDataSource(getActivity());
 		prodsDatasource.open();
 		List<Product> products = prodsDatasource.getAllProducts();
@@ -256,8 +221,8 @@ public class IndentItemsListFragment extends ListFragment{
 			}                
 			if (!productExists) {
 				//IndentItem item = new IndentItem(product.getId(), product.getName(), -1, product.getPrice());
-				IndentItem item = new IndentItem(product.getId(), product.getName(), -1, product.getPrice());
-				newItemsList.add(item);
+//				IndentItem item = new IndentItem(product.getId(), product.getName(), -1, product.getPrice());
+//				newItemsList.add(item);
 			}
 		}
 		setListAdapter(null);    
@@ -269,23 +234,33 @@ public class IndentItemsListFragment extends ListFragment{
 	    adapter.setEditable(isEditableList);
 		setListAdapter(adapter);
 	}
-	
+
+	@Override
+	public void onResume() {
+		super.onResume();
+		notifyChange();
+		Intent indentItemsIntent= getActivity().getIntent();
+		Log.v("Upendra","Change"+indentItemsIntent.getIntExtra("indentId", indentId)	);
+	}
+
 	/**
 	 * Brute force update of list
 	 */
 	public void notifyChange() {
-		if (indent == null) {
-			// nothing to do 
-			return;
-		}
+//		if (indent == null) {
+//			// nothing to do
+//			return;
+//		}
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
+		;
 		setListAdapter(null);
 	    datasource.open();
-	    indentItems = datasource.getIndentItems(indent.getId());
+	    indentItems = datasource.getIndentItems(prefs.getInt("IndentId",0));
 	    
 	    adapter = new IndentItemAdapter(getActivity(),
                 R.layout.indentitems_item,
                 indentItems);	
-	    adapter.setEditable(isEditableList);
+	    //adapter.setEditable(isEditableList);
 		setListAdapter(adapter);
 	}
 	public void editIndentAction(){

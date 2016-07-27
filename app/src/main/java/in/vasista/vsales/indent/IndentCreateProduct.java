@@ -2,6 +2,8 @@ package in.vasista.vsales.indent;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -48,12 +50,18 @@ public class IndentCreateProduct extends DashboardAppCompatActivity {
     LinearLayout cottonLayout;
 
     IndentsDataSource datasource;
+    SharedPreferences.Editor prefEditor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentChildView(R.layout.activity_indent_create_product);
         setPageTitle("Add product");
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        prefEditor = prefs.edit();
+
+        prefEditor.putInt("IndentId",0);
+        prefEditor.apply();
 
         final Intent i = getIntent();
         category_type = i.getStringExtra("category_type");
@@ -138,8 +146,13 @@ public class IndentCreateProduct extends DashboardAppCompatActivity {
                 list.add(hm);
                 datasource = new IndentsDataSource(IndentCreateProduct.this);
                 datasource.open();
-                datasource.insertIndentItem(i.getLongExtra("indent_id",0),IN);
+                long id = datasource.insertIndentItem(i.getLongExtra("indent_id",0),IN);
+                IN.setId(id);
                 datasource.close();
+
+                prefEditor.putInt("IndentId",(int)i.getLongExtra("indent_id",0));
+                prefEditor.apply();
+
                 invalidateOptionsMenu();
                 finish();
             }

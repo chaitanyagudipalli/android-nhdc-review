@@ -13,6 +13,8 @@ import java.util.List;
 import java.util.Map;
 
 import in.vasista.vsales.catalog.Product;
+import in.vasista.vsales.indent.Indent;
+
 public class ProductsDataSource {
 	public static final String module = ProductsDataSource.class.getName();	  
 	  // Database fields 
@@ -111,6 +113,16 @@ public class ProductsDataSource {
 		  database.delete(MySQLiteHelper.TABLE_PRODUCT, null, null);
 	  }
 
+	public Product getproductDetails(int productId) {
+		Cursor cursor = database.query(MySQLiteHelper.TABLE_PRODUCT,
+				allColumns, MySQLiteHelper.COLUMN_PRODUCT_ID + " = " + productId, null, null, null, null);
+
+		cursor.moveToFirst();
+		Product product = cursorToProduct(cursor);
+		// Make sure to close the cursor
+		cursor.close();
+		return product;
+	}
 	  
 	  public List<Product> getAllProducts() {
 		List<Product> products = new ArrayList<Product>();

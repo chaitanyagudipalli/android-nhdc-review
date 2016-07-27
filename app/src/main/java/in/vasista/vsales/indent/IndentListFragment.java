@@ -28,10 +28,13 @@ public class IndentListFragment extends ListFragment{
 	IndentAdapter adapter;
 	IndentsDataSource datasource;
 	final IndentListFragment indentListFragment = this;
+
+	SharedPreferences.Editor prefEditor;
+
 	public void onActivityCreated(Bundle savedInstanceState) {
 		
 		super.onActivityCreated(savedInstanceState);
-    	SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
+    	final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
     	final String retailerId = prefs.getString("storeId", "");
 		//TextView retailerIdView = (TextView)getActivity().findViewById(R.id.retailerId);
 		//retailerIdView.setText(retailerId + " : Indents");    
@@ -65,6 +68,10 @@ public class IndentListFragment extends ListFragment{
             if (indent != null) {
             	Intent indentItemsIntent = new Intent(getActivity(), IndentDetailed.class);
             	indentItemsIntent.putExtra("indentId", indent.getId());
+				prefEditor = prefs.edit();
+
+				prefEditor.putInt("IndentId",indent.getId());
+				prefEditor.apply();
             	indentItemsIntent.putExtra("retailerId", retailerId);
             	startActivity(indentItemsIntent);
             }

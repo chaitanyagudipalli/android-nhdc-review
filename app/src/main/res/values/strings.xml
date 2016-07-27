@@ -91,7 +91,7 @@
     <string name="column_order_total_header">Amount (Rs)</string>
 
     <string name="column_orderitem_qty_header">Quantity</string>
-    <string name="column_orderitem_amount_header">Amount (Rs)</string>
+    <string name="column_orderitem_amount_header">Unit Price (Rs)</string>
 
     <string name="add_product_hint">Select Product</string>
     <string name="add_product_qty_hint">Qty (pkts)</string>

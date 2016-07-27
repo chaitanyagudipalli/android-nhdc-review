@@ -5,8 +5,10 @@ package in.vasista.vsales.indent;
  */
 public class IndentItemNHDC {
     String productId,remarks,yarnUOM,taxRateList;
+
     String quantity,baleQuantity,bundleWeight,bundleUnitPrice,basicPrice,serviceCharge,serviceChargeAmt;
 
+    long id;
     public IndentItemNHDC(String productId, String quantity, String remarks, String baleQuantity, String bundleWeight, String bundleUnitPrice, String yarnUOM, String basicPrice, String serviceCharge, String serviceChargeAmt) {
         this.productId = productId;
         this.quantity = quantity;
@@ -62,5 +64,13 @@ public class IndentItemNHDC {
 
     public String getServiceChargeAmt() {
         return serviceChargeAmt;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 }

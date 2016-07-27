@@ -262,7 +262,7 @@ public class IndentsDataSource {
 //		  	}
 //	  }
 	  
-	  public void insertIndentItem(long indentId, IndentItemNHDC indentItem) {
+	  public long insertIndentItem(long indentId, IndentItemNHDC indentItem) {
 
 		  		ContentValues values = new ContentValues();
 		  		values.put(MySQLiteHelper.COLUMN_INDENT_ID, indentId);
@@ -277,11 +277,11 @@ public class IndentsDataSource {
 				values.put(MySQLiteHelper.COLUMN_INDENT_ITEM_TAXRATELIST, indentItem.getTaxRateList());
 				values.put(MySQLiteHelper.COLUMN_INDENT_ITEM_SERVICECHARGE, indentItem.getServiceCharge());
 				values.put(MySQLiteHelper.COLUMN_INDENT_ITEM_SERVICECHARGE_AMT, indentItem.getServiceChargeAmt());
-		  		database.insert(MySQLiteHelper.TABLE_INDENT_ITEM, null, values);
+		  		return database.insert(MySQLiteHelper.TABLE_INDENT_ITEM, null, values);
 	  }
 	  
-	  public List<IndentItem> getIndentItems(int indentId) {
-		  List<IndentItem> indentItems = new ArrayList<IndentItem>();	
+	  public List<IndentItemNHDC> getIndentItems(int indentId) {
+		  List<IndentItemNHDC> indentItems = new ArrayList<IndentItemNHDC>();
 		  Cursor cursor = database.query(MySQLiteHelper.TABLE_INDENT_ITEM,
 		        allIndentItemColumns, MySQLiteHelper.COLUMN_INDENT_ID + " = " + indentId, null, null, null, null);
 		  ProductsDataSource datasource = new ProductsDataSource(context);
@@ -289,7 +289,7 @@ public class IndentsDataSource {
 		  Map productMap = datasource.getSaleProductMap();
 		  cursor.moveToFirst();
 		  while (!cursor.isAfterLast()) {
-			  IndentItem indentItem = cursorToIndentItem(cursor, productMap);
+			  IndentItemNHDC indentItem = cursorToIndentItem(cursor, productMap);
 			  indentItems.add(indentItem);
 		      cursor.moveToNext();
 		  }
@@ -299,43 +299,42 @@ public class IndentsDataSource {
 		  return indentItems;
 	  }
 	  
-	  public Map[] getXMLRPCSerializedIndentItems(int indentId) {
-		  List<IndentItem> indentItems = getIndentItems(indentId);
-		  if (indentItems.isEmpty()) {
-			  return null;
-		  }
-		  // let's consolidate duplicate product ids
-		  Map <String, IndentItem> consolidatedItems = new HashMap<String, IndentItem>();
-		  for (int i = 0; i < indentItems.size(); ++i) {
-			IndentItem item = consolidatedItems.get(indentItems.get(i).getProductId());
-			if (item == null) {
-				consolidatedItems.put(indentItems.get(i).getProductId(), indentItems.get(i));
-			}
-			else {
-				item.setQty(item.getQty() + indentItems.get(i).getQty());
-			}
-		  }
-		Log.d( module, "consolidatedItems=" + consolidatedItems); 		  
-		  Map [] result = new TreeMap[consolidatedItems.size()];
-		  int i = 0;		  
-		  for (IndentItem ii : consolidatedItems.values()) {
-			  Map item = new TreeMap();
-			  item.put("indentId", indentId);
-			  item.put("indentDate", System.currentTimeMillis());	    
-			  item.put("productId", ii.getProductId());	   
-			  item.put("qty", ii.getQty());	    
-			  item.put("unitPrice", ii.getUnitPrice());
-			  result[i] = item;	
-			  ++i;	  
-		  }	  
-		  return result;
-	  }
+//	  public Map[] getXMLRPCSerializedIndentItems(int indentId) {
+//		  List<IndentItemNHDC> indentItems = getIndentItems(indentId);
+//		  if (indentItems.isEmpty()) {
+//			  return null;
+//		  }
+//		  // let's consolidate duplicate product ids
+//		  Map <String, IndentItemNHDC> consolidatedItems = new HashMap<String, IndentItemNHDC>();
+//		  for (int i = 0; i < indentItems.size(); ++i) {
+//			  IndentItemNHDC item = consolidatedItems.get(indentItems.get(i).getProductId());
+//			if (item == null) {
+//				consolidatedItems.put(indentItems.get(i).getProductId(), indentItems.get(i));
+//			}
+//			else {
+//				item.setQty(item.getQty() + indentItems.get(i).getQty());
+//			}
+//		  }
+//		Log.d( module, "consolidatedItems=" + consolidatedItems);
+//		  Map [] result = new TreeMap[consolidatedItems.size()];
+//		  int i = 0;
+//		  for (IndentItemNHDC ii : consolidatedItems.values()) {
+//			  Map item = new TreeMap();
+//			  item.put("indentId", indentId);
+//			  item.put("indentDate", System.currentTimeMillis());
+//			  item.put("productId", ii.getProductId());
+//			  item.put("qty", ii.getQty());
+//			  item.put("unitPrice", ii.getUnitPrice());
+//			  result[i] = item;
+//			  ++i;
+//		  }
+//		  return result;
+//	  }
 	  
-	  private IndentItem cursorToIndentItem(Cursor cursor,  Map<String, Product> productMap) {
-		  return new IndentItem(cursor.getString(2),
-				  productMap.get(cursor.getString(2)).getName(),
-				  cursor.getInt(3),
-				  cursor.getDouble(4));
+	  private IndentItemNHDC cursorToIndentItem(Cursor cursor,  Map<String, Product> productMap) {
+		  return new IndentItemNHDC(cursor.getString(2),
+				  cursor.getString(3), cursor.getString(4),cursor.getString(5),cursor.getString(6),cursor.getString(7),
+				  cursor.getString(8),cursor.getString(9),cursor.getString(10),cursor.getString(11));
 	  }
 	  
 	  /*
