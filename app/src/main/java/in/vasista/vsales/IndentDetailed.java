@@ -1,23 +1,33 @@
 package in.vasista.vsales;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import in.vasista.nhdc.R;
 import in.vasista.vsales.db.IndentsDataSource;
 import in.vasista.vsales.indent.Indent;
+import in.vasista.vsales.indent.IndentItemNHDC;
+import in.vasista.vsales.sync.ServerSync;
 
 public class IndentDetailed extends DashboardAppCompatActivity {
 
     IndentsDataSource datasource;
     TextView textView;
     Indent indent;
+    List<HashMap> list;
+    int indentId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,11 +35,11 @@ public class IndentDetailed extends DashboardAppCompatActivity {
         setContentChildView(R.layout.activity_indent_detailed);
         //setSalesDashboardTitle(R.string.title_feature1_plurer);
         setPageTitle(getString(R.string.indent_details));
-
+        list = new ArrayList<>();
         int[] ids = { R.id.order_date, R.id.order_number,R.id.order_total,
         R.id.supplier_name,R.id.generated_po,R.id.po_sequence_no,R.id.status_id,R.id.balance_ammount,R.id.paid_ammount};
         Intent facilityDetailsIntent = getIntent();
-        int indentId = facilityDetailsIntent.getIntExtra("indentId",0);
+        indentId = facilityDetailsIntent.getIntExtra("indentId",0);
         datasource = new IndentsDataSource(this);
         datasource.open();
         indent = datasource.getIndentDetails(indentId);
@@ -43,5 +53,99 @@ public class IndentDetailed extends DashboardAppCompatActivity {
             textView.setText(values[i]);
         }
 
+        if(indent.getStatusId().equalsIgnoreCase("NOT_UPLOADED")) {
+            editMode = true;
+            invalidateOptionsMenu();
+        }
+
+    }
+
+
+    boolean editMode = false;
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.indent_menu, menu);
+        menu.findItem(R.id.action_indent_delete).setVisible(false);
+        menu.findItem(R.id.action_indent_upload).setVisible(false);
+        if (editMode){
+            menu.findItem(R.id.action_indent_upload).setVisible(true);
+            menu.findItem(R.id.action_indent_delete).setVisible(true);
+        }else{
+            //menu.findItem(R.id.action_indent_done).setVisible(false);
+        }
+        return super.onCreateOptionsMenu(menu);
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        super.onOptionsItemSelected(item);
+
+        switch (item.getItemId()) {
+
+            case R.id.action_indent_upload:
+                editMode = false;
+                invalidateOptionsMenu();
+                //indentItemsListFragment.uploadIndentAction(item);
+                datasource.open();
+                List<IndentItemNHDC> indentItems = datasource.getIndentItems(indentId);
+                datasource.close();
+                for (int i=0;i<indentItems.size();i++) {
+                    IndentItemNHDC indentItemNHDC=indentItems.get(i);
+                    HashMap<String, String> hm = new HashMap<String, String>();
+                    hm.put("productId", indentItemNHDC.getProductId());
+                    hm.put("quantity", indentItemNHDC.getQuantity());
+                    hm.put("remarks", indentItemNHDC.getRemarks());
+                    hm.put("baleQuantity", indentItemNHDC.getBaleQuantity());
+                    hm.put("bundleWeight", indentItemNHDC.getBundleWeight());
+                    hm.put("bundleUnitPrice", indentItemNHDC.getBundleUnitPrice());
+                    hm.put("yarnUOM", indentItemNHDC.getYarnUOM());
+                    hm.put("basicPrice", indentItemNHDC.getBasicPrice());
+                    hm.put("serviceCharge", indentItemNHDC.getServiceCharge());
+                    hm.put("serviceChargeAmt", indentItemNHDC.getServiceChargeAmt());
+
+                    uploadIndentAction(item);
+                    list.add(hm);
+                }
+
+
+                return true;
+            case R.id.action_indent_delete:
+                Log.v("action_indent_delete","ok");
+                datasource.open();
+                datasource.deleteIndent(indentId);
+                datasource.close();
+                finish();
+                return true;
+        }
+        return false;
+    }
+
+    public void uploadIndentAction(final MenuItem menuItem){
+        AlertDialog.Builder alert = new AlertDialog.Builder(
+                IndentDetailed.this);
+        alert.setTitle("Upload Indent?");
+        alert.setPositiveButton("Ok",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog,
+                                        int whichButton) {
+                        ProgressBar progressBar = null;
+                        if(menuItem != null) {
+                            menuItem.setActionView(R.layout.progressbar);
+//						ProgressBar progressBar = (ProgressBar) listView.getRootView().findViewById(R.id.indentUploadProgress);
+//						progressBar.setVisibility(View.VISIBLE);
+                            progressBar = (ProgressBar) menuItem.getActionView().findViewById(R.id.menuitem_progress);
+                        }
+                        ServerSync serverSync = new ServerSync(IndentDetailed.this);
+                        serverSync.uploadNHDCIndent(menuItem, null, list,indent.getSupplierPartyId(),indent.getSchemeType(), indentId);
+                    }
+                });
+
+        alert.setNegativeButton("Cancel",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog,
+                                        int whichButton) {
+                        // Canceled.
+                    }
+                });
+        alert.show();
     }
 }

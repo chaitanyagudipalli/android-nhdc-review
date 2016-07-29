@@ -1,12 +1,16 @@
 package in.vasista.vsales.indent;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
@@ -15,6 +19,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -30,6 +35,7 @@ import in.vasista.vsales.catalog.Product;
 import in.vasista.vsales.db.IndentsDataSource;
 import in.vasista.vsales.db.ProductsDataSource;
 import in.vasista.vsales.supplier.Supplier;
+import in.vasista.vsales.sync.ServerSync;
 
 public class IndentCreateProduct extends DashboardAppCompatActivity {
 
@@ -68,7 +74,7 @@ public class IndentCreateProduct extends DashboardAppCompatActivity {
         supplierPartyId = i.getStringExtra("supplierPartyId");
         schemeType = i.getStringExtra("schemeType");
 
-        Log.v("category_type",category_type);
+//        Log.v("category_type",category_type);
 
         setUpProducts(category_type);
 
@@ -153,13 +159,14 @@ public class IndentCreateProduct extends DashboardAppCompatActivity {
                 prefEditor.putInt("IndentId",(int)i.getLongExtra("indent_id",0));
                 prefEditor.apply();
 
-                invalidateOptionsMenu();
                 finish();
             }
         });
     }
 
     private void setUpProducts(String category){
+        if (category == null)
+            return;
         ProductsDataSource productsDataSource = new ProductsDataSource(this);
         productsDataSource.open();
         List<Product> productList;

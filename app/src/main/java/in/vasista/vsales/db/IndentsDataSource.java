@@ -40,7 +40,8 @@ public class IndentsDataSource {
 			  MySQLiteHelper.COLUMN_INDENT_STATUS_ID,
 			  MySQLiteHelper.COLUMN_INDENT_ORDER_TOTAL,
 			  MySQLiteHelper.COLUMN_INDENT_PAID,
-			  MySQLiteHelper.COLUMN_INDENT_BALANCE
+			  MySQLiteHelper.COLUMN_INDENT_BALANCE,
+			  MySQLiteHelper.COLUMN_INDENT_SCHEMECAT
 
 	  };
 
@@ -74,6 +75,15 @@ public class IndentsDataSource {
 	  public void deleteAllIndents() {
 		  database.delete(MySQLiteHelper.TABLE_INDENT, null, null);
 	  }
+		public void deleteAllIndentItems() {
+			database.delete(MySQLiteHelper.TABLE_INDENT_ITEM, null, null);
+		}
+	public void deleteIndent(long indent_id){
+		Log.v("adsasd",""+Long.toString(indent_id));
+		database.delete(MySQLiteHelper.TABLE_INDENT, MySQLiteHelper.COLUMN_INDENT_ID+"="+Long.toString(indent_id), null);
+		database.delete(MySQLiteHelper.TABLE_INDENT_ITEM, MySQLiteHelper.COLUMN_INDENT_ID+"="+Long.toString(indent_id), null);
+
+	}
 	  
 //	  static public void insertIndent(SQLiteDatabase database, String indentStatus, double indentTotal) {
 //		    ContentValues values = new ContentValues();
@@ -118,6 +128,7 @@ public class IndentsDataSource {
 			values.put(MySQLiteHelper.COLUMN_INDENT_ORDER_TOTAL, indent.getOrderTotal());
 			values.put(MySQLiteHelper.COLUMN_INDENT_PAID, indent.getPaidAmt());
 			values.put(MySQLiteHelper.COLUMN_INDENT_BALANCE, indent.getBalance());
+		values.put(MySQLiteHelper.COLUMN_INDENT_SCHEMECAT, indent.getSchemeType());
 
 			return database.insert(MySQLiteHelper.TABLE_INDENT, null, values);
 
@@ -143,6 +154,7 @@ public class IndentsDataSource {
 			values.put(MySQLiteHelper.COLUMN_INDENT_ORDER_TOTAL, indent.getOrderTotal());
 			values.put(MySQLiteHelper.COLUMN_INDENT_PAID, indent.getPaidAmt());
 			values.put(MySQLiteHelper.COLUMN_INDENT_BALANCE, indent.getBalance());
+			values.put(MySQLiteHelper.COLUMN_INDENT_SCHEMECAT, indent.getSchemeType());
 
 			database.insert(MySQLiteHelper.TABLE_INDENT, null, values);
  		}
@@ -214,15 +226,16 @@ public class IndentsDataSource {
 				cursor.getString(11),
 				cursor.getDouble(12),
 				cursor.getDouble(13),
-				cursor.getDouble(14));
+				cursor.getDouble(14),
+				cursor.getString(15));
 	  }
 	  
-//	  public void updateIndentStatus(long indentId, String indentStatus) {
-//		    ContentValues values = new ContentValues();
-//		    values.put(MySQLiteHelper.COLUMN_INDENT_STATUS, indentStatus);
-//		    final String[] whereArgs = { Long.toString(indentId)};
-//		    database.update(MySQLiteHelper.TABLE_INDENT, values, MySQLiteHelper.COLUMN_INDENT_ID + " = ?", whereArgs);
-//	  }
+	  public void updateIndentStatus(long indentId, String indentStatus) {
+		    ContentValues values = new ContentValues();
+		    values.put(MySQLiteHelper.COLUMN_INDENT_STATUS_ID, indentStatus);
+		    final String[] whereArgs = { Long.toString(indentId)};
+		    database.update(MySQLiteHelper.TABLE_INDENT, values, MySQLiteHelper.COLUMN_INDENT_ID + " = ?", whereArgs);
+	  }
 	  
 //	  public void updateIndentTotal(long indentId, double indentTotal) {
 //		    ContentValues values = new ContentValues();

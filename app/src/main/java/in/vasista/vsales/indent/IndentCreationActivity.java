@@ -1,6 +1,8 @@
 package in.vasista.vsales.indent;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -96,16 +98,19 @@ public class IndentCreationActivity extends DashboardAppCompatActivity implement
 
                 Date supplyDate = new Date();
 
-                Indent indent =new Indent(0,"","","",false,supplierPartyId,"","","","",supplyDate,"NOT_UPLOADED",0.0,0.0,0.0);
+                Indent indent =new Indent(0,"","","",false,supplierPartyId,"","","","",supplyDate,"NOT_UPLOADED",0.0,0.0,0.0,schemeType);
                 datasource = new IndentsDataSource(IndentCreationActivity.this);
                 datasource.open();
                 indent_id = datasource.insertIndent(indent);
                 datasource.close();
                 showSnackBar("Indent created. Please add products.");
                 fab.show();
+                editMode = true;
+                invalidateOptionsMenu();
             }
         });
         list = new ArrayList<>();
+
 
         addIndent= (Button)findViewById(R.id.addIndent);
 
@@ -227,14 +232,15 @@ public class IndentCreationActivity extends DashboardAppCompatActivity implement
     }
 
 
-    boolean editMode = false;
+    public static boolean editMode = false;
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.indent_menu, menu);
-        menu.findItem(R.id.action_indent_done).setVisible(false);
-       // menu.findItem(R.id.action_indent_upload).setVisible(false);
+        menu.findItem(R.id.action_indent_delete).setVisible(false);
+        menu.findItem(R.id.action_indent_upload).setVisible(false);
         if (editMode){
             menu.findItem(R.id.action_indent_upload).setVisible(true);
+            //menu.findItem(R.id.action_indent_delete).setVisible(true);
         }else{
             //menu.findItem(R.id.action_indent_done).setVisible(false);
         }
@@ -267,15 +273,55 @@ public class IndentCreationActivity extends DashboardAppCompatActivity implement
                     hm.put("serviceCharge", indentItemNHDC.getServiceCharge());
                     hm.put("serviceChargeAmt", indentItemNHDC.getServiceChargeAmt());
 
-
+                    uploadIndentAction(item);
                     list.add(hm);
                 }
-                ServerSync serverSync = new ServerSync(IndentCreationActivity.this);
-                serverSync.uploadNHDCIndent(item, null, list,supplierPartyId,schemeType);
 
+
+                return true;
+
+            case R.id.action_indent_delete:
+                Log.v("action_indent_delete","ok");
+                datasource.open();
+                datasource.deleteIndent(prefs.getInt("IndentId",0));
+                datasource.close();
+                finish();
                 return true;
         }
         return false;
+    }
+
+    public void uploadIndentAction(final MenuItem menuItem){
+        AlertDialog.Builder alert = new AlertDialog.Builder(
+                IndentCreationActivity.this);
+        alert.setTitle("Upload Indent?");
+        alert.setPositiveButton("Ok",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog,
+                                        int whichButton) {
+                        ProgressBar progressBar = null;
+                        if(menuItem != null) {
+                            menuItem.setActionView(R.layout.progressbar);
+//						ProgressBar progressBar = (ProgressBar) listView.getRootView().findViewById(R.id.indentUploadProgress);
+//						progressBar.setVisibility(View.VISIBLE);
+                            progressBar = (ProgressBar) menuItem.getActionView().findViewById(R.id.menuitem_progress);
+                        }
+                        ServerSync serverSync = new ServerSync(IndentCreationActivity.this);
+                        serverSync.uploadNHDCIndent(menuItem, null, list,supplierPartyId,schemeType,indent_id);
+                        fab.hide();
+                        editMode = false;
+                        invalidateOptionsMenu();
+                    }
+                });
+
+        alert.setNegativeButton("Cancel",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog,
+                                        int whichButton) {
+                        // Canceled.
+                    }
+                });
+        alert.show();
     }
 
     @Override

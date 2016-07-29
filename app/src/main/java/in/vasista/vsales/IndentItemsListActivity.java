@@ -50,7 +50,7 @@ public class IndentItemsListActivity extends DashboardAppCompatActivity {
 		if (editMode){
 			menu.findItem(R.id.action_indent_upload).setVisible(false);
 		}else{
-			menu.findItem(R.id.action_indent_done).setVisible(false);
+			menu.findItem(R.id.action_indent_delete).setVisible(false);
 		}
 		return super.onCreateOptionsMenu(menu);
 	}
@@ -59,7 +59,7 @@ public class IndentItemsListActivity extends DashboardAppCompatActivity {
 		super.onOptionsItemSelected(item);
 
 		switch (item.getItemId()) {
-			case R.id.action_indent_done:
+			case R.id.action_indent_delete:
 				editMode = false;
 				fab.show();
 				invalidateOptionsMenu();

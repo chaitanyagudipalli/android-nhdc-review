@@ -28,7 +28,7 @@
     android:id="@+id/indentitemRowAmount"
     android:layout_width="0dp"
     android:layout_weight="1.2"   
-    android:gravity="right" 
+    android:gravity="right"
     android:padding="5dp" 
     android:textSize="14sp"
     android:layout_marginRight="20dp"

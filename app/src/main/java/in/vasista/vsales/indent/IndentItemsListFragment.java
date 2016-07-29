@@ -6,6 +6,7 @@ import android.app.ListFragment;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.CursorIndexOutOfBoundsException;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.text.InputType;
@@ -117,7 +118,15 @@ public class IndentItemsListFragment extends ListFragment{
 
 				final IndentItemNHDC item = (IndentItemNHDC) listView
 						.getItemAtPosition(position);
+				try {
+					if (!(datasource.getIndentDetails((int) (indentId)).getStatusId().equalsIgnoreCase("NOT_UPLOADED"))) {
+						return;
+					}else {
+						return;
+					}
+				}catch (Exception e){
 
+				}
 
 
 				Intent intent = new Intent(getActivity(),IndentCreateProduct.class);
@@ -251,6 +260,9 @@ public class IndentItemsListFragment extends ListFragment{
 //			// nothing to do
 //			return;
 //		}
+		if (indentItems.size() > 0)
+			IndentCreationActivity.editMode = true;
+		getActivity().invalidateOptionsMenu();
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
 		;
 		setListAdapter(null);

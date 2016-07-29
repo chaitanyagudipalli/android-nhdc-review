@@ -133,7 +133,7 @@ protected void onResume ()
 	   serverSync.fetchActiveIndents(null, progressBar, indentListFragment);
    }
    datasource.close();
-   
+
 }
     
 } // end class

@@ -3,6 +3,7 @@ package in.vasista.vsales.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,7 +56,9 @@ public class IndentItemAdapter extends ArrayAdapter<IndentItemNHDC>{
 		  Product p = productsDataSource.getproductDetails(Integer.parseInt(item.getProductId()));
 	    String productName = p.getName();
 	    String qty = item.getQuantity();
-	    //double unitPrice = item.getUnitPrice();
+	    String unitPrice = item.getBundleUnitPrice();
+
+		  Log.v("jj",""+unitPrice);
 		//double itemTotal = Math.round(item.getQty()*unitPrice * 100.0) / 100.0;
 	    //String amount = String.format("%.2f", itemTotal);
 //	    if(item.getQty() == -1) {
@@ -79,7 +82,11 @@ public class IndentItemAdapter extends ArrayAdapter<IndentItemNHDC>{
 	    final TextView amountView = (TextView)indentItemView.findViewById(R.id.indentitemRowAmount);
 
 	    nameView.setText(productName);
-	    qtyView.setText(qty);  
+	    qtyView.setText(qty);
+		  if(item.getBasicPrice().equalsIgnoreCase(""))
+		  		amountView.setText(unitPrice);
+		  else
+			  amountView.setText(item.getBasicPrice());
 	    
 	    if (!isEditable)  {
 	    	qtyView.setFocusable(false);
@@ -91,7 +98,7 @@ public class IndentItemAdapter extends ArrayAdapter<IndentItemNHDC>{
 	    	}
 	    }
         
-	    amountView.setText(item.getBasicPrice());
+	    //amountView.setText(item.getBasicPrice());
 	    return indentItemView;
 	  }
 }
