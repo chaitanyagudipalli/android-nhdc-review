@@ -398,6 +398,9 @@ public boolean onCreateOptionsMenu(Menu menu) {
           case R.id.home_btn_outlets :
                startActivity (new Intent(getApplicationContext(), SupplierActivity.class));
                break;
+			case R.id.home_btn_profile :
+				startActivity (new Intent(getApplicationContext(), WeaverDetailedActivity.class));
+				break;
           default:    
         	   break;    
         }

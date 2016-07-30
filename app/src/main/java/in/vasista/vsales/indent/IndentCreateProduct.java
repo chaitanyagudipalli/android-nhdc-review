@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -23,19 +24,23 @@ import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import in.vasista.nhdc.R;
 import in.vasista.vsales.DashboardAppCompatActivity;
+import in.vasista.vsales.MainActivity;
 import in.vasista.vsales.adapter.ProductAutoAdapter;
 import in.vasista.vsales.catalog.Product;
 import in.vasista.vsales.db.IndentsDataSource;
 import in.vasista.vsales.db.ProductsDataSource;
 import in.vasista.vsales.supplier.Supplier;
 import in.vasista.vsales.sync.ServerSync;
+import in.vasista.vsales.sync.xmlrpc.XMLRPCApacheAdapter;
 
 public class IndentCreateProduct extends DashboardAppCompatActivity {
 
@@ -58,12 +63,14 @@ public class IndentCreateProduct extends DashboardAppCompatActivity {
     IndentsDataSource datasource;
     SharedPreferences.Editor prefEditor;
 
+    Object weaverDet;SharedPreferences prefs;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentChildView(R.layout.activity_indent_create_product);
         setPageTitle("Add product");
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         prefEditor = prefs.edit();
 
         prefEditor.putInt("IndentId",0);
@@ -207,5 +214,97 @@ public class IndentCreateProduct extends DashboardAppCompatActivity {
             }
 
         });
+    }
+
+    //To use the AsyncTask, it must be subclassed
+    private class LoadViewTask extends AsyncTask<Void, Integer, Void>
+    {
+        //Before running code in separate thread
+        @Override
+        protected void onPreExecute()
+        {
+
+        }
+
+        //The code to be executed in a background thread.
+        @Override
+        protected Void doInBackground(Void... params)
+        {
+			/* This is just a code that delays the thread execution 4 times,
+			 * during 850 milliseconds and updates the current progress. This
+			 * is where the code that is going to be executed on a background
+			 * thread must be placed.
+			 */
+
+
+            try
+            {
+                //Get the current thread's token
+                synchronized (this)
+                {
+                    Map paramMap = new HashMap();
+                    prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+
+
+                    String partyId = prefs.getString("storeId", "");
+                    paramMap.put("partyId", partyId);
+                    paramMap.put("effectiveDate", (new Date()).getTime());
+
+                    XMLRPCApacheAdapter adapter = new XMLRPCApacheAdapter(getBaseContext());
+                    weaverDet = adapter.callSync("getWeaverDetails", paramMap);
+
+
+
+                }
+            }
+/*			catch (InterruptedException e)
+			{
+				e.printStackTrace();
+			} */
+            catch (Exception e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        //Update the progress
+        @Override
+        protected void onProgressUpdate(Integer... values)
+        {
+
+        }
+
+        //after executing the code in the thread
+        @Override
+        protected void onPostExecute(Void result)
+        {
+            int[] ids = { };
+            TextView textView;
+            if (weaverDet != null) {
+                Map weaverDetails = (Map)((Map)weaverDet).get("weaverDetails");
+                Map loomMap = (Map)((Map)weaverDetails).get("loomDetails");
+                Log.v("adsa",""+weaverDetails);
+
+                String[] values = {};
+
+                for (int i=0;i<ids.length;i++){
+                    textView = (TextView) findViewById(ids[i]);
+                    textView.setText(values[i]);
+                }
+
+//                if(category_type!=null && category_type.equalsIgnoreCase("SILK")){
+//                    Map silk = (Map)((Map)weaverDetails).get("COTTON_40ABOVE");
+//                }else if(category_type!=null && category_type.equalsIgnoreCase("COTTON")){
+//                    Map cotton_40above = (Map)((Map)weaverDetails).get("COTTON_40ABOVE");
+//                    Map cotton_40upto = (Map)((Map)weaverDetails).get("COTTON_UPTO40");
+//                }else{
+//                    Map wool_10to39 = (Map)((Map)weaverDetails).get("WOOLYARN_10STO39NM");
+//                    Map wool_40above = (Map)((Map)weaverDetails).get("WOOLYARN_40SNMABOVE");
+//                    Map wool_10below = (Map)((Map)weaverDetails).get("WOOLYARN_BELOW10NM");
+//                }
+
+
+            }
+        }
     }
 }

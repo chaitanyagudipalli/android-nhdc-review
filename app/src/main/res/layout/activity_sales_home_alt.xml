@@ -72,6 +72,13 @@
                 android:orientation="horizontal" >
 
                 <Button
+                    android:id="@+id/home_btn_profile"
+                    style="@style/HomeButton"
+                    android:drawableTop="@drawable/employeeprofile_button"
+                    android:onClick="onClickFeature"
+                    android:text="My Profile" />
+
+                <Button
                     android:id="@+id/home_btn_indents"
                     style="@style/HomeButton"
                     android:textStyle="normal"
@@ -119,7 +126,7 @@
                 <Button
                     android:id="@+id/home_btn_outlets"
                     style="@style/HomeButton"
-                    android:drawableTop="@drawable/outlet_button"
+                    android:drawableTop="@drawable/supplier_button"
                     android:onClick="onClickFeature"
                     android:text="@string/title_feature5" />              
             </LinearLayout>

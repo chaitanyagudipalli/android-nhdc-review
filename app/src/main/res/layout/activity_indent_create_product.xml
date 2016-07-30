@@ -17,6 +17,7 @@
         android:layout_height="wrap_content">
 
 
+
         <AutoCompleteTextView
             android:id="@+id/autoCompleteProduct"
             android:layout_width="match_parent"
