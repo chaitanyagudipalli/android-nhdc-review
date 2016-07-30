@@ -62,7 +62,8 @@ public class IndentCreationActivity extends DashboardAppCompatActivity implement
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentChildView(R.layout.activity_indent_creation);
-        setPageTitle("Create Indent");
+        actionBarHomeEnabled();
+        //setPageTitle("Create Indent");
         submitindent= (Button)findViewById(R.id.submitindent);
         fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.hide();

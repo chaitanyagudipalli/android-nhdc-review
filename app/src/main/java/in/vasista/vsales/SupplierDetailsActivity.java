@@ -164,7 +164,7 @@ public class SupplierDetailsActivity extends DashboardAppCompatActivity{
 					textView = (TextView) findViewById(R.id.supplierAddress);
 
 					Map address = (Map) suppMap.get("addressMap");
-					textView.setText(""+address.get("address1")+", "+""+address.get("city")+", "+""+address.get("stateProvinceGeoId")+". "+"Postal Code: "+""+address.get("postalCode"));
+					textView.setText(""+address.get("address1")+", "+""+address.get("city")+", "+""+address.get("stateProvinceGeoId")+". "+"\n\nPostal Code: "+""+address.get("postalCode"));
 
 					Button callBtn = (Button) findViewById(R.id.callButton);
 					if (suppMap.get("contactNumber") == null || ((String)suppMap.get("contactNumber")).equalsIgnoreCase("")) {
