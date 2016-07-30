@@ -8,9 +8,10 @@ public class Product {
 	float includedquantity;
 
 	String productCategoryId = "";
+	String productParentCategoryId = "";
 
 
-	public Product(String id, String name, String internalname, String brandname, String description, String typeid, String UOMid, float price, float includedquantity, String productCategoryId) {
+	public Product(String id, String name, String internalname, String brandname, String description, String typeid, String UOMid, float price, float includedquantity, String productCategoryId, String productParentCategoryId) {
 		this.id = id;
 		this.name = name;
 		this.internalname = internalname;
@@ -21,6 +22,7 @@ public class Product {
 		this.price = price;
 		this.includedquantity = includedquantity;
 		this.productCategoryId = productCategoryId;
+		this.productParentCategoryId = productParentCategoryId;
 	}
 
 	public String getId() {
@@ -61,5 +63,9 @@ public class Product {
 
 	public String getProductCategoryId() {
 		return productCategoryId;
+	}
+
+	public String getProductParentCategoryId() {
+		return productParentCategoryId;
 	}
 }

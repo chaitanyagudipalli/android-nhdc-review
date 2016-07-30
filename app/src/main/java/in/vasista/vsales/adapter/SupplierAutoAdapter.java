@@ -1,6 +1,7 @@
 package in.vasista.vsales.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +14,6 @@ import java.util.List;
 import java.util.Locale;
 
 import in.vasista.nhdc.R;
-import in.vasista.vsales.facility.Facility;
 import in.vasista.vsales.supplier.Supplier;
 
 
@@ -57,6 +57,7 @@ public class SupplierAutoAdapter extends ArrayAdapter<Supplier> {
 	        {
 	    	    TextView tview = (TextView)facilityView.findViewById(R.id.facilityAutocompleteLabel);
 	    	    tview.setText(facility.getId() + " [" + facility.getName() + "]");
+				tview.setMaxLines(4);
 	        }
 	        return facilityView;
 	    }
@@ -75,7 +76,9 @@ public class SupplierAutoAdapter extends ArrayAdapter<Supplier> {
 
 	        @Override
 	        protected FilterResults performFiltering(CharSequence constraint) {
-	            // NOTE: this function is *always* called from a background thread, and
+
+
+				// NOTE: this function is *always* called from a background thread, and
 	            // not the UI thread.
 	            FilterResults result = new FilterResults();
 	            if(constraint != null && constraint.toString().length() > 0)
@@ -89,6 +92,9 @@ public class SupplierAutoAdapter extends ArrayAdapter<Supplier> {
 	                for(int i = 0, l = lItems.size(); i < l; i++)
 	                {
 						Supplier facility = lItems.get(i);
+						if(facility.getName() == null || facility.getName() == "null")
+							continue;
+
     	                if (facility.getId().toLowerCase(Locale.getDefault()).contains(constraint.toString().toLowerCase(Locale.getDefault())) ||
     	                		facility.getName().toLowerCase(Locale.getDefault()).contains(constraint.toString().toLowerCase(Locale.getDefault()))	) {
     	                	filt.add(facility); 

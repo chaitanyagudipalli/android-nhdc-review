@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -28,10 +29,13 @@ public class IndentListFragment extends ListFragment{
 	IndentAdapter adapter;
 	IndentsDataSource datasource;
 	final IndentListFragment indentListFragment = this;
+
+	SharedPreferences.Editor prefEditor;
+
 	public void onActivityCreated(Bundle savedInstanceState) {
 		
 		super.onActivityCreated(savedInstanceState);
-    	SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
+    	final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
     	final String retailerId = prefs.getString("storeId", "");
 		//TextView retailerIdView = (TextView)getActivity().findViewById(R.id.retailerId);
 		//retailerIdView.setText(retailerId + " : Indents");    
@@ -65,6 +69,10 @@ public class IndentListFragment extends ListFragment{
             if (indent != null) {
             	Intent indentItemsIntent = new Intent(getActivity(), IndentDetailed.class);
             	indentItemsIntent.putExtra("indentId", indent.getId());
+				prefEditor = prefs.edit();
+
+				prefEditor.putInt("IndentId",indent.getId());
+				prefEditor.apply();
             	indentItemsIntent.putExtra("retailerId", retailerId);
             	startActivity(indentItemsIntent);
             }
@@ -83,6 +91,7 @@ public class IndentListFragment extends ListFragment{
 	 * Brute force update of list
 	 */
 	public void notifyChange() {
+		Log.v("asdad","chnage");
 		setListAdapter(null);
 	    datasource.open();
 	    indentItems = datasource.getAllIndents();
@@ -116,5 +125,6 @@ public class IndentListFragment extends ListFragment{
 		//Toast.makeText( getActivity(), "onResume [" +indentItems.size() + "]", Toast.LENGTH_SHORT ).show();	    		    
 	    adapter.clear();
 	    adapter.addAll(indentItems);
+		notifyChange();
     }	
 }

@@ -9,13 +9,16 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 import in.vasista.nhdc.R;
 import in.vasista.vsales.preference.FragmentPreferences;
 import in.vasista.vsales.sync.xmlrpc.XMLRPCApacheAdapter;
+import in.vasista.vsales.sync.xmlrpc.XMLRPCMethodCallback;
 
 public class SplashScreenActivity extends Activity  
 {  
@@ -61,7 +64,7 @@ public class SplashScreenActivity extends Activity
 				synchronized (this)  
 				{
 					Map paramMap = new HashMap();
-					SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+					final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
 					SharedPreferences.Editor prefEditor = prefs.edit();
 					XMLRPCApacheAdapter adapter = new XMLRPCApacheAdapter(getBaseContext());
 					Object result = adapter.callSync("getMobilePermissions", paramMap);	
@@ -114,9 +117,10 @@ public class SplashScreenActivity extends Activity
 
 						String contactNumber = (String)((Map)result).get("contactNumber");
 						if (contactNumber != null)
-							prefEditor.putString(MainActivity.USER_MOBILE, contactNumber);
+							prefEditor.putString(MainActivity.USER_PASSBOOK, contactNumber);
 
 						prefEditor.apply();
+
 					}
 					
 					/*
@@ -131,7 +135,25 @@ public class SplashScreenActivity extends Activity
 
 					}  
 					*/
-				}  
+
+					paramMap = new HashMap();
+					String partyId = prefs.getString("storeId", "");
+					paramMap.put("partyId", partyId);
+					paramMap.put("effectiveDate", (new Date()).getTime());
+
+					adapter = new XMLRPCApacheAdapter(getBaseContext());
+					Object weaverDet = adapter.callSync("getWeaverDetails", paramMap);
+
+							if (weaverDet != null) {
+								Map weaverDetails = (Map)((Map)weaverDet).get("weaverDetails");
+								prefEditor.putString("weaverDetailsMap", ""+ weaverDetails);
+								prefEditor.putString(MainActivity.USER_FULLNAME, ""+ weaverDetails.get("partyName"));
+								prefEditor.putString(MainActivity.USER_PASSBOOK, ""+ weaverDetails.get("passBookNo"));
+								prefEditor.apply();
+
+							}
+
+				}
 			}  
 /*			catch (InterruptedException e)  
 			{  

@@ -39,10 +39,10 @@ public class IndentAdapter extends ArrayAdapter<Indent> {
 	    SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMM, yyyy");
 	    String dateStr = dateFormat.format(date);
 //	    String status = item.getStatus();
-	    String tallyRefNo = item.getTallyRefNo();
+	    String tallyRefNo = item.getOrderId();
 
-	    boolean isgeneratedPO = item.isgeneratedPO();
-	    String syncStr = isgeneratedPO?"Y":"N";
+	   // boolean isgeneratedPO = item.isgeneratedPO();
+	    String status = item.getStatusId();
 	    String totalOrder = String.format("%.2f", item.getOrderTotal());
 
 
@@ -58,12 +58,12 @@ public class IndentAdapter extends ArrayAdapter<Indent> {
 
 	    TextView dateView = (TextView)indentView.findViewById(R.id.indentRowDate);
 	    TextView subscriptionTypeView = (TextView)indentView.findViewById(R.id.indentRowSupply);	    
-	    //TextView syncedView = (TextView)indentView.findViewById(R.id.indentRowSynced);
+	    TextView syncedView = (TextView)indentView.findViewById(R.id.indentRowSynced);
 	    TextView totalView = (TextView)indentView.findViewById(R.id.indentRowTotal);
 	    
 	    dateView.setText(dateStr);
 	    subscriptionTypeView.setText(tallyRefNo);
-	    //syncedView.setText(syncStr);
+	    syncedView.setText(status);
 	    totalView.setText(totalOrder);
 	    return indentView;
 	  }

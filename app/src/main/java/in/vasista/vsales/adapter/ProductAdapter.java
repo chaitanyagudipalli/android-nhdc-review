@@ -1,6 +1,7 @@
 package in.vasista.vsales.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,8 +51,8 @@ public class ProductAdapter extends ArrayAdapter<Product> implements Filterable{
 
 	    String name = item.getName();
 	    String description = item.getDescription();	    
-	    String price = String.format("%.2f", item.getPrice()) ;
-		  String typeid = item.getProductCategoryId();
+	    //String price = String.format("%.2f", item.getPrice()) ;
+		  String category = item.getProductCategoryId();
 
 
 	    if (convertView == null) { 
@@ -66,14 +67,14 @@ public class ProductAdapter extends ArrayAdapter<Product> implements Filterable{
 
 	    TextView nameView = (TextView)productView.findViewById(R.id.rowName);
 	    TextView descriptionView = (TextView)productView.findViewById(R.id.rowDescription);	    
-	    TextView priceView = (TextView)productView.findViewById(R.id.rowPrice);
+	    TextView priceView = (TextView)productView.findViewById(R.id.category);
 //	    TextView mrpPriceView = (TextView)productView.findViewById(R.id.rowMrpPrice);
-	    TextView cratePriceView = (TextView)productView.findViewById(R.id.rowCratePrice);
+//	    TextView cratePriceView = (TextView)productView.findViewById(R.id.rowCratePrice);
 
 	    nameView.setText(name);
 	    descriptionView.setText(description);
-	    priceView.setText(price);
-		  cratePriceView.setText(typeid);
+	    priceView.setText(category);
+//		  cratePriceView.setText(typeid);
 	    return productView;
 	  }
 

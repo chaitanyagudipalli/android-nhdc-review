@@ -27,6 +27,7 @@ import in.vasista.nhdc.R;
 import in.vasista.vsales.EmployeeDetailsActivity;
 import in.vasista.vsales.HRDashboardActivity;
 import in.vasista.vsales.LeaveActivity;
+import in.vasista.vsales.MainActivity;
 import in.vasista.vsales.SalesDashboardActivity;
 import in.vasista.vsales.catalog.CatalogListFragment;
 import in.vasista.vsales.catalog.Product;
@@ -47,6 +48,7 @@ import in.vasista.vsales.facility.Facility;
 import in.vasista.vsales.facility.FacilityListFragment;
 import in.vasista.vsales.indent.Indent;
 import in.vasista.vsales.indent.IndentItem;
+import in.vasista.vsales.indent.IndentItemNHDC;
 import in.vasista.vsales.indent.IndentItemsListFragment;
 import in.vasista.vsales.indent.IndentListFragment;
 import in.vasista.vsales.order.OrderListFragment;
@@ -68,6 +70,55 @@ public class ServerSync {
 	public ServerSync(Context context) {
 		this.context = context; 
 	    //dbHelper = new MySQLiteHelper(context); 		
+	}
+
+	public  void uploadNHDCIndent(final MenuItem menuItem, ProgressBar progressBar, List<HashMap> list, String supplierPartyId, String schemeCategory, final long indent_id){
+				SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+		String storeId = prefs.getString("storeId", "");
+		Map paramMap = new HashMap();
+		paramMap.put("partyId", storeId);
+		Date supplyDate = new Date();
+		paramMap.put("effectiveDate", ""+supplyDate.getTime());
+		paramMap.put("salesChannel", "MOBILE_SALES_CHANNEL");
+		paramMap.put("supplierPartyId", supplierPartyId);
+		paramMap.put("schemeCategory", schemeCategory);
+	    paramMap.put("indentItems", list);
+
+		try {
+			XMLRPCApacheAdapter adapter = new XMLRPCApacheAdapter(context);
+			adapter.call("createBranchSalesIndent", paramMap, progressBar, new XMLRPCMethodCallback() {
+				public void callFinished(Object result, ProgressBar progressBar) {
+					if (result != null) {
+						IndentsDataSource datasource = new IndentsDataSource(context);
+						datasource.open();
+						datasource.updateIndentStatus(indent_id,"ORDER_CREATED");
+					}
+					if (progressBar != null) {
+						progressBar.setVisibility(View.INVISIBLE);
+					}
+					if(menuItem !=null){
+						if (progressBar != null) {
+							progressBar.setVisibility(View.VISIBLE);
+						}
+						menuItem.setActionView(null);
+					}
+					Toast.makeText( context, "Indent upload succeeded!", Toast.LENGTH_LONG ).show();
+				}
+			});
+		}
+		catch (Exception e) {
+			Log.e(module, "Exception: ", e);
+			if (progressBar != null) {
+				progressBar.setVisibility(View.INVISIBLE);
+			}
+			if(menuItem !=null){
+				if (progressBar != null) {
+					progressBar.setVisibility(View.VISIBLE);
+				}
+				menuItem.setActionView(null);
+			}
+			Toast.makeText( context, "Upload failed: " + e, Toast.LENGTH_LONG ).show();
+		}
 	}
 	
 	public void uploadIndent(final MenuItem menuItem, final Indent indent, ProgressBar progressBar, final IndentItemsListFragment listFragment) {
@@ -164,10 +215,11 @@ public class ServerSync {
 							String brandName = (String)value.get("brandName");
 							String quantityUomId = (String)value.get("quantityUomId");
 							String productTypeId = (String)value.get("productTypeId");
+							String productParentTypeId = (String)value.get("primaryParentCategoryId");
 
 				    	  float price = 0.0f;
 				    	  float quantityIncluded = ((BigDecimal)value.get("quantityIncluded")).setScale(2,BigDecimal.ROUND_HALF_UP).floatValue();
-				    	  Product product = new Product(productId, name, internalName, brandName,description,productTypeId,quantityUomId , price, quantityIncluded, primaryProductCategoryId);
+				    	  Product product = new Product(productId, name, internalName, brandName,description,productTypeId,quantityUomId , price, quantityIncluded, primaryProductCategoryId,productParentTypeId);
 				    	  //Log.d(module, "product = " + product);
 							ls.add(product);
 				    	  //datasource.insertProduct(product);
@@ -239,6 +291,7 @@ public class ServerSync {
 						IndentsDataSource indentDataSource = new IndentsDataSource(context);
 						indentDataSource.open();  
 						indentDataSource.deleteAllIndents();
+						indentDataSource.deleteAllIndentItems();
 				    	Map indentResults = (Map)((Map)result).get("indentSearchResults");
 				    	Log.d(module, "indentResults.size() = " + indentResults.size());
 				    	if (indentResults.size() > 0) {
@@ -246,22 +299,35 @@ public class ServerSync {
 								Object[] indentResultsList = (Object[])indentResults.get("orderList");
 								Log.d(module, "indentResultsList.size() = " + indentResultsList.length);
 								List<Indent> indents = new ArrayList<Indent>();
+								List<IndentItemNHDC> indentItemNHDCs;
 								for (int i=0; i < indentResultsList.length; ++i) {
+									//indentItemNHDCs = new ArrayList<IndentItemNHDC>();
 									Map indentMap = (Map)indentResultsList[i];
 									try {
 										Indent indent = new Indent(0,(String)indentMap.get("tallyRefNo"),(String)indentMap.get("POorder"),(String)indentMap.get("poSquenceNo"),((String)(indentMap.get("isgeneratedPO"))).equalsIgnoreCase("Y"),
 												(String)indentMap.get("supplierPartyId"),(String)indentMap.get("storeName"),(String)indentMap.get("supplierPartyName"),(String)indentMap.get("orderNo"),(String)indentMap.get("orderId"),
 												format.parse(String.valueOf(indentMap.get("orderDate"))),(String)indentMap.get("statusId"),
-												((BigDecimal)indentMap.get("orderTotal")).floatValue(),((BigDecimal)indentMap.get("paidAmt")).floatValue(),((BigDecimal)indentMap.get("balance")).floatValue());
+												((BigDecimal)indentMap.get("orderTotal")).floatValue(),((BigDecimal)indentMap.get("paidAmt")).floatValue(),((BigDecimal)indentMap.get("balance")).floatValue(),"");
 										indents.add(indent);
-										Log.v("indent",""+indent.getTallyRefNo());
+
+										long indent_id = indentDataSource.insertIndent(indent);
+										Object[] productsMap = (Object[])indentMap.get("orderItemsList");
+										for (int j=0;j<productsMap.length;j++){
+											Map productMap = (Map)productsMap[j];
+											IndentItemNHDC indentItemNHDC = new IndentItemNHDC((String)productMap.get("productId"),
+													""+productMap.get("quantity"),(String)productMap.get("itemDescription"),
+													"","",""+productMap.get("unitPrice"),"","","","");
+											indentDataSource.insertIndentItem(indent_id,indentItemNHDC);
+										}
+
+
 									} catch (ParseException e) {
 										e.printStackTrace();
 									}
 
 								}
 
-								indentDataSource.insertIndents(indents);
+								//indentDataSource.insertIndents(indents);
 							}
 				    	}			
 		    		  	indentDataSource.close();
@@ -378,24 +444,28 @@ public class ServerSync {
     		listFragment.notifyChange();
     	}
 	}
-	public void getSupplierDues(ProgressBar progressBar, final SalesDashboardActivity activity) {
+	public void getWeaverDetails(ProgressBar progressBar, final SalesDashboardActivity activity) {
 		Map paramMap = new HashMap();
-		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-		String storeId = prefs.getString("storeId", "");
-		paramMap.put("boothId", storeId);
+		final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+		String partyId = prefs.getString("storeId", "");
+		paramMap.put("partyId", partyId);
+		paramMap.put("effectiveDate", (new Date()).getTime());
 
 		try {
 			XMLRPCApacheAdapter adapter = new XMLRPCApacheAdapter(context);
-			adapter.call("getFacilityDues", paramMap, progressBar, new XMLRPCMethodCallback() {
+			adapter.call("getWeaverDetails", paramMap, progressBar, new XMLRPCMethodCallback() {
 				public void callFinished(Object result, ProgressBar progressBar) {
 					if (result != null) {
-						Map boothDues = (Map)((Map)result).get("boothDues");
-						Map boothTotalDues = (Map)((Map)result).get("boothTotalDues");
-						Log.d(module, "boothDues.size() = " + boothDues.size() + ";boothDues=" + boothDues);
-						Log.d(module, "boothTotalDues.size() = " + boothTotalDues.size() + ";boothTotalDues=" + boothTotalDues);
+						Map weaverDetails = (Map)((Map)result).get("weaverDetails");
+						//Log.d(module, "boothDues.size() = " + boothDues.size() + ";boothDues=" + boothDues);
 						if (activity != null) {
+							SharedPreferences.Editor prefEditor = prefs.edit();
+							prefEditor.putString("weaverDetailsMap", ""+ weaverDetails);
+							prefEditor.putString(MainActivity.USER_FULLNAME, ""+ weaverDetails.get("partyName"));
+							prefEditor.putString(MainActivity.USER_PASSBOOK, ""+ weaverDetails.get("passBookNo"));
+							prefEditor.apply();
 							//Log.d(module, "calling listFragment notifyChange..." + listFragment.getClass().getName());
-							activity.updateDues(boothDues, boothTotalDues);
+							//activity.updateDues(boothDues, boothTotalDues);
 						}
 					}
 					if (progressBar != null) {
@@ -413,6 +483,44 @@ public class ServerSync {
 			Toast.makeText( context, "getFacilityDues failed: " + e, Toast.LENGTH_SHORT ).show();
 		}
 	}
+
+	public void getWeaverDetails(ProgressBar progressBar) {
+		Map paramMap = new HashMap();
+		final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+		String partyId = prefs.getString("storeId", "");
+		paramMap.put("partyId", partyId);
+		paramMap.put("effectiveDate", (new Date()).getTime());
+
+		try {
+			XMLRPCApacheAdapter adapter = new XMLRPCApacheAdapter(context);
+			adapter.call("getWeaverDetails", paramMap, progressBar, new XMLRPCMethodCallback() {
+				public void callFinished(Object result, ProgressBar progressBar) {
+					if (result != null) {
+						Map weaverDetails = (Map)((Map)result).get("weaverDetails");
+							SharedPreferences.Editor prefEditor = prefs.edit();
+							prefEditor.putString("weaverDetailsMap", ""+ weaverDetails);
+							prefEditor.putString(MainActivity.USER_FULLNAME, ""+ weaverDetails.get("partyName"));
+							prefEditor.putString(MainActivity.USER_PASSBOOK, ""+ weaverDetails.get("passBookNo"));
+							prefEditor.apply();
+							//Log.d(module, "calling listFragment notifyChange..." + listFragment.getClass().getName());
+							//activity.updateDues(boothDues, boothTotalDues);
+					}
+					if (progressBar != null) {
+						progressBar.setVisibility(View.INVISIBLE);
+					}
+					//Toast.makeText( context, "got facility dues!", Toast.LENGTH_SHORT ).show();
+				}
+			});
+		}
+		catch (Exception e) {
+			Log.e(module, "Exception: ", e);
+			if (progressBar != null) {
+				progressBar.setVisibility(View.INVISIBLE);
+			}
+			Toast.makeText( context, "getFacilityDues failed: " + e, Toast.LENGTH_SHORT ).show();
+		}
+	}
+
 	public void getFacilityDues(ProgressBar progressBar, final SalesDashboardActivity activity) {
 		Map paramMap = new HashMap();
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
@@ -429,8 +537,8 @@ public class ServerSync {
 				    	Log.d(module, "boothDues.size() = " + boothDues.size() + ";boothDues=" + boothDues);
 				    	Log.d(module, "boothTotalDues.size() = " + boothTotalDues.size() + ";boothTotalDues=" + boothTotalDues);					    	
 				    	if (activity != null) {
-					    	//Log.d(module, "calling listFragment notifyChange..." + listFragment.getClass().getName());						    		
-				    		activity.updateDues(boothDues, boothTotalDues);
+					    	//Log.d(module, "calling listFragment notifyChange..." + listFragment.getClass().getName());
+				    		//activity.updateDues(boothDues, boothTotalDues);
 				    	}
 					}
 					if (progressBar != null) {

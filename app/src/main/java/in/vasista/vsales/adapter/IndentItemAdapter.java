@@ -3,6 +3,7 @@ package in.vasista.vsales.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,20 +14,25 @@ import android.widget.TextView;
 import java.util.List;
 
 import in.vasista.nhdc.R;
+import in.vasista.vsales.catalog.Product;
+import in.vasista.vsales.db.ProductsDataSource;
 import in.vasista.vsales.indent.IndentItem;
+import in.vasista.vsales.indent.IndentItemNHDC;
 
 
-public class IndentItemAdapter extends ArrayAdapter<IndentItem>{
+public class IndentItemAdapter extends ArrayAdapter<IndentItemNHDC>{
 	public static final String module = IndentItemAdapter.class.getName();
 	
 	  int resource;
 	  boolean isEditable = false;
-	  List<IndentItem> myItems;
+	Context c;
+	  List<IndentItemNHDC> myItems;
 	  public IndentItemAdapter(Context context,
 	                         int resource,
-	                         List<IndentItem> items) {
+	                         List<IndentItemNHDC> items) {
 	    super(context, resource, items);
 	    this.myItems = items;
+		  this.c = context;
 	    this.resource = resource;
 	  }
 
@@ -42,18 +48,23 @@ public class IndentItemAdapter extends ArrayAdapter<IndentItem>{
 	  public View getView(int position, View convertView, ViewGroup parent) {
 	    LinearLayout indentItemView;
 
-	    IndentItem item = getItem(position);
+		  IndentItemNHDC item = getItem(position);
 
 //	    String productId = item.getProductId();
-	    String productName = item.getProductName();
-	    String qty = Integer.toString(item.getQty());
-	    double unitPrice = item.getUnitPrice();
-		double itemTotal = Math.round(item.getQty()*unitPrice * 100.0) / 100.0;
-	    String amount = String.format("%.2f", itemTotal);
-	    if(item.getQty() == -1) {
-	    	qty = "";
-	    	amount = "";
-	    }
+		  ProductsDataSource productsDataSource = new ProductsDataSource(c);
+		  productsDataSource.open();
+		  Product p = productsDataSource.getproductDetails(Integer.parseInt(item.getProductId()));
+	    String productName = p.getName();
+	    String qty = item.getQuantity();
+	    String unitPrice = item.getBundleUnitPrice();
+
+		  Log.v("jj",""+unitPrice);
+		//double itemTotal = Math.round(item.getQty()*unitPrice * 100.0) / 100.0;
+	    //String amount = String.format("%.2f", itemTotal);
+//	    if(item.getQty() == -1) {
+//	    	qty = "";
+//	    	amount = "";
+//	    }
 		//Log.d( module, "item=" + item); 		  
 
 	    if (convertView == null) {
@@ -71,7 +82,11 @@ public class IndentItemAdapter extends ArrayAdapter<IndentItem>{
 	    final TextView amountView = (TextView)indentItemView.findViewById(R.id.indentitemRowAmount);
 
 	    nameView.setText(productName);
-	    qtyView.setText(qty);  
+	    qtyView.setText(qty);
+		  if(item.getBasicPrice().equalsIgnoreCase(""))
+		  		amountView.setText(unitPrice);
+		  else
+			  amountView.setText(item.getBasicPrice());
 	    
 	    if (!isEditable)  {
 	    	qtyView.setFocusable(false);
@@ -83,7 +98,7 @@ public class IndentItemAdapter extends ArrayAdapter<IndentItem>{
 	    	}
 	    }
         
-	    amountView.setText(amount);
+	    //amountView.setText(item.getBasicPrice());
 	    return indentItemView;
 	  }
 }

@@ -13,6 +13,8 @@ import java.util.List;
 import java.util.Map;
 
 import in.vasista.vsales.catalog.Product;
+import in.vasista.vsales.indent.Indent;
+
 public class ProductsDataSource {
 	public static final String module = ProductsDataSource.class.getName();	  
 	  // Database fields 
@@ -20,14 +22,19 @@ public class ProductsDataSource {
 	  private MySQLiteHelper dbHelper;
 	  private String[] allColumns = { MySQLiteHelper.COLUMN_PRODUCT_ID,
 	      MySQLiteHelper.COLUMN_PRODUCT_NAME,
-	      MySQLiteHelper.COLUMN_PRODUCT_DESC,
+
 	      MySQLiteHelper.COLUMN_PRODUCT_INRENAL_NAME,
 		  MySQLiteHelper.COLUMN_PRODUCT_BRAND_NAME,
+			  MySQLiteHelper.COLUMN_PRODUCT_DESC,
+			  MySQLiteHelper.COLUMN_PRODUCT_TYPE_ID,
+			  MySQLiteHelper.COLUMN_PRODUCT_QUANTITY_UOM_ID,
 	      MySQLiteHelper.COLUMN_PRODUCT_PRICE,
+			  MySQLiteHelper.COLUMN_PRODUCT_QUANTITY_INCLUDED,
 	      MySQLiteHelper.COLUMN_PRODUCT_CATEGORY_ID,
-	      MySQLiteHelper.COLUMN_PRODUCT_TYPE_ID,
-	      MySQLiteHelper.COLUMN_PRODUCT_QUANTITY_UOM_ID,
-	      MySQLiteHelper.COLUMN_PRODUCT_QUANTITY_INCLUDED,
+			  MySQLiteHelper.COLUMN_PRODUCT_PARENT_CATEGORY_ID,
+
+
+
 	      };
 	  
 	  public ProductsDataSource(Context context) {
@@ -52,6 +59,7 @@ public class ProductsDataSource {
 		    values.put(MySQLiteHelper.COLUMN_PRODUCT_PRICE, product.getPrice());
 		    values.put(MySQLiteHelper.COLUMN_PRODUCT_TYPE_ID, product.getTypeid());
 		    values.put(MySQLiteHelper.COLUMN_PRODUCT_CATEGORY_ID, product.getProductCategoryId());
+		  values.put(MySQLiteHelper.COLUMN_PRODUCT_PARENT_CATEGORY_ID, product.getProductParentCategoryId());
 		  values.put(MySQLiteHelper.COLUMN_PRODUCT_QUANTITY_UOM_ID, product.getUOMid());
 		  values.put(MySQLiteHelper.COLUMN_PRODUCT_QUANTITY_INCLUDED, product.getIncludedquantity());
 
@@ -68,6 +76,7 @@ public class ProductsDataSource {
 		  values.put(MySQLiteHelper.COLUMN_PRODUCT_PRICE, product.getPrice());
 		  values.put(MySQLiteHelper.COLUMN_PRODUCT_TYPE_ID, product.getTypeid());
 		  values.put(MySQLiteHelper.COLUMN_PRODUCT_CATEGORY_ID, product.getProductCategoryId());
+		  values.put(MySQLiteHelper.COLUMN_PRODUCT_PARENT_CATEGORY_ID, product.getProductParentCategoryId());
 		  values.put(MySQLiteHelper.COLUMN_PRODUCT_QUANTITY_UOM_ID, product.getUOMid());
 		  values.put(MySQLiteHelper.COLUMN_PRODUCT_QUANTITY_INCLUDED, product.getIncludedquantity());
 		    database.insert(MySQLiteHelper.TABLE_PRODUCT, null, values);    
@@ -87,6 +96,7 @@ public class ProductsDataSource {
 				  values.put(MySQLiteHelper.COLUMN_PRODUCT_PRICE, product.getPrice());
 				  values.put(MySQLiteHelper.COLUMN_PRODUCT_TYPE_ID, product.getTypeid());
 				  values.put(MySQLiteHelper.COLUMN_PRODUCT_CATEGORY_ID, product.getProductCategoryId());
+				  values.put(MySQLiteHelper.COLUMN_PRODUCT_PARENT_CATEGORY_ID, product.getProductParentCategoryId());
 				  values.put(MySQLiteHelper.COLUMN_PRODUCT_QUANTITY_UOM_ID, product.getUOMid());
 				  values.put(MySQLiteHelper.COLUMN_PRODUCT_QUANTITY_INCLUDED, product.getIncludedquantity());
 				  database.insert(MySQLiteHelper.TABLE_PRODUCT, null, values);   
@@ -103,6 +113,16 @@ public class ProductsDataSource {
 		  database.delete(MySQLiteHelper.TABLE_PRODUCT, null, null);
 	  }
 
+	public Product getproductDetails(int productId) {
+		Cursor cursor = database.query(MySQLiteHelper.TABLE_PRODUCT,
+				allColumns, MySQLiteHelper.COLUMN_PRODUCT_ID + " = " + productId, null, null, null, null);
+
+		cursor.moveToFirst();
+		Product product = cursorToProduct(cursor);
+		// Make sure to close the cursor
+		cursor.close();
+		return product;
+	}
 	  
 	  public List<Product> getAllProducts() {
 		List<Product> products = new ArrayList<Product>();
@@ -122,6 +142,42 @@ public class ProductsDataSource {
 	    return products;
 	  }
 
+	public List<Product> getProducts(String category) {
+		List<Product> products = new ArrayList<Product>();
+		String orderBy =  MySQLiteHelper.COLUMN_PRODUCT_ID + " ASC";
+
+		Cursor cursor = database.query(MySQLiteHelper.TABLE_PRODUCT,
+				allColumns, MySQLiteHelper.COLUMN_PRODUCT_PARENT_CATEGORY_ID + " = '" + category + "'", null, null, null, orderBy);
+
+		cursor.moveToFirst();
+		while (!cursor.isAfterLast()) {
+			Product product = cursorToProduct(cursor);
+			products.add(product);
+			cursor.moveToNext();
+		}
+		// Make sure to close the cursor
+		cursor.close();
+		return products;
+	}
+
+	public List<Product> getOtherProducts() {
+		List<Product> products = new ArrayList<Product>();
+		String orderBy =  MySQLiteHelper.COLUMN_PRODUCT_ID + " ASC";
+
+		Cursor cursor = database.query(MySQLiteHelper.TABLE_PRODUCT,
+				allColumns, MySQLiteHelper.COLUMN_PRODUCT_PARENT_CATEGORY_ID + " !='SILK' and "+MySQLiteHelper.COLUMN_PRODUCT_PARENT_CATEGORY_ID + " !='COTTON'", null, null, null, orderBy);
+
+		cursor.moveToFirst();
+		while (!cursor.isAfterLast()) {
+			Product product = cursorToProduct(cursor);
+			products.add(product);
+			cursor.moveToNext();
+		}
+		// Make sure to close the cursor
+		cursor.close();
+		return products;
+	}
+
 
 	  
 	  private Product cursorToProduct(Cursor cursor) {
@@ -132,7 +188,7 @@ public class ProductsDataSource {
 	    		cursor.getString(4),
 				  cursor.getString(5),
 	    		cursor.getString(6),
-				  (float)cursor.getDouble(7), (float)cursor.getDouble(8),cursor.getString(9));
+				  (float)cursor.getDouble(7), (float)cursor.getDouble(8),cursor.getString(9),cursor.getString(10));
 	  }
 	   
 	  public Map getSaleProductMap() {

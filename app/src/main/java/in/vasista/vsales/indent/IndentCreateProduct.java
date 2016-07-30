@@ -1,0 +1,344 @@
+package in.vasista.vsales.indent;
+
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.AsyncTask;
+import android.preference.PreferenceManager;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
+import android.widget.Spinner;
+import android.widget.TableRow;
+import android.widget.TextView;
+
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import in.vasista.nhdc.R;
+import in.vasista.vsales.DashboardAppCompatActivity;
+import in.vasista.vsales.MainActivity;
+import in.vasista.vsales.adapter.ProductAutoAdapter;
+import in.vasista.vsales.catalog.Product;
+import in.vasista.vsales.db.IndentsDataSource;
+import in.vasista.vsales.db.ProductsDataSource;
+import in.vasista.vsales.supplier.Supplier;
+import in.vasista.vsales.sync.ServerSync;
+import in.vasista.vsales.sync.xmlrpc.XMLRPCApacheAdapter;
+
+public class IndentCreateProduct extends DashboardAppCompatActivity {
+
+    private Map productsMap = new HashMap<String, Product>();
+    Spinner uom;Button addIndent;
+    List<HashMap> list;
+
+    private static final String[]uoms = {"KGS", "Bale", "Half Bale","Bundle"};
+
+    AutoCompleteTextView actv1;
+
+    String productId = "",quantity= "",remarks = "", baleQuantity = "",
+            bundleWeight = "", bundleUnitPrice = "", yarnUOM = "", basicPrice = "",
+            serviceCharge = "",serviceChargeAmt = "";
+
+    String supplierPartyId = "", schemeType = "", category_type = "";
+
+    LinearLayout cottonLayout;
+
+    IndentsDataSource datasource;
+    SharedPreferences.Editor prefEditor;
+
+    Object weaverDet;SharedPreferences prefs;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentChildView(R.layout.activity_indent_create_product);
+        setPageTitle("Add product");
+        prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        prefEditor = prefs.edit();
+
+        prefEditor.putInt("IndentId",0);
+        prefEditor.apply();
+
+        final Intent i = getIntent();
+        category_type = i.getStringExtra("category_type");
+        supplierPartyId = i.getStringExtra("supplierPartyId");
+        schemeType = i.getStringExtra("schemeType");
+
+//        Log.v("category_type",category_type);
+        new LoadViewTask().execute();
+        setUpProducts(category_type);
+
+        list = new ArrayList<>();
+
+        uom = (Spinner)findViewById(R.id.uom);
+        addIndent= (Button)findViewById(R.id.addIndent);
+        cottonLayout = (LinearLayout) findViewById(R.id.cottonLayout);
+
+
+        if(category_type.equalsIgnoreCase("COTTON")){
+            cottonLayout.setVisibility(View.VISIBLE);
+        }
+
+
+
+        ArrayAdapter<String> adapter3 = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item,uoms);
+
+        adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        uom.setAdapter(adapter3);
+        uom.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                switch (position) {
+                    case 0:
+                        // Whatever you want to happen when the first item gets selected
+                        yarnUOM = "Kgs";
+                        break;
+                    case 1:
+                        // Whatever you want to happen when the second item gets selected
+                        yarnUOM = "Bale";
+                        break;
+                    case 2:
+                        // Whatever you want to happen when the thrid item gets selected
+                        yarnUOM = "Half-Bale";
+                        break;
+                    case 3:
+                        // Whatever you want to happen when the thrid item gets selected
+                        yarnUOM = "Bundle";
+                        break;
+
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        addIndent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                quantity = ((EditText)findViewById(R.id.totalweight)).getText().toString();
+                remarks = ((EditText)findViewById(R.id.specifications)).getText().toString();
+                baleQuantity = ((EditText)findViewById(R.id.quantitynos)).getText().toString();
+                bundleWeight = ((EditText)findViewById(R.id.bundlewt)).getText().toString();
+                bundleUnitPrice = ((EditText)findViewById(R.id.bundleUnitPrice)).getText().toString();
+                basicPrice = ((EditText)findViewById(R.id.unitprice)).getText().toString();
+                HashMap<String,String> hm = new HashMap<String, String>();
+                hm.put("productId",productId);
+                hm.put("quantity",quantity);
+                hm.put("remarks",remarks);
+                hm.put("baleQuantity",baleQuantity);
+                hm.put("bundleWeight",bundleWeight);
+                hm.put("bundleUnitPrice",bundleUnitPrice);
+                hm.put("yarnUOM",yarnUOM);
+                hm.put("basicPrice",basicPrice);
+                hm.put("serviceCharge",serviceCharge);
+                hm.put("serviceChargeAmt",serviceChargeAmt);
+
+
+                IndentItemNHDC IN = new IndentItemNHDC(productId,quantity, remarks, baleQuantity, bundleWeight, bundleUnitPrice, yarnUOM, basicPrice, serviceCharge, serviceChargeAmt);
+                list.add(hm);
+                datasource = new IndentsDataSource(IndentCreateProduct.this);
+                datasource.open();
+                long id = datasource.insertIndentItem(i.getLongExtra("indent_id",0),IN);
+                IN.setId(id);
+                datasource.close();
+
+                prefEditor.putInt("IndentId",(int)i.getLongExtra("indent_id",0));
+                prefEditor.apply();
+
+                finish();
+            }
+        });
+    }
+
+    private void setUpProducts(String category){
+        if (category == null)
+            return;
+        ProductsDataSource productsDataSource = new ProductsDataSource(this);
+        productsDataSource.open();
+        List<Product> productList;
+        if(category.equalsIgnoreCase("SILK") || category.equalsIgnoreCase("COTTON"))
+            productList = productsDataSource.getProducts(category);
+        else
+            productList = productsDataSource.getOtherProducts();
+
+        Log.v("Upendra","count "+productList.size());
+        productsDataSource.close();
+        for (int i = 0; i < productList.size(); ++i) {
+            Product p = productList.get(i);
+            productsMap.put(p.getId(), p);
+        }
+
+        final String[] suppliers = new String[productList.size()];
+        int index = 0;
+        for (Product product : productList) {
+            suppliers[index] = product.getId();
+            index++;
+        }
+        final IndentCreateProduct mainActivity = this;
+        final ProductAutoAdapter adapter = new ProductAutoAdapter(this, R.layout.autocomplete_item, productList);
+        actv1 = (AutoCompleteTextView) findViewById(R.id.autoCompleteProduct);
+        actv1.setAdapter(adapter);
+        //actv.setVisibility(View.GONE);
+
+        actv1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                InputMethodManager in = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                in.hideSoftInputFromWindow(actv1.getWindowToken(), 0);
+                actv1.clearFocus();
+                Product product =  (Product)parent.getItemAtPosition(position);
+                actv1.setText(product.getName());
+                productId = product.getId();
+                //actv.setVisibility(View.GONE);
+            }
+
+        });
+    }
+
+    //To use the AsyncTask, it must be subclassed
+    private class LoadViewTask extends AsyncTask<Void, Integer, Void>
+    {
+        //Before running code in separate thread
+        @Override
+        protected void onPreExecute()
+        {
+
+        }
+
+        //The code to be executed in a background thread.
+        @Override
+        protected Void doInBackground(Void... params)
+        {
+			/* This is just a code that delays the thread execution 4 times,
+			 * during 850 milliseconds and updates the current progress. This
+			 * is where the code that is going to be executed on a background
+			 * thread must be placed.
+			 */
+
+
+            try
+            {
+                //Get the current thread's token
+                synchronized (this)
+                {
+                    Map paramMap = new HashMap();
+                    prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+
+
+                    String partyId = prefs.getString("storeId", "");
+                    paramMap.put("partyId", partyId);
+                    paramMap.put("effectiveDate", (new Date()).getTime());
+
+                    XMLRPCApacheAdapter adapter = new XMLRPCApacheAdapter(getBaseContext());
+                    weaverDet = adapter.callSync("getWeaverDetails", paramMap);
+
+
+
+                }
+            }
+/*			catch (InterruptedException e)
+			{
+				e.printStackTrace();
+			} */
+            catch (Exception e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        //Update the progress
+        @Override
+        protected void onProgressUpdate(Integer... values)
+        {
+
+        }
+
+        //after executing the code in the thread
+        @Override
+        protected void onPostExecute(Void result)
+        {
+            int[] ids = { };
+            TextView textView;
+            if (weaverDet != null) {
+                Map weaverDetails = (Map)((Map)weaverDet).get("weaverDetails");
+                Map loomMap = (Map)((Map)weaverDetails).get("loomDetails");
+                Log.v("adsa",""+weaverDetails);
+
+                String[] values = {};
+
+                for (int i=0;i<ids.length;i++){
+                    textView = (TextView) findViewById(ids[i]);
+                    textView.setText(values[i]);
+                }
+
+                if(category_type!=null && category_type.equalsIgnoreCase("SILK")){
+                    TableRow silkrow;
+                    silkrow = (TableRow)findViewById(R.id.silk_row);
+                    silkrow.setVisibility(View.VISIBLE);
+                }else if(category_type!=null && category_type.equalsIgnoreCase("COTTON")){
+                    TableRow c40a,c40b;
+                    c40a = (TableRow)findViewById(R.id.cotton_row_40a);
+                    c40b = (TableRow)findViewById(R.id.cotton_row_40b);
+                    c40a.setVisibility(View.VISIBLE);c40b.setVisibility(View.VISIBLE);
+                }else{
+                    TableRow w10a,w40a,w10b;
+                    w10a = (TableRow)findViewById(R.id.wool_row_10a);
+                    w40a = (TableRow)findViewById(R.id.wool_row_40a);
+                    w10b = (TableRow)findViewById(R.id.wool_row_10b);
+                    w10a.setVisibility(View.VISIBLE);
+                    w40a.setVisibility(View.VISIBLE);w10b.setVisibility(View.VISIBLE);
+                }
+
+                Map loomDetails= (Map)((Map)weaverDetails).get("loomDetails");
+
+                Map silk = (Map)((Map)loomDetails).get("SILK_YARN");
+                Map cotton_40above = (Map)((Map)loomDetails).get("COTTON_40ABOVE");
+                Map cotton_40upto = (Map)((Map)loomDetails).get("COTTON_UPTO40");
+                Map wool_10to39 = (Map)((Map)loomDetails).get("WOOLYARN_10STO39NM");
+                Map wool_40above = (Map)((Map)loomDetails).get("WOOLYARN_40SNMABOVE");
+                Map wool_10below = (Map)((Map)loomDetails).get("WOOLYARN_BELOW10NM");
+
+                int[] loom_ids = {R.id.c40a,R.id.c40an,R.id.c40ae,R.id.c40ab,R.id.c40au,
+                        R.id.c40u,R.id.c40un,R.id.c40ue,R.id.c40ub,R.id.c40uu,
+                        R.id.silk,R.id.silkn,R.id.silke,R.id.silkb,R.id.silku,
+                        R.id.w10a,R.id.w10an,R.id.w10ae,R.id.w10ab,R.id.w10au,
+                        R.id.w40a,R.id.w40an,R.id.w40ae,R.id.w40ab,R.id.w40au,
+                        R.id.w10b,R.id.w10bn,R.id.w10be,R.id.w10bb,R.id.w10bu};
+                String[] loom_values={""+cotton_40above.get("description"),""+cotton_40above.get("loomQty"),""+cotton_40above.get("loomQuota"),""+cotton_40above.get("avlQuota"),""+cotton_40above.get("usedQuota"),
+                        ""+cotton_40upto.get("description"),""+cotton_40upto.get("loomQty"),""+cotton_40upto.get("loomQuota"),""+cotton_40upto.get("avlQuota"),""+cotton_40upto.get("usedQuota"),
+                        ""+silk.get("description"),""+silk.get("loomQty"),""+silk.get("loomQuota"),""+silk.get("avlQuota"),""+silk.get("usedQuota"),
+                        ""+wool_10to39.get("description"),""+wool_10to39.get("loomQty"),""+wool_10to39.get("loomQuota"),""+wool_10to39.get("avlQuota"),""+wool_10to39.get("usedQuota"),
+                        ""+wool_40above.get("description"),""+wool_40above.get("loomQty"),""+wool_40above.get("loomQuota"),""+wool_40above.get("avlQuota"),""+wool_40above.get("usedQuota"),
+                        ""+wool_10below.get("description"),""+wool_10below.get("loomQty"),""+wool_10below.get("loomQuota"),""+wool_10below.get("avlQuota"),""+wool_10below.get("usedQuota")};
+                for (int i=0;i<loom_ids.length;i++){
+                    textView = (TextView) findViewById(loom_ids[i]);
+                    textView.setText(loom_values[i]);
+                }
+
+
+            }
+        }
+    }
+}

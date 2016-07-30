@@ -81,7 +81,7 @@ public class DrawerCompatActivity extends AppCompatActivity implements Navigatio
 
         profileName.setText(prefs.getString(MainActivity.USER_FULLNAME, "User Name"));
 
-        String contact = prefs.getString(MainActivity.USER_MOBILE, "");
+        String contact = prefs.getString(MainActivity.USER_PASSBOOK, "");
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             contactNumber.setText(String.format(getResources().getString(R.string.text_contactnum), PhoneNumberUtils.formatNumber(contact,"IN")));
         }else{

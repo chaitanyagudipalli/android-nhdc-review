@@ -17,9 +17,13 @@
 package in.vasista.vsales;
 
 import android.app.FragmentManager;
+import android.app.IntentService;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ProgressBar;
 
 import java.text.SimpleDateFormat;
@@ -29,6 +33,7 @@ import java.util.List;
 import in.vasista.nhdc.R;
 import in.vasista.vsales.db.IndentsDataSource;
 import in.vasista.vsales.indent.Indent;
+import in.vasista.vsales.indent.IndentCreationActivity;
 import in.vasista.vsales.indent.IndentListFragment;
 import in.vasista.vsales.sync.ServerSync;
 
@@ -53,6 +58,7 @@ public class IndentActivity extends DashboardAppCompatActivity
  */
 //private MenuItem menuItem;
 ProgressBar progressBar;
+	FloatingActionButton fab;
 protected void onCreate(Bundle savedInstanceState) 
 {
     super.onCreate(savedInstanceState);
@@ -61,6 +67,21 @@ protected void onCreate(Bundle savedInstanceState)
 	setContentChildView(R.layout.indent_layout);
 
 	setSalesDashboardTitle(R.string.title_feature1_plurer);
+
+	fab = (FloatingActionButton) findViewById(R.id.fab);
+	fab.show();
+	//fab.setImageResource(R.drawable.title_upload);
+
+	fab.setOnClickListener(new View.OnClickListener() {
+		@Override
+		public void onClick(View view) {
+			Intent intent = new Intent(IndentActivity.this,IndentCreationActivity.class);
+			// editMode = true;
+			invalidateOptionsMenu();
+			//fab.hide();
+			startActivity(intent);
+		}
+	});
 }
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -112,7 +133,7 @@ protected void onResume ()
 	   serverSync.fetchActiveIndents(null, progressBar, indentListFragment);
    }
    datasource.close();
-   
+
 }
     
 } // end class

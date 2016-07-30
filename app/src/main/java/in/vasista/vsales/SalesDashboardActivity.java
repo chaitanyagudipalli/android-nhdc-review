@@ -155,7 +155,7 @@ public class SalesDashboardActivity extends DrawerCompatActivity  {
 				ImageButton searchButton = (ImageButton) findViewById(R.id.homeSearch);
 				searchButton.setVisibility(View.GONE);
 				Button outletsButton = (Button) findViewById(R.id.home_btn_outlets);
-				outletsButton.setVisibility(View.GONE);
+				//outletsButton.setVisibility(View.GONE);
 			}catch (NullPointerException e){
 				e.printStackTrace();
 			}
@@ -164,7 +164,7 @@ public class SalesDashboardActivity extends DrawerCompatActivity  {
     	    AutoCompleteTextView actv = (AutoCompleteTextView) findViewById(R.id.autoCompleteRetailer); 	     
     	    actv.setVisibility(View.GONE);
     		Button outletsButton = (Button)findViewById(R.id.home_btn_outlets);
-    		outletsButton.setVisibility(View.GONE);     
+    		//outletsButton.setVisibility(View.GONE);
     	    TextView accSum = (TextView) findViewById(R.id.accntSummary); 	     
     	    accSum.setClickable(false);      		
     	}		
@@ -368,13 +368,14 @@ public boolean onCreateOptionsMenu(Menu menu) {
 	}
 	// Click Methods
     public void onClick(View v) {
-    	prefs = PreferenceManager.getDefaultSharedPreferences(this);
-    	String retailerId = prefs.getString("storeId", "");
-        if (!retailerId.isEmpty()) { 
-        	Intent facilityDetailsIntent = new Intent(this, FacilityDetailsActivity.class);
-        	facilityDetailsIntent.putExtra("facilityId", retailerId);
-        	startActivity(facilityDetailsIntent);
-        } 
+		Log.v("ads","asda");
+//    	prefs = PreferenceManager.getDefaultSharedPreferences(this);
+//    	String retailerId = prefs.getString("storeId", "");
+//
+//        if (!retailerId.isEmpty()) {
+//        	Intent facilityDetailsIntent = new Intent(this, WeaverDetailedActivity.class);
+//        	startActivity(facilityDetailsIntent);
+//        }
     } 
     
     
@@ -397,6 +398,9 @@ public boolean onCreateOptionsMenu(Menu menu) {
           case R.id.home_btn_outlets :
                startActivity (new Intent(getApplicationContext(), SupplierActivity.class));
                break;
+			case R.id.home_btn_profile :
+				startActivity (new Intent(getApplicationContext(), WeaverDetailedActivity.class));
+				break;
           default:    
         	   break;    
         }
@@ -405,7 +409,7 @@ public boolean onCreateOptionsMenu(Menu menu) {
     public void cleanupRetailerProducts() {
     	ProductsDataSource productDS = new ProductsDataSource(this);
     	productDS.open();
-    	//productDS.deleteAllSaleProducts();
+    	productDS.deleteAllProducts();
     	productDS.close();    	
     }
 
@@ -438,7 +442,7 @@ public boolean onCreateOptionsMenu(Menu menu) {
     }
     
     void initializeRetailer(String retailerId, boolean fetchProducts) {
-    	SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+    	final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
     	if (retailerId == null) { 
     		retailerId = prefs.getString("storeId", "");
     	}      
@@ -460,37 +464,31 @@ public boolean onCreateOptionsMenu(Menu menu) {
 			// check if Store Name is set in preferences
 			facilityName = prefs.getString("storeName", "");
 		}
-//		accountSummaryView.setText("" + retailerId +
-//				" [" + facilityName +  "] :");
-//		accountSummaryView.setPaintFlags(accountSummaryView.getPaintFlags()| Paint.UNDERLINE_TEXT_FLAG);
+		accountSummaryView.setText(prefs.getString("USER_FULLNAME", ""));
+		accountSummaryView.setPaintFlags(accountSummaryView.getPaintFlags()| Paint.UNDERLINE_TEXT_FLAG);
 
-//		ProgressBar progressBar = (ProgressBar) findViewById(R.id.getDuesProgress);
-//		progressBar.setVisibility(View.VISIBLE);
-		//ServerSync serverSync = new ServerSync(this);
-//		serverSync.getSupplierDues(progressBar, this);
-//		if (fetchProducts) {
-//			cleanupRetailerData();
-//			serverSync.updateProducts(null, progressBar, null);
-//		}
+		accountSummaryView.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				String retailerId = prefs.getString("storeId", "");
+
+				if (!retailerId.isEmpty()) {
+					Intent facilityDetailsIntent = new Intent(SalesDashboardActivity.this, WeaverDetailedActivity.class);
+					startActivity(facilityDetailsIntent);
+				}
+			}
+		});
+		ProgressBar progressBar = (ProgressBar) findViewById(R.id.getDuesProgress);
+		//progressBar.setVisibility(View.VISIBLE);
+		ServerSync serverSync = new ServerSync(this);
+		//serverSync.getWeaverDetails(progressBar, this);
+		if (fetchProducts) {
+			cleanupRetailerData();
+			serverSync.updateProducts(null, progressBar, null);
+		}
     }
     
-    public void updateDues(Map boothDues, Map boothTotalDues) {
-    	if (boothDues != null && boothDues.get("amount") != null) {  
-    		double currentDues = (Double)boothDues.get("amount");
-    		TextView amountView = (TextView)findViewById(R.id.currentDues);
-    		amountView.setText(String.format("Rs %.2f", currentDues));
-    	}
-    	if (boothTotalDues != null && boothTotalDues.get("totalDueAmount") != null) {
-    		double totalDues = (Double)boothTotalDues.get("totalDueAmount");
-    		TextView amountView = (TextView)findViewById(R.id.totalDues);
-    		amountView.setText(String.format("Rs %.2f", totalDues));
-    	}	
-    	/*if (boothTotalDues != null && boothTotalDues.get("fdrAmount") != null) {
-    		double fdrAmount = (Double)boothTotalDues.get("fdrAmount");
-    		TextView amountView = (TextView)findViewById(R.id.fdrAmount);
-    		amountView.setText(String.format("Rs %.2f", fdrAmount));  
-    	}*/
-    }
+
 
 
 }

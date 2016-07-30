@@ -38,12 +38,12 @@
             android:summary="Tenant Id"
             android:key="tenantId"/>	
 		<EditTextPreference
-        	android:title="Store Id"
-            android:summary="Store Id"
+        	android:title="Party Id"
+            android:summary="Party Id"
             android:key="storeId"/>  
 		<EditTextPreference
-        	android:title="Store Name"
-            android:summary="Store Name"
+        	android:title="Party Name"
+            android:summary="Party Name"
             android:key="storeName"/>                         	
 	</PreferenceCategory>
 <!--     <PreferenceCategory	

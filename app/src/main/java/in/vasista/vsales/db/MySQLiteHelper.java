@@ -15,6 +15,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 	  public static final String COLUMN_PRODUCT_DESC = "PRODUCT_DESC";	  
 	  public static final String COLUMN_PRODUCT_PRICE = "PRODUCT_PRICE";
 	  public static final String COLUMN_PRODUCT_CATEGORY_ID = "PRODUCT_CATEGORY_ID";
+	public static final String COLUMN_PRODUCT_PARENT_CATEGORY_ID = "PRODUCT_PARENT_CATEGORY_ID";
 	public static final String COLUMN_PRODUCT_TYPE_ID = "PRODUCT_TYPE_ID";
 	public static final String COLUMN_PRODUCT_QUANTITY_UOM_ID = "PRODUCT_QUANTITY_UOM_ID";
 	public static final String COLUMN_PRODUCT_QUANTITY_INCLUDED = "PRODUCT_QUANTITY_INCLUDED";
@@ -38,12 +39,21 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 	public static final String COLUMN_INDENT_ORDER_TOTAL = "INDENT_ORDER_TOTAL";
 	public static final String COLUMN_INDENT_PAID = "INDENT_PAID";
 	public static final String COLUMN_INDENT_BALANCE = "INDENT_BALANCE";
+	public static final String COLUMN_INDENT_SCHEMECAT = "INDENT_SCHEMECAT";
 
 
 	public static final String TABLE_INDENT_ITEM = "INDENT_ITEM";
 	  public static final String COLUMN_INDENT_ITEM_ID = "_ID";	  
 	  public static final String COLUMN_INDENT_ITEM_QTY = "QTY";
-	  public static final String COLUMN_INDENT_ITEM_UNIT_PRICE = "UNIT_PRICE";		
+	public static final String COLUMN_INDENT_ITEM_REMARKS = "REMARKS";
+	public static final String COLUMN_INDENT_ITEM_BALE_QTY = "BALE_QTY";
+	public static final String COLUMN_INDENT_ITEM_BUNDLE_WEIGHT= "BUNDLE_WEIGHT";
+	public static final String COLUMN_INDENT_ITEM_BUNDLE_UNITPRICE = "BUNDLE_UNITPRICE";
+	public static final String COLUMN_INDENT_ITEM_UOM = "UOM";
+	public static final String COLUMN_INDENT_ITEM_BASICPRICE= "BASICPRICE";
+	public static final String COLUMN_INDENT_ITEM_TAXRATELIST = "TAXRATELIST";
+	public static final String COLUMN_INDENT_ITEM_SERVICECHARGE = "SERVICECHARGE";
+	public static final String COLUMN_INDENT_ITEM_SERVICECHARGE_AMT = "SERVICECHARGE_AMT";
 
 	  public static final String TABLE_ORDER = "ORDER_HEADER";
 	  public static final String COLUMN_ORDER_ID = "ORDER_ID";
@@ -146,13 +156,12 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 	  private static final String DATABASE_CREATE_PRODUCT = "create table "
 	      + TABLE_PRODUCT + " (" + COLUMN_PRODUCT_ID
 	      + " text primary key, " + COLUMN_PRODUCT_NAME
-		  + " text not null, " + COLUMN_PRODUCT_DESC
-		  + " text, " + COLUMN_PRODUCT_INRENAL_NAME
+		  + " text not null, "  + COLUMN_PRODUCT_INRENAL_NAME
 	      + " text, " + COLUMN_PRODUCT_BRAND_NAME
-	      + " text, " + COLUMN_PRODUCT_PRICE
-	      + " real, "+ COLUMN_PRODUCT_CATEGORY_ID
-	      + " text,"+ COLUMN_PRODUCT_TYPE_ID +" text," + COLUMN_PRODUCT_QUANTITY_UOM_ID +" text,"+
-			  COLUMN_PRODUCT_QUANTITY_INCLUDED+" real"
+	      + " text, "+ COLUMN_PRODUCT_DESC
+			  + " text, " +COLUMN_PRODUCT_TYPE_ID +" text," + COLUMN_PRODUCT_QUANTITY_UOM_ID +" text,"+ COLUMN_PRODUCT_PRICE
+			  + " real, "+ COLUMN_PRODUCT_QUANTITY_INCLUDED+" real," + COLUMN_PRODUCT_CATEGORY_ID
+			  + " text, "+ COLUMN_PRODUCT_PARENT_CATEGORY_ID+" text"
 			  +");";
 
 
@@ -173,15 +182,26 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 			  + " text, " + COLUMN_INDENT_ORDER_TOTAL
 			  + " real not null, " + COLUMN_INDENT_PAID
 		      + " real, " + COLUMN_INDENT_BALANCE
-		      + " real);";
-	  
+		      + " real, " + COLUMN_INDENT_SCHEMECAT + " text" +
+			  ");";
+
+
 	  private static final String DATABASE_CREATE_INDENT_ITEM = "create table "
 		      + TABLE_INDENT_ITEM + " (" + COLUMN_INDENT_ITEM_ID
 		      + " integer primary key autoincrement, " + COLUMN_INDENT_ID
 		      + " integer not null, " + COLUMN_PRODUCT_ID
-		      + " text not null, " + COLUMN_INDENT_ITEM_QTY			      
-		      + " integer not null, " + COLUMN_INDENT_ITEM_UNIT_PRICE	      
-		      + " real not null);";	  
+		      + " text not null, " + COLUMN_INDENT_ITEM_QTY
+		      + " integer not null, "
+			  + COLUMN_INDENT_ITEM_REMARKS +" text, "
+			  + COLUMN_INDENT_ITEM_BALE_QTY + " real, "
+			  + COLUMN_INDENT_ITEM_BUNDLE_WEIGHT + " real, "
+			  + COLUMN_INDENT_ITEM_BUNDLE_UNITPRICE + " real, "
+			  + COLUMN_INDENT_ITEM_UOM + " text,"
+			  + COLUMN_INDENT_ITEM_BASICPRICE + " real,"
+			  + COLUMN_INDENT_ITEM_TAXRATELIST + " text,"
+			  + COLUMN_INDENT_ITEM_SERVICECHARGE + " real,"
+			  + COLUMN_INDENT_ITEM_SERVICECHARGE_AMT + " real "
+			  + ");";
 	  
 	  private static final String DATABASE_CREATE_ORDER = "create table "
 		      + TABLE_ORDER + " (" + COLUMN_ORDER_ID

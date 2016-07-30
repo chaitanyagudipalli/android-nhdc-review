@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
     Copyright 2011 Wglxy.com
 
     Licensed under the Apache License, Version 2.0 (the "License");
@@ -30,7 +29,7 @@
     <string name="description_feature5">Outlets</string>
     <string name="description_feature6">Feature 6</string>
 
-    <string name="title_about">About Milkosoft</string>
+    <string name="title_about">About NHDC</string>
     <string name="title_home">Home</string>
     <string name="title_search">Search</string>
     <string name="title_feature1">Indent</string>
@@ -38,7 +37,7 @@
     <string name="title_feature2">Orders</string>
     <string name="title_feature3">Payments</string>
     <string name="title_feature4">Catalog</string>
-    <string name="title_feature5">Outlets</string>
+    <string name="title_feature5">Suppliers</string>
     <string name="title_sales">Sales</string>
     <string name="title_hr">HR</string>
     <string name="title_employeeprofile">My Profile</string>
@@ -73,56 +72,55 @@
         module provides access to key HR data relevant to an employee. The inventory module provides a convenient way 
         for users to track the latest stock position for all materials available in stores</string>
 
-    
+
     <string name="search_intro">Content for the Search page goes here.</string>
 
     <string name="action_settings">Settings</string>
-    
-        <string name="menu_preferences">Settings</string>
-    
+
+    <string name="menu_preferences">Settings</string>
+
     <string name="column_product_id_header">Product Code</string>
     <string name="column_product_name_header">Name</string>
     <string name="column_product_description_header">Description</string>
-    <string name="column_product_price_header">Price (Rs)</string>
-    <string name="column_product_mrp_price_header">MRP (Rs)</string>
-    
-    
+    <string name="column_product_category_header">Category</string>
+
+
     <string name="column_order_id_header">Order Id</string>
     <string name="column_order_date_header">Order Date</string>
     <string name="column_order_supply_header">Supply</string>
     <string name="column_order_total_header">Amount (Rs)</string>
-        
-    <string name="column_orderitem_qty_header">Qty (pkts)</string>
-    <string name="column_orderitem_amount_header">Amount (Rs)</string>
+
+    <string name="column_orderitem_qty_header">Quantity</string>
+    <string name="column_orderitem_amount_header">Unit Price (Rs)</string>
 
     <string name="add_product_hint">Select Product</string>
     <string name="add_product_qty_hint">Qty (pkts)</string>
-    
+
     <string name="column_indent_id_header">Id</string>
-    <string name="column_indent_date_header">Supply Date</string>
+    <string name="column_indent_date_header">Date</string>
     <string name="column_indent_status_header">Status</string>
-    <string name="column_indent_supply_header">Supply</string>
-    <string name="column_indent_total_header">Amount (Rs)</string>    
-    
+    <string name="column_indent_supply_header">Tally Ref No</string>
+    <string name="column_indent_total_header">Amount (Rs)</string>
+
     <string name="column_payment_id_header">Id</string>
     <string name="column_payment_date_header">Payment Date</string>
     <string name="column_payment_method_header">Method</string>
-    <string name="column_payment_amount_header">Amount (Rs)</string>    
-    
+    <string name="column_payment_amount_header">Amount (Rs)</string>
+
     <string name="column_facility_id_header">Code</string>
     <string name="column_facility_name_header">Name</string>
     <string name="column_facility_category_header">Category</string>
-    <string name="column_facility_route_header">Route</string>       
-    <string name="column_facility_phone_header">Phone</string>    
-    
+    <string name="column_facility_route_header">Route</string>
+    <string name="column_facility_phone_header">Phone</string>
+
     <string name="column_employee_id_header">Code</string>
     <string name="column_employee_name_header">Name</string>
     <string name="column_employee_dept_header">Department</string>
-    <string name="column_employee_position_header">Position</string>       
+    <string name="column_employee_position_header">Position</string>
 
-    <string name="column_payhead_name_header">Payhead</string>       
-    <string name="column_payhead_amount_header">Amount</string>   
-    
+    <string name="column_payhead_name_header">Payhead</string>
+    <string name="column_payhead_amount_header">Amount</string>
+
     <string name="column_leave_type_header">Leave Type</string>
     <string name="column_leave_status_header">Status</string>
     <string name="column_leave_fromdate_header">From</string>
@@ -131,43 +129,108 @@
     <string name="column_attendance_intime_header">In Time</string>
     <string name="column_attendance_outtime_header">Out Time</string>
     <string name="column_attendance_duration_header">Duration (hrs)</string>
-    
-    
+
+
     <style name="ButtonText">
-	    <item name="android:layout_width">fill_parent</item>
-	    <item name="android:layout_height">wrap_content</item>
-	    <item name="android:textColor">#ffffff</item>
-	    <item name="android:gravity">center</item>
-	    <item name="android:layout_margin">3dp</item>
-	    <item name="android:textSize">30dp</item>
-	    <item name="android:textStyle">bold</item>
-	    <item name="android:shadowColor">#000000</item>
-	    <item name="android:shadowDx">1</item>
-	    <item name="android:shadowDy">1</item>
-	    <item name="android:shadowRadius">2</item>
-	</style>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_margin">3dp</item>
+        <item name="android:textSize">30dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:shadowColor">#000000</item>
+        <item name="android:shadowDx">1</item>
+        <item name="android:shadowDy">1</item>
+        <item name="android:shadowRadius">2</item>
+    </style>
+
     <style name="TotalText">
-	    <item name="android:layout_width">fill_parent</item>
-	    <item name="android:layout_height">wrap_content</item>
-	    <item name="android:textColor">#ffffff</item>
-	    <item name="android:gravity">center</item>
-	    <item name="android:layout_margin">3dp</item>
-	    <item name="android:textSize">25dp</item>
-	    <item name="android:textStyle">bold</item>
-	    <item name="android:shadowColor">#000000</item>
-	    <item name="android:shadowDx">1</item>
-	    <item name="android:shadowDy">1</item>
-	    <item name="android:shadowRadius">2</item>
-	</style>	
-	
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_margin">3dp</item>
+        <item name="android:textSize">25dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:shadowColor">#000000</item>
+        <item name="android:shadowDx">1</item>
+        <item name="android:shadowDy">1</item>
+        <item name="android:shadowRadius">2</item>
+    </style>
+
     <string-array name="list_of_retailers">
-      <item >B80504</item>
-      <item >B80604</item>
-      <item >B80902</item>
+        <item>B80504</item>
+        <item>B80604</item>
+        <item>B80902</item>
     </string-array>
     <string name="title_activity_main_app_compact">MainAppCompactActivity</string>
     <string name="title_refresh">Refresh</string>
     <string name="title_edit">Edit</string>
     <string name="title_done">Done</string>
     <string name="title_upload">Upload</string>
+
+    <string name="dialog_indent_milk_message">Quantity in Pkts (Please enter in multiple of %1$s)</string>
+    <string name="title_inventory">Inventory</string>
+
+    <!--Location-->
+    <string name="action_location">Location</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="record_note">Record Note</string>
+    <string name="note_description">Note description</string>
+    <string name="note_title">Note title</string>
+    <string name="title_menu_synclocaltion">Sync locations</string>
+    <string name="exception_location">Please enable your location.</string>
+    <string name="saved_location">Note recorded. Please sync location with server.</string>
+    <string name="synced_location">Already Synced. Please record new Note.</string>
+    <string name="sync_success_location">Successfully synced with server.</string>
+    <string name="sync_failed_location">Sync failed. Please contact admin.</string>
+
+    <!-- Navigation Drawer -->
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_maps">Map</string>
+
+    <string name="date_format">dd-MMM-yyyy  hh:mm a</string>
+    <string name="server_date_format">yyyy-MM-dd HH:mm:ss</string>
+    <string name="sync_map_locations">Locations updated</string>
+    <string name="action_filter">Filter</string>
+
+    <string name="save_map_sync"><![CDATA[Save & Sync]]></string>
+    <string name="text_map_switch">Map</string>
+    <string name="text_map_filter_clear">Clear filter</string>
+
+    <string name="text_map_infowindow">%1$d. %2$s</string>
+    <string name="text_contactnum">Passbook :%1$s</string>
+    <string name="indent_edit_alert_message">Milk in crates and Product in Pkts</string>
+
+
+    <string name="Rs">\u20B9</string>
+    <string name="arrows">&lt;-&gt;</string>
+    <string name="title_analytica_sales">Sales Analytics</string>
+
+    <string name="present_password">Current Password</string>
+    <string name="new_password">New Password</string>
+    <string name="verify_new_password">Verify New Password</string>
+
+    <string name="column_analytic_sales_qty_header">Qty(Pkts)</string>
+    <string name="supplier_roletypeid">Role type</string>
+    <string name="tally_ref_no">Tally Ref No.</string>
+    <string name="order_date">Indent Date</string>
+    <string name="order_id">Indent Id</string>
+    <string name="order_number">Indent Number</string>
+    <string name="generated_po">Generated PO</string>
+    <string name="po_order">PO Order</string>
+    <string name="po_sequence_no">PO Sequence No.</string>
+    <string name="supplier_party_id">Supplier Party ID</string>
+    <string name="store_name">Store Name</string>
+    <string name="supplier_name">Supplier Name</string>
+    <string name="status_id">Status ID</string>
+    <string name="order_total">Indent Total</string>
+    <string name="paid_ammount">Paid Ammount</string>
+    <string name="balance_ammount">Balance Ammount</string>
+    <string name="indent_details">Indent Details</string>
 </resources>

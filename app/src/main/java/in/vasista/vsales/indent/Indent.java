@@ -2,6 +2,7 @@ package in.vasista.vsales.indent;
 
 import java.util.Date;
 
+import in.vasista.vsales.IndentActivity;
 import in.vasista.vsales.db.MySQLiteHelper;
 
 public class Indent {
@@ -14,9 +15,10 @@ public class Indent {
 	String statusId;
 
 	double orderTotal, paidAmt, balance;
+	String schemeType;
 
 
-	public Indent(int id, String tallyRefNo, String POorder, String poSquenceNo, boolean isgeneratedPO, String supplierPartyId, String storeName, String supplierPartyName, String orderNo, String orderId, Date orderDate, String statusId, double orderTotal, double paidAmt, double balance) {
+	public Indent(int id, String tallyRefNo, String POorder, String poSquenceNo, boolean isgeneratedPO, String supplierPartyId, String storeName, String supplierPartyName, String orderNo, String orderId, Date orderDate, String statusId, double orderTotal, double paidAmt, double balance,String schemeType) {
 		this.id = id;
 		this.tallyRefNo = tallyRefNo;
 		this.POorder = POorder;
@@ -32,6 +34,12 @@ public class Indent {
 		this.orderTotal = orderTotal;
 		this.paidAmt = paidAmt;
 		this.balance = balance;
+		this.schemeType = schemeType;
+	}
+
+
+	public String getSchemeType() {
+		return schemeType;
 	}
 
 	public void setId(int id) {
@@ -41,6 +49,8 @@ public class Indent {
 	public int getId() {
 		return id;
 	}
+
+
 
 	public Date getOrderDate() {
 		return orderDate;

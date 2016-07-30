@@ -31,7 +31,7 @@ public class MainActivity extends DrawerCompatActivity  {
 	public static final String LOCATION_DB_PERM = "MOB_LOCATION_VIEW";
 
 	public static final String USER_FULLNAME = "USER_FULLNAME";
-	public static final String USER_MOBILE = "USER_MOBILE";
+	public static final String USER_PASSBOOK = "USER_PASSBOOK";
     
     
 	private Map facilityMap = new HashMap<String, Facility> ();
