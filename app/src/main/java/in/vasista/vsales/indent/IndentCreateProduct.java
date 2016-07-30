@@ -313,7 +313,7 @@ public class IndentCreateProduct extends DashboardAppCompatActivity {
 
                 Map loomDetails= (Map)((Map)weaverDetails).get("loomDetails");
 
-                Map silk = (Map)((Map)loomDetails).get("COTTON_40ABOVE");
+                Map silk = (Map)((Map)loomDetails).get("SILK_YARN");
                 Map cotton_40above = (Map)((Map)loomDetails).get("COTTON_40ABOVE");
                 Map cotton_40upto = (Map)((Map)loomDetails).get("COTTON_UPTO40");
                 Map wool_10to39 = (Map)((Map)loomDetails).get("WOOLYARN_10STO39NM");
