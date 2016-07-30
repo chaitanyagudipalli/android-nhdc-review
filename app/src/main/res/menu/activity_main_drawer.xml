@@ -9,8 +9,7 @@
 
 
     </group>
-    <group android:id="@+id/group_changePassword"
-        android:visible="false">
+    <group android:id="@+id/group_changePassword">
         <item
             android:id="@+id/action_change_password"
             android:icon="@drawable/ic_settings_24dp"
