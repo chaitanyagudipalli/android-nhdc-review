@@ -119,7 +119,7 @@ public class IndentItemsListFragment extends ListFragment{
 				final IndentItemNHDC item = (IndentItemNHDC) listView
 						.getItemAtPosition(position);
 				try {
-					if (!(datasource.getIndentDetails((int) (indentId)).getStatusId().equalsIgnoreCase("NOT_UPLOADED"))) {
+					if (!(datasource.getIndentDetails((int) (indentId)).getStatusId().equalsIgnoreCase("Not Uploaded"))) {
 						return;
 					}else {
 						return;

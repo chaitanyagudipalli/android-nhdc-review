@@ -58,7 +58,7 @@ public class IndentCreateProduct extends DashboardAppCompatActivity implements V
             bundleWeight = "", bundleUnitPrice = "", yarnUOM = "", basicPrice = "",
             serviceCharge = "",serviceChargeAmt = "";
 
-    String supplierPartyId = "", schemeType = "", category_type = "";
+    String supplierPartyId = "", schemeType = "", category_type = "", total_amount = "";
 
     LinearLayout cottonLayout;
 
@@ -181,6 +181,8 @@ public class IndentCreateProduct extends DashboardAppCompatActivity implements V
                 bundleWeight = ((EditText)findViewById(R.id.bundlewt)).getText().toString();
                 bundleUnitPrice = ((EditText)findViewById(R.id.bundleUnitPrice)).getText().toString();
                 basicPrice = ((EditText)findViewById(R.id.unitprice)).getText().toString();
+                total_amount = ((TextView) findViewById(R.id.totalAmt)).getText().toString();
+
                 HashMap<String,String> hm = new HashMap<String, String>();
                 hm.put("productId",productId);
                 hm.put("quantity",quantity);
@@ -194,16 +196,22 @@ public class IndentCreateProduct extends DashboardAppCompatActivity implements V
                 hm.put("serviceChargeAmt",serviceChargeAmt);
 
 
-                IndentItemNHDC IN = new IndentItemNHDC(productId,quantity, remarks, baleQuantity, bundleWeight, bundleUnitPrice, yarnUOM, basicPrice, serviceCharge, serviceChargeAmt);
+                IndentItemNHDC IN = new IndentItemNHDC(productId,quantity, remarks, baleQuantity, bundleWeight, bundleUnitPrice, yarnUOM, basicPrice, serviceCharge, serviceChargeAmt,total_amount);
                 list.add(hm);
                 datasource = new IndentsDataSource(IndentCreateProduct.this);
                 datasource.open();
                 long id = datasource.insertIndentItem(i.getLongExtra("indent_id",0),IN);
                 IN.setId(id);
+
+                datasource.updateTotalAmount((int)i.getLongExtra("indent_id",0),Double.parseDouble(total_amount));
+
                 datasource.close();
 
                 prefEditor.putInt("IndentId",(int)i.getLongExtra("indent_id",0));
                 prefEditor.apply();
+
+                InputMethodManager in = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                in.hideSoftInputFromWindow(addIndent.getWindowToken(), 0);
 
                 finish();
             }

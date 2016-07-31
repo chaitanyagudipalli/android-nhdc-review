@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
@@ -21,6 +22,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
+import android.widget.TableRow;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -39,6 +41,7 @@ import in.vasista.vsales.db.ProductsDataSource;
 import in.vasista.vsales.db.SupplierDataSource;
 import in.vasista.vsales.supplier.Supplier;
 import in.vasista.vsales.sync.ServerSync;
+import in.vasista.vsales.sync.xmlrpc.XMLRPCApacheAdapter;
 
 public class IndentCreationActivity extends DashboardAppCompatActivity implements AdapterView.OnItemSelectedListener {
 
@@ -49,14 +52,16 @@ public class IndentCreationActivity extends DashboardAppCompatActivity implement
     List<HashMap> list;
     Button addIndent,submitindent;
 
-    String supplierPartyId = "", schemeType = "", category_type = "",billingType = "Direct";
-    long indent_id;
+    String supplierPartyId = "", schemeType = "", category_type = "",billingType = "Direct", supplierName = "";
+    long indent_id =0;
 
     FloatingActionButton fab;
 
     IndentsDataSource datasource;
     SharedPreferences.Editor prefEditor;
 
+    TextView indentTotal;
+    Object weaverDet;
     SharedPreferences prefs;
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -68,13 +73,14 @@ public class IndentCreationActivity extends DashboardAppCompatActivity implement
         fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.hide();
         //fab.setImageResource(R.drawable.title_upload);
-
+        new LoadViewTask().execute();
         prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         prefEditor = prefs.edit();
 
         prefEditor.putInt("IndentId",0);
         prefEditor.apply();
 
+        indentTotal = (TextView) findViewById(R.id.indentTotal);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -99,7 +105,7 @@ public class IndentCreationActivity extends DashboardAppCompatActivity implement
 
                 Date supplyDate = new Date();
 
-                Indent indent =new Indent(0,"","","",false,supplierPartyId,"","","","",supplyDate,"NOT_UPLOADED",0.0,0.0,0.0,schemeType);
+                Indent indent =new Indent(0,"","","",false,supplierPartyId,"",supplierName,"","",supplyDate,"Not Uploaded",0.0,0.0,0.0,schemeType);
                 datasource = new IndentsDataSource(IndentCreationActivity.this);
                 datasource.open();
                 indent_id = datasource.insertIndent(indent);
@@ -196,6 +202,7 @@ public class IndentCreationActivity extends DashboardAppCompatActivity implement
                 Supplier supplier =  (Supplier)parent.getItemAtPosition(position);
                 actv.setText(supplier.getName());
                 supplierPartyId =supplier.getId();
+                supplierName = supplier.getName();
             }
 
         });
@@ -275,9 +282,11 @@ public class IndentCreationActivity extends DashboardAppCompatActivity implement
                     hm.put("serviceCharge", indentItemNHDC.getServiceCharge());
                     hm.put("serviceChargeAmt", indentItemNHDC.getServiceChargeAmt());
 
-                    uploadIndentAction(item);
+
                     list.add(hm);
                 }
+
+                uploadIndentAction(item);
 
 
                 return true;
@@ -333,5 +342,92 @@ public class IndentCreationActivity extends DashboardAppCompatActivity implement
     protected void onResume() {
         super.onResume();
 
+        if(indent_id != 0){
+            datasource = new IndentsDataSource(IndentCreationActivity.this);
+            datasource.open();
+            Indent i = datasource.getIndentDetails((int)indent_id);
+            datasource.close();
+            indentTotal.setText(""+i.getOrderTotal());
+        }
+
+    }
+
+    //To use the AsyncTask, it must be subclassed
+    private class LoadViewTask extends AsyncTask<Void, Integer, Void>
+    {
+        //Before running code in separate thread
+        @Override
+        protected void onPreExecute()
+        {
+
+        }
+
+        //The code to be executed in a background thread.
+        @Override
+        protected Void doInBackground(Void... params)
+        {
+			/* This is just a code that delays the thread execution 4 times,
+			 * during 850 milliseconds and updates the current progress. This
+			 * is where the code that is going to be executed on a background
+			 * thread must be placed.
+			 */
+
+
+            try
+            {
+                //Get the current thread's token
+                synchronized (this)
+                {
+                    Map paramMap = new HashMap();
+                    prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+
+
+                    String partyId = prefs.getString("storeId", "");
+                    paramMap.put("partyId", partyId);
+                    paramMap.put("effectiveDate", (new Date()).getTime());
+
+                    XMLRPCApacheAdapter adapter = new XMLRPCApacheAdapter(getBaseContext());
+                    weaverDet = adapter.callSync("getWeaverDetails", paramMap);
+
+
+
+                }
+            }
+/*			catch (InterruptedException e)
+			{
+				e.printStackTrace();
+			} */
+            catch (Exception e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        //Update the progress
+        @Override
+        protected void onProgressUpdate(Integer... values)
+        {
+
+        }
+
+        //after executing the code in the thread
+        @Override
+        protected void onPostExecute(Void result)
+        {
+            int[] ids = { };
+            TextView textView;
+            if (weaverDet != null) {
+                Map weaverDetails = (Map)((Map)weaverDet).get("weaverDetails");
+                Map BranchMapList = (Map)(weaverDetails).get("customerBranchMap");
+
+               // Log.v("asda",""+BranchMapList)
+//                for (int i=0; i < BranchMapList.length; ++i) {
+//                    //indentItemNHDCs = new ArrayList<IndentItemNHDC>();
+//                    Map indentMap = (Map) BranchMapList[i];
+//                    Log.v("Key",""+indentMap.get("productStoreId"));
+//                }
+
+            }
+        }
     }
 }

@@ -53,7 +53,7 @@ public class IndentDetailed extends DashboardAppCompatActivity {
             textView.setText(values[i]);
         }
 
-        if(indent.getStatusId().equalsIgnoreCase("NOT_UPLOADED")) {
+        if(indent.getStatusId().equalsIgnoreCase("Not Uploaded")) {
             editMode = true;
             invalidateOptionsMenu();
         }else if(indent.getStatusId().equalsIgnoreCase("CREATED")){
@@ -124,11 +124,42 @@ public class IndentDetailed extends DashboardAppCompatActivity {
                 finish();
                 return true;
             case R.id.action_indent_cancel:
-                ServerSync serverSync = new ServerSync(IndentDetailed.this);
-                serverSync.cancelIndent(item,null,indent.getOrderId(),IndentDetailed.this);
+                cancelIndentAction(item);
                 return true;
         }
         return false;
+    }
+
+    public void cancelIndentAction(final MenuItem menuItem){
+        AlertDialog.Builder alert = new AlertDialog.Builder(
+                IndentDetailed.this);
+        alert.setTitle("Cancel Indent?");
+        alert.setPositiveButton("Ok",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog,
+                                        int whichButton) {
+                        ProgressBar progressBar = null;
+                        if(menuItem != null) {
+                            menuItem.setActionView(R.layout.progressbar);
+//						ProgressBar progressBar = (ProgressBar) listView.getRootView().findViewById(R.id.indentUploadProgress);
+//						progressBar.setVisibility(View.VISIBLE);
+                            progressBar = (ProgressBar) menuItem.getActionView().findViewById(R.id.menuitem_progress);
+                        }
+                        ServerSync serverSync = new ServerSync(IndentDetailed.this);
+                        serverSync.cancelIndent(menuItem,null,indent.getOrderId(),IndentDetailed.this);
+
+                    }
+                });
+
+        alert.setNegativeButton("Cancel",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog,
+                                        int whichButton) {
+                        // Canceled.
+
+                    }
+                });
+        alert.show();
     }
 
     public void navtolistOfIndents(){

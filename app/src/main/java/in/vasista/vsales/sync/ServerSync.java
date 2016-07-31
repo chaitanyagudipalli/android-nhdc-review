@@ -364,7 +364,7 @@ public class ServerSync {
 											Map productMap = (Map)productsMap[j];
 											IndentItemNHDC indentItemNHDC = new IndentItemNHDC((String)productMap.get("productId"),
 													""+productMap.get("quantity"),(String)productMap.get("itemDescription"),
-													"","",""+productMap.get("unitPrice"),"","","","");
+													"","",""+productMap.get("unitPrice"),"","","","","");
 											indentDataSource.insertIndentItem(indent_id,indentItemNHDC);
 										}
 
@@ -709,7 +709,7 @@ public class ServerSync {
 						}
 						menuItem.setActionView(null);
 					}
-					Toast.makeText( context, "Updated outlets!", Toast.LENGTH_SHORT ).show();
+					Toast.makeText( context, "Updated suppliers!", Toast.LENGTH_SHORT ).show();
 				}
 			});
 		}

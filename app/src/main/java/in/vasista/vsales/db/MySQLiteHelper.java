@@ -54,6 +54,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 	public static final String COLUMN_INDENT_ITEM_TAXRATELIST = "TAXRATELIST";
 	public static final String COLUMN_INDENT_ITEM_SERVICECHARGE = "SERVICECHARGE";
 	public static final String COLUMN_INDENT_ITEM_SERVICECHARGE_AMT = "SERVICECHARGE_AMT";
+	public static final String COLUMN_INDENT_ITEM_TOTAL_AMT = "TOTAL_AMT";
 
 	  public static final String TABLE_ORDER = "ORDER_HEADER";
 	  public static final String COLUMN_ORDER_ID = "ORDER_ID";
@@ -200,7 +201,8 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 			  + COLUMN_INDENT_ITEM_BASICPRICE + " real,"
 			  + COLUMN_INDENT_ITEM_TAXRATELIST + " text,"
 			  + COLUMN_INDENT_ITEM_SERVICECHARGE + " real,"
-			  + COLUMN_INDENT_ITEM_SERVICECHARGE_AMT + " real "
+			  + COLUMN_INDENT_ITEM_SERVICECHARGE_AMT + " real, "
+			  + COLUMN_INDENT_ITEM_TOTAL_AMT + " real "
 			  + ");";
 	  
 	  private static final String DATABASE_CREATE_ORDER = "create table "
