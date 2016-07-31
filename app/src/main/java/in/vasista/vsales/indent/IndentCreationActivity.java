@@ -73,7 +73,7 @@ public class IndentCreationActivity extends DashboardAppCompatActivity implement
         fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.hide();
         //fab.setImageResource(R.drawable.title_upload);
-        new LoadViewTask().execute();
+        //new LoadViewTask().execute();
         prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         prefEditor = prefs.edit();
 
