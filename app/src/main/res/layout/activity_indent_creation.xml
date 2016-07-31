@@ -50,16 +50,26 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/scheme" />
         </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:id="@+id/autoCompleteRetailerL"
+            android:orientation="vertical"
+            android:layout_marginTop="15dip"
+            android:layout_below="@+id/linearLayout2"
+            android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"
+            android:text="Select Supplier"/>
         <AutoCompleteTextView
             android:id="@+id/autoCompleteRetailer"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="15dip"
             android:completionThreshold="1"
             android:ems="10"
             android:hint="Select Supplier"
-            android:layout_below="@+id/linearLayout2"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_alignParentRight="true"
@@ -67,6 +77,7 @@
             >
 
         </AutoCompleteTextView>
+        </LinearLayout>
 
         <Button
             android:id="@+id/submitindent"
@@ -74,10 +85,43 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dip"
-            android:layout_below="@+id/autoCompleteRetailer"
+            android:layout_below="@+id/autoCompleteRetailerL"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true" />
 
+        <TableLayout
+            android:padding="10dip"
+            android:layout_below="@+id/submitindent"
+            android:shrinkColumns="2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TableRow android:paddingTop="5dip"
+                android:paddingBottom="5dip">
+                <TextView
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:layout_width="wrap_content"
+                    style="@style/TabeRowTitle"
+                    android:textColor="@color/colorAccent"
+                    android:layout_margin="2dp"
+                    android:text="Indent total"/>
+                <TextView
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="@color/colorAccent"
+                    android:layout_marginRight="10dp"
+                    android:text=":"/>
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    style="@style/TabeRowValue"
+                    android:layout_margin="2dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorAccent"
+                    android:id="@+id/indentTotal"/>
+            </TableRow>
+        </TableLayout>
 
     </RelativeLayout>
     <fragment
