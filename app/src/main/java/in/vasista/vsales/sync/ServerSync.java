@@ -10,6 +10,8 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.google.android.gms.location.DetectedActivity;
+
 import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -26,6 +28,7 @@ import in.vasista.location.MapsActivity;
 import in.vasista.nhdc.R;
 import in.vasista.vsales.EmployeeDetailsActivity;
 import in.vasista.vsales.HRDashboardActivity;
+import in.vasista.vsales.IndentDetailed;
 import in.vasista.vsales.LeaveActivity;
 import in.vasista.vsales.MainActivity;
 import in.vasista.vsales.SalesDashboardActivity;
@@ -257,7 +260,52 @@ public class ServerSync {
 			}
 			Toast.makeText( context, "Update product prices failed: " + e, Toast.LENGTH_SHORT ).show();	    		    			
 		}	
-	}	
+	}
+
+	public void cancelIndent(final MenuItem menuItem, ProgressBar progressBar, String orderId, final IndentDetailed indentDetailed){
+		Map paramMap = new HashMap();
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+		String storeId = prefs.getString("storeId", "");
+		paramMap.put("partyId", storeId);
+		paramMap.put("orderId", orderId);
+
+		try {
+			XMLRPCApacheAdapter adapter = new XMLRPCApacheAdapter(context);
+			adapter.call("cancelIndent", paramMap, progressBar, new XMLRPCMethodCallback() {
+				public void callFinished(Object result, ProgressBar progressBar) {
+					if (result != null) {
+
+					}
+					if (progressBar != null) {
+						progressBar.setVisibility(View.INVISIBLE);
+
+					}
+					if(menuItem !=null){
+						if (progressBar != null) {
+							progressBar.setVisibility(View.VISIBLE);
+						}
+						menuItem.setActionView(null);
+					}
+					indentDetailed.navtolistOfIndents();
+
+				}
+			});
+		}
+		catch (Exception e) {
+			Log.e(module, "Exception: ", e);
+			if (progressBar != null) {
+				progressBar.setVisibility(View.INVISIBLE);
+			}
+			if(menuItem !=null){
+				if (progressBar != null) {
+					progressBar.setVisibility(View.VISIBLE);
+				}
+				menuItem.setActionView(null);
+			}
+			Toast.makeText( context, "getFacilityIndent failed: " + e, Toast.LENGTH_SHORT ).show();
+		}
+
+	}
 
 	public void fetchActiveIndents(final MenuItem menuItem, ProgressBar progressBar, final IndentListFragment listFragment) {
 		Map paramMap = new HashMap();

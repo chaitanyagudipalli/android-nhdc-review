@@ -257,6 +257,7 @@ public class IndentCreationActivity extends DashboardAppCompatActivity implement
                 editMode = false;
                 invalidateOptionsMenu();
                 //indentItemsListFragment.uploadIndentAction(item);
+                datasource = new IndentsDataSource(IndentCreationActivity.this);
                 datasource.open();
                 List<IndentItemNHDC> indentItems = datasource.getIndentItems(prefs.getInt("IndentId",0));
                 datasource.close();
@@ -320,6 +321,9 @@ public class IndentCreationActivity extends DashboardAppCompatActivity implement
                     public void onClick(DialogInterface dialog,
                                         int whichButton) {
                         // Canceled.
+                        editMode = true;
+
+                        invalidateOptionsMenu();
                     }
                 });
         alert.show();

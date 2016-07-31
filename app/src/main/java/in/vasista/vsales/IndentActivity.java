@@ -59,12 +59,18 @@ public class IndentActivity extends DashboardAppCompatActivity
 //private MenuItem menuItem;
 ProgressBar progressBar;
 	FloatingActionButton fab;
+	public boolean refresh;
 protected void onCreate(Bundle savedInstanceState) 
 {
     super.onCreate(savedInstanceState);
     //setContentView (R.layout.activity_f2);
     //setTitleFromActivityLabel (R.id.title_text);
 	setContentChildView(R.layout.indent_layout);
+
+	refresh = false;
+	if(getIntent().getBooleanExtra("indent_refresh",false)){
+		refresh = true;
+	}
 
 	setSalesDashboardTitle(R.string.title_feature1_plurer);
 
@@ -126,7 +132,7 @@ protected void onResume ()
    else {     
 	   fetchIndents = true;
    }
-   if (fetchIndents) {
+   if (fetchIndents || refresh) {
 	   FragmentManager fm = getFragmentManager();
 	   IndentListFragment indentListFragment = (IndentListFragment) fm.findFragmentById(R.id.indent_list_fragment);
 	   ServerSync serverSync = new ServerSync(this);

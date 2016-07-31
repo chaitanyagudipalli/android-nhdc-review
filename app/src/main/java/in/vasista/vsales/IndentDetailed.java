@@ -56,20 +56,28 @@ public class IndentDetailed extends DashboardAppCompatActivity {
         if(indent.getStatusId().equalsIgnoreCase("NOT_UPLOADED")) {
             editMode = true;
             invalidateOptionsMenu();
+        }else if(indent.getStatusId().equalsIgnoreCase("CREATED")){
+            deletemode = true;
+            invalidateOptionsMenu();
         }
 
     }
 
 
-    boolean editMode = false;
+    boolean editMode = false,deletemode = false;
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.indent_menu, menu);
         menu.findItem(R.id.action_indent_delete).setVisible(false);
         menu.findItem(R.id.action_indent_upload).setVisible(false);
-        if (editMode){
-            menu.findItem(R.id.action_indent_upload).setVisible(true);
-            menu.findItem(R.id.action_indent_delete).setVisible(true);
+        menu.findItem(R.id.action_indent_cancel).setVisible(false);
+        if (editMode || deletemode){
+            if(editMode) {
+                menu.findItem(R.id.action_indent_upload).setVisible(true);
+                menu.findItem(R.id.action_indent_delete).setVisible(true);
+            }else{
+                menu.findItem(R.id.action_indent_cancel).setVisible(true);
+            }
         }else{
             //menu.findItem(R.id.action_indent_done).setVisible(false);
         }
@@ -115,10 +123,19 @@ public class IndentDetailed extends DashboardAppCompatActivity {
                 datasource.close();
                 finish();
                 return true;
+            case R.id.action_indent_cancel:
+                ServerSync serverSync = new ServerSync(IndentDetailed.this);
+                serverSync.cancelIndent(item,null,indent.getOrderId(),IndentDetailed.this);
+                return true;
         }
         return false;
     }
 
+    public void navtolistOfIndents(){
+        Intent i = new Intent(this,IndentActivity.class);
+        i.putExtra("indent_refresh",true);
+        startActivity(i);
+    }
     public void uploadIndentAction(final MenuItem menuItem){
         AlertDialog.Builder alert = new AlertDialog.Builder(
                 IndentDetailed.this);
@@ -144,6 +161,8 @@ public class IndentDetailed extends DashboardAppCompatActivity {
                     public void onClick(DialogInterface dialog,
                                         int whichButton) {
                         // Canceled.
+                        editMode=true;
+                        invalidateOptionsMenu();
                     }
                 });
         alert.show();
