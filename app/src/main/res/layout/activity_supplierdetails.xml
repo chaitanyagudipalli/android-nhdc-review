@@ -52,48 +52,7 @@
                 android:layout_margin="2dp"
                 android:textStyle="bold" />
         </TableRow>
-        <TableRow android:paddingTop="5dip"
-            android:paddingBottom="5dip">
-            <TextView
-                android:id="@+id/facilityCategoryLabel"
-                android:layout_height="wrap_content"
-                android:layout_margin="2dp"
-                android:layout_column="0"
-                style="@style/TabeRowTitle"
-                android:text="Role"/>
-            <TextView
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_column="1"
-                android:layout_marginRight="10dp"
-                android:text=":"/>
-            <TextView
-                android:id="@+id/facilityCategory"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_column="2"
-                style="@style/TabeRowValue"
-                android:layout_margin="2dp" />
-        </TableRow>
-        <TableRow android:paddingTop="5dip"
-            android:paddingBottom="5dip">
-            <TextView
-                android:layout_height="wrap_content"
-                android:layout_margin="2dp"
-                style="@style/TabeRowTitle"
-                android:text="Party type"/>
-            <TextView
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:text=":"/>
-            <TextView
-                android:id="@+id/partyType"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                style="@style/TabeRowValue"
-                android:layout_margin="2dp" />
-        </TableRow>
+
         <TableRow android:paddingTop="5dip"
             android:paddingBottom="5dip">
             <TextView

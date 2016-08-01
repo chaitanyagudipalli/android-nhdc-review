@@ -384,11 +384,11 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Bale quantity"/>
+                            android:text="Quantity (Nos)"/>
                         <EditText
                             android:id="@+id/quantitynos"
                             android:layout_width="match_parent"
-                            android:hint="Bale quantity"
+                            android:hint="Quantity (Nos)"
                             android:inputType="numberDecimal"
                             android:layout_height="wrap_content" />
                     </LinearLayout>

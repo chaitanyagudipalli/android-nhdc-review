@@ -84,10 +84,7 @@ public class SupplierDetailsActivity extends DashboardAppCompatActivity{
 		idView.setText(partyId);
 		TextView nameView = (TextView) findViewById(R.id.facilityName);
 		nameView.setText(facility.getName());
-		TextView categoryView = (TextView) findViewById(R.id.facilityCategory);
-		categoryView.setText(facility.getRoletypeid());
-		TextView partyType = (TextView) findViewById(R.id.partyType);
-		partyType.setText(facility.getPartytypeid());
+
 		new LoadViewTask().execute();
 
 	}

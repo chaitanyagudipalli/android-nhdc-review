@@ -110,9 +110,10 @@ public class IndentDetailed extends DashboardAppCompatActivity {
                     hm.put("serviceCharge", indentItemNHDC.getServiceCharge());
                     hm.put("serviceChargeAmt", indentItemNHDC.getServiceChargeAmt());
 
-                    uploadIndentAction(item);
+
                     list.add(hm);
                 }
+                uploadIndentAction(item);
 
 
                 return true;
