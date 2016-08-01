@@ -19,6 +19,25 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"
+            android:id="@+id/prodStoreId">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Branch"/>
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:id="@+id/branchid" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_below="@+id/prodStoreId"
+            android:layout_marginTop="15dip"
             android:layout_height="wrap_content"
             android:id="@+id/linearLayout">
             <TextView

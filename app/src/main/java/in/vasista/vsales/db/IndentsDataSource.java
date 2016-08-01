@@ -41,7 +41,8 @@ public class IndentsDataSource {
 			  MySQLiteHelper.COLUMN_INDENT_ORDER_TOTAL,
 			  MySQLiteHelper.COLUMN_INDENT_PAID,
 			  MySQLiteHelper.COLUMN_INDENT_BALANCE,
-			  MySQLiteHelper.COLUMN_INDENT_SCHEMECAT
+			  MySQLiteHelper.COLUMN_INDENT_SCHEMECAT,
+			  MySQLiteHelper.COLUMN_INDENT_PRODSTORE_ID
 
 	  };
 
@@ -130,6 +131,7 @@ public class IndentsDataSource {
 			values.put(MySQLiteHelper.COLUMN_INDENT_PAID, indent.getPaidAmt());
 			values.put(MySQLiteHelper.COLUMN_INDENT_BALANCE, indent.getBalance());
 		values.put(MySQLiteHelper.COLUMN_INDENT_SCHEMECAT, indent.getSchemeType());
+		values.put(MySQLiteHelper.COLUMN_INDENT_PRODSTORE_ID,indent.getProdstoreid());
 
 			return database.insert(MySQLiteHelper.TABLE_INDENT, null, values);
 
@@ -156,6 +158,7 @@ public class IndentsDataSource {
 			values.put(MySQLiteHelper.COLUMN_INDENT_PAID, indent.getPaidAmt());
 			values.put(MySQLiteHelper.COLUMN_INDENT_BALANCE, indent.getBalance());
 			values.put(MySQLiteHelper.COLUMN_INDENT_SCHEMECAT, indent.getSchemeType());
+			values.put(MySQLiteHelper.COLUMN_INDENT_PRODSTORE_ID,indent.getProdstoreid());
 
 			database.insert(MySQLiteHelper.TABLE_INDENT, null, values);
  		}
@@ -228,7 +231,8 @@ public class IndentsDataSource {
 				cursor.getDouble(12),
 				cursor.getDouble(13),
 				cursor.getDouble(14),
-				cursor.getString(15));
+				cursor.getString(15),
+				cursor.getString(16));
 	  }
 	  
 	  public void updateIndentStatus(long indentId, String indentStatus) {

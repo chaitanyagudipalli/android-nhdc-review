@@ -3,6 +3,7 @@ package in.vasista.vsales.db;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.DatabaseUtils;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
@@ -98,6 +99,10 @@ public class SupplierDataSource {
 	    cursor.close();
 	    return suppliers;
 	  }
+
+	public int getCountSuppliers(){
+		return (int) DatabaseUtils.queryNumEntries(database, MySQLiteHelper.TABLE_SUPPLIER);
+	}
 
 	  private Supplier cursorToSupplier(Cursor cursor) {
 	    return new Supplier(cursor.getString(0),

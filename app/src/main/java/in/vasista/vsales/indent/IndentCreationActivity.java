@@ -30,6 +30,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import in.vasista.nhdc.R;
 import in.vasista.vsales.DashboardAppCompatActivity;
@@ -52,10 +53,14 @@ public class IndentCreationActivity extends DashboardAppCompatActivity implement
     List<HashMap> list;
     Button addIndent,submitindent;
 
-    String supplierPartyId = "", schemeType = "", category_type = "",billingType = "Direct", supplierName = "";
+    String supplierPartyId = "", schemeType = "", category_type = "",billingType = "Direct", supplierName = "", prodStoreId = "";
     long indent_id =0;
 
     FloatingActionButton fab;
+
+    Spinner branches;
+    ArrayList<String> branchids;
+    String[] branch_ids;
 
     IndentsDataSource datasource;
     SharedPreferences.Editor prefEditor;
@@ -73,12 +78,16 @@ public class IndentCreationActivity extends DashboardAppCompatActivity implement
         fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.hide();
         //fab.setImageResource(R.drawable.title_upload);
-        //new LoadViewTask().execute();
+        new LoadViewTask().execute();
         prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         prefEditor = prefs.edit();
 
+        branchids = new ArrayList<>();
         prefEditor.putInt("IndentId",0);
         prefEditor.apply();
+
+        branches = (Spinner)findViewById(R.id.branchid);
+
 
         indentTotal = (TextView) findViewById(R.id.indentTotal);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -105,7 +114,7 @@ public class IndentCreationActivity extends DashboardAppCompatActivity implement
 
                 Date supplyDate = new Date();
 
-                Indent indent =new Indent(0,"","","",false,supplierPartyId,"",supplierName,"","",supplyDate,"Not Uploaded",0.0,0.0,0.0,schemeType);
+                Indent indent =new Indent(0,"","","",false,supplierPartyId,"",supplierName,"","",supplyDate,"Not Uploaded",0.0,0.0,0.0,schemeType,prodStoreId);
                 datasource = new IndentsDataSource(IndentCreationActivity.this);
                 datasource.open();
                 indent_id = datasource.insertIndent(indent);
@@ -318,7 +327,7 @@ public class IndentCreationActivity extends DashboardAppCompatActivity implement
                             progressBar = (ProgressBar) menuItem.getActionView().findViewById(R.id.menuitem_progress);
                         }
                         ServerSync serverSync = new ServerSync(IndentCreationActivity.this);
-                        serverSync.uploadNHDCIndent(menuItem, null, list,supplierPartyId,schemeType,indent_id);
+                        serverSync.uploadNHDCIndent(menuItem, null, list,supplierPartyId,schemeType,indent_id,prodStoreId);
                         fab.hide();
                         editMode = false;
                         invalidateOptionsMenu();
@@ -418,14 +427,40 @@ public class IndentCreationActivity extends DashboardAppCompatActivity implement
             TextView textView;
             if (weaverDet != null) {
                 Map weaverDetails = (Map)((Map)weaverDet).get("weaverDetails");
-                Map BranchMapList = (Map)(weaverDetails).get("customerBranchMap");
+                Object[] BranchMapList = (Object[])weaverDetails.get("customerBranchList");
 
-               // Log.v("asda",""+BranchMapList)
-//                for (int i=0; i < BranchMapList.length; ++i) {
-//                    //indentItemNHDCs = new ArrayList<IndentItemNHDC>();
-//                    Map indentMap = (Map) BranchMapList[i];
-//                    Log.v("Key",""+indentMap.get("productStoreId"));
-//                }
+
+                // Log.v("asda",""+BranchMapList)
+                for (int i=0; i < BranchMapList.length; ++i) {
+                    //indentItemNHDCs = new ArrayList<IndentItemNHDC>();
+                    // Map indentMap = (Map) BranchMapList[i];
+                    Log.v("Key","asd "+BranchMapList[i]);
+                    branchids.add((String)BranchMapList[i]);
+
+                }
+
+                String[] stockArr = new String[branchids.size()];
+                stockArr = branchids.toArray(stockArr);
+
+                ArrayAdapter<String> adapter3 = new ArrayAdapter<String>(IndentCreationActivity.this,
+                        android.R.layout.simple_spinner_item,stockArr);
+
+                adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                branches.setAdapter(adapter3);
+
+                final String[] finalStockArr = stockArr;
+                branches.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                        prodStoreId = finalStockArr[position];
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+
+                    }
+                });
+
 
             }
         }

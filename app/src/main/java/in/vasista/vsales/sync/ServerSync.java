@@ -75,7 +75,7 @@ public class ServerSync {
 	    //dbHelper = new MySQLiteHelper(context); 		
 	}
 
-	public  void uploadNHDCIndent(final MenuItem menuItem, ProgressBar progressBar, List<HashMap> list, String supplierPartyId, String schemeCategory, final long indent_id){
+	public  void uploadNHDCIndent(final MenuItem menuItem, ProgressBar progressBar, List<HashMap> list, String supplierPartyId, String schemeCategory, final long indent_id, String prodStoreId){
 				SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
 		String storeId = prefs.getString("storeId", "");
 		Map paramMap = new HashMap();
@@ -86,6 +86,7 @@ public class ServerSync {
 		paramMap.put("supplierPartyId", supplierPartyId);
 		paramMap.put("schemeCategory", schemeCategory);
 	    paramMap.put("indentItems", list);
+		paramMap.put("productStoreId",prodStoreId);
 
 		try {
 			XMLRPCApacheAdapter adapter = new XMLRPCApacheAdapter(context);
@@ -94,7 +95,7 @@ public class ServerSync {
 					if (result != null) {
 						IndentsDataSource datasource = new IndentsDataSource(context);
 						datasource.open();
-						datasource.updateIndentStatus(indent_id,"ORDER_CREATED");
+						datasource.updateIndentStatus(indent_id,"Created");
 					}
 					if (progressBar != null) {
 						progressBar.setVisibility(View.INVISIBLE);
@@ -355,7 +356,7 @@ public class ServerSync {
 										Indent indent = new Indent(0,(String)indentMap.get("tallyRefNo"),(String)indentMap.get("POorder"),(String)indentMap.get("poSquenceNo"),((String)(indentMap.get("isgeneratedPO"))).equalsIgnoreCase("Y"),
 												(String)indentMap.get("supplierPartyId"),(String)indentMap.get("storeName"),(String)indentMap.get("supplierPartyName"),(String)indentMap.get("orderNo"),(String)indentMap.get("orderId"),
 												format.parse(String.valueOf(indentMap.get("orderDate"))),(String)indentMap.get("statusId"),
-												((BigDecimal)indentMap.get("orderTotal")).floatValue(),((BigDecimal)indentMap.get("paidAmt")).floatValue(),((BigDecimal)indentMap.get("balance")).floatValue(),"");
+												((BigDecimal)indentMap.get("orderTotal")).floatValue(),((BigDecimal)indentMap.get("paidAmt")).floatValue(),((BigDecimal)indentMap.get("balance")).floatValue(),"","");
 										indents.add(indent);
 
 										long indent_id = indentDataSource.insertIndent(indent);

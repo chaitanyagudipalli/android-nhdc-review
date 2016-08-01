@@ -1,9 +1,11 @@
 package in.vasista.vsales;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Paint;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.NavigationView;
@@ -20,7 +22,11 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -28,6 +34,7 @@ import in.vasista.global.GlobalApplication;
 import in.vasista.nhdc.R;
 import in.vasista.vsales.adapter.FacilityAutoAdapter;
 import in.vasista.vsales.adapter.SupplierAutoAdapter;
+import in.vasista.vsales.catalog.Product;
 import in.vasista.vsales.db.FacilityDataSource;
 import in.vasista.vsales.db.IndentsDataSource;
 import in.vasista.vsales.db.OrdersDataSource;
@@ -37,6 +44,7 @@ import in.vasista.vsales.db.SupplierDataSource;
 import in.vasista.vsales.facility.Facility;
 import in.vasista.vsales.supplier.Supplier;
 import in.vasista.vsales.sync.ServerSync;
+import in.vasista.vsales.sync.xmlrpc.XMLRPCApacheAdapter;
 
 public class SalesDashboardActivity extends DrawerCompatActivity  {
 	public static final String module = SalesDashboardActivity.class.getName();
@@ -220,7 +228,7 @@ Log.d(module, "onlySalesDashboard equals " + onlySalesDashboard);
     	}
 //	    setupDashboard();
 
-
+		new NetworkPrepareThread().execute();
 	}
 	    
 	/**
@@ -484,11 +492,157 @@ public boolean onCreateOptionsMenu(Menu menu) {
 		//serverSync.getWeaverDetails(progressBar, this);
 		if (fetchProducts) {
 			cleanupRetailerData();
-			serverSync.updateProducts(null, progressBar, null);
+			//serverSync.updateProducts(null, progressBar, null);
 		}
     }
     
 
+	public class NetworkPrepareThread extends AsyncTask<Void,Integer,Void>{
+
+		ProductsDataSource pds = new ProductsDataSource(SalesDashboardActivity.this);
+		SupplierDataSource sds = new SupplierDataSource(SalesDashboardActivity.this);
+
+		Object productsObject, suppliersObject;
+
+		boolean appPrepared = false, appProd = false, appSup = false;
+
+		ProgressDialog progress;
+
+		String partyId;
+
+		public NetworkPrepareThread() {
+			super();
+			partyId = prefs.getString("storeId", "");
+			progress = new ProgressDialog(SalesDashboardActivity.this);
+			progress.setMessage("Preparing your application...");
+			progress.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+			progress.setIndeterminate(true);
+
+			progress.setProgress(0);
+			progress.show();
+		}
+
+		@Override
+		protected void onPreExecute() {
+			super.onPreExecute();
+			pds.open();
+			if(pds.getCountProducts() > 0){
+				appProd = true;
+			}
+			pds.close();
+			sds.open();
+			if(sds.getCountSuppliers() > 0){
+				appSup = true;
+			}
+			sds.close();
+
+			if(appProd && appSup && partyId.equalsIgnoreCase(""))
+				appPrepared = true;
+
+
+		}
+		@Override
+		protected Void doInBackground(Void... params) {
+
+			if (!appPrepared){
+
+				try
+				{
+					//Get the current thread's token
+					synchronized (this)
+					{
+						Map paramMap = new HashMap();
+
+						paramMap.put("partyId", partyId);
+
+						XMLRPCApacheAdapter adapter = new XMLRPCApacheAdapter(getBaseContext());
+						if (!appProd){
+							progress.setMessage("Preparing products...");
+							progress.setProgress(10);
+							productsObject = adapter.callSync("getProducts", paramMap);
+						}
+						if(!appSup){
+							progress.setMessage("Preparing suppliers...");
+							progress.setProgress(65);
+							paramMap = new HashMap();
+							suppliersObject = adapter.callSync("getSuppliers", paramMap);
+						}
+
+					}
+				}
+				catch (Exception e) {
+					e.printStackTrace();
+				}
+
+			}
+
+			return null;
+		}
+
+		@Override
+		protected void onPostExecute(Void aVoid) {
+			super.onPostExecute(aVoid);
+
+			if(productsObject != null){
+				Map priceResults = (Map)((Map)productsObject).get("productsMap");
+				Log.d(module, "priceResults.size() = " + priceResults.size());
+				pds.open();
+				Iterator entries = priceResults.entrySet().iterator();
+				List<Product> ls = new ArrayList<Product>();
+				while (entries.hasNext()) {
+					Map.Entry thisEntry = (Map.Entry) entries.next();
+					String productId = (String)thisEntry.getKey();
+					Map value = (Map)thisEntry.getValue();
+
+					String name = (String)value.get("productName");
+					String description = (String)value.get("description");
+					String primaryProductCategoryId = (String)value.get("primaryProductCategoryId");
+					String internalName = (String)value.get("internalName");
+					String brandName = (String)value.get("brandName");
+					String quantityUomId = (String)value.get("quantityUomId");
+					String productTypeId = (String)value.get("productTypeId");
+					String productParentTypeId = (String)value.get("primaryParentCategoryId");
+
+					float price = 0.0f;
+					float quantityIncluded = ((BigDecimal)value.get("quantityIncluded")).setScale(2,BigDecimal.ROUND_HALF_UP).floatValue();
+					Product product = new Product(productId, name, internalName, brandName,description,productTypeId,quantityUomId , price, quantityIncluded, primaryProductCategoryId,productParentTypeId);
+					ls.add(product);
+
+				}
+				pds.insertProducts(ls);
+				pds.close();
+			}
+			if(suppliersObject != null){
+				Map facilitiesResult = (Map)((Map)suppliersObject).get("suppliersMap");
+				sds.open();
+				if (facilitiesResult.size() > 0) {
+					List <Supplier> suppliers = new ArrayList();
+
+					for ( Object key : facilitiesResult.keySet() ) {
+						Map boothMap = (Map) facilitiesResult.get(key);
+						String id = (String)boothMap.get("partyId");
+						String name = (String)boothMap.get("groupName");
+						String roleTypeId = (String)boothMap.get("roleTypeId");
+						String partyTypeId = (String)boothMap.get("partyTypeId");
+						Supplier supplier = new Supplier(id, name, roleTypeId, partyTypeId);
+						suppliers.add(supplier);
+
+					}
+					sds.insertSuppliers(suppliers);
+				}
+				sds.close();
+			}
+			progress.setProgress(100);
+			progress.hide();
+		}
+
+		@Override
+		protected void onProgressUpdate(Integer... values) {
+			super.onProgressUpdate(values);
+			progress.setProgress(values[0]);
+			Log.v("prog","ghhhh"+values[0]);
+		}
+	}
 
 
 }
