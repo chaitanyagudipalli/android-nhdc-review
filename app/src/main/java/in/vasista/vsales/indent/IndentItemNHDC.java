@@ -8,8 +8,10 @@ public class IndentItemNHDC {
 
     String quantity,baleQuantity,bundleWeight,bundleUnitPrice,basicPrice,serviceCharge,serviceChargeAmt;
 
+    String totalAmt;
+
     long id;
-    public IndentItemNHDC(String productId, String quantity, String remarks, String baleQuantity, String bundleWeight, String bundleUnitPrice, String yarnUOM, String basicPrice, String serviceCharge, String serviceChargeAmt) {
+    public IndentItemNHDC(String productId, String quantity, String remarks, String baleQuantity, String bundleWeight, String bundleUnitPrice, String yarnUOM, String basicPrice, String serviceCharge, String serviceChargeAmt, String totalAmt) {
         this.productId = productId;
         this.quantity = quantity;
         this.remarks = remarks;
@@ -20,6 +22,7 @@ public class IndentItemNHDC {
         this.basicPrice = basicPrice;
         this.serviceCharge = serviceCharge;
         this.serviceChargeAmt = serviceChargeAmt;
+        this.totalAmt = totalAmt;
     }
 
     public String getProductId() {
@@ -72,5 +75,9 @@ public class IndentItemNHDC {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public String getTotalAmt() {
+        return totalAmt;
     }
 }

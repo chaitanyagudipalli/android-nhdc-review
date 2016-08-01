@@ -53,23 +53,31 @@ public class IndentDetailed extends DashboardAppCompatActivity {
             textView.setText(values[i]);
         }
 
-        if(indent.getStatusId().equalsIgnoreCase("NOT_UPLOADED")) {
+        if(indent.getStatusId().equalsIgnoreCase("Not Uploaded")) {
             editMode = true;
+            invalidateOptionsMenu();
+        }else if(indent.getStatusId().equalsIgnoreCase("CREATED")){
+            deletemode = true;
             invalidateOptionsMenu();
         }
 
     }
 
 
-    boolean editMode = false;
+    boolean editMode = false,deletemode = false;
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.indent_menu, menu);
         menu.findItem(R.id.action_indent_delete).setVisible(false);
         menu.findItem(R.id.action_indent_upload).setVisible(false);
-        if (editMode){
-            menu.findItem(R.id.action_indent_upload).setVisible(true);
-            menu.findItem(R.id.action_indent_delete).setVisible(true);
+        menu.findItem(R.id.action_indent_cancel).setVisible(false);
+        if (editMode || deletemode){
+            if(editMode) {
+                menu.findItem(R.id.action_indent_upload).setVisible(true);
+                menu.findItem(R.id.action_indent_delete).setVisible(true);
+            }else{
+                menu.findItem(R.id.action_indent_cancel).setVisible(true);
+            }
         }else{
             //menu.findItem(R.id.action_indent_done).setVisible(false);
         }
@@ -115,10 +123,50 @@ public class IndentDetailed extends DashboardAppCompatActivity {
                 datasource.close();
                 finish();
                 return true;
+            case R.id.action_indent_cancel:
+                cancelIndentAction(item);
+                return true;
         }
         return false;
     }
 
+    public void cancelIndentAction(final MenuItem menuItem){
+        AlertDialog.Builder alert = new AlertDialog.Builder(
+                IndentDetailed.this);
+        alert.setTitle("Cancel Indent?");
+        alert.setPositiveButton("Ok",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog,
+                                        int whichButton) {
+                        ProgressBar progressBar = null;
+                        if(menuItem != null) {
+                            menuItem.setActionView(R.layout.progressbar);
+//						ProgressBar progressBar = (ProgressBar) listView.getRootView().findViewById(R.id.indentUploadProgress);
+//						progressBar.setVisibility(View.VISIBLE);
+                            progressBar = (ProgressBar) menuItem.getActionView().findViewById(R.id.menuitem_progress);
+                        }
+                        ServerSync serverSync = new ServerSync(IndentDetailed.this);
+                        serverSync.cancelIndent(menuItem,null,indent.getOrderId(),IndentDetailed.this);
+
+                    }
+                });
+
+        alert.setNegativeButton("Cancel",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog,
+                                        int whichButton) {
+                        // Canceled.
+
+                    }
+                });
+        alert.show();
+    }
+
+    public void navtolistOfIndents(){
+        Intent i = new Intent(this,IndentActivity.class);
+        i.putExtra("indent_refresh",true);
+        startActivity(i);
+    }
     public void uploadIndentAction(final MenuItem menuItem){
         AlertDialog.Builder alert = new AlertDialog.Builder(
                 IndentDetailed.this);
@@ -144,6 +192,8 @@ public class IndentDetailed extends DashboardAppCompatActivity {
                     public void onClick(DialogInterface dialog,
                                         int whichButton) {
                         // Canceled.
+                        editMode=true;
+                        invalidateOptionsMenu();
                     }
                 });
         alert.show();

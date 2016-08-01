@@ -10,6 +10,7 @@ import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -43,7 +44,7 @@ import in.vasista.vsales.supplier.Supplier;
 import in.vasista.vsales.sync.ServerSync;
 import in.vasista.vsales.sync.xmlrpc.XMLRPCApacheAdapter;
 
-public class IndentCreateProduct extends DashboardAppCompatActivity {
+public class IndentCreateProduct extends DashboardAppCompatActivity implements View.OnKeyListener {
 
     private Map productsMap = new HashMap<String, Product>();
     Spinner uom;Button addIndent;
@@ -57,7 +58,7 @@ public class IndentCreateProduct extends DashboardAppCompatActivity {
             bundleWeight = "", bundleUnitPrice = "", yarnUOM = "", basicPrice = "",
             serviceCharge = "",serviceChargeAmt = "";
 
-    String supplierPartyId = "", schemeType = "", category_type = "";
+    String supplierPartyId = "", schemeType = "", category_type = "", total_amount = "";
 
     LinearLayout cottonLayout;
 
@@ -65,6 +66,11 @@ public class IndentCreateProduct extends DashboardAppCompatActivity {
     SharedPreferences.Editor prefEditor;
 
     Object weaverDet;SharedPreferences prefs;
+
+    EditText totalweight,unitprice;
+    EditText bundleUnitPriceTv,bundlewt,quantitynos;
+
+    TextView totalAmt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,12 +98,33 @@ public class IndentCreateProduct extends DashboardAppCompatActivity {
         addIndent= (Button)findViewById(R.id.addIndent);
         cottonLayout = (LinearLayout) findViewById(R.id.cottonLayout);
 
+        bundleUnitPriceTv = (EditText) findViewById(R.id.bundleUnitPrice);
+        bundlewt = (EditText) findViewById(R.id.bundlewt);
+        quantitynos = (EditText)findViewById(R.id.quantitynos);
+        totalAmt = (TextView) findViewById(R.id.totalAmt);
 
-        if(category_type.equalsIgnoreCase("COTTON")){
+
+
+        // Disable edit text editing
+        totalweight = (EditText) findViewById(R.id.totalweight);
+        unitprice = (EditText) findViewById(R.id.unitprice);
+
+
+        if(category_type!=null &&   category_type.equalsIgnoreCase("COTTON")){
             cottonLayout.setVisibility(View.VISIBLE);
+
+            totalweight.setKeyListener(null);unitprice.setKeyListener(null);
+
+            bundlewt.setText("4.54");
+
+            bundleUnitPriceTv.setOnKeyListener(this);
+            bundlewt.setOnKeyListener(this);
+            quantitynos.setOnKeyListener(this);
+
+        }else{
+            totalweight.setOnKeyListener(this);
+            unitprice.setOnKeyListener(this);
         }
-
-
 
         ArrayAdapter<String> adapter3 = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item,uoms);
@@ -107,7 +134,9 @@ public class IndentCreateProduct extends DashboardAppCompatActivity {
         uom.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
                 switch (position) {
+
                     case 0:
                         // Whatever you want to happen when the first item gets selected
                         yarnUOM = "Kgs";
@@ -126,6 +155,15 @@ public class IndentCreateProduct extends DashboardAppCompatActivity {
                         break;
 
                 }
+                if(category_type.equalsIgnoreCase("COTTON")) {
+                    if (bundlewt.getText().toString().equalsIgnoreCase("") || quantitynos.getText().toString().equalsIgnoreCase("") ||
+                            bundleUnitPriceTv.getText().toString().equalsIgnoreCase("")) {
+
+                    } else {
+
+                        changeListener();
+                    }
+                }
             }
 
             @Override
@@ -143,6 +181,8 @@ public class IndentCreateProduct extends DashboardAppCompatActivity {
                 bundleWeight = ((EditText)findViewById(R.id.bundlewt)).getText().toString();
                 bundleUnitPrice = ((EditText)findViewById(R.id.bundleUnitPrice)).getText().toString();
                 basicPrice = ((EditText)findViewById(R.id.unitprice)).getText().toString();
+                total_amount = ((TextView) findViewById(R.id.totalAmt)).getText().toString();
+
                 HashMap<String,String> hm = new HashMap<String, String>();
                 hm.put("productId",productId);
                 hm.put("quantity",quantity);
@@ -156,16 +196,22 @@ public class IndentCreateProduct extends DashboardAppCompatActivity {
                 hm.put("serviceChargeAmt",serviceChargeAmt);
 
 
-                IndentItemNHDC IN = new IndentItemNHDC(productId,quantity, remarks, baleQuantity, bundleWeight, bundleUnitPrice, yarnUOM, basicPrice, serviceCharge, serviceChargeAmt);
+                IndentItemNHDC IN = new IndentItemNHDC(productId,quantity, remarks, baleQuantity, bundleWeight, bundleUnitPrice, yarnUOM, basicPrice, serviceCharge, serviceChargeAmt,total_amount);
                 list.add(hm);
                 datasource = new IndentsDataSource(IndentCreateProduct.this);
                 datasource.open();
                 long id = datasource.insertIndentItem(i.getLongExtra("indent_id",0),IN);
                 IN.setId(id);
+
+                datasource.updateTotalAmount((int)i.getLongExtra("indent_id",0),Double.parseDouble(total_amount));
+
                 datasource.close();
 
                 prefEditor.putInt("IndentId",(int)i.getLongExtra("indent_id",0));
                 prefEditor.apply();
+
+                InputMethodManager in = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                in.hideSoftInputFromWindow(addIndent.getWindowToken(), 0);
 
                 finish();
             }
@@ -215,6 +261,70 @@ public class IndentCreateProduct extends DashboardAppCompatActivity {
             }
 
         });
+    }
+
+    @Override
+    public boolean onKey(View v, int keyCode, KeyEvent event) {
+        if(category_type.equalsIgnoreCase("COTTON")) {
+            if (bundlewt.getText().toString().equalsIgnoreCase("") || quantitynos.getText().toString().equalsIgnoreCase("") ||
+                    bundleUnitPriceTv.getText().toString().equalsIgnoreCase(""))
+                return false;
+            changeListener();
+        }else{
+            if (unitprice.getText().toString().equalsIgnoreCase("") || totalweight.getText().toString().equalsIgnoreCase("") )
+                return false;
+            changeSilkListener();
+        }
+        return false;
+    }
+    public void changeSilkListener(){
+
+        float unit_price_kgs = Float.parseFloat(unitprice.getText().toString());
+        float qty_kgs = Float.parseFloat(totalweight.getText().toString());
+
+        float total_amount = unit_price_kgs * qty_kgs;
+        totalAmt.setText(BigDecimal.valueOf(total_amount).setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+
+    }
+    public void changeListener(){
+        try {
+
+
+            float bundle_wt = Float.parseFloat(bundlewt.getText().toString());
+            float qty_nos = Float.parseFloat(quantitynos.getText().toString());
+            float unit_price_bundle = Float.parseFloat(bundleUnitPriceTv.getText().toString());
+
+            //Log.v("upedata","bundle_wt"+bundle_wt+"qty_nos"+qty_nos+"unit_price_bundle"+unit_price_bundle);
+            float unit_price_kgs = 0.0f, qty_kgs = 0.0f, total_amount;
+
+            if (yarnUOM.equalsIgnoreCase("KGS")) {
+
+                unit_price_kgs = unit_price_bundle;
+                qty_kgs = qty_nos;
+
+            } else if (yarnUOM.equalsIgnoreCase("Bale")) {
+
+                unit_price_kgs = unit_price_bundle / bundle_wt;
+                qty_kgs = 40 * qty_nos * bundle_wt;
+
+            } else if (yarnUOM.equalsIgnoreCase("Half-Bale")) {
+                unit_price_kgs = unit_price_bundle / bundle_wt;
+                qty_kgs = 20 * qty_nos * bundle_wt;
+
+            } else if (yarnUOM.equalsIgnoreCase("Bundle")) {
+                unit_price_kgs = unit_price_bundle / bundle_wt;
+                qty_kgs = qty_nos * bundle_wt;
+            }
+            total_amount = qty_kgs * unit_price_kgs;
+
+            totalAmt.setText(BigDecimal.valueOf(total_amount).setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+            totalweight.setText(BigDecimal.valueOf(qty_kgs).setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+            unitprice.setText(BigDecimal.valueOf(unit_price_kgs).setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+
+
+        }catch (NumberFormatException e){
+
+        }
     }
 
     //To use the AsyncTask, it must be subclassed
