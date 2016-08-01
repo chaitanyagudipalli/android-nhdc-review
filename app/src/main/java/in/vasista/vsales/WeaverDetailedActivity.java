@@ -103,9 +103,8 @@ public class WeaverDetailedActivity extends DashboardAppCompatActivity {
             if (weaverDet != null) {
                 Map weaverDetails = (Map)((Map)weaverDet).get("weaverDetails");
                 Map addressMap = (Map)((Map)weaverDetails).get("addressMap");
-                Log.v("adsa",""+weaverDetails);
 
-                String[] values = {prefs.getString(MainActivity.USER_FULLNAME, ""),
+                String[] values = {(String)weaverDetails.get("partyName"),
                         (String)addressMap.get("address1"),
                         (String)weaverDetails.get("passBookNo"),
                         (String)weaverDetails.get("issueDate"),
