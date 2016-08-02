@@ -41,6 +41,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 	public static final String COLUMN_INDENT_BALANCE = "INDENT_BALANCE";
 	public static final String COLUMN_INDENT_SCHEMECAT = "INDENT_SCHEMECAT";
 	public static final String COLUMN_INDENT_PRODSTORE_ID = "INDENT_PRODSTORE_ID";
+	public static final String COLUMN_INDENT_DISC_AMNT = "INDENT_DISC_AMNT";
 
 
 	public static final String TABLE_INDENT_ITEM = "INDENT_ITEM";
@@ -62,6 +63,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 	public static final String COLUMN_INDENT_ITEM_CST_AMT = "CST_AMT";
 	public static final String COLUMN_INDENT_ITEM_DISC_AMT = "DISC_AMT";
 	public static final String COLUMN_INDENT_ITEM_SHIPPED_QTY = "SHIPPED_QTY";
+	public static final String COLUMN_INDENT_ITEM_OTHER_CHARGES = "OTHER_CHARGES";
 
 	  public static final String TABLE_ORDER = "ORDER_HEADER";
 	  public static final String COLUMN_ORDER_ID = "ORDER_ID";
@@ -191,8 +193,9 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 			  + " real not null, " + COLUMN_INDENT_PAID
 		      + " real, " + COLUMN_INDENT_BALANCE
 		      + " real, " + COLUMN_INDENT_SCHEMECAT + " text,"
-				+ COLUMN_INDENT_PRODSTORE_ID + " text"+
-			  ");";
+				+ COLUMN_INDENT_PRODSTORE_ID + " text,"
+			  + COLUMN_INDENT_DISC_AMNT + " real"
+			  +");";
 
 
 	  private static final String DATABASE_CREATE_INDENT_ITEM = "create table "
@@ -210,7 +213,14 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 			  + COLUMN_INDENT_ITEM_TAXRATELIST + " text,"
 			  + COLUMN_INDENT_ITEM_SERVICECHARGE + " real,"
 			  + COLUMN_INDENT_ITEM_SERVICECHARGE_AMT + " real, "
-			  + COLUMN_INDENT_ITEM_TOTAL_AMT + " real "
+			  + COLUMN_INDENT_ITEM_TOTAL_AMT + " real, "
+				+ COLUMN_INDENT_ITEM_VAT_PER + " real, "
+				+ COLUMN_INDENT_ITEM_VAT_AMT + " real, "
+				+ COLUMN_INDENT_ITEM_CST_PER + " real, "
+	 			+ COLUMN_INDENT_ITEM_CST_AMT + " real, "
+				+ COLUMN_INDENT_ITEM_DISC_AMT + " real, "
+					+ COLUMN_INDENT_ITEM_SHIPPED_QTY + " real, "
+			  + COLUMN_INDENT_ITEM_OTHER_CHARGES + " real"
 			  + ");";
 	  
 	  private static final String DATABASE_CREATE_ORDER = "create table "

@@ -1,18 +1,13 @@
 package in.vasista.vsales.indent;
 
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
@@ -21,7 +16,6 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -35,13 +29,10 @@ import java.util.Map;
 
 import in.vasista.nhdc.R;
 import in.vasista.vsales.DashboardAppCompatActivity;
-import in.vasista.vsales.MainActivity;
 import in.vasista.vsales.adapter.ProductAutoAdapter;
 import in.vasista.vsales.catalog.Product;
 import in.vasista.vsales.db.IndentsDataSource;
 import in.vasista.vsales.db.ProductsDataSource;
-import in.vasista.vsales.supplier.Supplier;
-import in.vasista.vsales.sync.ServerSync;
 import in.vasista.vsales.sync.xmlrpc.XMLRPCApacheAdapter;
 
 public class IndentCreateProduct extends DashboardAppCompatActivity implements View.OnKeyListener {
@@ -196,12 +187,13 @@ public class IndentCreateProduct extends DashboardAppCompatActivity implements V
                 hm.put("serviceChargeAmt",serviceChargeAmt);
 
 
-                IndentItemNHDC IN = new IndentItemNHDC(productId,quantity, remarks, baleQuantity, bundleWeight, bundleUnitPrice, yarnUOM, basicPrice, serviceCharge, serviceChargeAmt,total_amount);
+                IndentItemNHDC IN = new IndentItemNHDC(0,(int)i.getLongExtra("indent_id",0),productId,quantity, remarks, baleQuantity, bundleWeight, bundleUnitPrice, yarnUOM, basicPrice, serviceCharge, serviceChargeAmt,total_amount, 0,0,0,0,0,0,0);
                 list.add(hm);
                 datasource = new IndentsDataSource(IndentCreateProduct.this);
                 datasource.open();
-                long id = datasource.insertIndentItem(i.getLongExtra("indent_id",0),IN);
+                int id = (int) datasource.insertIndentItem((int)i.getLongExtra("indent_id",0),IN);
                 IN.setId(id);
+                IN.setIndentId((int)i.getLongExtra("indent_id",0));
 
                 datasource.updateTotalAmount((int)i.getLongExtra("indent_id",0),Double.parseDouble(total_amount));
 

@@ -356,16 +356,25 @@ public class ServerSync {
 										Indent indent = new Indent(0,(String)indentMap.get("tallyRefNo"),(String)indentMap.get("POorder"),(String)indentMap.get("poSquenceNo"),((String)(indentMap.get("isgeneratedPO"))).equalsIgnoreCase("Y"),
 												(String)indentMap.get("supplierPartyId"),(String)indentMap.get("storeName"),(String)indentMap.get("supplierPartyName"),(String)indentMap.get("orderNo"),(String)indentMap.get("orderId"),
 												format.parse(String.valueOf(indentMap.get("orderDate"))),(String)indentMap.get("statusId"),
-												((BigDecimal)indentMap.get("orderTotal")).floatValue(),((BigDecimal)indentMap.get("paidAmt")).floatValue(),((BigDecimal)indentMap.get("balance")).floatValue(),"","");
+												((BigDecimal)indentMap.get("orderTotal")).floatValue(),((BigDecimal)indentMap.get("paidAmt")).floatValue(),((BigDecimal)indentMap.get("balance")).floatValue(),"","",
+												((BigDecimal)indentMap.get("totDiscountAmt")).floatValue());
 										indents.add(indent);
 
 										long indent_id = indentDataSource.insertIndent(indent);
 										Object[] productsMap = (Object[])indentMap.get("orderItemsList");
 										for (int j=0;j<productsMap.length;j++){
 											Map productMap = (Map)productsMap[j];
-											IndentItemNHDC indentItemNHDC = new IndentItemNHDC((String)productMap.get("productId"),
+											IndentItemNHDC indentItemNHDC = new IndentItemNHDC(0,indent.getId(),(String)productMap.get("productId"),
 													""+productMap.get("quantity"),(String)productMap.get("itemDescription"),
-													"","",""+productMap.get("unitPrice"),"","","","","");
+													"","",""+productMap.get("unitPrice"),"","","","","",
+													((BigDecimal)productMap.get("vatPercent")).floatValue(),
+													((BigDecimal)productMap.get("vatAmount")).floatValue(),
+													((BigDecimal)productMap.get("cstPercent")).floatValue(),
+													((BigDecimal)productMap.get("cstAmount")).floatValue(),
+													((BigDecimal)productMap.get("shippedQty")).floatValue(),
+													((BigDecimal)productMap.get("discountAmount")).floatValue(),
+													(productMap.get("otherCharges")!=null)?(((BigDecimal)productMap.get("otherCharges")).floatValue()):0
+													);
 											indentDataSource.insertIndentItem(indent_id,indentItemNHDC);
 										}
 

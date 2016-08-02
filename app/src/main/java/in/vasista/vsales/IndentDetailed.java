@@ -27,7 +27,7 @@ public class IndentDetailed extends DashboardAppCompatActivity {
     TextView textView;
     Indent indent;
     List<HashMap> list;
-    int indentId;
+    static int indentId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +37,8 @@ public class IndentDetailed extends DashboardAppCompatActivity {
         setPageTitle(getString(R.string.indent_details));
         list = new ArrayList<>();
         int[] ids = { R.id.order_date, R.id.order_number,R.id.order_total,
-        R.id.supplier_name,R.id.generated_po,R.id.po_sequence_no,R.id.status_id,R.id.balance_ammount,R.id.paid_ammount};
+        R.id.supplier_name,R.id.generated_po,R.id.po_sequence_no,R.id.status_id,R.id.balance_ammount,
+                R.id.paid_ammount,R.id.disc_amnt};
         Intent facilityDetailsIntent = getIntent();
         indentId = facilityDetailsIntent.getIntExtra("indentId",0);
         datasource = new IndentsDataSource(this);
@@ -46,7 +47,8 @@ public class IndentDetailed extends DashboardAppCompatActivity {
         datasource.close();
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMM, yyyy");
         String[] values = {dateFormat.format(indent.getOrderDate()),indent.getOrderNo(), ""+ indent.getOrderTotal(),
-        indent.getSupplierPartyName(),(indent.isgeneratedPO())?"YES":"NO",indent.getPoSquenceNo(),indent.getStatusId(),""+indent.getBalance(),""+indent.getPaidAmt()};
+        indent.getSupplierPartyName(),(indent.isgeneratedPO())?"YES":"NO",indent.getPoSquenceNo(),indent.getStatusId()
+                ,""+indent.getBalance(),""+indent.getPaidAmt(),""+indent.getTotDiscountAmt()};
 
         for (int i=0;i<ids.length;i++){
             textView = (TextView) findViewById(ids[i]);

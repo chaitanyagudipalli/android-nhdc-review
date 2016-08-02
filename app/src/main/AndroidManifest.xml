@@ -323,13 +323,23 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="in.vasista.vsales.indent.IndentCreationActivity" />
         </activity>
-        <activity android:name="in.vasista.vsales.WeaverDetailedActivity"
+        <activity
+            android:name="in.vasista.vsales.WeaverDetailedActivity"
             android:label="Weaver details"
             android:parentActivityName="in.vasista.vsales.SalesDashboardActivity"
             tools:ignore="UnusedAttribute">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="in.vasista.vsales.SalesDashboardActivity" /></activity>
+                android:value="in.vasista.vsales.SalesDashboardActivity" />
+        </activity>
+        <activity android:name="in.vasista.vsales.IndentItemDetailed"
+            android:label="Indent Item Details"
+            tools:ignore="UnusedAttribute"
+            android:parentActivityName="in.vasista.vsales.IndentDetailed">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="in.vasista.vsales.IndentDetailed" />
+        </activity>
     </application>
 
 </manifest>

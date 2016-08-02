@@ -7,18 +7,16 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
 
 import in.vasista.vsales.catalog.Product;
 import in.vasista.vsales.indent.Indent;
-import in.vasista.vsales.indent.IndentItem;
 import in.vasista.vsales.indent.IndentItemNHDC;
-import in.vasista.vsales.util.DateUtil;
 
 public class IndentsDataSource {
 	public static final String module = IndentsDataSource.class.getName();	
@@ -42,7 +40,8 @@ public class IndentsDataSource {
 			  MySQLiteHelper.COLUMN_INDENT_PAID,
 			  MySQLiteHelper.COLUMN_INDENT_BALANCE,
 			  MySQLiteHelper.COLUMN_INDENT_SCHEMECAT,
-			  MySQLiteHelper.COLUMN_INDENT_PRODSTORE_ID
+			  MySQLiteHelper.COLUMN_INDENT_PRODSTORE_ID,
+			  MySQLiteHelper.COLUMN_INDENT_DISC_AMNT,
 
 	  };
 
@@ -59,7 +58,16 @@ public class IndentsDataSource {
 			  MySQLiteHelper.COLUMN_INDENT_ITEM_TAXRATELIST,
 			  MySQLiteHelper.COLUMN_INDENT_ITEM_SERVICECHARGE,
 			  MySQLiteHelper.COLUMN_INDENT_ITEM_SERVICECHARGE_AMT,
-			  MySQLiteHelper.COLUMN_INDENT_ITEM_TOTAL_AMT};
+			  MySQLiteHelper.COLUMN_INDENT_ITEM_TOTAL_AMT,
+			  MySQLiteHelper.COLUMN_INDENT_ITEM_VAT_PER,
+			  MySQLiteHelper.COLUMN_INDENT_ITEM_VAT_AMT,
+			  MySQLiteHelper.COLUMN_INDENT_ITEM_CST_PER ,
+			  MySQLiteHelper.COLUMN_INDENT_ITEM_CST_AMT ,
+				MySQLiteHelper.COLUMN_INDENT_ITEM_DISC_AMT,
+				MySQLiteHelper.COLUMN_INDENT_ITEM_SHIPPED_QTY,
+				MySQLiteHelper.COLUMN_INDENT_ITEM_OTHER_CHARGES
+
+	  };
 	  
 	  public IndentsDataSource(Context context) {
 		  this.context = context;		  
@@ -132,6 +140,7 @@ public class IndentsDataSource {
 			values.put(MySQLiteHelper.COLUMN_INDENT_BALANCE, indent.getBalance());
 		values.put(MySQLiteHelper.COLUMN_INDENT_SCHEMECAT, indent.getSchemeType());
 		values.put(MySQLiteHelper.COLUMN_INDENT_PRODSTORE_ID,indent.getProdstoreid());
+		values.put(MySQLiteHelper.COLUMN_INDENT_DISC_AMNT,indent.getTotDiscountAmt());
 
 			return database.insert(MySQLiteHelper.TABLE_INDENT, null, values);
 
@@ -159,6 +168,7 @@ public class IndentsDataSource {
 			values.put(MySQLiteHelper.COLUMN_INDENT_BALANCE, indent.getBalance());
 			values.put(MySQLiteHelper.COLUMN_INDENT_SCHEMECAT, indent.getSchemeType());
 			values.put(MySQLiteHelper.COLUMN_INDENT_PRODSTORE_ID,indent.getProdstoreid());
+			values.put(MySQLiteHelper.COLUMN_INDENT_DISC_AMNT,indent.getTotDiscountAmt());
 
 			database.insert(MySQLiteHelper.TABLE_INDENT, null, values);
  		}
@@ -205,14 +215,20 @@ public class IndentsDataSource {
 	  }
 
 	  public Indent getIndentDetails(int indentId) {
-		    Cursor cursor = database.query(MySQLiteHelper.TABLE_INDENT,
+		  try {
+
+			Cursor cursor = database.query(MySQLiteHelper.TABLE_INDENT,
 		        allColumns, MySQLiteHelper.COLUMN_INDENT_ID + " = " + indentId, null, null, null, null);
 
 		    cursor.moveToFirst();
 		    Indent indent = cursorToIndent(cursor);
 		    // Make sure to close the cursor
 		    cursor.close();
-		    return indent;  
+		    return indent;
+
+		  }catch (Exception e){
+			  return null;
+		  }
 	  }
 	  
 	  private Indent cursorToIndent(Cursor cursor) {
@@ -232,7 +248,8 @@ public class IndentsDataSource {
 				cursor.getDouble(13),
 				cursor.getDouble(14),
 				cursor.getString(15),
-				cursor.getString(16));
+				cursor.getString(16),
+				cursor.getFloat(17));
 	  }
 	  
 	  public void updateIndentStatus(long indentId, String indentStatus) {
@@ -307,7 +324,14 @@ public class IndentsDataSource {
 				values.put(MySQLiteHelper.COLUMN_INDENT_ITEM_TAXRATELIST, indentItem.getTaxRateList());
 				values.put(MySQLiteHelper.COLUMN_INDENT_ITEM_SERVICECHARGE, indentItem.getServiceCharge());
 				values.put(MySQLiteHelper.COLUMN_INDENT_ITEM_SERVICECHARGE_AMT, indentItem.getServiceChargeAmt());
-		  values.put(MySQLiteHelper.COLUMN_INDENT_ITEM_TOTAL_AMT, indentItem.getTotalAmt());
+		  values.put(MySQLiteHelper.COLUMN_INDENT_ITEM_TOTAL_AMT,indentItem.getTotalAmt());
+		  values.put(MySQLiteHelper.COLUMN_INDENT_ITEM_VAT_PER,indentItem.getVatPercent());
+		  values.put(MySQLiteHelper.COLUMN_INDENT_ITEM_VAT_AMT,indentItem.getVatAmount());
+		  values.put(MySQLiteHelper.COLUMN_INDENT_ITEM_CST_PER,indentItem.getCstPercent());
+		  values.put(MySQLiteHelper.COLUMN_INDENT_ITEM_CST_AMT,indentItem.getCstAmount());
+		  values.put(MySQLiteHelper.COLUMN_INDENT_ITEM_DISC_AMT,indentItem.getDiscountAmount());
+		  values.put(MySQLiteHelper.COLUMN_INDENT_ITEM_SHIPPED_QTY,indentItem.getShippedQty());
+		  values.put(MySQLiteHelper.COLUMN_INDENT_ITEM_OTHER_CHARGES,indentItem.getOtherCharges());
 
 		  		return database.insert(MySQLiteHelper.TABLE_INDENT_ITEM, null, values);
 	  }
@@ -321,7 +345,7 @@ public class IndentsDataSource {
 		  Map productMap = datasource.getSaleProductMap();
 		  cursor.moveToFirst();
 		  while (!cursor.isAfterLast()) {
-			  IndentItemNHDC indentItem = cursorToIndentItem(cursor, productMap);
+			  IndentItemNHDC indentItem = cursorToIndentItem(cursor);
 			  indentItems.add(indentItem);
 		      cursor.moveToNext();
 		  }
@@ -330,6 +354,17 @@ public class IndentsDataSource {
 		  datasource.close();
 		  return indentItems;
 	  }
+
+	public IndentItemNHDC getIndentItemDetails(int indentItemId) {
+		Cursor cursor = database.query(MySQLiteHelper.TABLE_INDENT_ITEM,
+				allIndentItemColumns, MySQLiteHelper.COLUMN_INDENT_ITEM_ID + " = " + indentItemId, null, null, null, null);
+
+		cursor.moveToFirst();
+		IndentItemNHDC indentItem = cursorToIndentItem(cursor);
+		// Make sure to close the cursor
+		cursor.close();
+		return indentItem;
+	}
 	  
 //	  public Map[] getXMLRPCSerializedIndentItems(int indentId) {
 //		  List<IndentItemNHDC> indentItems = getIndentItems(indentId);
@@ -363,10 +398,12 @@ public class IndentsDataSource {
 //		  return result;
 //	  }
 	  
-	  private IndentItemNHDC cursorToIndentItem(Cursor cursor,  Map<String, Product> productMap) {
-		  return new IndentItemNHDC(cursor.getString(2),
+	  private IndentItemNHDC cursorToIndentItem(Cursor cursor) {
+		  return new IndentItemNHDC(cursor.getInt(0),cursor.getInt(1),cursor.getString(2),
 				  cursor.getString(3), cursor.getString(4),cursor.getString(5),cursor.getString(6),cursor.getString(7),
-				  cursor.getString(8),cursor.getString(9),cursor.getString(10),cursor.getString(11),cursor.getString(12));
+				  cursor.getString(8),cursor.getString(9),cursor.getString(10),cursor.getString(11),cursor.getString(12),
+				  cursor.getFloat(13), cursor.getFloat(14),cursor.getFloat(15),cursor.getFloat(16),cursor.getFloat(17),
+				  cursor.getFloat(18), cursor.getFloat(19));
 	  }
 	  
 	  /*
