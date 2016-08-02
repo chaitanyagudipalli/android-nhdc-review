@@ -3,6 +3,7 @@ package in.vasista.vsales.db;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.DatabaseUtils;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
@@ -141,6 +142,10 @@ public class ProductsDataSource {
 	    cursor.close();
 	    return products;
 	  }
+
+	public int getCountProducts(){
+		return (int)DatabaseUtils.queryNumEntries(database, MySQLiteHelper.TABLE_PRODUCT);
+	}
 
 	public List<Product> getProducts(String category) {
 		List<Product> products = new ArrayList<Product>();

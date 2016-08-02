@@ -184,7 +184,7 @@ public class IndentDetailed extends DashboardAppCompatActivity {
                             progressBar = (ProgressBar) menuItem.getActionView().findViewById(R.id.menuitem_progress);
                         }
                         ServerSync serverSync = new ServerSync(IndentDetailed.this);
-                        serverSync.uploadNHDCIndent(menuItem, null, list,indent.getSupplierPartyId(),indent.getSchemeType(), indentId);
+                        serverSync.uploadNHDCIndent(menuItem, null, list,indent.getSupplierPartyId(),indent.getSchemeType(), indentId, indent.getProdstoreid());
                     }
                 });
 

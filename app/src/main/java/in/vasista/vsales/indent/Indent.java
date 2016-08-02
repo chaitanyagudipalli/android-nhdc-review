@@ -15,10 +15,10 @@ public class Indent {
 	String statusId;
 
 	double orderTotal, paidAmt, balance;
-	String schemeType;
+	String schemeType,prodstoreid;
 
 
-	public Indent(int id, String tallyRefNo, String POorder, String poSquenceNo, boolean isgeneratedPO, String supplierPartyId, String storeName, String supplierPartyName, String orderNo, String orderId, Date orderDate, String statusId, double orderTotal, double paidAmt, double balance,String schemeType) {
+	public Indent(int id, String tallyRefNo, String POorder, String poSquenceNo, boolean isgeneratedPO, String supplierPartyId, String storeName, String supplierPartyName, String orderNo, String orderId, Date orderDate, String statusId, double orderTotal, double paidAmt, double balance,String schemeType,String prodstoreid) {
 		this.id = id;
 		this.tallyRefNo = tallyRefNo;
 		this.POorder = POorder;
@@ -35,6 +35,7 @@ public class Indent {
 		this.paidAmt = paidAmt;
 		this.balance = balance;
 		this.schemeType = schemeType;
+		this.prodstoreid = prodstoreid;
 	}
 
 
@@ -106,6 +107,10 @@ public class Indent {
 
 	public String getStatusId() {
 		return statusId;
+	}
+
+	public String getProdstoreid() {
+		return prodstoreid;
 	}
 
 	@Override

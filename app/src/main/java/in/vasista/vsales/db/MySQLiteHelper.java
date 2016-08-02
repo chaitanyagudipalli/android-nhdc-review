@@ -40,6 +40,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 	public static final String COLUMN_INDENT_PAID = "INDENT_PAID";
 	public static final String COLUMN_INDENT_BALANCE = "INDENT_BALANCE";
 	public static final String COLUMN_INDENT_SCHEMECAT = "INDENT_SCHEMECAT";
+	public static final String COLUMN_INDENT_PRODSTORE_ID = "INDENT_PRODSTORE_ID";
 
 
 	public static final String TABLE_INDENT_ITEM = "INDENT_ITEM";
@@ -55,6 +56,12 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 	public static final String COLUMN_INDENT_ITEM_SERVICECHARGE = "SERVICECHARGE";
 	public static final String COLUMN_INDENT_ITEM_SERVICECHARGE_AMT = "SERVICECHARGE_AMT";
 	public static final String COLUMN_INDENT_ITEM_TOTAL_AMT = "TOTAL_AMT";
+	public static final String COLUMN_INDENT_ITEM_VAT_PER = "VAT_PER ";
+	public static final String COLUMN_INDENT_ITEM_VAT_AMT = "VAT_AMT";
+	public static final String COLUMN_INDENT_ITEM_CST_PER = "CST_PER";
+	public static final String COLUMN_INDENT_ITEM_CST_AMT = "CST_AMT";
+	public static final String COLUMN_INDENT_ITEM_DISC_AMT = "DISC_AMT";
+	public static final String COLUMN_INDENT_ITEM_SHIPPED_QTY = "SHIPPED_QTY";
 
 	  public static final String TABLE_ORDER = "ORDER_HEADER";
 	  public static final String COLUMN_ORDER_ID = "ORDER_ID";
@@ -183,7 +190,8 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 			  + " text, " + COLUMN_INDENT_ORDER_TOTAL
 			  + " real not null, " + COLUMN_INDENT_PAID
 		      + " real, " + COLUMN_INDENT_BALANCE
-		      + " real, " + COLUMN_INDENT_SCHEMECAT + " text" +
+		      + " real, " + COLUMN_INDENT_SCHEMECAT + " text,"
+				+ COLUMN_INDENT_PRODSTORE_ID + " text"+
 			  ");";
 
 
