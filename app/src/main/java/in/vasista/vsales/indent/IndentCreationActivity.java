@@ -18,27 +18,22 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
-import android.widget.TableRow;
 import android.widget.TextView;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 import in.vasista.nhdc.R;
 import in.vasista.vsales.DashboardAppCompatActivity;
-import in.vasista.vsales.adapter.ProductAutoAdapter;
 import in.vasista.vsales.adapter.SupplierAutoAdapter;
-import in.vasista.vsales.catalog.Product;
 import in.vasista.vsales.db.IndentsDataSource;
-import in.vasista.vsales.db.ProductsDataSource;
 import in.vasista.vsales.db.SupplierDataSource;
 import in.vasista.vsales.supplier.Supplier;
 import in.vasista.vsales.sync.ServerSync;
@@ -114,7 +109,7 @@ public class IndentCreationActivity extends DashboardAppCompatActivity implement
 
                 Date supplyDate = new Date();
 
-                Indent indent =new Indent(0,"","","",false,supplierPartyId,"",supplierName,"","",supplyDate,"Not Uploaded",0.0,0.0,0.0,schemeType,prodStoreId);
+                Indent indent =new Indent(0,"","","",false,supplierPartyId,"",supplierName,"","",supplyDate,"Not Uploaded",0.0,0.0,0.0,schemeType,prodStoreId, 0);
                 datasource = new IndentsDataSource(IndentCreationActivity.this);
                 datasource.open();
                 indent_id = datasource.insertIndent(indent);

@@ -14,11 +14,11 @@ public class Indent {
 	Date orderDate;
 	String statusId;
 
-	double orderTotal, paidAmt, balance;
+	double orderTotal, paidAmt, balance,totDiscountAmt;
 	String schemeType,prodstoreid;
 
 
-	public Indent(int id, String tallyRefNo, String POorder, String poSquenceNo, boolean isgeneratedPO, String supplierPartyId, String storeName, String supplierPartyName, String orderNo, String orderId, Date orderDate, String statusId, double orderTotal, double paidAmt, double balance,String schemeType,String prodstoreid) {
+	public Indent(int id, String tallyRefNo, String POorder, String poSquenceNo, boolean isgeneratedPO, String supplierPartyId, String storeName, String supplierPartyName, String orderNo, String orderId, Date orderDate, String statusId, double orderTotal, double paidAmt, double balance, String schemeType, String prodstoreid, float totDiscountAmt) {
 		this.id = id;
 		this.tallyRefNo = tallyRefNo;
 		this.POorder = POorder;
@@ -36,6 +36,7 @@ public class Indent {
 		this.balance = balance;
 		this.schemeType = schemeType;
 		this.prodstoreid = prodstoreid;
+		this.totDiscountAmt = totDiscountAmt;
 	}
 
 
@@ -111,6 +112,10 @@ public class Indent {
 
 	public String getProdstoreid() {
 		return prodstoreid;
+	}
+
+	public double getTotDiscountAmt() {
+		return totDiscountAmt;
 	}
 
 	@Override

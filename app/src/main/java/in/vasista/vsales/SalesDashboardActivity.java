@@ -513,13 +513,7 @@ public boolean onCreateOptionsMenu(Menu menu) {
 		public NetworkPrepareThread() {
 			super();
 			partyId = prefs.getString("storeId", "");
-			progress = new ProgressDialog(SalesDashboardActivity.this);
-			progress.setMessage("Preparing your application...");
-			progress.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-			progress.setIndeterminate(true);
 
-			progress.setProgress(0);
-			progress.show();
 		}
 
 		@Override
@@ -540,6 +534,12 @@ public boolean onCreateOptionsMenu(Menu menu) {
 				appPrepared = true;
 
 
+			progress = new ProgressDialog(SalesDashboardActivity.this);
+			progress.setMessage("Preparing your application...");
+			progress.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+			progress.setIndeterminate(false);
+			progress.setCancelable(false);
+			progress.show();
 		}
 		@Override
 		protected Void doInBackground(Void... params) {
@@ -557,16 +557,68 @@ public boolean onCreateOptionsMenu(Menu menu) {
 
 						XMLRPCApacheAdapter adapter = new XMLRPCApacheAdapter(getBaseContext());
 						if (!appProd){
-							progress.setMessage("Preparing products...");
-							progress.setProgress(10);
+
+							publishProgress(10);
 							productsObject = adapter.callSync("getProducts", paramMap);
+							publishProgress(20);
+							if(productsObject != null){
+								Map priceResults = (Map)((Map)productsObject).get("productsMap");
+								Log.d(module, "priceResults.size() = " + priceResults.size());
+								pds.open();
+								Iterator entries = priceResults.entrySet().iterator();
+								List<Product> ls = new ArrayList<Product>();
+								while (entries.hasNext()) {
+									Map.Entry thisEntry = (Map.Entry) entries.next();
+									String productId = (String)thisEntry.getKey();
+									Map value = (Map)thisEntry.getValue();
+
+									String name = (String)value.get("productName");
+									String description = (String)value.get("description");
+									String primaryProductCategoryId = (String)value.get("primaryProductCategoryId");
+									String internalName = (String)value.get("internalName");
+									String brandName = (String)value.get("brandName");
+									String quantityUomId = (String)value.get("quantityUomId");
+									String productTypeId = (String)value.get("productTypeId");
+									String productParentTypeId = (String)value.get("primaryParentCategoryId");
+
+									float price = 0.0f;
+									float quantityIncluded = ((BigDecimal)value.get("quantityIncluded")).setScale(2,BigDecimal.ROUND_HALF_UP).floatValue();
+									Product product = new Product(productId, name, internalName, brandName,description,productTypeId,quantityUomId , price, quantityIncluded, primaryProductCategoryId,productParentTypeId);
+									ls.add(product);
+
+								}
+								pds.insertProducts(ls);
+								pds.close();
+							}
+							publishProgress(45);
 						}
 						if(!appSup){
-							progress.setMessage("Preparing suppliers...");
-							progress.setProgress(65);
+
 							paramMap = new HashMap();
 							suppliersObject = adapter.callSync("getSuppliers", paramMap);
+							publishProgress(70);
+							if(suppliersObject != null){
+								Map facilitiesResult = (Map)((Map)suppliersObject).get("suppliersMap");
+								sds.open();
+								if (facilitiesResult.size() > 0) {
+									List <Supplier> suppliers = new ArrayList();
+
+									for ( Object key : facilitiesResult.keySet() ) {
+										Map boothMap = (Map) facilitiesResult.get(key);
+										String id = (String)boothMap.get("partyId");
+										String name = (String)boothMap.get("groupName");
+										String roleTypeId = (String)boothMap.get("roleTypeId");
+										String partyTypeId = (String)boothMap.get("partyTypeId");
+										Supplier supplier = new Supplier(id, name, roleTypeId, partyTypeId);
+										suppliers.add(supplier);
+
+									}
+									sds.insertSuppliers(suppliers);
+								}
+								sds.close();
+							}
 						}
+						publishProgress(100);
 
 					}
 				}
@@ -583,64 +635,19 @@ public boolean onCreateOptionsMenu(Menu menu) {
 		protected void onPostExecute(Void aVoid) {
 			super.onPostExecute(aVoid);
 
-			if(productsObject != null){
-				Map priceResults = (Map)((Map)productsObject).get("productsMap");
-				Log.d(module, "priceResults.size() = " + priceResults.size());
-				pds.open();
-				Iterator entries = priceResults.entrySet().iterator();
-				List<Product> ls = new ArrayList<Product>();
-				while (entries.hasNext()) {
-					Map.Entry thisEntry = (Map.Entry) entries.next();
-					String productId = (String)thisEntry.getKey();
-					Map value = (Map)thisEntry.getValue();
-
-					String name = (String)value.get("productName");
-					String description = (String)value.get("description");
-					String primaryProductCategoryId = (String)value.get("primaryProductCategoryId");
-					String internalName = (String)value.get("internalName");
-					String brandName = (String)value.get("brandName");
-					String quantityUomId = (String)value.get("quantityUomId");
-					String productTypeId = (String)value.get("productTypeId");
-					String productParentTypeId = (String)value.get("primaryParentCategoryId");
-
-					float price = 0.0f;
-					float quantityIncluded = ((BigDecimal)value.get("quantityIncluded")).setScale(2,BigDecimal.ROUND_HALF_UP).floatValue();
-					Product product = new Product(productId, name, internalName, brandName,description,productTypeId,quantityUomId , price, quantityIncluded, primaryProductCategoryId,productParentTypeId);
-					ls.add(product);
-
-				}
-				pds.insertProducts(ls);
-				pds.close();
-			}
-			if(suppliersObject != null){
-				Map facilitiesResult = (Map)((Map)suppliersObject).get("suppliersMap");
-				sds.open();
-				if (facilitiesResult.size() > 0) {
-					List <Supplier> suppliers = new ArrayList();
-
-					for ( Object key : facilitiesResult.keySet() ) {
-						Map boothMap = (Map) facilitiesResult.get(key);
-						String id = (String)boothMap.get("partyId");
-						String name = (String)boothMap.get("groupName");
-						String roleTypeId = (String)boothMap.get("roleTypeId");
-						String partyTypeId = (String)boothMap.get("partyTypeId");
-						Supplier supplier = new Supplier(id, name, roleTypeId, partyTypeId);
-						suppliers.add(supplier);
-
-					}
-					sds.insertSuppliers(suppliers);
-				}
-				sds.close();
-			}
-			progress.setProgress(100);
-			progress.hide();
+			progress.dismiss();
 		}
 
 		@Override
 		protected void onProgressUpdate(Integer... values) {
 			super.onProgressUpdate(values);
+			if(values[0] >=20){
+				progress.setMessage("Preparing products...");
+			}else if(values[0] >=70){
+				progress.setMessage("Preparing suppliers...");
+			}
+
 			progress.setProgress(values[0]);
-			Log.v("prog","ghhhh"+values[0]);
 		}
 	}
 

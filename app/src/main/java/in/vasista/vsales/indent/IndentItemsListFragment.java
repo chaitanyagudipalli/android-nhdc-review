@@ -26,6 +26,7 @@ import java.util.Date;
 import java.util.List;
 
 import in.vasista.nhdc.R;
+import in.vasista.vsales.IndentItemDetailed;
 import in.vasista.vsales.adapter.IndentItemAdapter;
 import in.vasista.vsales.catalog.Product;
 import in.vasista.vsales.db.IndentsDataSource;
@@ -47,7 +48,8 @@ public class IndentItemsListFragment extends ListFragment{
 	final IndentItemsListFragment indentItemsListFragment = this;
 	public void onActivityCreated(Bundle savedInstanceState) {
 		
-		super.onActivityCreated(savedInstanceState);  
+		super.onActivityCreated(savedInstanceState);
+		indentItems = new ArrayList<IndentItemNHDC>();
 		Intent indentItemsIntent= getActivity().getIntent();
 
 		indentId = indentItemsIntent.getIntExtra("indentId", indentId);	
@@ -115,25 +117,28 @@ public class IndentItemsListFragment extends ListFragment{
 		listView.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> arg0, View view,
 					int position, long arg) {
+Log.v("jgjg",""+position);
 
-				final IndentItemNHDC item = (IndentItemNHDC) listView
-						.getItemAtPosition(position);
 				try {
-					if (!(datasource.getIndentDetails((int) (indentId)).getStatusId().equalsIgnoreCase("Not Uploaded"))) {
-						return;
-					}else {
+					if ((datasource.getIndentDetails((int) (indentId)).getStatusId().equalsIgnoreCase("Not Uploaded"))) {
 						return;
 					}
 				}catch (Exception e){
 
 				}
+				try {
+					final IndentItemNHDC item = indentItems.get(position-1);
+					Log.v("Upendra", "item:" + item.getProductId());
 
+					//Intent intent = new Intent(getActivity(),IndentCreateProduct.class);
+					Intent intent = new Intent(getActivity(), IndentItemDetailed.class);
+					intent.putExtra("indentId", indentId);
+					intent.putExtra("indentitem_id", item.getId());
 
-				Intent intent = new Intent(getActivity(),IndentCreateProduct.class);
-				intent.putExtra("indentId",indentId);
-				intent.putExtra("indentitem_id",item.getId());
+					startActivity(intent);
+				}catch (IndexOutOfBoundsException e){
 
-				startActivity(intent);
+				}
 			}
 
 		});

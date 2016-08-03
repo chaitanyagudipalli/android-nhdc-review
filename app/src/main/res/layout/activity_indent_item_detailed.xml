@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:paddingTop="?attr/actionBarSize"
     android:orientation="vertical"
-    tools:context="in.vasista.vsales.IndentDetailed">
+    tools:context="in.vasista.vsales.IndentItemDetailed">
 
     <TableLayout
         android:layout_width="match_parent"
@@ -23,14 +23,14 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="2dp"
                 style="@style/TabeRowTitle"
-                android:text="@string/order_date"/>
+                android:text="Product name"/>
             <TextView
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:text=":"/>
             <TextView
-                android:id="@+id/order_date"
+                android:id="@+id/product_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/TabeRowValue"
@@ -43,14 +43,14 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="2dp"
                 style="@style/TabeRowTitle"
-                android:text="@string/order_number"/>
+                android:text="Quantity"/>
             <TextView
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:text=":"/>
             <TextView
-                android:id="@+id/order_number"
+                android:id="@+id/quantity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/TabeRowValue"
@@ -62,34 +62,14 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="2dp"
                 style="@style/TabeRowTitle"
-                android:text="@string/generated_po"/>
+                android:text="Remarks" />
             <TextView
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:text=":"/>
             <TextView
-                android:id="@+id/generated_po"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                style="@style/TabeRowValue"
-                android:layout_margin="2dp" />
-        </TableRow>
-
-        <TableRow android:paddingTop="5dip"
-            android:paddingBottom="5dip">
-            <TextView
-                android:layout_height="wrap_content"
-                android:layout_margin="2dp"
-                style="@style/TabeRowTitle"
-                android:text="@string/po_sequence_no"/>
-            <TextView
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:text=":"/>
-            <TextView
-                android:id="@+id/po_sequence_no"
+                android:id="@+id/remarks"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/TabeRowValue"
@@ -102,14 +82,34 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="2dp"
                 style="@style/TabeRowTitle"
-                android:text="@string/supplier_name"/>
+                android:text="Bale Quantity"/>
             <TextView
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:text=":"/>
             <TextView
-                android:id="@+id/supplier_name"
+                android:id="@+id/quantitynos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/TabeRowValue"
+                android:layout_margin="2dp" />
+        </TableRow>
+
+        <TableRow android:paddingTop="5dip"
+            android:paddingBottom="5dip">
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_margin="2dp"
+                style="@style/TabeRowTitle"
+                android:text="Bundle weight"/>
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:text=":"/>
+            <TextView
+                android:id="@+id/b_wt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/TabeRowValue"
@@ -121,14 +121,14 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="2dp"
                 style="@style/TabeRowTitle"
-                android:text="@string/status_id"/>
+                android:text="Bundle unit price"/>
             <TextView
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:text=":"/>
             <TextView
-                android:id="@+id/status_id"
+                android:id="@+id/b_unit_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/TabeRowValue"
@@ -159,14 +159,14 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="2dp"
                 style="@style/TabeRowTitle"
-                android:text="@string/order_total"/>
+                android:text="Total amount"/>
             <TextView
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:text=":"/>
             <TextView
-                android:id="@+id/order_total"
+                android:id="@+id/total_mnt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/TabeRowValue"
@@ -178,14 +178,14 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="2dp"
                 style="@style/TabeRowTitle"
-                android:text="@string/paid_ammount"/>
+                android:text="Other charges"/>
             <TextView
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:text=":"/>
             <TextView
-                android:id="@+id/paid_ammount"
+                android:id="@+id/other_charges"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/TabeRowValue"
@@ -197,23 +197,18 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="2dp"
                 style="@style/TabeRowTitle"
-                android:text="@string/balance_ammount"/>
+                android:text="Shipped quantity"/>
             <TextView
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:text=":"/>
             <TextView
-                android:id="@+id/balance_ammount"
+                android:id="@+id/shipped_qty"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/TabeRowValue"
                 android:layout_margin="2dp" />
         </TableRow>
     </TableLayout>
-    <fragment
-        android:id="@+id/indentitems_list_fragment"
-        android:name="in.vasista.vsales.indent.IndentItemsListFragment"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
 </LinearLayout>

@@ -10,8 +10,10 @@ public class IndentItemNHDC {
 
     String totalAmt;
 
-    long id;
-    public IndentItemNHDC(String productId, String quantity, String remarks, String baleQuantity, String bundleWeight, String bundleUnitPrice, String yarnUOM, String basicPrice, String serviceCharge, String serviceChargeAmt, String totalAmt) {
+    float vatPercent, vatAmount, cstPercent, cstAmount, shippedQty,discountAmount,otherCharges;
+
+    int id, indentId;
+    public IndentItemNHDC(int id,int indentId,String productId, String quantity, String remarks, String baleQuantity, String bundleWeight, String bundleUnitPrice, String yarnUOM, String basicPrice, String serviceCharge, String serviceChargeAmt, String totalAmt, float vatPercent, float vatAmount, float cstPercent, float cstAmount, float shippedQty, float discountAmount, float otherCharges) {
         this.productId = productId;
         this.quantity = quantity;
         this.remarks = remarks;
@@ -23,6 +25,16 @@ public class IndentItemNHDC {
         this.serviceCharge = serviceCharge;
         this.serviceChargeAmt = serviceChargeAmt;
         this.totalAmt = totalAmt;
+        this.vatPercent = vatPercent;
+        this.vatAmount = vatAmount;
+        this.cstPercent = cstPercent;
+        this.cstAmount = cstAmount;
+        this.shippedQty = shippedQty;
+        this.discountAmount = discountAmount;
+        this.otherCharges = otherCharges;
+
+        this.id = id;
+        this.indentId = indentId;
     }
 
     public String getProductId() {
@@ -69,15 +81,51 @@ public class IndentItemNHDC {
         return serviceChargeAmt;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
+    }
+
+    public int getIndentId() {
+        return indentId;
+    }
+
+    public void setIndentId(int indentId) {
+        this.indentId = indentId;
     }
 
     public String getTotalAmt() {
         return totalAmt;
+    }
+
+    public float getVatPercent() {
+        return vatPercent;
+    }
+
+    public float getVatAmount() {
+        return vatAmount;
+    }
+
+    public float getCstPercent() {
+        return cstPercent;
+    }
+
+    public float getCstAmount() {
+        return cstAmount;
+    }
+
+    public float getShippedQty() {
+        return shippedQty;
+    }
+
+    public float getDiscountAmount() {
+        return discountAmount;
+    }
+
+    public float getOtherCharges() {
+        return otherCharges;
     }
 }
