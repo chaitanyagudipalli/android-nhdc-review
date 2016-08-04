@@ -7,14 +7,11 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import in.vasista.vsales.catalog.Product;
 import in.vasista.vsales.indent.Indent;
 import in.vasista.vsales.indent.IndentItemNHDC;
 
@@ -65,7 +62,8 @@ public class IndentsDataSource {
 			  MySQLiteHelper.COLUMN_INDENT_ITEM_CST_AMT ,
 				MySQLiteHelper.COLUMN_INDENT_ITEM_DISC_AMT,
 				MySQLiteHelper.COLUMN_INDENT_ITEM_SHIPPED_QTY,
-				MySQLiteHelper.COLUMN_INDENT_ITEM_OTHER_CHARGES
+				MySQLiteHelper.COLUMN_INDENT_ITEM_OTHER_CHARGES,
+			  MySQLiteHelper.COLUMN_INDENT_ITEM_SPEC
 
 	  };
 	  
@@ -89,7 +87,6 @@ public class IndentsDataSource {
 			//database.delete(MySQLiteHelper.TABLE_INDENT_ITEM, null, null);
 		}
 	public void deleteIndent(long indent_id){
-		Log.v("adsasd",""+Long.toString(indent_id));
 		database.delete(MySQLiteHelper.TABLE_INDENT, MySQLiteHelper.COLUMN_INDENT_ID+"="+Long.toString(indent_id), null);
 		database.delete(MySQLiteHelper.TABLE_INDENT_ITEM, MySQLiteHelper.COLUMN_INDENT_ID+"="+Long.toString(indent_id), null);
 
@@ -332,8 +329,10 @@ public class IndentsDataSource {
 		  values.put(MySQLiteHelper.COLUMN_INDENT_ITEM_DISC_AMT,indentItem.getDiscountAmount());
 		  values.put(MySQLiteHelper.COLUMN_INDENT_ITEM_SHIPPED_QTY,indentItem.getShippedQty());
 		  values.put(MySQLiteHelper.COLUMN_INDENT_ITEM_OTHER_CHARGES,indentItem.getOtherCharges());
+		  values.put(MySQLiteHelper.COLUMN_INDENT_ITEM_SPEC,indentItem.getSpec());
 
-		  		return database.insert(MySQLiteHelper.TABLE_INDENT_ITEM, null, values);
+
+		  return database.insert(MySQLiteHelper.TABLE_INDENT_ITEM, null, values);
 	  }
 	  
 	  public List<IndentItemNHDC> getIndentItems(int indentId) {
@@ -366,6 +365,7 @@ public class IndentsDataSource {
 		return indentItem;
 	}
 	  
+//	  public Map[] getXMLRPCSerializedIndentItems(int indentId) {
 //	  public Map[] getXMLRPCSerializedIndentItems(int indentId) {
 //		  List<IndentItemNHDC> indentItems = getIndentItems(indentId);
 //		  if (indentItems.isEmpty()) {
@@ -403,7 +403,7 @@ public class IndentsDataSource {
 				  cursor.getString(3), cursor.getString(4),cursor.getString(5),cursor.getString(6),cursor.getString(7),
 				  cursor.getString(8),cursor.getString(9),cursor.getString(10),cursor.getString(11),cursor.getString(12),
 				  cursor.getFloat(13), cursor.getFloat(14),cursor.getFloat(15),cursor.getFloat(16),cursor.getFloat(17),
-				  cursor.getFloat(18), cursor.getFloat(19));
+				  cursor.getFloat(18), cursor.getFloat(19), cursor.getString(20));
 	  }
 	  
 	  /*

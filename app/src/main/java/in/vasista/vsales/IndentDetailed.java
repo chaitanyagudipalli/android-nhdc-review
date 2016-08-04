@@ -10,6 +10,8 @@ import android.view.MenuItem;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -45,10 +47,15 @@ public class IndentDetailed extends DashboardAppCompatActivity {
         datasource.open();
         indent = datasource.getIndentDetails(indentId);
         datasource.close();
+
+
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMM, yyyy");
-        String[] values = {dateFormat.format(indent.getOrderDate()),indent.getOrderNo(), ""+ indent.getOrderTotal(),
+        String[] values = {dateFormat.format(indent.getOrderDate()),indent.getOrderNo(),
+                ""+ new BigDecimal(indent.getOrderTotal()).setScale(2, RoundingMode.HALF_UP).doubleValue(),
         indent.getSupplierPartyName(),(indent.isgeneratedPO())?"YES":"NO",indent.getPoSquenceNo(),indent.getStatusId()
-                ,""+indent.getBalance(),""+indent.getPaidAmt(),""+indent.getTotDiscountAmt()};
+                ,""+new BigDecimal(indent.getBalance()).setScale(2, RoundingMode.HALF_UP).doubleValue(),
+                ""+new BigDecimal(indent.getPaidAmt()).setScale(2, RoundingMode.HALF_UP).doubleValue(),
+                ""+new BigDecimal(indent.getTotDiscountAmt()).setScale(2, RoundingMode.HALF_UP).doubleValue()};
 
         for (int i=0;i<ids.length;i++){
             textView = (TextView) findViewById(ids[i]);
