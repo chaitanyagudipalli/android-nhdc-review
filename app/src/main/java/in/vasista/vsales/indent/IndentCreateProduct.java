@@ -50,6 +50,7 @@ public class IndentCreateProduct extends DashboardAppCompatActivity implements V
             serviceCharge = "",serviceChargeAmt = "";
 
     String supplierPartyId = "", schemeType = "", category_type = "", total_amount = "";
+    String spec = "";
 
     LinearLayout cottonLayout;
 
@@ -59,7 +60,7 @@ public class IndentCreateProduct extends DashboardAppCompatActivity implements V
     Object weaverDet;SharedPreferences prefs;
 
     EditText totalweight,unitprice;
-    EditText bundleUnitPriceTv,bundlewt,quantitynos;
+    EditText bundleUnitPriceTv,bundlewt,quantitynos, specificaton;
 
     TextView totalAmt;
 
@@ -99,6 +100,8 @@ public class IndentCreateProduct extends DashboardAppCompatActivity implements V
         // Disable edit text editing
         totalweight = (EditText) findViewById(R.id.totalweight);
         unitprice = (EditText) findViewById(R.id.unitprice);
+
+        specificaton = (EditText) findViewById(R.id.specifications);
 
 
         if(category_type!=null &&   category_type.equalsIgnoreCase("COTTON")){
@@ -173,6 +176,7 @@ public class IndentCreateProduct extends DashboardAppCompatActivity implements V
                 bundleUnitPrice = ((EditText)findViewById(R.id.bundleUnitPrice)).getText().toString();
                 basicPrice = ((EditText)findViewById(R.id.unitprice)).getText().toString();
                 total_amount = ((TextView) findViewById(R.id.totalAmt)).getText().toString();
+                spec = specificaton.getText().toString();
 
                 HashMap<String,String> hm = new HashMap<String, String>();
                 hm.put("productId",productId);
@@ -187,7 +191,7 @@ public class IndentCreateProduct extends DashboardAppCompatActivity implements V
                 hm.put("serviceChargeAmt",serviceChargeAmt);
 
 
-                IndentItemNHDC IN = new IndentItemNHDC(0,(int)i.getLongExtra("indent_id",0),productId,quantity, remarks, baleQuantity, bundleWeight, bundleUnitPrice, yarnUOM, basicPrice, serviceCharge, serviceChargeAmt,total_amount, 0,0,0,0,0,0,0);
+                IndentItemNHDC IN = new IndentItemNHDC(0,(int)i.getLongExtra("indent_id",0),productId,quantity, remarks, baleQuantity, bundleWeight, bundleUnitPrice, yarnUOM, basicPrice, serviceCharge, serviceChargeAmt,total_amount, 0,0,0,0,0,0,0, spec);
                 list.add(hm);
                 datasource = new IndentsDataSource(IndentCreateProduct.this);
                 datasource.open();
@@ -221,7 +225,6 @@ public class IndentCreateProduct extends DashboardAppCompatActivity implements V
         else
             productList = productsDataSource.getOtherProducts();
 
-        Log.v("Upendra","count "+productList.size());
         productsDataSource.close();
         for (int i = 0; i < productList.size(); ++i) {
             Product p = productList.get(i);
@@ -386,7 +389,6 @@ public class IndentCreateProduct extends DashboardAppCompatActivity implements V
             if (weaverDet != null) {
                 Map weaverDetails = (Map)((Map)weaverDet).get("weaverDetails");
                 Map loomMap = (Map)((Map)weaverDetails).get("loomDetails");
-                Log.v("adsa",""+weaverDetails);
 
                 String[] values = {};
 

@@ -64,6 +64,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 	public static final String COLUMN_INDENT_ITEM_DISC_AMT = "DISC_AMT";
 	public static final String COLUMN_INDENT_ITEM_SHIPPED_QTY = "SHIPPED_QTY";
 	public static final String COLUMN_INDENT_ITEM_OTHER_CHARGES = "OTHER_CHARGES";
+	public static final String COLUMN_INDENT_ITEM_SPEC = "SPEC";
 
 	  public static final String TABLE_ORDER = "ORDER_HEADER";
 	  public static final String COLUMN_ORDER_ID = "ORDER_ID";
@@ -220,7 +221,8 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 	 			+ COLUMN_INDENT_ITEM_CST_AMT + " real, "
 				+ COLUMN_INDENT_ITEM_DISC_AMT + " real, "
 					+ COLUMN_INDENT_ITEM_SHIPPED_QTY + " real, "
-			  + COLUMN_INDENT_ITEM_OTHER_CHARGES + " real"
+			  + COLUMN_INDENT_ITEM_OTHER_CHARGES + " real, "
+			  + COLUMN_INDENT_ITEM_SPEC + " text"
 			  + ");";
 	  
 	  private static final String DATABASE_CREATE_ORDER = "create table "

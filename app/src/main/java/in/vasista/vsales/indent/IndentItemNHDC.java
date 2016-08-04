@@ -12,8 +12,10 @@ public class IndentItemNHDC {
 
     float vatPercent, vatAmount, cstPercent, cstAmount, shippedQty,discountAmount,otherCharges;
 
+    String spec;
+
     int id, indentId;
-    public IndentItemNHDC(int id,int indentId,String productId, String quantity, String remarks, String baleQuantity, String bundleWeight, String bundleUnitPrice, String yarnUOM, String basicPrice, String serviceCharge, String serviceChargeAmt, String totalAmt, float vatPercent, float vatAmount, float cstPercent, float cstAmount, float shippedQty, float discountAmount, float otherCharges) {
+    public IndentItemNHDC(int id, int indentId, String productId, String quantity, String remarks, String baleQuantity, String bundleWeight, String bundleUnitPrice, String yarnUOM, String basicPrice, String serviceCharge, String serviceChargeAmt, String totalAmt, float vatPercent, float vatAmount, float cstPercent, float cstAmount, float shippedQty, float discountAmount, float otherCharges, String specification) {
         this.productId = productId;
         this.quantity = quantity;
         this.remarks = remarks;
@@ -35,6 +37,8 @@ public class IndentItemNHDC {
 
         this.id = id;
         this.indentId = indentId;
+
+        this.spec = specification;
     }
 
     public String getProductId() {
@@ -127,5 +131,9 @@ public class IndentItemNHDC {
 
     public float getOtherCharges() {
         return otherCharges;
+    }
+
+    public String getSpec() {
+        return spec;
     }
 }
