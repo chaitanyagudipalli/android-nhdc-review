@@ -228,9 +228,9 @@
     <string name="supplier_party_id">Supplier Party ID</string>
     <string name="store_name">Store Name</string>
     <string name="supplier_name">Supplier Name</string>
-    <string name="status_id">Status ID</string>
+    <string name="status_id">Status</string>
     <string name="order_total">Indent Total</string>
-    <string name="paid_ammount">Paid Ammount</string>
-    <string name="balance_ammount">Balance Ammount</string>
+    <string name="paid_ammount">Paid Amount</string>
+    <string name="balance_ammount">Balance Amount</string>
     <string name="indent_details">Indent Details</string>
 </resources>

@@ -369,7 +369,9 @@ public class ServerSync {
 											Map productMap = (Map)productsMap[j];
 											IndentItemNHDC indentItemNHDC = new IndentItemNHDC(0,indent.getId(),(String)productMap.get("productId"),
 													""+productMap.get("quantity"),(String)productMap.get("specification"),
-													""+productMap.get("baleQty"),""+productMap.get("bundleWeight"),""+productMap.get("unitPrice"),"","","",""+productMap.get("totalAmount"),"",
+													""+productMap.get("baleQty"),""+productMap.get("bundleWeight"),""+productMap.get("unitPrice"),
+													""+productMap.get("uom"),"","",
+													"",""+productMap.get("totalAmount"),
 													((BigDecimal)productMap.get("vatPercent")).floatValue(),
 													((BigDecimal)productMap.get("vatAmount")).floatValue(),
 													((BigDecimal)productMap.get("cstPercent")).floatValue(),

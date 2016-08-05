@@ -2,8 +2,10 @@ package in.vasista.vsales.sync.xmlrpc;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
 import android.os.Handler;
 import android.preference.PreferenceManager;
+import android.support.v4.app.BundleCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -16,6 +18,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
+
+import in.vasista.nhdc.BuildConfig;
 
 public class XMLRPCApacheAdapter {
 	public static final String module = XMLRPCApacheAdapter.class.getName();
@@ -31,11 +35,14 @@ public class XMLRPCApacheAdapter {
 		String userName = prefs.getString("userName", "");
 		String password = prefs.getString("password", "");
 		String tenantId = prefs.getString("tenantId", "");		
-		Log.d( module, "serverURL=" + urlStr +"; userName=" + userName + "; password=" + password + ";tenantid=" + tenantId);
+		Log.d( module, "serverURL=" + urlStr +"; userName=" + userName + "; password=" + password + ";tenantid=" + tenantId + ";versionName:"+BuildConfig.VERSION_NAME);
 		credentialsMap = new HashMap<String, Object>();
 		credentialsMap.put("login.username", userName);
 		credentialsMap.put("login.password", password);
 		credentialsMap.put("tenantId", tenantId);
+		credentialsMap.put("versionName",BuildConfig.VERSION_NAME);
+
+
 
 		URL url = new URL(urlStr);
 	    XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();

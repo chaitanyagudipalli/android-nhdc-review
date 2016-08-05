@@ -78,6 +78,7 @@
         </TableRow>
 
         <TableRow android:paddingTop="5dip"
+            android:visibility="gone"
             android:paddingBottom="5dip">
             <TextView
                 android:layout_height="wrap_content"
