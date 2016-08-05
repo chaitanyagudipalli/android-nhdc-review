@@ -60,6 +60,8 @@ public class IndentActivity extends DashboardAppCompatActivity
 ProgressBar progressBar;
 	FloatingActionButton fab;
 	public boolean refresh;
+	Menu m;
+	boolean fetchIndents;
 protected void onCreate(Bundle savedInstanceState) 
 {
     super.onCreate(savedInstanceState);
@@ -91,8 +93,13 @@ protected void onCreate(Bundle savedInstanceState)
 }
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
+		m=menu;
 		getMenuInflater().inflate(R.menu.main, menu);
 		menu.removeItem(R.id.homeSearch);
+		if (fetchIndents || refresh) {
+			onOptionsItemSelected(m.findItem(R.id.action_refresh));
+		}
+
 		return super.onCreateOptionsMenu(menu);
 	}
 	@Override
@@ -117,7 +124,8 @@ protected void onResume ()
    IndentsDataSource datasource = new IndentsDataSource(this);
    datasource.open();
    List<Indent> indents = datasource.getAllIndents();
-   boolean fetchIndents = false;
+	datasource.close();
+   fetchIndents = false;
    if (indents.size() > 0) {
 	   SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
 	   for (int i=0; i < indents.size(); ++i) {
@@ -132,13 +140,15 @@ protected void onResume ()
    else {     
 	   fetchIndents = true;
    }
-   if (fetchIndents || refresh) {
-	   FragmentManager fm = getFragmentManager();
-	   IndentListFragment indentListFragment = (IndentListFragment) fm.findFragmentById(R.id.indent_list_fragment);
-	   ServerSync serverSync = new ServerSync(this);
-	   serverSync.fetchActiveIndents(null, progressBar, indentListFragment);
+
+	if (fetchIndents || refresh) {
+//	   FragmentManager fm = getFragmentManager();
+//	   IndentListFragment indentListFragment = (IndentListFragment) fm.findFragmentById(R.id.indent_list_fragment);
+//	   ServerSync serverSync = new ServerSync(this);
+//	   serverSync.fetchActiveIndents(null, progressBar, indentListFragment);
+
    }
-   datasource.close();
+
 
 }
     
