@@ -29,7 +29,7 @@ public class IndentDetailed extends DashboardAppCompatActivity {
     TextView textView;
     Indent indent;
     List<HashMap> list;
-    static int indentId;
+    int indentId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,27 +48,30 @@ public class IndentDetailed extends DashboardAppCompatActivity {
         indent = datasource.getIndentDetails(indentId);
         datasource.close();
 
+try {
+    SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMM, yyyy");
+    String[] values = {dateFormat.format(indent.getOrderDate()), indent.getOrderNo(),
+            this.getResources().getString(R.string.Rs) + " " + new BigDecimal(indent.getOrderTotal()).setScale(2, RoundingMode.HALF_UP).doubleValue(),
+            indent.getSupplierPartyName(), (indent.isgeneratedPO()) ? "YES" : "NO", indent.getPoSquenceNo(), indent.getStatusId()
+            , this.getResources().getString(R.string.Rs) + " " + new BigDecimal(indent.getBalance()).setScale(2, RoundingMode.HALF_UP).doubleValue(),
+            this.getResources().getString(R.string.Rs) + " " + new BigDecimal(indent.getPaidAmt()).setScale(2, RoundingMode.HALF_UP).doubleValue(),
+            this.getResources().getString(R.string.Rs) + " " + new BigDecimal(indent.getTotDiscountAmt()).setScale(2, RoundingMode.HALF_UP).doubleValue()};
 
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMM, yyyy");
-        String[] values = {dateFormat.format(indent.getOrderDate()),indent.getOrderNo(),
-                ""+ new BigDecimal(indent.getOrderTotal()).setScale(2, RoundingMode.HALF_UP).doubleValue(),
-        indent.getSupplierPartyName(),(indent.isgeneratedPO())?"YES":"NO",indent.getPoSquenceNo(),indent.getStatusId()
-                ,""+new BigDecimal(indent.getBalance()).setScale(2, RoundingMode.HALF_UP).doubleValue(),
-                ""+new BigDecimal(indent.getPaidAmt()).setScale(2, RoundingMode.HALF_UP).doubleValue(),
-                ""+new BigDecimal(indent.getTotDiscountAmt()).setScale(2, RoundingMode.HALF_UP).doubleValue()};
+    for (int i = 0; i < ids.length; i++) {
+        textView = (TextView) findViewById(ids[i]);
+        textView.setText(values[i]);
+    }
 
-        for (int i=0;i<ids.length;i++){
-            textView = (TextView) findViewById(ids[i]);
-            textView.setText(values[i]);
-        }
+    if (indent.getStatusId().equalsIgnoreCase("Not Uploaded")) {
+        editMode = true;
+        invalidateOptionsMenu();
+    } else if (indent.getStatusId().equalsIgnoreCase("CREATED")) {
+        deletemode = true;
+        invalidateOptionsMenu();
+    }
+}catch (NullPointerException e){
 
-        if(indent.getStatusId().equalsIgnoreCase("Not Uploaded")) {
-            editMode = true;
-            invalidateOptionsMenu();
-        }else if(indent.getStatusId().equalsIgnoreCase("CREATED")){
-            deletemode = true;
-            invalidateOptionsMenu();
-        }
+}
 
     }
 
@@ -127,7 +130,6 @@ public class IndentDetailed extends DashboardAppCompatActivity {
 
                 return true;
             case R.id.action_indent_delete:
-                Log.v("action_indent_delete","ok");
                 datasource.open();
                 datasource.deleteIndent(indentId);
                 datasource.close();

@@ -401,9 +401,9 @@ public class IndentsDataSource {
 	  private IndentItemNHDC cursorToIndentItem(Cursor cursor) {
 		  return new IndentItemNHDC(cursor.getInt(0),cursor.getInt(1),cursor.getString(2),
 				  cursor.getString(3), cursor.getString(4),cursor.getString(5),cursor.getString(6),cursor.getString(7),
-				  cursor.getString(8),cursor.getString(9),cursor.getString(10),cursor.getString(11),cursor.getString(12),
-				  cursor.getFloat(13), cursor.getFloat(14),cursor.getFloat(15),cursor.getFloat(16),cursor.getFloat(17),
-				  cursor.getFloat(18), cursor.getFloat(19), cursor.getString(20));
+				  cursor.getString(8),cursor.getString(9),cursor.getString(11),cursor.getString(12),
+				  cursor.getString(13), cursor.getFloat(14),cursor.getFloat(15),cursor.getFloat(16),cursor.getFloat(17),cursor.getFloat(19),
+				  cursor.getFloat(18), cursor.getFloat(20), cursor.getString(21));
 	  }
 	  
 	  /*
