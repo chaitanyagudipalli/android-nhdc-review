@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -57,6 +58,9 @@ try {
             this.getResources().getString(R.string.Rs) + " " + new BigDecimal(indent.getPaidAmt()).setScale(2, RoundingMode.HALF_UP).doubleValue(),
             this.getResources().getString(R.string.Rs) + " " + new BigDecimal(indent.getTotDiscountAmt()).setScale(2, RoundingMode.HALF_UP).doubleValue()};
 
+    if (!indent.isgeneratedPO()){
+        findViewById(R.id.po_seq_row).setVisibility(View.GONE);
+    }
     for (int i = 0; i < ids.length; i++) {
         textView = (TextView) findViewById(ids[i]);
         textView.setText(values[i]);

@@ -46,60 +46,64 @@ public class IndentItemAdapter extends ArrayAdapter<IndentItemNHDC>{
 		
 	  @SuppressLint("NewApi") @Override
 	  public View getView(int position, View convertView, ViewGroup parent) {
-	    LinearLayout indentItemView;
+		  try {
+			  LinearLayout indentItemView;
 
-		  IndentItemNHDC item = getItem(position);
+			  IndentItemNHDC item = getItem(position);
 
 //	    String productId = item.getProductId();
-		  ProductsDataSource productsDataSource = new ProductsDataSource(c);
-		  productsDataSource.open();
-		  Product p = productsDataSource.getproductDetails(Integer.parseInt(item.getProductId()));
-	    String productName = p.getName();
-	    String qty = item.getQuantity();
-	    String unitPrice = item.getBundleUnitPrice();
+			  ProductsDataSource productsDataSource = new ProductsDataSource(c);
+			  productsDataSource.open();
+			  Product p = productsDataSource.getproductDetails(Integer.parseInt(item.getProductId()));
+			  String productName = p.getName();
+			  String qty = item.getQuantity();
+			  String unitPrice = item.getBundleUnitPrice();
 
-		  Log.v("jj",""+unitPrice);
-		//double itemTotal = Math.round(item.getQty()*unitPrice * 100.0) / 100.0;
-	    //String amount = String.format("%.2f", itemTotal);
+			  Log.v("jj", "" + unitPrice);
+			  //double itemTotal = Math.round(item.getQty()*unitPrice * 100.0) / 100.0;
+			  //String amount = String.format("%.2f", itemTotal);
 //	    if(item.getQty() == -1) {
 //	    	qty = "";
 //	    	amount = "";
 //	    }
-		//Log.d( module, "item=" + item); 		  
+			  //Log.d( module, "item=" + item);
 
-	    if (convertView == null) {
-	      indentItemView = new LinearLayout(getContext());
-	      String inflater = Context.LAYOUT_INFLATER_SERVICE;
-	      LayoutInflater li;
-	      li = (LayoutInflater)getContext().getSystemService(inflater);
-	      li.inflate(resource, indentItemView, true);
-	    } else {
-	    	indentItemView = (LinearLayout) convertView;
-	    }
+			  if (convertView == null) {
+				  indentItemView = new LinearLayout(getContext());
+				  String inflater = Context.LAYOUT_INFLATER_SERVICE;
+				  LayoutInflater li;
+				  li = (LayoutInflater) getContext().getSystemService(inflater);
+				  li.inflate(resource, indentItemView, true);
+			  } else {
+				  indentItemView = (LinearLayout) convertView;
+			  }
 
-	    TextView nameView = (TextView)indentItemView.findViewById(R.id.indentitemRowProductName);
-	    final TextView qtyView = (TextView)indentItemView.findViewById(R.id.indentitemRowQty);
-	    final TextView amountView = (TextView)indentItemView.findViewById(R.id.indentitemRowAmount);
+			  TextView nameView = (TextView) indentItemView.findViewById(R.id.indentitemRowProductName);
+			  final TextView qtyView = (TextView) indentItemView.findViewById(R.id.indentitemRowQty);
+			  final TextView amountView = (TextView) indentItemView.findViewById(R.id.indentitemRowAmount);
 
-	    nameView.setText(productName);
-	    qtyView.setText(qty);
-		  if(item.getBasicPrice().equalsIgnoreCase(""))
-		  		amountView.setText(unitPrice);
-		  else
-			  amountView.setText(item.getBasicPrice());
-	    
-	    if (!isEditable)  {
-	    	qtyView.setFocusable(false);
-	    	int sdk = android.os.Build.VERSION.SDK_INT;
-	    	if(sdk < android.os.Build.VERSION_CODES.JELLY_BEAN) {
-	    		qtyView.setBackgroundDrawable(null); 
-	    	} else {
-	    		qtyView.setBackground(null);
-	    	}
-	    }
-        
-	    //amountView.setText(item.getBasicPrice());
-	    return indentItemView;
+			  nameView.setText(productName);
+			  qtyView.setText(qty);
+			  if (item.getBasicPrice().equalsIgnoreCase(""))
+				  amountView.setText(unitPrice);
+			  else
+				  amountView.setText(item.getBasicPrice());
+
+			  if (!isEditable) {
+				  qtyView.setFocusable(false);
+				  int sdk = android.os.Build.VERSION.SDK_INT;
+				  if (sdk < android.os.Build.VERSION_CODES.JELLY_BEAN) {
+					  qtyView.setBackgroundDrawable(null);
+				  } else {
+					  qtyView.setBackground(null);
+				  }
+			  }
+
+			  //amountView.setText(item.getBasicPrice());
+			  return indentItemView;
+		  }catch (Exception e){
+			  return convertView;
+		  }
 	  }
 }
 

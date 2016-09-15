@@ -440,7 +440,14 @@ public class IndentCreateProduct extends DashboardAppCompatActivity implements V
                     textView = (TextView) findViewById(loom_ids[i]);
                     textView.setText(loom_values[i]);
                 }
-
+                SharedPreferences.Editor prefEditor = prefs.edit();
+                prefEditor.putString("SILK_YARN", ""+silk.get("avlQuota"));
+                prefEditor.putString("COTTON_40ABOVE", ""+cotton_40above.get("avlQuota"));
+                prefEditor.putString("COTTON_UPTO40", ""+cotton_40upto.get("avlQuota"));
+                prefEditor.putString("WOOLYARN_10STO39NM", ""+wool_10to39.get("avlQuota"));
+                prefEditor.putString("WOOLYARN_40SNMABOVE", ""+wool_40above.get("avlQuota"));
+                prefEditor.putString("WOOLYARN_BELOW10NM", ""+wool_10below.get("avlQuota"));
+                prefEditor.apply();
 
             }
         }
