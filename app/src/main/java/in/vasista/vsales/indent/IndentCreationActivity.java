@@ -108,7 +108,6 @@ public class IndentCreationActivity extends DashboardAppCompatActivity implement
             public void onClick(View v) {
 
                 submitindent.setVisibility(View.GONE);
-                //((TextView)findViewById(R.id.Balance_quota)).setText(prefs.getString());
 
                 Date supplyDate = new Date();
 

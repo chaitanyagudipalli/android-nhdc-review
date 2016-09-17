@@ -160,12 +160,12 @@ public class SplashScreenActivity extends Activity
 								Map wool_40above = (Map)((Map)loomDetails).get("WOOLYARN_40SNMABOVE");
 								Map wool_10below = (Map)((Map)loomDetails).get("WOOLYARN_BELOW10NM");
 
-								prefEditor.putString("SILK_YARN", ""+silk.get("avlQuota"));
-								prefEditor.putString("COTTON_40ABOVE", ""+cotton_40above.get("avlQuota"));
-								prefEditor.putString("COTTON_UPTO40", ""+cotton_40upto.get("avlQuota"));
-								prefEditor.putString("WOOLYARN_10STO39NM", ""+wool_10to39.get("avlQuota"));
-								prefEditor.putString("WOOLYARN_40SNMABOVE", ""+wool_40above.get("avlQuota"));
-								prefEditor.putString("WOOLYARN_BELOW10NM", ""+wool_10below.get("avlQuota"));
+								prefEditor.putInt("SILK_YARN",(int)silk.get("avlQuota"));
+								prefEditor.putInt("COTTON_40ABOVE", (int)cotton_40above.get("avlQuota"));
+								prefEditor.putInt("COTTON_UPTO40", (int)cotton_40upto.get("avlQuota"));
+								prefEditor.putInt("WOOLYARN_10STO39NM", (int)wool_10to39.get("avlQuota"));
+								prefEditor.putInt("WOOLYARN_40SNMABOVE", (int)wool_40above.get("avlQuota"));
+								prefEditor.putInt("WOOLYARN_BELOW10NM", (int)wool_10below.get("avlQuota"));
 								prefEditor.apply();
 
 							}

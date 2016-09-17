@@ -1,6 +1,8 @@
 package in.vasista.vsales.indent;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
@@ -16,6 +18,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -33,6 +36,7 @@ import in.vasista.vsales.adapter.ProductAutoAdapter;
 import in.vasista.vsales.catalog.Product;
 import in.vasista.vsales.db.IndentsDataSource;
 import in.vasista.vsales.db.ProductsDataSource;
+import in.vasista.vsales.sync.ServerSync;
 import in.vasista.vsales.sync.xmlrpc.XMLRPCApacheAdapter;
 
 public class IndentCreateProduct extends DashboardAppCompatActivity implements View.OnKeyListener {
@@ -51,6 +55,7 @@ public class IndentCreateProduct extends DashboardAppCompatActivity implements V
 
     String supplierPartyId = "", schemeType = "", category_type = "", total_amount = "";
     String spec = "";
+    Intent i;
 
     LinearLayout cottonLayout;
 
@@ -63,6 +68,7 @@ public class IndentCreateProduct extends DashboardAppCompatActivity implements V
     EditText bundleUnitPriceTv,bundlewt,quantitynos, specificaton;
 
     TextView totalAmt;
+    HashMap<String,String> hm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +81,7 @@ public class IndentCreateProduct extends DashboardAppCompatActivity implements V
         prefEditor.putInt("IndentId",0);
         prefEditor.apply();
 
-        final Intent i = getIntent();
+        i = getIntent();
         category_type = i.getStringExtra("category_type");
         supplierPartyId = i.getStringExtra("supplierPartyId");
         schemeType = i.getStringExtra("schemeType");
@@ -178,7 +184,7 @@ public class IndentCreateProduct extends DashboardAppCompatActivity implements V
                 total_amount = ((TextView) findViewById(R.id.totalAmt)).getText().toString();
                 spec = specificaton.getText().toString();
 
-                HashMap<String,String> hm = new HashMap<String, String>();
+                 hm = new HashMap<String, String>();
                 hm.put("productId",productId);
                 hm.put("quantity",quantity);
                 hm.put("remarks",remarks);
@@ -190,28 +196,83 @@ public class IndentCreateProduct extends DashboardAppCompatActivity implements V
                 hm.put("serviceCharge",serviceCharge);
                 hm.put("serviceChargeAmt",serviceChargeAmt);
 
+                /**
+                 * Quota Calc
+                 * */
+                ProductsDataSource productsDataSource = new ProductsDataSource(IndentCreateProduct.this);
+                productsDataSource.open();
+                Product p = productsDataSource.getproductDetails(Integer.parseInt(productId));
+                productsDataSource.close();
+                int quota = prefs.getInt(p.getScheme(),0);
+                int usedquota = 0;
 
-                IndentItemNHDC IN = new IndentItemNHDC(0,(int)i.getLongExtra("indent_id",0),productId,quantity, remarks, baleQuantity, bundleWeight, bundleUnitPrice, yarnUOM, basicPrice, serviceCharge, serviceChargeAmt,total_amount, 0,0,0,0,0,0,0, spec);
-                list.add(hm);
                 datasource = new IndentsDataSource(IndentCreateProduct.this);
                 datasource.open();
-                int id = (int) datasource.insertIndentItem((int)i.getLongExtra("indent_id",0),IN);
-                IN.setId(id);
-                IN.setIndentId((int)i.getLongExtra("indent_id",0));
+                List<IndentItemNHDC> indentItems = datasource.getIndentItems((int)i.getLongExtra("indent_id",0));
+                for (int i=0;i<indentItems.size();i++) {
+                    IndentItemNHDC indentItemNHDC = indentItems.get(i);
+                    productsDataSource.open();
+                    Product p_i = productsDataSource.getproductDetails(Integer.parseInt(indentItemNHDC.getProductId()));
+                    productsDataSource.close();
+                    if (p_i.getScheme().equalsIgnoreCase(p.getScheme()))
+                        usedquota += Integer.parseInt(indentItemNHDC.getQuantity());
+                }
 
-                datasource.updateTotalAmount((int)i.getLongExtra("indent_id",0),Double.parseDouble(total_amount));
+                usedquota += (int)Float.parseFloat(quantity);
 
-                datasource.close();
+                Log.v("Quota",p.getScheme()+" :: "+quota);
+                Log.v("Used Quota",""+usedquota);
+                if(usedquota > quota) {
 
-                prefEditor.putInt("IndentId",(int)i.getLongExtra("indent_id",0));
-                prefEditor.apply();
+                    AlertDialog.Builder alert = new AlertDialog.Builder(
+                            IndentCreateProduct.this);
+                    alert.setTitle("Quota Exceeded");
+                    alert.setPositiveButton("Continue",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog,
+                                                    int whichButton) {
+                                    addProductToIndent();
+                                }
+                            });
 
-                InputMethodManager in = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                in.hideSoftInputFromWindow(addIndent.getWindowToken(), 0);
+                    alert.setNegativeButton("Cancel",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog,
+                                                    int whichButton) {
+                                    // Canceled.
 
-                finish();
+                                }
+                            });
+                    alert.show();
+
+                }else
+                {
+                    addProductToIndent();
+                }
+
             }
         });
+    }
+
+    private void addProductToIndent(){
+        IndentItemNHDC IN = new IndentItemNHDC(0,(int)i.getLongExtra("indent_id",0),productId,quantity, remarks, baleQuantity, bundleWeight, bundleUnitPrice, yarnUOM, basicPrice, serviceCharge, serviceChargeAmt,total_amount, 0,0,0,0,0,0,0, spec);
+        list.add(hm);
+
+        int id = (int) datasource.insertIndentItem((int)i.getLongExtra("indent_id",0),IN);
+        IN.setId(id);
+        IN.setIndentId((int)i.getLongExtra("indent_id",0));
+
+        datasource.updateTotalAmount((int)i.getLongExtra("indent_id",0),Double.parseDouble(total_amount));
+
+        datasource.close();
+
+        prefEditor.putInt("IndentId",(int)i.getLongExtra("indent_id",0));
+        prefEditor.apply();
+
+        InputMethodManager in = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        in.hideSoftInputFromWindow(addIndent.getWindowToken(), 0);
+
+        finish();
     }
 
     private void setUpProducts(String category){
@@ -441,12 +502,12 @@ public class IndentCreateProduct extends DashboardAppCompatActivity implements V
                     textView.setText(loom_values[i]);
                 }
                 SharedPreferences.Editor prefEditor = prefs.edit();
-                prefEditor.putString("SILK_YARN", ""+silk.get("avlQuota"));
-                prefEditor.putString("COTTON_40ABOVE", ""+cotton_40above.get("avlQuota"));
-                prefEditor.putString("COTTON_UPTO40", ""+cotton_40upto.get("avlQuota"));
-                prefEditor.putString("WOOLYARN_10STO39NM", ""+wool_10to39.get("avlQuota"));
-                prefEditor.putString("WOOLYARN_40SNMABOVE", ""+wool_40above.get("avlQuota"));
-                prefEditor.putString("WOOLYARN_BELOW10NM", ""+wool_10below.get("avlQuota"));
+                prefEditor.putInt("SILK_YARN",(int)silk.get("avlQuota"));
+                prefEditor.putInt("COTTON_40ABOVE", (int)cotton_40above.get("avlQuota"));
+                prefEditor.putInt("COTTON_UPTO40", (int)cotton_40upto.get("avlQuota"));
+                prefEditor.putInt("WOOLYARN_10STO39NM", (int)wool_10to39.get("avlQuota"));
+                prefEditor.putInt("WOOLYARN_40SNMABOVE", (int)wool_40above.get("avlQuota"));
+                prefEditor.putInt("WOOLYARN_BELOW10NM", (int)wool_10below.get("avlQuota"));
                 prefEditor.apply();
 
             }

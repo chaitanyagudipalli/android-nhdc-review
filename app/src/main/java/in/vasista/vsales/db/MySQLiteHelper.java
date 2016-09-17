@@ -19,6 +19,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 	public static final String COLUMN_PRODUCT_TYPE_ID = "PRODUCT_TYPE_ID";
 	public static final String COLUMN_PRODUCT_QUANTITY_UOM_ID = "PRODUCT_QUANTITY_UOM_ID";
 	public static final String COLUMN_PRODUCT_QUANTITY_INCLUDED = "PRODUCT_QUANTITY_INCLUDED";
+	public static final String COLUMN_PRODUCT_SCHEME = "PRODUCT_SCHEME";
 
 
   
@@ -172,7 +173,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 	      + " text, "+ COLUMN_PRODUCT_DESC
 			  + " text, " +COLUMN_PRODUCT_TYPE_ID +" text," + COLUMN_PRODUCT_QUANTITY_UOM_ID +" text,"+ COLUMN_PRODUCT_PRICE
 			  + " real, "+ COLUMN_PRODUCT_QUANTITY_INCLUDED+" real," + COLUMN_PRODUCT_CATEGORY_ID
-			  + " text, "+ COLUMN_PRODUCT_PARENT_CATEGORY_ID+" text"
+			  + " text, "+ COLUMN_PRODUCT_PARENT_CATEGORY_ID+" text, "+COLUMN_PRODUCT_SCHEME+" text"
 			  +");";
 
 
@@ -343,7 +344,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 	  private static final String DATABASE_NAME = "vsalesagent.db";
 //	  private static final int DATABASE_VERSION = 24;
 
-		private static final int DATABASE_VERSION = 25; // For Indent Crates
+		private static final int DATABASE_VERSION = 29; // For Indent Crates
 
 	public MySQLiteHelper(Context context) {
 	    super(context, DATABASE_NAME, null, DATABASE_VERSION); 
@@ -373,7 +374,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 	    Log.w(MySQLiteHelper.class.getName(),
 	        "Upgrading database from version " + oldVersion + " to "
 	            + newVersion);
-	    if (oldVersion < 24 ) { 
+	    if (oldVersion > 24 ) {
 
 	    db.execSQL("drop table PRODUCT");	
 	    db.execSQL("drop table INDENT_ITEM");		    	    	    
@@ -381,7 +382,8 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 	    db.execSQL("drop table ORDER_ITEM");		    	    
 	    db.execSQL("drop table ORDER_HEADER");		    	    
 	    db.execSQL("drop table PAYMENT");		    	    
-	    db.execSQL("drop table FACILITY");		    	    
+	    db.execSQL("drop table FACILITY");
+			db.execSQL("drop table SUPPLIER");
 	    db.execSQL("drop table EMPLOYEE");		    	    
 	    db.execSQL("drop table PAYROLL_HEADER_ITEM");		    	    
 	    db.execSQL("drop table PAYROLL_HEADER");		    	    
