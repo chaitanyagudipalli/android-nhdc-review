@@ -151,6 +151,23 @@ public class SplashScreenActivity extends Activity
 								prefEditor.putString(MainActivity.USER_PASSBOOK, ""+ weaverDetails.get("passBookNo"));
 								prefEditor.apply();
 
+								Map loomDetails= (Map)((Map)weaverDetails).get("loomDetails");
+
+								Map silk = (Map)((Map)loomDetails).get("SILK_YARN");
+								Map cotton_40above = (Map)((Map)loomDetails).get("COTTON_40ABOVE");
+								Map cotton_40upto = (Map)((Map)loomDetails).get("COTTON_UPTO40");
+								Map wool_10to39 = (Map)((Map)loomDetails).get("WOOLYARN_10STO39NM");
+								Map wool_40above = (Map)((Map)loomDetails).get("WOOLYARN_40SNMABOVE");
+								Map wool_10below = (Map)((Map)loomDetails).get("WOOLYARN_BELOW10NM");
+
+								prefEditor.putInt("SILK_YARN",(int)silk.get("avlQuota"));
+								prefEditor.putInt("COTTON_40ABOVE", (int)cotton_40above.get("avlQuota"));
+								prefEditor.putInt("COTTON_UPTO40", (int)cotton_40upto.get("avlQuota"));
+								prefEditor.putInt("WOOLYARN_10STO39NM", (int)wool_10to39.get("avlQuota"));
+								prefEditor.putInt("WOOLYARN_40SNMABOVE", (int)wool_40above.get("avlQuota"));
+								prefEditor.putInt("WOOLYARN_BELOW10NM", (int)wool_10below.get("avlQuota"));
+								prefEditor.apply();
+
 							}
 
 				}

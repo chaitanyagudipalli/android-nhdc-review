@@ -142,6 +142,14 @@ public class WeaverDetailedActivity extends DashboardAppCompatActivity {
                     textView = (TextView) findViewById(loom_ids[i]);
                     textView.setText(loom_values[i]);
                 }
+                SharedPreferences.Editor prefEditor = prefs.edit();
+                prefEditor.putInt("SILK_YARN",(int)silk.get("avlQuota"));
+                prefEditor.putInt("COTTON_40ABOVE", (int)cotton_40above.get("avlQuota"));
+                prefEditor.putInt("COTTON_UPTO40", (int)cotton_40upto.get("avlQuota"));
+                prefEditor.putInt("WOOLYARN_10STO39NM", (int)wool_10to39.get("avlQuota"));
+                prefEditor.putInt("WOOLYARN_40SNMABOVE", (int)wool_40above.get("avlQuota"));
+                prefEditor.putInt("WOOLYARN_BELOW10NM", (int)wool_10below.get("avlQuota"));
+                prefEditor.apply();
             }
         }
     }

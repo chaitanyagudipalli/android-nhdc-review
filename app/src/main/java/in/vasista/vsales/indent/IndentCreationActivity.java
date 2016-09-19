@@ -23,6 +23,8 @@ import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
@@ -422,6 +424,22 @@ public class IndentCreationActivity extends DashboardAppCompatActivity implement
             TextView textView;
             if (weaverDet != null) {
                 Map weaverDetails = (Map)((Map)weaverDet).get("weaverDetails");
+                Map loomDetails= (Map)((Map)weaverDetails).get("loomDetails");
+
+                Map silk = (Map)((Map)loomDetails).get("SILK_YARN");
+                Map cotton_40above = (Map)((Map)loomDetails).get("COTTON_40ABOVE");
+                Map cotton_40upto = (Map)((Map)loomDetails).get("COTTON_UPTO40");
+                Map wool_10to39 = (Map)((Map)loomDetails).get("WOOLYARN_10STO39NM");
+                Map wool_40above = (Map)((Map)loomDetails).get("WOOLYARN_40SNMABOVE");
+                Map wool_10below = (Map)((Map)loomDetails).get("WOOLYARN_BELOW10NM");
+
+                prefEditor.putString("SILK_YARN", ""+silk.get("avlQuota"));
+                prefEditor.putString("COTTON_40ABOVE", ""+cotton_40above.get("avlQuota"));
+                prefEditor.putString("COTTON_UPTO40", ""+cotton_40upto.get("avlQuota"));
+                prefEditor.putString("WOOLYARN_10STO39NM", ""+wool_10to39.get("avlQuota"));
+                prefEditor.putString("WOOLYARN_40SNMABOVE", ""+wool_40above.get("avlQuota"));
+                prefEditor.putString("WOOLYARN_BELOW10NM", ""+wool_10below.get("avlQuota"));
+                prefEditor.apply();
                 Object[] BranchMapList = (Object[])weaverDetails.get("customerBranchList");
 
 

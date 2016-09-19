@@ -581,9 +581,18 @@ public boolean onCreateOptionsMenu(Menu menu) {
 									String productTypeId = (String)value.get("productTypeId");
 									String productParentTypeId = (String)value.get("primaryParentCategoryId");
 
+									Map schemeMap = (Map)((Map) value).get("schemeCategoryMap");
+									Iterator schemes = schemeMap.entrySet().iterator();
+									String scheme = "";
+									while (schemes.hasNext()){
+										Map.Entry schemes_e = (Map.Entry) schemes.next();
+										scheme = (String)schemes_e.getKey();
+									}
+									Log.v("Scheme",""+scheme);
+
 									float price = 0.0f;
 									float quantityIncluded = ((BigDecimal)value.get("quantityIncluded")).setScale(2,BigDecimal.ROUND_HALF_UP).floatValue();
-									Product product = new Product(productId, name, internalName, brandName,description,productTypeId,quantityUomId , price, quantityIncluded, primaryProductCategoryId,productParentTypeId);
+									Product product = new Product(productId, name, internalName, brandName,description,productTypeId,quantityUomId , price, quantityIncluded, primaryProductCategoryId,productParentTypeId,scheme);
 									ls.add(product);
 
 								}

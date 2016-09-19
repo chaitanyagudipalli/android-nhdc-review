@@ -33,7 +33,7 @@ public class ProductsDataSource {
 			  MySQLiteHelper.COLUMN_PRODUCT_QUANTITY_INCLUDED,
 	      MySQLiteHelper.COLUMN_PRODUCT_CATEGORY_ID,
 			  MySQLiteHelper.COLUMN_PRODUCT_PARENT_CATEGORY_ID,
-
+			  MySQLiteHelper.COLUMN_PRODUCT_SCHEME
 
 
 	      };
@@ -63,7 +63,7 @@ public class ProductsDataSource {
 		  values.put(MySQLiteHelper.COLUMN_PRODUCT_PARENT_CATEGORY_ID, product.getProductParentCategoryId());
 		  values.put(MySQLiteHelper.COLUMN_PRODUCT_QUANTITY_UOM_ID, product.getUOMid());
 		  values.put(MySQLiteHelper.COLUMN_PRODUCT_QUANTITY_INCLUDED, product.getIncludedquantity());
-
+		  values.put(MySQLiteHelper.COLUMN_PRODUCT_SCHEME, product.getScheme());
 		    database.insert(MySQLiteHelper.TABLE_PRODUCT, null, values);
 	  }
 	  
@@ -80,6 +80,7 @@ public class ProductsDataSource {
 		  values.put(MySQLiteHelper.COLUMN_PRODUCT_PARENT_CATEGORY_ID, product.getProductParentCategoryId());
 		  values.put(MySQLiteHelper.COLUMN_PRODUCT_QUANTITY_UOM_ID, product.getUOMid());
 		  values.put(MySQLiteHelper.COLUMN_PRODUCT_QUANTITY_INCLUDED, product.getIncludedquantity());
+		  values.put(MySQLiteHelper.COLUMN_PRODUCT_SCHEME, product.getScheme());
 		    database.insert(MySQLiteHelper.TABLE_PRODUCT, null, values);    
 	  }
 	  
@@ -100,6 +101,7 @@ public class ProductsDataSource {
 				  values.put(MySQLiteHelper.COLUMN_PRODUCT_PARENT_CATEGORY_ID, product.getProductParentCategoryId());
 				  values.put(MySQLiteHelper.COLUMN_PRODUCT_QUANTITY_UOM_ID, product.getUOMid());
 				  values.put(MySQLiteHelper.COLUMN_PRODUCT_QUANTITY_INCLUDED, product.getIncludedquantity());
+				  values.put(MySQLiteHelper.COLUMN_PRODUCT_SCHEME, product.getScheme());
 				  database.insert(MySQLiteHelper.TABLE_PRODUCT, null, values);   
 			  }
 			  database.setTransactionSuccessful();
@@ -193,7 +195,7 @@ public class ProductsDataSource {
 	    		cursor.getString(4),
 				  cursor.getString(5),
 	    		cursor.getString(6),
-				  (float)cursor.getDouble(7), (float)cursor.getDouble(8),cursor.getString(9),cursor.getString(10));
+				  (float)cursor.getDouble(7), (float)cursor.getDouble(8),cursor.getString(9),cursor.getString(10),cursor.getString(11));
 	  }
 	   
 	  public Map getSaleProductMap() {

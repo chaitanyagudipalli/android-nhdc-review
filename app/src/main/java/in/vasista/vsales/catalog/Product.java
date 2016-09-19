@@ -10,8 +10,10 @@ public class Product {
 	String productCategoryId = "";
 	String productParentCategoryId = "";
 
+	String scheme = "";
 
-	public Product(String id, String name, String internalname, String brandname, String description, String typeid, String UOMid, float price, float includedquantity, String productCategoryId, String productParentCategoryId) {
+
+	public Product(String id, String name, String internalname, String brandname, String description, String typeid, String UOMid, float price, float includedquantity, String productCategoryId, String productParentCategoryId, String scheme) {
 		this.id = id;
 		this.name = name;
 		this.internalname = internalname;
@@ -23,6 +25,7 @@ public class Product {
 		this.includedquantity = includedquantity;
 		this.productCategoryId = productCategoryId;
 		this.productParentCategoryId = productParentCategoryId;
+		this.scheme = scheme;
 	}
 
 	public String getId() {
@@ -67,5 +70,9 @@ public class Product {
 
 	public String getProductParentCategoryId() {
 		return productParentCategoryId;
+	}
+
+	public String getScheme() {
+		return scheme;
 	}
 }
