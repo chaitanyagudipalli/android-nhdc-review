@@ -31,6 +31,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 	public static final String COLUMN_INDENT_PO_SEQ_NO = "INDENT_PO_SEQ_NO";
 	public static final String COLUMN_INDENT_IS_GEN_PO = "INDENT_IS_GEN_PO";
 	public static final String COLUMN_INDENT_SUPP_PARTY_ID = "INDENT_SUPP_PARTY_ID";
+	public static final String COLUMN_INDENT_T_PARTY_ID = "INDENT_T_PARTY_ID";
 	public static final String COLUMN_INDENT_STORENAME = "INDENT_STORENAME";
 	public static final String COLUMN_INDENT_SUPP_PARTY_NAME = "INDENT_SUPP_PARTY_NAME";
 	public static final String COLUMN_INDENT_ORDER_NO = "INDENT_ORDER_NO";
@@ -104,6 +105,12 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 	public static final String COLUMN_SUPPLIER_GROUPNAME = "SUPPLIER_GROUPNAME";
 	public static final String COLUMN_SUPPLIER_ROLETYPEID = "ROLETYPEID";
 	public static final String COLUMN_SUPPLIER_PARTYTYPEID = "PARTYTYPEID";
+
+	public static final String TABLE_TRANSPORTER = "TRANSPORTER";
+	public static final String COLUMN_TRANSPORTER_ID = "TRANSPORTER_ID";
+	public static final String COLUMN_TRANSPORTER_NAME = "TRANSPORTER_NAME";
+	public static final String COLUMN_TRANSPORTER_PHONE = "PHONE";
+	public static final String COLUMN_TRANSPORTER_ADDRESS = "ADDRESS";
 	  
 	  public static final String TABLE_EMPLOYEE = "EMPLOYEE";
 	  public static final String COLUMN_EMPLOYEE_ID = "EMPLOYEE_ID";
@@ -185,6 +192,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 		      + " text, " + COLUMN_INDENT_PO_SEQ_NO
 		      + " text, " + COLUMN_INDENT_IS_GEN_PO
 		      + " text, " + COLUMN_INDENT_SUPP_PARTY_ID
+			  + " text, " + COLUMN_INDENT_T_PARTY_ID
 			  + " text, " + COLUMN_INDENT_STORENAME
 			  + " text, " + COLUMN_INDENT_SUPP_PARTY_NAME
 			  + " text, " + COLUMN_INDENT_ORDER_NO
@@ -258,6 +266,13 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 			+ " text primary key, " + COLUMN_SUPPLIER_GROUPNAME
 			+ " text, " + COLUMN_SUPPLIER_ROLETYPEID
 			+ " text, " + COLUMN_SUPPLIER_PARTYTYPEID
+			+ " text);";
+
+	private static final String DATABASE_CREATE_TRANSPORTER = "create table "
+			+ TABLE_TRANSPORTER + " (" + COLUMN_TRANSPORTER_ID
+			+ " text primary key, " + COLUMN_TRANSPORTER_NAME
+			+ " text, " + COLUMN_TRANSPORTER_PHONE
+			+ " text, " + COLUMN_TRANSPORTER_ADDRESS
 			+ " text);";
 
 	  private static final String DATABASE_CREATE_FACILITY = "create table "
@@ -335,7 +350,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 		      + " real not null, " + COLUMN_TICKET_LONG
 		      + " real not null, " + COLUMN_TICKET_DESC
 		      + " text, " + COLUMN_TICKET_ID	
-		      + " text, " + COLUMN_TICKET_TYPE_ID	
+		      + " text, " + COLUMN_TICKET_TYPE_ID
 		      + " text, " + COLUMN_TICKET_STATUS			      
 		      + " text, " + COLUMN_TICKET_IS_SYNCED	      
 		      + " integer not null);";	
@@ -359,6 +374,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 	    database.execSQL(DATABASE_CREATE_ORDER_ITEM);		    
 	    database.execSQL(DATABASE_CREATE_PAYMENT);
 		  database.execSQL(DATABASE_CREATE_SUPPLIER);
+		  database.execSQL(DATABASE_CREATE_TRANSPORTER);
 	    database.execSQL(DATABASE_CREATE_FACILITY);		 
 	    database.execSQL(DATABASE_CREATE_EMPLOYEE);		
 	    database.execSQL(DATABASE_CREATE_PAYROLL_HEADER);		    	    	    
@@ -384,6 +400,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 	    db.execSQL("drop table PAYMENT");		    	    
 	    db.execSQL("drop table FACILITY");
 			db.execSQL("drop table SUPPLIER");
+			db.execSQL("drop table TRANSPORTER");
 	    db.execSQL("drop table EMPLOYEE");		    	    
 	    db.execSQL("drop table PAYROLL_HEADER_ITEM");		    	    
 	    db.execSQL("drop table PAYROLL_HEADER");		    	    

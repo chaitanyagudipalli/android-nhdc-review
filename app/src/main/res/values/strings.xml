@@ -38,6 +38,7 @@
     <string name="title_feature3">Payments</string>
     <string name="title_feature4">Catalog</string>
     <string name="title_feature5">Suppliers</string>
+    <string name="title_feature6">Transporters</string>
     <string name="title_sales">Sales</string>
     <string name="title_hr">HR</string>
     <string name="title_employeeprofile">My Profile</string>
@@ -233,4 +234,5 @@
     <string name="paid_ammount">Paid Amount</string>
     <string name="balance_ammount">Balance Amount</string>
     <string name="indent_details">Indent Details</string>
+    <string name="transporters">Transporters</string>
 </resources>

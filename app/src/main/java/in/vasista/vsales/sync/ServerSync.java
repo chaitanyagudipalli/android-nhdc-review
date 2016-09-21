@@ -45,6 +45,7 @@ import in.vasista.vsales.db.PaymentsDataSource;
 import in.vasista.vsales.db.PayslipDataSource;
 import in.vasista.vsales.db.ProductsDataSource;
 import in.vasista.vsales.db.SupplierDataSource;
+import in.vasista.vsales.db.TransporterDataSource;
 import in.vasista.vsales.employee.Employee;
 import in.vasista.vsales.employee.EmployeeListFragment;
 import in.vasista.vsales.facility.Facility;
@@ -60,6 +61,8 @@ import in.vasista.vsales.supplier.Supplier;
 import in.vasista.vsales.supplier.SupplierListFragment;
 import in.vasista.vsales.sync.xmlrpc.XMLRPCApacheAdapter;
 import in.vasista.vsales.sync.xmlrpc.XMLRPCMethodCallback;
+import in.vasista.vsales.transporter.Transporter;
+import in.vasista.vsales.transporter.TransporterListFragment;
 import in.vasista.vsales.util.DateUtil;
 
 public class ServerSync {
@@ -75,7 +78,7 @@ public class ServerSync {
 	    //dbHelper = new MySQLiteHelper(context); 		
 	}
 
-	public  void uploadNHDCIndent(final MenuItem menuItem, ProgressBar progressBar, List<HashMap> list, String supplierPartyId, String schemeCategory, final long indent_id, String prodStoreId){
+	public  void uploadNHDCIndent(final MenuItem menuItem, ProgressBar progressBar, List<HashMap> list, String supplierPartyId, String transporterId,String schemeCategory, final long indent_id, String prodStoreId){
 				SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
 		String storeId = prefs.getString("storeId", "");
 		Map paramMap = new HashMap();
@@ -84,6 +87,7 @@ public class ServerSync {
 		paramMap.put("effectiveDate", ""+supplyDate.getTime());
 		paramMap.put("salesChannel", "MOBILE_SALES_CHANNEL");
 		paramMap.put("supplierPartyId", supplierPartyId);
+		paramMap.put("transporterId", transporterId);
 		paramMap.put("schemeCategory", schemeCategory);
 	    paramMap.put("indentItems", list);
 		paramMap.put("productStoreId",prodStoreId);
@@ -365,7 +369,7 @@ public class ServerSync {
 										float totDiscountAmt = ((BigDecimal)indentMap.get("totDiscountAmt")).setScale(2,BigDecimal.ROUND_HALF_UP).floatValue();
 
 										Indent indent = new Indent(0,(String)indentMap.get("tallyRefNo"),(String)indentMap.get("POorder"),(String)indentMap.get("poSquenceNo"),((String)(indentMap.get("isgeneratedPO"))).equalsIgnoreCase("Y"),
-												(String)indentMap.get("supplierPartyId"),(String)indentMap.get("storeName"),(String)indentMap.get("supplierPartyName"),(String)indentMap.get("orderNo"),(String)indentMap.get("orderId"),
+												(String)indentMap.get("supplierPartyId"),(String)indentMap.get("transporterId"),(String)indentMap.get("storeName"),(String)indentMap.get("supplierPartyName"),(String)indentMap.get("orderNo"),(String)indentMap.get("orderId"),
 												format.parse(String.valueOf(indentMap.get("orderDate"))),(String)indentMap.get("statusId"),
 												((BigDecimal)indentMap.get("orderTotal")).floatValue(),((BigDecimal)indentMap.get("paidAmt")).floatValue(),((BigDecimal)indentMap.get("balance")).floatValue(),"","",
 												totDiscountAmt);
@@ -755,6 +759,75 @@ public class ServerSync {
 			listFragment.notifyChange();
 		}
 	}
+
+	public void updateTransporters(final MenuItem menuItem, ProgressBar progressBar, final TransporterListFragment listFragment) {
+		final TransporterDataSource datasource = new TransporterDataSource(context);
+		datasource.open();
+		Map paramMap = new HashMap();
+		try {
+			XMLRPCApacheAdapter adapter = new XMLRPCApacheAdapter(context);
+			adapter.call("getTransporters", paramMap, progressBar, new XMLRPCMethodCallback() {
+				public void callFinished(Object result, ProgressBar progressBar) {
+					if (result != null) {
+						Map facilitiesResult = (Map)((Map)result).get("transportersMap");
+						Log.d(module, "facilitiesResult.size() = " + facilitiesResult.size());
+						datasource.open();
+						//datasource.deleteAllSuppliers();
+						if (facilitiesResult.size() > 0) {
+							List <Transporter> suppliers = new ArrayList();
+
+							for ( Object key : facilitiesResult.keySet() ) {
+								Map boothMap = (Map) facilitiesResult.get(key);
+								String id = (String)boothMap.get("partyId");
+								String name = (String)boothMap.get("partyName");
+								String contactNumber = (String)boothMap.get("contactNumber");
+								String address = (String)((Map)boothMap.get("addressMap")).get("address1");
+								Transporter supplier = new Transporter(id, name, contactNumber, address);
+								suppliers.add(supplier);
+								//Log.d(module, "supplier = " + supplier);
+
+							}
+							datasource.insertTransporters(suppliers);
+//							}
+						}
+						datasource.close();
+						if (listFragment != null) {
+							//Log.d(module, "calling listFragment notifyChange..." + listFragment.getClass().getName());
+							listFragment.notifyChange();
+						}
+					}
+					if (progressBar != null) {
+						progressBar.setVisibility(View.INVISIBLE);
+					}
+					if(menuItem !=null){
+						if (progressBar != null) {
+							progressBar.setVisibility(View.VISIBLE);
+						}
+						menuItem.setActionView(null);
+					}
+					Toast.makeText( context, "Updated suppliers!", Toast.LENGTH_SHORT ).show();
+				}
+			});
+		}
+		catch (Exception e) {
+			Log.e(module, "Exception: ", e);
+			if (progressBar != null) {
+				progressBar.setVisibility(View.INVISIBLE);
+			}
+			if(menuItem !=null){
+				if (progressBar != null) {
+					progressBar.setVisibility(View.VISIBLE);
+				}
+				menuItem.setActionView(null);
+			}
+			Toast.makeText( context, "Update outlets failed: " + e, Toast.LENGTH_SHORT ).show();
+		}
+		if (listFragment != null) {
+			//Log.d(module, "calling listFragment notifyChange..." + listFragment.getClass().getName());
+			listFragment.notifyChange();
+		}
+	}
+
 	public void updateFacilities(final MenuItem menuItem, ProgressBar progressBar, final FacilityListFragment listFragment) {
 		final FacilityDataSource datasource = new FacilityDataSource(context);
 		datasource.open();  

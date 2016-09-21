@@ -10,7 +10,7 @@ public class Indent {
 
 	String tallyRefNo, POorder, poSquenceNo;
 	boolean isgeneratedPO;
-	String supplierPartyId, storeName, supplierPartyName,orderNo, orderId;
+	String supplierPartyId,tId, storeName, supplierPartyName,orderNo, orderId;
 	Date orderDate;
 	String statusId;
 
@@ -18,13 +18,17 @@ public class Indent {
 	String schemeType,prodstoreid;
 
 
-	public Indent(int id, String tallyRefNo, String POorder, String poSquenceNo, boolean isgeneratedPO, String supplierPartyId, String storeName, String supplierPartyName, String orderNo, String orderId, Date orderDate, String statusId, double orderTotal, double paidAmt, double balance, String schemeType, String prodstoreid, float totDiscountAmt) {
+	public Indent(int id, String tallyRefNo, String POorder, String poSquenceNo, boolean isgeneratedPO,
+				  String supplierPartyId,String tId, String storeName, String supplierPartyName, String orderNo,
+				  String orderId, Date orderDate, String statusId, double orderTotal, double paidAmt, double balance,
+				  String schemeType, String prodstoreid, float totDiscountAmt) {
 		this.id = id;
 		this.tallyRefNo = tallyRefNo;
 		this.POorder = POorder;
 		this.poSquenceNo = poSquenceNo;
 		this.isgeneratedPO = isgeneratedPO;
 		this.supplierPartyId = supplierPartyId;
+		this.tId = tId;
 		this.storeName = storeName;
 		this.supplierPartyName = supplierPartyName;
 		this.orderNo = orderNo;
@@ -88,6 +92,10 @@ public class Indent {
 
 	public String getSupplierPartyId() {
 		return supplierPartyId;
+	}
+
+	public String gettId() {
+		return tId;
 	}
 
 	public String getStoreName() {

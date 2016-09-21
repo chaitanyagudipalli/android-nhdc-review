@@ -20,13 +20,15 @@ import java.util.List;
 
 import in.vasista.nhdc.R;
 import in.vasista.vsales.db.IndentsDataSource;
+import in.vasista.vsales.db.TransporterDataSource;
 import in.vasista.vsales.indent.Indent;
 import in.vasista.vsales.indent.IndentItemNHDC;
 import in.vasista.vsales.sync.ServerSync;
+import in.vasista.vsales.transporter.Transporter;
 
 public class IndentDetailed extends DashboardAppCompatActivity {
 
-    IndentsDataSource datasource;
+    IndentsDataSource datasource;TransporterDataSource tds;
     TextView textView;
     Indent indent;
     List<HashMap> list;
@@ -41,13 +43,25 @@ public class IndentDetailed extends DashboardAppCompatActivity {
         list = new ArrayList<>();
         int[] ids = { R.id.order_date, R.id.order_number,R.id.order_total,
         R.id.supplier_name,R.id.generated_po,R.id.po_sequence_no,R.id.status_id,R.id.balance_ammount,
-                R.id.paid_ammount,R.id.disc_amnt};
+                R.id.paid_ammount,R.id.disc_amnt,R.id.t_name};
         Intent facilityDetailsIntent = getIntent();
         indentId = facilityDetailsIntent.getIntExtra("indentId",0);
         datasource = new IndentsDataSource(this);
         datasource.open();
         indent = datasource.getIndentDetails(indentId);
         datasource.close();
+//        Transporter t = null;
+//        if(indent.gettId().equalsIgnoreCase("")) {
+//            tds = new TransporterDataSource(this);
+//            tds.open();
+//            t = tds.getTransporterDetails(indent.gettId());
+//            tds.close();
+//        }
+//        String t_name = "";
+//        if (t != null){
+//            t_name = t.getName();
+//        }
+
 
 try {
     SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMM, yyyy");
@@ -56,7 +70,8 @@ try {
             indent.getSupplierPartyName(), (indent.isgeneratedPO()) ? "YES" : "NO", indent.getPoSquenceNo(), indent.getStatusId()
             , this.getResources().getString(R.string.Rs) + " " + new BigDecimal(indent.getBalance()).setScale(2, RoundingMode.HALF_UP).doubleValue(),
             this.getResources().getString(R.string.Rs) + " " + new BigDecimal(indent.getPaidAmt()).setScale(2, RoundingMode.HALF_UP).doubleValue(),
-            this.getResources().getString(R.string.Rs) + " " + new BigDecimal(indent.getTotDiscountAmt()).setScale(2, RoundingMode.HALF_UP).doubleValue()};
+            this.getResources().getString(R.string.Rs) + " " + new BigDecimal(indent.getTotDiscountAmt()).setScale(2, RoundingMode.HALF_UP).doubleValue(),
+    indent.gettId()};
 
     if (!indent.isgeneratedPO()){
         findViewById(R.id.po_seq_row).setVisibility(View.GONE);
@@ -199,7 +214,7 @@ try {
                             progressBar = (ProgressBar) menuItem.getActionView().findViewById(R.id.menuitem_progress);
                         }
                         ServerSync serverSync = new ServerSync(IndentDetailed.this);
-                        serverSync.uploadNHDCIndent(menuItem, null, list,indent.getSupplierPartyId(),indent.getSchemeType(), indentId, indent.getProdstoreid());
+                        serverSync.uploadNHDCIndent(menuItem, null, list,indent.getSupplierPartyId(),indent.gettId(),indent.getSchemeType(), indentId, indent.getProdstoreid());
                     }
                 });
 

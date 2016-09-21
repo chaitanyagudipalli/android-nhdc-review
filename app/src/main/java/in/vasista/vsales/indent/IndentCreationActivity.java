@@ -35,11 +35,14 @@ import java.util.Map;
 import in.vasista.nhdc.R;
 import in.vasista.vsales.DashboardAppCompatActivity;
 import in.vasista.vsales.adapter.SupplierAutoAdapter;
+import in.vasista.vsales.adapter.TransporterAutoAdapter;
 import in.vasista.vsales.db.IndentsDataSource;
 import in.vasista.vsales.db.SupplierDataSource;
+import in.vasista.vsales.db.TransporterDataSource;
 import in.vasista.vsales.supplier.Supplier;
 import in.vasista.vsales.sync.ServerSync;
 import in.vasista.vsales.sync.xmlrpc.XMLRPCApacheAdapter;
+import in.vasista.vsales.transporter.Transporter;
 
 public class IndentCreationActivity extends DashboardAppCompatActivity implements AdapterView.OnItemSelectedListener {
 
@@ -50,7 +53,7 @@ public class IndentCreationActivity extends DashboardAppCompatActivity implement
     List<HashMap> list;
     Button addIndent,submitindent;
 
-    String supplierPartyId = "", schemeType = "", category_type = "",billingType = "Direct", supplierName = "", prodStoreId = "";
+    String supplierPartyId = "", tId = "",schemeType = "", category_type = "",billingType = "Direct", supplierName = "", prodStoreId = "";
     long indent_id =0;
 
     FloatingActionButton fab;
@@ -111,7 +114,7 @@ public class IndentCreationActivity extends DashboardAppCompatActivity implement
 
                 Date supplyDate = new Date();
 
-                Indent indent =new Indent(0,"","","",false,supplierPartyId,"",supplierName,"","",supplyDate,"Not Uploaded",0.0,0.0,0.0,schemeType,prodStoreId, 0);
+                Indent indent =new Indent(0,"","","",false,supplierPartyId,tId,"",supplierName,"","",supplyDate,"Not Uploaded",0.0,0.0,0.0,schemeType,prodStoreId, 0);
                 datasource = new IndentsDataSource(IndentCreationActivity.this);
                 datasource.open();
                 indent_id = datasource.insertIndent(indent);
@@ -171,6 +174,7 @@ public class IndentCreationActivity extends DashboardAppCompatActivity implement
 
 
         setupSuppliers();
+        setupTransporters();
 
     }
 
@@ -209,6 +213,48 @@ public class IndentCreationActivity extends DashboardAppCompatActivity implement
                 actv.setText(supplier.getName());
                 supplierPartyId =supplier.getId();
                 supplierName = supplier.getName();
+            }
+
+        });
+
+
+
+    }
+
+
+    private Map tMap = new HashMap<String, Transporter>();
+
+    private void setupTransporters() {
+        TransporterDataSource transporterDataSource = new TransporterDataSource(this);
+        transporterDataSource.open();
+        List<Transporter> supplierList = transporterDataSource.getAllTransporters();
+        Log.v("Upendra","count "+supplierList.size());
+        transporterDataSource.close();
+        for (int i = 0; i < supplierList.size(); ++i) {
+            Transporter p = supplierList.get(i);
+            tMap.put(p.getId(), p);
+        }
+
+        final String[] suppliers = new String[supplierList.size()];
+        int index = 0;
+        for (Transporter supplier : supplierList) {
+            suppliers[index] = supplier.getId();
+            index++;
+        }
+        //final IndentCreationActivity mainActivity = this;
+        final TransporterAutoAdapter adapter = new TransporterAutoAdapter(this, R.layout.autocomplete_item, supplierList);
+        actv = (AutoCompleteTextView) findViewById(R.id.autoCompleteTransporter);
+        actv.setAdapter(adapter);
+
+        actv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                InputMethodManager in = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                in.hideSoftInputFromWindow(actv.getWindowToken(), 0);
+                actv.clearFocus();
+                Transporter supplier =  (Transporter)parent.getItemAtPosition(position);
+                actv.setText(supplier.getName());
+                tId =supplier.getId();
             }
 
         });
@@ -324,7 +370,7 @@ public class IndentCreationActivity extends DashboardAppCompatActivity implement
                             progressBar = (ProgressBar) menuItem.getActionView().findViewById(R.id.menuitem_progress);
                         }
                         ServerSync serverSync = new ServerSync(IndentCreationActivity.this);
-                        serverSync.uploadNHDCIndent(menuItem, null, list,supplierPartyId,schemeType,indent_id,prodStoreId);
+                        serverSync.uploadNHDCIndent(menuItem, null, list,supplierPartyId,tId,schemeType,indent_id,prodStoreId);
                         fab.hide();
                         editMode = false;
                         invalidateOptionsMenu();
