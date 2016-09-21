@@ -212,6 +212,25 @@
                 style="@style/TabeRowValue"
                 android:layout_margin="2dp" />
         </TableRow>
+        <TableRow android:paddingTop="5dip"
+            android:paddingBottom="5dip">
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_margin="2dp"
+                style="@style/TabeRowTitle"
+                android:text="Transporter Name"/>
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:text=":"/>
+            <TextView
+                android:id="@+id/t_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/TabeRowValue"
+                android:layout_margin="2dp" />
+        </TableRow>
     </TableLayout>
     <fragment
         android:id="@+id/indentitems_list_fragment"

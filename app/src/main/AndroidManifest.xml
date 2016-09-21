@@ -121,6 +121,26 @@
                 android:value="in.vasista.vsales.SalesDashboardActivity" />
         </activity>
         <activity
+            android:name="in.vasista.vsales.TranporterActivity"
+            android:label="@string/title_feature6"
+            android:parentActivityName="in.vasista.vsales.SalesDashboardActivity"
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="UnusedAttribute">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="in.vasista.vsales.SalesDashboardActivity" />
+        </activity>
+        <activity
+            android:name="in.vasista.vsales.TransporterDetailsActivity"
+            android:label="@string/title_feature6"
+            android:parentActivityName="in.vasista.vsales.TranporterActivity"
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="UnusedAttribute">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="in.vasista.vsales.TranporterActivity" />
+        </activity>
+        <activity
             android:name="in.vasista.vsales.EmployeeActivity"
             android:label="@string/title_hr"
             android:parentActivityName="in.vasista.vsales.HRDashboardActivity"

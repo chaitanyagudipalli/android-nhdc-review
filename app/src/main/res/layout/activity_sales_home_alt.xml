@@ -128,7 +128,14 @@
                     style="@style/HomeButton"
                     android:drawableTop="@drawable/supplier_button"
                     android:onClick="onClickFeature"
-                    android:text="@string/title_feature5" />              
+                    android:text="@string/title_feature5" />
+
+                <Button
+                    android:id="@+id/home_btn_transporters"
+                    style="@style/HomeButton"
+                    android:drawableTop="@drawable/transporter_button"
+                    android:onClick="onClickFeature"
+                    android:text="@string/transporters" />
             </LinearLayout>
           
         </LinearLayout>

@@ -27,6 +27,7 @@ public class IndentsDataSource {
 	      MySQLiteHelper.COLUMN_INDENT_PO_SEQ_NO,
 	      MySQLiteHelper.COLUMN_INDENT_IS_GEN_PO,
 	      MySQLiteHelper.COLUMN_INDENT_SUPP_PARTY_ID,
+			  MySQLiteHelper.COLUMN_INDENT_T_PARTY_ID,
 	      MySQLiteHelper.COLUMN_INDENT_STORENAME,
 			  MySQLiteHelper.COLUMN_INDENT_SUPP_PARTY_NAME,
 			  MySQLiteHelper.COLUMN_INDENT_ORDER_NO,
@@ -126,6 +127,7 @@ public class IndentsDataSource {
 			values.put(MySQLiteHelper.COLUMN_INDENT_PO_SEQ_NO, indent.getPoSquenceNo());
 			values.put(MySQLiteHelper.COLUMN_INDENT_IS_GEN_PO, indent.isgeneratedPO());
 			values.put(MySQLiteHelper.COLUMN_INDENT_SUPP_PARTY_ID, indent.getSupplierPartyId());
+		values.put(MySQLiteHelper.COLUMN_INDENT_T_PARTY_ID, indent.gettId());
 			values.put(MySQLiteHelper.COLUMN_INDENT_STORENAME, indent.getStoreName());
 			values.put(MySQLiteHelper.COLUMN_INDENT_SUPP_PARTY_NAME, indent.getSupplierPartyName());
 			values.put(MySQLiteHelper.COLUMN_INDENT_ORDER_NO, indent.getOrderNo());
@@ -154,6 +156,7 @@ public class IndentsDataSource {
 			values.put(MySQLiteHelper.COLUMN_INDENT_PO_SEQ_NO, indent.getPoSquenceNo());
 			values.put(MySQLiteHelper.COLUMN_INDENT_IS_GEN_PO, indent.isgeneratedPO());
 			values.put(MySQLiteHelper.COLUMN_INDENT_SUPP_PARTY_ID, indent.getSupplierPartyId());
+			values.put(MySQLiteHelper.COLUMN_INDENT_T_PARTY_ID, indent.gettId());
 			values.put(MySQLiteHelper.COLUMN_INDENT_STORENAME, indent.getStoreName());
 			values.put(MySQLiteHelper.COLUMN_INDENT_SUPP_PARTY_NAME, indent.getSupplierPartyName());
 			values.put(MySQLiteHelper.COLUMN_INDENT_ORDER_NO, indent.getOrderNo());
@@ -239,14 +242,15 @@ public class IndentsDataSource {
 				cursor.getString(7),
 				cursor.getString(8),
 				cursor.getString(9),
-				new Date(cursor.getLong(10)),
-				cursor.getString(11),
-				cursor.getDouble(12),
+				cursor.getString(10),
+				new Date(cursor.getLong(11)),
+				cursor.getString(12),
 				cursor.getDouble(13),
 				cursor.getDouble(14),
-				cursor.getString(15),
+				cursor.getDouble(15),
 				cursor.getString(16),
-				cursor.getFloat(17));
+				cursor.getString(17),
+				cursor.getFloat(18));
 	  }
 	  
 	  public void updateIndentStatus(long indentId, String indentStatus) {

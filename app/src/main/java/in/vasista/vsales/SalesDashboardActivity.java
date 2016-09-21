@@ -41,10 +41,12 @@ import in.vasista.vsales.db.OrdersDataSource;
 import in.vasista.vsales.db.PaymentsDataSource;
 import in.vasista.vsales.db.ProductsDataSource;
 import in.vasista.vsales.db.SupplierDataSource;
+import in.vasista.vsales.db.TransporterDataSource;
 import in.vasista.vsales.facility.Facility;
 import in.vasista.vsales.supplier.Supplier;
 import in.vasista.vsales.sync.ServerSync;
 import in.vasista.vsales.sync.xmlrpc.XMLRPCApacheAdapter;
+import in.vasista.vsales.transporter.Transporter;
 
 public class SalesDashboardActivity extends DrawerCompatActivity  {
 	public static final String module = SalesDashboardActivity.class.getName();
@@ -406,6 +408,9 @@ public boolean onCreateOptionsMenu(Menu menu) {
           case R.id.home_btn_outlets :
                startActivity (new Intent(getApplicationContext(), SupplierActivity.class));
                break;
+			case R.id.home_btn_transporters :
+				startActivity (new Intent(getApplicationContext(), TranporterActivity.class));
+				break;
 			case R.id.home_btn_profile :
 				startActivity (new Intent(getApplicationContext(), WeaverDetailedActivity.class));
 				break;
@@ -501,10 +506,11 @@ public boolean onCreateOptionsMenu(Menu menu) {
 
 		ProductsDataSource pds = new ProductsDataSource(SalesDashboardActivity.this);
 		SupplierDataSource sds = new SupplierDataSource(SalesDashboardActivity.this);
+		TransporterDataSource tds = new TransporterDataSource(SalesDashboardActivity.this);
 
 		Object productsObject, suppliersObject;
 
-		boolean appPrepared = false, appProd = false, appSup = false;
+		boolean appPrepared = false, appProd = false, appSup = false,apptrans = false;
 
 		ProgressDialog progress;
 
@@ -529,8 +535,12 @@ public boolean onCreateOptionsMenu(Menu menu) {
 				appSup = true;
 			}
 			sds.close();
+			tds.open();
+			if(tds.getCountTransporters() > 0){
+				apptrans = true;
+			}
 
-			if(appProd && appSup && partyId.equalsIgnoreCase(""))
+			if(appProd && appSup && partyId.equalsIgnoreCase("") && apptrans)
 				appPrepared = true;
 
 
@@ -627,6 +637,33 @@ public boolean onCreateOptionsMenu(Menu menu) {
 								sds.close();
 							}
 						}
+
+						if(!apptrans){
+
+							paramMap = new HashMap();
+							suppliersObject = adapter.callSync("getTransporters", paramMap);
+							publishProgress(85);
+							if(suppliersObject != null){
+								Map facilitiesResult = (Map)((Map)suppliersObject).get("transportersMap");
+								tds.open();
+								if (facilitiesResult.size() > 0) {
+									List <Transporter> suppliers = new ArrayList();
+
+									for ( Object key : facilitiesResult.keySet() ) {
+										Map boothMap = (Map) facilitiesResult.get(key);
+										String id = (String)boothMap.get("partyId");
+										String name = (String)boothMap.get("partyName");
+										String contactNumber = (String)boothMap.get("contactNumber");
+										String address = (String)((Map)boothMap.get("addressMap")).get("address1");
+										Transporter supplier = new Transporter(id, name, contactNumber, address);
+										suppliers.add(supplier);
+
+									}
+									tds.insertTransporters(suppliers);
+								}
+								tds.close();
+							}
+						}
 						publishProgress(100);
 
 					}
@@ -652,8 +689,11 @@ public boolean onCreateOptionsMenu(Menu menu) {
 			super.onProgressUpdate(values);
 			if(values[0] >=20){
 				progress.setMessage("Preparing products...");
-			}else if(values[0] >=70){
+			}else if(values[0] >=60){
 				progress.setMessage("Preparing suppliers...");
+			}
+			else if(values[0] >=80){
+				progress.setMessage("Preparing transporters...");
 			}
 
 			progress.setProgress(values[0]);
