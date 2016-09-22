@@ -179,7 +179,7 @@ public class IndentCreationActivity extends DashboardAppCompatActivity implement
     }
 
     private Map productMap = new HashMap<String, Supplier>();
-    AutoCompleteTextView actv;
+    AutoCompleteTextView actv,actvT;
 
     private void setupSuppliers() {
         SupplierDataSource supplierDataSource = new SupplierDataSource(this);
@@ -243,17 +243,17 @@ public class IndentCreationActivity extends DashboardAppCompatActivity implement
         }
         //final IndentCreationActivity mainActivity = this;
         final TransporterAutoAdapter adapter = new TransporterAutoAdapter(this, R.layout.autocomplete_item, supplierList);
-        actv = (AutoCompleteTextView) findViewById(R.id.autoCompleteTransporter);
-        actv.setAdapter(adapter);
+        actvT = (AutoCompleteTextView) findViewById(R.id.autoCompleteTransporter);
+        actvT.setAdapter(adapter);
 
-        actv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        actvT.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 InputMethodManager in = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                in.hideSoftInputFromWindow(actv.getWindowToken(), 0);
-                actv.clearFocus();
+                in.hideSoftInputFromWindow(actvT.getWindowToken(), 0);
+                actvT.clearFocus();
                 Transporter supplier =  (Transporter)parent.getItemAtPosition(position);
-                actv.setText(supplier.getName());
+                actvT.setText(supplier.getName());
                 tId =supplier.getId();
             }
 
