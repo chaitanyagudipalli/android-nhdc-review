@@ -45,7 +45,7 @@ public class IndentDetailed extends DashboardAppCompatActivity {
         list = new ArrayList<>();
         int[] ids = { R.id.order_date, R.id.order_number,R.id.order_total,
         R.id.supplier_name,R.id.generated_po,R.id.po_sequence_no,R.id.status_id,R.id.balance_ammount,
-                R.id.paid_ammount,R.id.disc_amnt,R.id.t_name};
+                R.id.paid_ammount,R.id.disc_amnt,R.id.t_name,R.id.scheme};
         Intent facilityDetailsIntent = getIntent();
         indentId = facilityDetailsIntent.getIntExtra("indentId",0);
         datasource = new IndentsDataSource(this);
@@ -73,7 +73,7 @@ try {
             , this.getResources().getString(R.string.Rs) + " " + new BigDecimal(indent.getBalance()).setScale(2, RoundingMode.HALF_UP).doubleValue(),
             this.getResources().getString(R.string.Rs) + " " + new BigDecimal(indent.getPaidAmt()).setScale(2, RoundingMode.HALF_UP).doubleValue(),
             this.getResources().getString(R.string.Rs) + " " + new BigDecimal(indent.getTotDiscountAmt()).setScale(2, RoundingMode.HALF_UP).doubleValue(),
-    indent.gettId()};
+    indent.gettId(),indent.getSchemeType()};
 
     if (!indent.isgeneratedPO()){
         findViewById(R.id.po_seq_row).setVisibility(View.GONE);
