@@ -525,6 +525,7 @@
             <Button
                 android:id="@+id/addIndent"
                 android:layout_gravity="right"
+                android:enabled="false"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Add" />

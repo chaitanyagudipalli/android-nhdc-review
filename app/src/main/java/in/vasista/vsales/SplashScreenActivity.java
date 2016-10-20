@@ -79,8 +79,10 @@ public class SplashScreenActivity extends Activity
 						    	String salesRepPerm = "N";
 						    	String hrPerm = "N";
 						    	String inventoryPerm = "N", locationPerm = "N";
+								String suppPerm = "N";
 						    	
 								for (int i = 0; i < permissionList.length; ++i) {
+									prefEditor.putBoolean(MainActivity.IS_SUP_PORTAL,false);
 									String dashboardPermission = (String)permissionList[i];
 									Log.d(module, "dashboardPermission = " + dashboardPermission);
 									if (MainActivity.RETAILER_DB_PERM.equals(dashboardPermission)) {
@@ -98,6 +100,10 @@ public class SplashScreenActivity extends Activity
 									else if (MainActivity.LOCATION_DB_PERM.equals(dashboardPermission)) {
 										locationPerm = "Y";
 									}
+									else if (MainActivity.SUP_DB_PERM.equals(dashboardPermission)) {
+										suppPerm = "Y";
+										prefEditor.putBoolean(MainActivity.IS_SUP_PORTAL,true);
+									}
 								}
 								// refresh permissions prefs
 
@@ -106,6 +112,7 @@ public class SplashScreenActivity extends Activity
 					    		prefEditor.putString(MainActivity.HR_DB_PERM, hrPerm);		
 					    		prefEditor.putString(MainActivity.INVENTORY_DB_PERM, inventoryPerm);
 								prefEditor.putString(MainActivity.LOCATION_DB_PERM, locationPerm);
+								prefEditor.putString(MainActivity.SUP_DB_PERM, suppPerm);
 
 							}
 						}
@@ -142,33 +149,48 @@ public class SplashScreenActivity extends Activity
 					paramMap.put("effectiveDate", (new Date()).getTime());
 
 					adapter = new XMLRPCApacheAdapter(getBaseContext());
-					Object weaverDet = adapter.callSync("getWeaverDetails", paramMap);
+					if(prefs.getBoolean(MainActivity.IS_SUP_PORTAL,false)){
+						// Supplier
+						Object suppDet = adapter.callSync("getSupplierDetails", paramMap);
 
-							if (weaverDet != null) {
-								Map weaverDetails = (Map)((Map)weaverDet).get("weaverDetails");
-								prefEditor.putString("weaverDetailsMap", ""+ weaverDetails);
-								prefEditor.putString(MainActivity.USER_FULLNAME, ""+ weaverDetails.get("partyName"));
-								prefEditor.putString(MainActivity.USER_PASSBOOK, ""+ weaverDetails.get("passBookNo"));
-								prefEditor.apply();
+						if (suppDet != null){
+							Map supplierDetails = (Map) ((Map) suppDet).get("supplierDetails");
+							prefEditor.putString("suppDetailsMap", "" + supplierDetails);
+							prefEditor.putString(MainActivity.USER_FULLNAME, "" + supplierDetails.get("partyName"));
+							prefEditor.putString(MainActivity.USER_PASSBOOK, "" + supplierDetails.get("contactNumber"));
+							prefEditor.apply();
+						}
 
-								Map loomDetails= (Map)((Map)weaverDetails).get("loomDetails");
+					}else {
+						// Weaver and sales rep
+						Object weaverDet = adapter.callSync("getWeaverDetails", paramMap);
 
-								Map silk = (Map)((Map)loomDetails).get("SILK_YARN");
-								Map cotton_40above = (Map)((Map)loomDetails).get("COTTON_40ABOVE");
-								Map cotton_40upto = (Map)((Map)loomDetails).get("COTTON_UPTO40");
-								Map wool_10to39 = (Map)((Map)loomDetails).get("WOOLYARN_10STO39NM");
-								Map wool_40above = (Map)((Map)loomDetails).get("WOOLYARN_40SNMABOVE");
-								Map wool_10below = (Map)((Map)loomDetails).get("WOOLYARN_BELOW10NM");
+						if (weaverDet != null) {
+							Map weaverDetails = (Map) ((Map) weaverDet).get("weaverDetails");
+							prefEditor.putString("weaverDetailsMap", "" + weaverDetails);
+							prefEditor.putString(MainActivity.USER_FULLNAME, "" + weaverDetails.get("partyName"));
+							prefEditor.putString(MainActivity.USER_PASSBOOK, "" + weaverDetails.get("passBookNo"));
+							prefEditor.apply();
 
-								prefEditor.putInt("SILK_YARN",(int)silk.get("avlQuota"));
-								prefEditor.putInt("COTTON_40ABOVE", (int)cotton_40above.get("avlQuota"));
-								prefEditor.putInt("COTTON_UPTO40", (int)cotton_40upto.get("avlQuota"));
-								prefEditor.putInt("WOOLYARN_10STO39NM", (int)wool_10to39.get("avlQuota"));
-								prefEditor.putInt("WOOLYARN_40SNMABOVE", (int)wool_40above.get("avlQuota"));
-								prefEditor.putInt("WOOLYARN_BELOW10NM", (int)wool_10below.get("avlQuota"));
-								prefEditor.apply();
+							Map loomDetails = (Map) ((Map) weaverDetails).get("loomDetails");
 
-							}
+							Map silk = (Map) ((Map) loomDetails).get("SILK_YARN");
+							Map cotton_40above = (Map) ((Map) loomDetails).get("COTTON_40ABOVE");
+							Map cotton_40upto = (Map) ((Map) loomDetails).get("COTTON_UPTO40");
+							Map wool_10to39 = (Map) ((Map) loomDetails).get("WOOLYARN_10STO39NM");
+							Map wool_40above = (Map) ((Map) loomDetails).get("WOOLYARN_40SNMABOVE");
+							Map wool_10below = (Map) ((Map) loomDetails).get("WOOLYARN_BELOW10NM");
+
+							prefEditor.putInt("SILK_YARN", (int) silk.get("avlQuota"));
+							prefEditor.putInt("COTTON_40ABOVE", (int) cotton_40above.get("avlQuota"));
+							prefEditor.putInt("COTTON_UPTO40", (int) cotton_40upto.get("avlQuota"));
+							prefEditor.putInt("WOOLYARN_10STO39NM", (int) wool_10to39.get("avlQuota"));
+							prefEditor.putInt("WOOLYARN_40SNMABOVE", (int) wool_40above.get("avlQuota"));
+							prefEditor.putInt("WOOLYARN_BELOW10NM", (int) wool_10below.get("avlQuota"));
+							prefEditor.apply();
+
+						}
+					}
 
 				}
 			}  

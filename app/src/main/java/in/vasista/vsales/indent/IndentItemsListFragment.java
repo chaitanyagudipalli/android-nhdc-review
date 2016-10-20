@@ -309,8 +309,7 @@ Log.v("jgjg",""+position);
 		AlertDialog.Builder alert = new AlertDialog.Builder(
 				getActivity());
 		alert.setTitle("Upload Indent?");
-		alert.setMessage("Sample terms:\n" +
-				"\n" +
+		alert.setMessage("\n" +
 				"These terms and conditions create a contract between you and NHDC (the “Agreement”). Please read the Agreement carefully. To confirm your understanding and acceptance of the Agreement, click “Agree.”\n\n" +
 				"A. INTRODUCTION TO OUR SERVICES\n" +
 				"This Agreement governs your use of NHDC’s services (“Services”), through which you can place indents.\n" +

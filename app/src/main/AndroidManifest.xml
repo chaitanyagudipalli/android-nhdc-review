@@ -47,6 +47,15 @@
                 android:value="in.vasista.vsales.MainActivity" />
         </activity>
         <activity
+            android:name="in.vasista.vsales.SuppDashboardActivity"
+            android:label="Supplier Dashboard"
+            android:parentActivityName="in.vasista.vsales.MainActivity"
+            tools:ignore="UnusedAttribute">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="in.vasista.vsales.MainActivity" />
+        </activity>
+        <activity
             android:name="in.vasista.analytics.sales.SalesActivity"
             android:label="@string/title_analytica_sales"
             android:parentActivityName="in.vasista.vsales.MainActivity"
@@ -351,6 +360,26 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="in.vasista.vsales.SalesDashboardActivity" />
+        </activity>
+
+        <activity
+            android:name="in.vasista.vsales.SupplierDetailedActivity"
+            android:label="Supplier details"
+            android:parentActivityName="in.vasista.vsales.SuppDashboardActivity"
+            tools:ignore="UnusedAttribute">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="in.vasista.vsales.SuppDashboardActivity" />
+        </activity>
+
+        <activity
+            android:name="in.vasista.vsales.SuppPOActivity"
+            android:label="Product orders"
+            android:parentActivityName="in.vasista.vsales.SuppDashboardActivity"
+            tools:ignore="UnusedAttribute">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="in.vasista.vsales.SuppDashboardActivity" />
         </activity>
         <activity android:name="in.vasista.vsales.IndentItemDetailed"
             android:label="Indent Item Details"
