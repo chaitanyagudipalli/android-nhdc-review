@@ -46,7 +46,6 @@ public class SupplierPOListFragment extends ListFragment {
 		if (listView.getHeaderViewsCount() == 0) {           
 						
 			View headerView2 = getActivity().getLayoutInflater().inflate(R.layout.supplierpo_header, null);
-			((TextView)headerView2.findViewById(R.id.column_category_header)).setText(R.string.supplier_roletypeid);
 			listView.addHeaderView(headerView2);
 		}
 		if (adapter == null) {  
