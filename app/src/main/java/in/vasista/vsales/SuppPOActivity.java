@@ -75,7 +75,7 @@ protected void onCreate(Bundle savedInstanceState)
 		refresh = true;
 	}
 
-	setSalesDashboardTitle(R.string.title_feature1_plurer);
+	setSalesDashboardTitle(R.string.supp_po_title);
 
 	fab = (FloatingActionButton) findViewById(R.id.fab);
 	fab.show();
