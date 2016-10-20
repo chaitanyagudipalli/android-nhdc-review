@@ -45,7 +45,7 @@ public class SupplierPOListFragment extends ListFragment {
 
 		if (listView.getHeaderViewsCount() == 0) {           
 						
-			View headerView2 = getActivity().getLayoutInflater().inflate(R.layout.facility_header, null);
+			View headerView2 = getActivity().getLayoutInflater().inflate(R.layout.supplierpo_header, null);
 			((TextView)headerView2.findViewById(R.id.column_category_header)).setText(R.string.supplier_roletypeid);
 			listView.addHeaderView(headerView2);
 		}
@@ -64,7 +64,7 @@ public class SupplierPOListFragment extends ListFragment {
 			Log.d(module, "supplierItems.size() = " + supplierItems.size());
     	    
 		    adapter = new SupplierPOAdapter(getActivity(),
-                    R.layout.facilitylist_item,
+                    R.layout.supplierpi_list,
 					supplierItems);
 		}
 		setListAdapter(adapter);
@@ -95,7 +95,7 @@ public class SupplierPOListFragment extends ListFragment {
     	Log.d(module, "supplierItems.size() = " + supplierItems.size());
 	    try {
 			adapter = new SupplierPOAdapter(getActivity(),
-					R.layout.facilitylist_item,
+					R.layout.supplierpi_list,
 					supplierItems);
 			setListAdapter(adapter);
 		}catch (NullPointerException e){

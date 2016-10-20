@@ -1,6 +1,7 @@
 package in.vasista.vsales.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,6 +34,8 @@ public class SupplierPOAdapter extends ArrayAdapter<SupplierPO> {
 
 		  SupplierPO item = getItem(position);
 
+		  Log.v("asd",""+item.getStatus());
+
 
 //	    String status = item.getStatus();
 	    String poID = item.getPoid();
@@ -51,12 +54,12 @@ public class SupplierPOAdapter extends ArrayAdapter<SupplierPO> {
 	    	indentView = (LinearLayout) convertView;  
 	    }     
 
-	    TextView dateView = (TextView)indentView.findViewById(R.id.indentRowDate);
-	    TextView subscriptionTypeView = (TextView)indentView.findViewById(R.id.indentRowSupply);	    
-	    TextView syncedView = (TextView)indentView.findViewById(R.id.indentRowSynced);
+	    TextView dateView = (TextView)indentView.findViewById(R.id.facilityRowId);
+	    TextView subscriptionTypeView = (TextView)indentView.findViewById(R.id.facilityRowName);
+	    TextView syncedView = (TextView)indentView.findViewById(R.id.facilityRowCategory);
 
-	    dateView.setText(item.getPoid());
-	    subscriptionTypeView.setText(poID);
+	    dateView.setText(item.getOrderdate());
+	    subscriptionTypeView.setText(item.getPoid());
 	    syncedView.setText(status);
 	    return indentView;
 	  }
