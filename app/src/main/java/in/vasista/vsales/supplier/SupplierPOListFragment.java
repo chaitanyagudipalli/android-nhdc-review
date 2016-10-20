@@ -21,6 +21,7 @@ import java.util.List;
 
 import in.vasista.nhdc.R;
 import in.vasista.vsales.SupplierDetailsActivity;
+import in.vasista.vsales.SupplierPODeliveryActivity;
 import in.vasista.vsales.adapter.SupplierAdapter;
 import in.vasista.vsales.adapter.SupplierPOAdapter;
 import in.vasista.vsales.db.PODataSource;
@@ -73,12 +74,12 @@ public class SupplierPOListFragment extends ListFragment {
 		  @Override
 		  public void onItemClick(AdapterView<?> listView, View arg1, int position, long arg3) {
 
-//		    Supplier facility = (Supplier)listView.getItemAtPosition(position);
-//            if (facility != null) {
-//            	Intent facilityDetailsIntent = new Intent(getActivity(), SupplierDetailsActivity.class);
-//            	facilityDetailsIntent.putExtra("partyId", facility.getId());
-//            	startActivity(facilityDetailsIntent);
-//            }
+		    SupplierPO facility = (SupplierPO)listView.getItemAtPosition(position);
+            if (facility != null) {
+            	Intent facilityDetailsIntent = new Intent(getActivity(), SupplierPODeliveryActivity.class);
+            	facilityDetailsIntent.putExtra("supp_poId", facility.getPoid());
+            	startActivity(facilityDetailsIntent);
+            }
 		  }
 		});	
 

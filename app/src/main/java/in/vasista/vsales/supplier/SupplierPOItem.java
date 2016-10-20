@@ -5,7 +5,7 @@ public class SupplierPOItem {
 	String poid, prodid, itemname, spec, orderNum,status;
 	double unitPrice, itemQty, dispatchQty, balanceQty;
 
-	public SupplierPOItem(String poid, String prodid, String itemname, String spec, String orderNum, String status, double unitPrice, double itemQty, double dispatchQty, double balanceQty) {
+	public SupplierPOItem(String poid, String prodid, String itemname, String spec,  double unitPrice, double itemQty, double dispatchQty, double balanceQty) {
 		this.poid = poid;
 		this.prodid = prodid;
 		this.itemname = itemname;

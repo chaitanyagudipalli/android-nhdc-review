@@ -61,6 +61,7 @@ import in.vasista.vsales.payment.PaymentListFragment;
 import in.vasista.vsales.supplier.Supplier;
 import in.vasista.vsales.supplier.SupplierListFragment;
 import in.vasista.vsales.supplier.SupplierPO;
+import in.vasista.vsales.supplier.SupplierPOItem;
 import in.vasista.vsales.supplier.SupplierPOListFragment;
 import in.vasista.vsales.sync.xmlrpc.XMLRPCApacheAdapter;
 import in.vasista.vsales.sync.xmlrpc.XMLRPCMethodCallback;
@@ -362,6 +363,18 @@ public class ServerSync {
 								SupplierPO supplier = new SupplierPO(key.toString(), (String)boothMap.get("orderDate"),id, name, partyTypeId);
 								suppliers.add(supplier);
 								//Log.d(module, "supplier = " + supplier);
+								Object[] orderItemsList = (Object[])boothMap.get("orderItemsList");
+								for (int i=0;i<orderItemsList.length;i++){
+									Map orderItem = (Map) orderItemsList[i];
+									SupplierPOItem supplierPOItem = new SupplierPOItem(key.toString(),(String)orderItem.get("productId"),
+											(String)orderItem.get("itemName"),
+											(String)orderItem.get("specification"),
+											((BigDecimal)orderItem.get("unitPrice")).floatValue(),
+											((BigDecimal)orderItem.get("indentQuantity")).floatValue(),
+											((BigDecimal)orderItem.get("dispatchedQty")).floatValue(),
+											((BigDecimal)orderItem.get("balanceQty")).floatValue());
+									indentDataSource.insertSuppPOItem(supplierPOItem);
+								}
 
 							}
 							indentDataSource.insertSuppPO(suppliers);

@@ -240,4 +240,5 @@
     <string name="my_profile">My Profile</string>
 
     <string name="supp_po_title">Purchase orders</string>
+    <string name="supplier_delivery">Supplier Delivery</string>
 </resources>

@@ -148,11 +148,11 @@ public class PODataSource {
 
 
 	  
-	  public long insertSuppPOItem(String supplierPOid, SupplierPOItem supplierPOItem) {
+	  public long insertSuppPOItem(SupplierPOItem supplierPOItem) {
 
 
 		  ContentValues values = new ContentValues();
-		  values.put(MySQLiteHelper.COLUMN_SUPP_POID, supplierPOid);
+		  values.put(MySQLiteHelper.COLUMN_SUPP_POID, supplierPOItem.getPoid());
 		  values.put(MySQLiteHelper.COLUMN_SUPP_POPID, supplierPOItem.getProdid());
 		  values.put(MySQLiteHelper.COLUMN_SUPP_PO_ITEMNAME, supplierPOItem.getItemname());
 		  values.put(MySQLiteHelper.COLUMN_SUPP_SPEC, supplierPOItem.getSpec());
@@ -167,7 +167,7 @@ public class PODataSource {
 	  public List<SupplierPOItem> getSuppPOItems(String supplierPOid) {
 		  List<SupplierPOItem> indentItems = new ArrayList<>();
 		  Cursor cursor = database.query(MySQLiteHelper.TABLE_SUPP_PO_ITEMS,
-				  allItemColumns, MySQLiteHelper.COLUMN_SUPP_POID + " = " + supplierPOid, null, null, null, null);
+				  allItemColumns, MySQLiteHelper.COLUMN_SUPP_POID + " = \"" + supplierPOid+"\"", null, null, null, null);
 		  ProductsDataSource datasource = new ProductsDataSource(context);
 		  datasource.open();
 		  Map productMap = datasource.getSaleProductMap();
@@ -196,8 +196,8 @@ public class PODataSource {
 
 	  private SupplierPOItem cursorToSuppPOItem(Cursor cursor) {
 		  return new SupplierPOItem(cursor.getString(0),cursor.getString(1),cursor.getString(2),
-				  cursor.getString(3), cursor.getString(4),cursor.getString(5),cursor.getFloat(6),cursor.getFloat(7),
-				  cursor.getFloat(8),cursor.getFloat(9));
+				  cursor.getString(3),cursor.getFloat(4),cursor.getFloat(5),
+				  cursor.getFloat(6),cursor.getFloat(7));
 	  }
 
 }
