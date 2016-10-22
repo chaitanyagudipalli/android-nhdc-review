@@ -1,0 +1,14 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" >
+
+    <item
+        android:id="@+id/action_shipment_upload"
+        app:showAsAction="always"
+        android:icon="@drawable/title_upload"
+        android:title="@string/title_upload"/>
+    <item
+        android:id="@+id/action_shipment_edit"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_edit_24dp"
+        android:title="Edit"/>
+
+</menu>

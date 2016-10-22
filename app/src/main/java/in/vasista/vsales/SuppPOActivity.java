@@ -81,16 +81,6 @@ protected void onCreate(Bundle savedInstanceState)
 	fab.hide();
 	//fab.setImageResource(R.drawable.title_upload);
 
-	fab.setOnClickListener(new View.OnClickListener() {
-		@Override
-		public void onClick(View view) {
-			Intent intent = new Intent(SuppPOActivity.this,IndentCreationActivity.class);
-			// editMode = true;
-			invalidateOptionsMenu();
-			//fab.hide();
-			startActivity(intent);
-		}
-	});
 }
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

@@ -62,6 +62,7 @@ import in.vasista.vsales.supplier.Supplier;
 import in.vasista.vsales.supplier.SupplierListFragment;
 import in.vasista.vsales.supplier.SupplierPO;
 import in.vasista.vsales.supplier.SupplierPOItem;
+import in.vasista.vsales.supplier.SupplierPOItemListFragment;
 import in.vasista.vsales.supplier.SupplierPOListFragment;
 import in.vasista.vsales.supplier.SupplierPOShip;
 import in.vasista.vsales.sync.xmlrpc.XMLRPCApacheAdapter;
@@ -193,7 +194,58 @@ public class ServerSync {
 //			Toast.makeText( context, "Upload failed: " + e, Toast.LENGTH_LONG ).show();
 //		}
 	}
-	
+	public void uploadShipments(final MenuItem menuItem, final List<SupplierPOItem> suppitems, String orderId, ProgressBar progressBar, final SupplierPOItemListFragment listFragment){
+
+
+				SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+		String storeId = prefs.getString("storeId", "");
+
+		PODataSource poDataSource = new PODataSource(context);
+		poDataSource.open();
+		Map paramMap = new HashMap();
+		paramMap.put("boothId", storeId);
+		paramMap.put("orderId", orderId);
+	    paramMap.put("shipmentItems", poDataSource.convertToXMLRPC(suppitems));
+		poDataSource.close();
+		try {
+			XMLRPCApacheAdapter adapter = new XMLRPCApacheAdapter(context);
+			adapter.call("createSupplierDispatch", paramMap, progressBar, new XMLRPCMethodCallback() {
+				public void callFinished(Object result, ProgressBar progressBar) {
+					if (result != null) {
+				    	Map indentResults = (Map)((Map)result).get("shipmentResult");
+				    	//Log.d(module, "numIndentItems = " + indentResults.get("numIndentItems"));
+				    	if (listFragment != null) {
+				    		listFragment.notifyChange();
+				    	}
+					}
+					if (progressBar != null) {
+						progressBar.setVisibility(View.INVISIBLE);
+					}
+					if(menuItem !=null){
+						if (progressBar != null) {
+							progressBar.setVisibility(View.VISIBLE);
+						}
+						menuItem.setActionView(null);
+					}
+					Toast.makeText( context, "Goods dispatched successfully", Toast.LENGTH_LONG ).show();
+				}
+			});
+		}
+		catch (Exception e) {
+			Log.e(module, "Exception: ", e);
+			if (progressBar != null) {
+				progressBar.setVisibility(View.INVISIBLE);
+			}
+			if(menuItem !=null){
+				if (progressBar != null) {
+					progressBar.setVisibility(View.VISIBLE);
+				}
+				menuItem.setActionView(null);
+			}
+			Toast.makeText( context, "Upload failed: " + e, Toast.LENGTH_LONG ).show();
+		}
+
+	}
 	public void updateProducts(final MenuItem menuItem, ProgressBar progressBar, final CatalogListFragment listFragment) {
 		Map paramMap = new HashMap();
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);

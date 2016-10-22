@@ -1,15 +1,22 @@
 package in.vasista.vsales.supplier;
 
+import android.app.AlertDialog;
 import android.app.ListFragment;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
+import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 import in.vasista.nhdc.R;
@@ -20,6 +27,8 @@ import in.vasista.vsales.adapter.SupplierPOAdapter;
 import in.vasista.vsales.adapter.SupplierPOItemsAdapter;
 import in.vasista.vsales.db.PODataSource;
 import in.vasista.vsales.indent.Indent;
+import in.vasista.vsales.indent.IndentItem;
+import in.vasista.vsales.indent.IndentItemNHDC;
 import in.vasista.vsales.sync.ServerSync;
 
 
@@ -28,16 +37,16 @@ public class SupplierPOItemListFragment extends ListFragment implements View.OnC
 
 	SupplierPOItemsAdapter adapter;
 	PODataSource datasource;
-	List<SupplierPOItem> supplierItems;
-	String partyId;
+	List<SupplierPOItem> supplierItems;ListView listView;
+	String partyId,orderId;boolean isEditableList =false;
 
 	final SupplierPOItemListFragment listFragment = this;
 
 	public void onActivityCreated(Bundle savedInstanceState) {
 		
 		super.onActivityCreated(savedInstanceState);  
-		
-		final ListView listView = getListView();
+
+		listView = getListView();
 
 		if (listView.getHeaderViewsCount() == 0) {           
 						
@@ -57,6 +66,7 @@ public class SupplierPOItemListFragment extends ListFragment implements View.OnC
     	    datasource.open();
 
 			partyId = getActivity().getIntent().getStringExtra("supp_poId");
+			orderId = getActivity().getIntent().getStringExtra("orderId");
 			supplierItems  = datasource.getSuppPOItems(partyId);
 
 			Log.d(module, "supplierItems.size() = " + supplierItems.size());
@@ -65,22 +75,44 @@ public class SupplierPOItemListFragment extends ListFragment implements View.OnC
                     R.layout.supplierpoitem_list,
 					supplierItems);
 		}
+		adapter.setEditable(isEditableList);
 		setListAdapter(adapter);
 		
-		listView.setClickable(true);
-		listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-		  @Override
-		  public void onItemClick(AdapterView<?> listView, View arg1, int position, long arg3) {
+		listView.setClickable(false);
 
-//		    SupplierPO facility = (SupplierPO)listView.getItemAtPosition(position);
-//            if (facility != null) {
-//            	Intent facilityDetailsIntent = new Intent(getActivity(), SupplierDetailsActivity.class);
-//            	facilityDetailsIntent.putExtra("supp_poId", facility.getPoid());
-//            	startActivity(facilityDetailsIntent);
-//            }
-		  }
-		});	
 
+
+
+	}
+
+	public void uploadShipmentAction(final MenuItem menuItem){
+		AlertDialog.Builder alert = new AlertDialog.Builder(
+				getActivity());
+		alert.setTitle("Upload Indent?");
+		alert.setPositiveButton("Ok",
+				new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog,
+										int whichButton) {
+						ProgressBar progressBar = null;
+						if(menuItem != null) {
+							menuItem.setActionView(R.layout.progressbar);
+//						ProgressBar progressBar = (ProgressBar) listView.getRootView().findViewById(R.id.indentUploadProgress);
+//						progressBar.setVisibility(View.VISIBLE);
+							progressBar = (ProgressBar) menuItem.getActionView().findViewById(R.id.menuitem_progress);
+						}
+						ServerSync serverSync = new ServerSync(getActivity());
+						serverSync.uploadShipments(menuItem,supplierItems,orderId, progressBar, listFragment);
+					}
+				});
+
+		alert.setNegativeButton("Cancel",
+				new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog,
+										int whichButton) {
+						// Canceled.
+					}
+				});
+		alert.show();
 	}
 
 	/**
@@ -114,5 +146,86 @@ public class SupplierPOItemListFragment extends ListFragment implements View.OnC
 			startActivity (i);
 
 		}
+	}
+
+	void makeItemsEditable() {
+		isEditableList = true;
+		setListAdapter(null);
+		listView.setClickable(true);
+		adapter.setEditable(isEditableList);
+		setListAdapter(adapter);
+
+		listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+				AlertDialog.Builder alert = new AlertDialog.Builder(
+						getActivity());
+				final SupplierPOItem item = (SupplierPOItem) listView
+						.getItemAtPosition(position);
+
+				alert.setTitle("Enter dispatch quantity for " + item.getItemname());
+
+				// Set an EditText view to get user input
+				final EditText input = new EditText(getActivity());
+				input.setInputType(InputType.TYPE_CLASS_NUMBER);
+				//input.setFilters(new InputFilter[]{new CustomRangeInputFilter((int) item.getMinQ(),1000000)});
+				String qtyStr = Integer.toString((int)item.getDispatchQty());
+				if (item.getDispatchQty() == -1) {
+					qtyStr = "";
+				}
+				input.setText(qtyStr);
+				input.requestFocus();
+				input.selectAll();
+				alert.setView(input);
+
+				alert.setPositiveButton("Ok",
+						new DialogInterface.OnClickListener() {
+							public void onClick(DialogInterface dialog,
+												int whichButton) {
+
+							}
+						});
+
+				alert.setNegativeButton("Cancel",
+						new DialogInterface.OnClickListener() {
+							public void onClick(DialogInterface dialog,
+												int whichButton) {
+								// Canceled.
+							}
+						});
+
+				//alert.show();
+				final AlertDialog a= alert.create();
+				a.show();
+				a.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener()
+				{
+					@Override
+					public void onClick(View v)
+					{
+						Log.v("bbb","clcikc");
+						String value = input.getText().toString();
+						int newQty = -1;
+						try {
+							newQty = Integer.parseInt(value);
+
+						} catch (NumberFormatException e) {
+							//
+						}
+						item.setDispatchQty(newQty);
+						adapter.notifyDataSetChanged();
+						//Do stuff, possibly set wantToCloseDialog to true then...
+						a.dismiss();
+						//else dialog stays open. Make sure you have an obvious way to close the dialog especially if you set cancellable to false.
+					}
+				});
+			}
+		});
+		Toast.makeText(this.getActivity(),"Now you enabled edit mode, click on any item to edit.",Toast.LENGTH_LONG).show();
+	}
+
+	public void editShipmentAction(){
+		isEditableList = true;
+		makeItemsEditable();
+
 	}
 }

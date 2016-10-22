@@ -1,6 +1,9 @@
 package in.vasista.vsales.adapter;
 
+import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
 import android.content.Context;
+import android.os.Build;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,14 +21,23 @@ import in.vasista.vsales.supplier.SupplierPOItem;
 
 public class SupplierPOItemsAdapter extends ArrayAdapter<SupplierPOItem> {
 	  int resource;
+	boolean isEditable = false;
 
 	  public SupplierPOItemsAdapter(Context context,
 									int resource,
 									List<SupplierPOItem> items) {
 	    super(context, resource, items);
 	    this.resource = resource;
-	  }  
+	  }
+	public boolean isEditable() {
+		return isEditable;
+	}
 
+	public void setEditable(boolean isEditable) {
+		this.isEditable = isEditable;
+	}
+
+	  @SuppressLint("NewApi")
 	  @Override
 	  public View getView(int position, View convertView, ViewGroup parent) {
 	    LinearLayout indentView;
@@ -54,13 +66,23 @@ public class SupplierPOItemsAdapter extends ArrayAdapter<SupplierPOItem> {
 
 	    TextView dateView = (TextView)indentView.findViewById(R.id.facilityRowId);
 	    TextView subscriptionTypeView = (TextView)indentView.findViewById(R.id.facilityRowName);
-	    TextView syncedView = (TextView)indentView.findViewById(R.id.facilityRowCategory);
+	    TextView dispView = (TextView)indentView.findViewById(R.id.facilityRowCategory);
 		  TextView balView = (TextView)indentView.findViewById(R.id.facilityRowBal);
 
 	    dateView.setText(item.getItemname());
 	    subscriptionTypeView.setText(""+item.getItemQty());
-	    syncedView.setText(""+item.getDispatchQty());
+	    dispView.setText(""+item.getDispatchQty());
 		  balView.setText(""+item.getBalanceQty());
+
+		  if (!isEditable) {
+			  dispView.setFocusable(false);
+			  int sdk = android.os.Build.VERSION.SDK_INT;
+			  if (sdk < android.os.Build.VERSION_CODES.JELLY_BEAN) {
+				  dispView.setBackgroundDrawable(null);
+			  } else {
+				  dispView.setBackground(null);
+			  }
+		  }
 	    return indentView;
 	  }
 }

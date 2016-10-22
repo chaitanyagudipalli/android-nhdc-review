@@ -11,10 +11,13 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 import in.vasista.vsales.indent.Indent;
+import in.vasista.vsales.indent.IndentItem;
 import in.vasista.vsales.indent.IndentItemNHDC;
 import in.vasista.vsales.supplier.SupplierPO;
 import in.vasista.vsales.supplier.SupplierPOItem;
@@ -229,7 +232,7 @@ public class PODataSource {
 		  return indentItems;
 	  }
 
-	public SupplierPOItem getIndentItemDetails(int indentItemId) {
+	public SupplierPOItem getshipmentItems(int indentItemId) {
 		Cursor cursor = database.query(MySQLiteHelper.TABLE_SUPP_PO_ITEMS,
 				allItemColumns, MySQLiteHelper.COLUMN_SUPP_POITEM_ID + " = " + indentItemId, null, null, null, null);
 
@@ -250,6 +253,23 @@ public class PODataSource {
 		return new SupplierPOShip(cursor.getString(0),cursor.getString(1),cursor.getString(2),
 				cursor.getString(3),cursor.getString(4),
 				cursor.getFloat(5),cursor.getFloat(6),cursor.getFloat(7));
+	}
+
+
+	public Map[] convertToXMLRPC(List<SupplierPOItem> supplierPOItems){
+		Map [] result = new TreeMap[supplierPOItems.size()];
+		int i=0;
+		for (SupplierPOItem supplierPOItem:supplierPOItems){
+			Map item= new TreeMap();
+			item.put("productId",supplierPOItem.getProdid());
+			item.put("quantity",""+supplierPOItem.getItemQty());
+			item.put("orderItemSeqId",""+i);
+			item.put("dispatchedQty",""+supplierPOItem.getDispatchQty());
+			result[i] = item;
+			i++;
+
+		}
+		return result;
 	}
 
 }

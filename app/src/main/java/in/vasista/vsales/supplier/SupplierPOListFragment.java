@@ -78,6 +78,7 @@ public class SupplierPOListFragment extends ListFragment {
             if (facility != null) {
             	Intent facilityDetailsIntent = new Intent(getActivity(), SupplierPODeliveryActivity.class);
             	facilityDetailsIntent.putExtra("supp_poId", facility.getPoid());
+				facilityDetailsIntent.putExtra("orderId",facility.getOrderId());
             	startActivity(facilityDetailsIntent);
             }
 		  }

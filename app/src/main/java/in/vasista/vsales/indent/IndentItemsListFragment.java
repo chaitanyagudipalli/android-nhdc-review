@@ -239,7 +239,7 @@ Log.v("jgjg",""+position);
 //				newItemsList.add(item);
 			}
 		}
-		setListAdapter(null);    
+		//setListAdapter(null);
 	    indentItems = newItemsList;
 	    
 	    adapter = new IndentItemAdapter(getActivity(),
