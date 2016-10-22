@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -17,6 +18,7 @@ import in.vasista.vsales.indent.Indent;
 import in.vasista.vsales.indent.IndentItemNHDC;
 import in.vasista.vsales.supplier.SupplierPO;
 import in.vasista.vsales.supplier.SupplierPOItem;
+import in.vasista.vsales.supplier.SupplierPOShip;
 
 public class PODataSource {
 	public static final String module = PODataSource.class.getName();
@@ -47,7 +49,6 @@ public class PODataSource {
 			MySQLiteHelper.COLUMN_SUPP_POPID,
 			MySQLiteHelper.COLUMN_SUPP_PO_ITEMNAME,
 			MySQLiteHelper.COLUMN_SHIP_ITEMSEQID,
-			MySQLiteHelper.COLUMN_SUPP_POPID,
 			MySQLiteHelper.COLUMN_SHIP_QTY,
 			MySQLiteHelper.COLUMN_SHIP_UNITPRICE,
 			MySQLiteHelper.COLUMN_SHIP_ITEMAMT,
@@ -95,6 +96,26 @@ public class PODataSource {
  		}
 
 	}
+
+	public void insertSuppPOShips(List<SupplierPOShip> supplierPOShips){
+		ContentValues values = new ContentValues();
+		for (int i=0; i < supplierPOShips.size(); ++i) {
+			SupplierPOShip supplierPOShip = supplierPOShips.get(i);
+
+
+			values.put(MySQLiteHelper.COLUMN_SHIP_ID, supplierPOShip.getShipid());
+			values.put(MySQLiteHelper.COLUMN_SUPP_POID, supplierPOShip.getPoid());
+			values.put(MySQLiteHelper.COLUMN_SUPP_POPID, supplierPOShip.getProductid());
+			values.put(MySQLiteHelper.COLUMN_SUPP_PO_ITEMNAME, supplierPOShip.getItemname());
+			values.put(MySQLiteHelper.COLUMN_SHIP_ITEMSEQID, supplierPOShip.getItemSeqId());
+			values.put(MySQLiteHelper.COLUMN_SHIP_UNITPRICE, supplierPOShip.getUnitPrice());
+			values.put(MySQLiteHelper.COLUMN_SHIP_QTY, supplierPOShip.getQty());
+			values.put(MySQLiteHelper.COLUMN_SHIP_ITEMAMT, supplierPOShip.getItemAmnt());
+
+			database.insert(MySQLiteHelper.TABLE_SUPP_SHIPMENTS, null, values);
+		}
+
+	}
 	         
 
 	  public List<SupplierPO> getAllSuppPOs() {
@@ -113,6 +134,31 @@ public class PODataSource {
 	    cursor.close();
 	    return supplierPOs;
 	  }
+
+	public List<SupplierPOShip> getAllSuppShips(String POid) {
+		Log.v("hghhh",""+POid);
+		POid = "WS11607";
+		List<SupplierPOShip> supplierPOShips = new ArrayList<SupplierPOShip>();
+		try {
+
+
+		Cursor cursor = database.query(MySQLiteHelper.TABLE_SUPP_SHIPMENTS, allShipColumns, MySQLiteHelper.COLUMN_SUPP_POID + " = \"" + POid+"\"", null, null, null, null);
+
+
+			Log.v("sadsa",""+cursor.getCount());
+		cursor.moveToFirst();
+		while (!cursor.isAfterLast()) {
+			SupplierPOShip supplierPOShip = cursorToSuppPOShip(cursor);
+			supplierPOShips.add(supplierPOShip);
+			cursor.moveToNext();
+		}
+		// Make sure to close the cursor
+		cursor.close();
+		}catch (Exception e){
+			Log.v("Exception",""+e.getMessage());
+		}
+		return supplierPOShips;
+	}
 
 	  public SupplierPO getIndentDetails(String supplierPOid) {
 		  try {
@@ -199,5 +245,11 @@ public class PODataSource {
 				  cursor.getString(3),cursor.getFloat(4),cursor.getFloat(5),
 				  cursor.getFloat(6),cursor.getFloat(7));
 	  }
+
+	private SupplierPOShip cursorToSuppPOShip(Cursor cursor) {
+		return new SupplierPOShip(cursor.getString(0),cursor.getString(1),cursor.getString(2),
+				cursor.getString(3),cursor.getString(4),
+				cursor.getFloat(5),cursor.getFloat(6),cursor.getFloat(7));
+	}
 
 }

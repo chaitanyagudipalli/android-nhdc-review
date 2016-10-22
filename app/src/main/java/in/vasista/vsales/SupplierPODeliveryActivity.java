@@ -43,6 +43,12 @@ public class SupplierPODeliveryActivity extends DashboardAppCompatActivity{
 
 		setSalesDashboardTitle(R.string.supplier_delivery);
 
+//		findViewById(R.id.supp_ship_history).setOnClickListener(new OnClickListener() {
+//			@Override
+//			public void onClick(View v) {
+//				startActivity (new Intent(getApplicationContext(), SalesDashboardActivity.class));
+//			}
+//		});
 
 	}
 

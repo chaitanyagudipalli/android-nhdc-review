@@ -5,7 +5,7 @@ public class SupplierPOShip {
 	String shipid, poid, productid, orderdate, itemname, itemSeqId;
 	double qty, unitPrice, itemAmnt;
 
-	public SupplierPOShip(String shipid, String poid, String productid, String orderdate, String itemname, String itemSeqId, double qty, double unitPrice, double itemAmnt) {
+	public SupplierPOShip(String shipid, String poid, String productid, String itemname, String itemSeqId, double qty, double unitPrice, double itemAmnt) {
 		this.shipid = shipid;
 		this.poid = poid;
 		this.productid = productid;

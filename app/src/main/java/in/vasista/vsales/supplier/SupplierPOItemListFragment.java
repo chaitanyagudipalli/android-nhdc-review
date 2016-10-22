@@ -13,14 +13,17 @@ import android.widget.ProgressBar;
 import java.util.List;
 
 import in.vasista.nhdc.R;
+import in.vasista.vsales.HRDashboardActivity;
+import in.vasista.vsales.ShipmentHistoryActivity;
 import in.vasista.vsales.SupplierDetailsActivity;
 import in.vasista.vsales.adapter.SupplierPOAdapter;
 import in.vasista.vsales.adapter.SupplierPOItemsAdapter;
 import in.vasista.vsales.db.PODataSource;
+import in.vasista.vsales.indent.Indent;
 import in.vasista.vsales.sync.ServerSync;
 
 
-public class SupplierPOItemListFragment extends ListFragment {
+public class SupplierPOItemListFragment extends ListFragment implements View.OnClickListener {
 	public static final String module = SupplierPOItemListFragment.class.getName();
 
 	SupplierPOItemsAdapter adapter;
@@ -39,6 +42,7 @@ public class SupplierPOItemListFragment extends ListFragment {
 		if (listView.getHeaderViewsCount() == 0) {           
 						
 			View headerView2 = getActivity().getLayoutInflater().inflate(R.layout.supplierpoitem_header, null);
+			headerView2.findViewById(R.id.shp_history).setOnClickListener(this);
 			listView.addHeaderView(headerView2);
 		}
 		if (adapter == null) {  
@@ -101,4 +105,14 @@ public class SupplierPOItemListFragment extends ListFragment {
 		setListAdapter(null);
 	}
 
+	@Override
+	public void onClick(View v) {
+		if (v.getId() == R.id.shp_history){
+			Log.v("poid",""+getActivity().getIntent().getStringExtra("supp_poId"));
+			Intent i = new Intent(getActivity(), ShipmentHistoryActivity.class);
+			i.putExtra("poid",""+getActivity().getIntent().getStringExtra("supp_poId"));
+			startActivity (i);
+
+		}
+	}
 }

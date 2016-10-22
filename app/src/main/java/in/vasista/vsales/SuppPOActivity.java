@@ -78,7 +78,7 @@ protected void onCreate(Bundle savedInstanceState)
 	setSalesDashboardTitle(R.string.supp_po_title);
 
 	fab = (FloatingActionButton) findViewById(R.id.fab);
-	fab.show();
+	fab.hide();
 	//fab.setImageResource(R.drawable.title_upload);
 
 	fab.setOnClickListener(new View.OnClickListener() {

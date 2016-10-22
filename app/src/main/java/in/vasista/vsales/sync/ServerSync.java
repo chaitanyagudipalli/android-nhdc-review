@@ -63,6 +63,7 @@ import in.vasista.vsales.supplier.SupplierListFragment;
 import in.vasista.vsales.supplier.SupplierPO;
 import in.vasista.vsales.supplier.SupplierPOItem;
 import in.vasista.vsales.supplier.SupplierPOListFragment;
+import in.vasista.vsales.supplier.SupplierPOShip;
 import in.vasista.vsales.sync.xmlrpc.XMLRPCApacheAdapter;
 import in.vasista.vsales.sync.xmlrpc.XMLRPCMethodCallback;
 import in.vasista.vsales.transporter.Transporter;
@@ -347,7 +348,8 @@ public class ServerSync {
 						Map indentResults = (Map)((Map)result).get("supplierPOList");
 						Log.d(module, "indentResults.size() = " + indentResults.size());
 						if (indentResults.size() > 0) {
-							List <SupplierPO> suppliers = new ArrayList();
+							List <SupplierPO> suppliers = new ArrayList<SupplierPO>();
+							List<SupplierPOShip> supplierPOShips = new ArrayList<SupplierPOShip>();
 
 							for ( Object key : indentResults.keySet() ) {
 								Map boothMap = (Map) indentResults.get(key);
@@ -376,8 +378,34 @@ public class ServerSync {
 									indentDataSource.insertSuppPOItem(supplierPOItem);
 								}
 
+								Map shipmentHistory = (Map)(boothMap).get("shipmentHistory");
+								if (shipmentHistory != null) {
+									for (Object ship_key : shipmentHistory.keySet()) {
+										Log.v("ShipKey", "" + ship_key.toString());
+										Object[] shipment = (Object[]) shipmentHistory.get(ship_key);
+										if (shipment.length > 0) {
+											Log.v("sh",""+shipment);
+											for (int i=0;i<shipment.length;i++){
+												Map shipitem = (Map)shipment[i];
+
+
+												SupplierPOShip supplierPOShip = new SupplierPOShip(ship_key.toString(), key.toString(),
+													(String) shipitem.get("productId"),
+													(String) shipitem.get("itemName"), (String) shipitem.get("orderItemSeqId"),
+													((BigDecimal) shipitem.get("quantity")).floatValue(), ((BigDecimal) shipitem.get("unitPrice")).floatValue(),
+													((BigDecimal) shipitem.get("itemAmount")).floatValue());
+													supplierPOShips.add(supplierPOShip);
+											}
+//
+										}
+									}
+								}
+
+
 							}
 							indentDataSource.insertSuppPO(suppliers);
+							indentDataSource.insertSuppPOShips(supplierPOShips);
+
 						}
 						indentDataSource.close();
 						if (listFragment != null) {
