@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:padding="15dp"
+    android:padding="10dp"
     android:layout_width="match_parent" android:layout_height="match_parent">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="18sp"
         android:text="Large Text"
         android:id="@+id/dispatch"
         android:layout_alignParentTop="true"
@@ -31,12 +31,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Item name"
+                android:textSize="12sp"
                 android:textStyle="bold"
                  />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="12sp"
                 android:textStyle="bold"
                 android:text="Item Qty"
                  />
@@ -46,6 +48,7 @@
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:text="Unit price"
+                android:textSize="12sp"
                  />
 
             <TextView
@@ -53,6 +56,7 @@
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:text="Item amt"
+                android:textSize="12sp"
                 />
         </TableRow>
         <TableRow
@@ -62,21 +66,25 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="12sp"
                 android:id="@+id/itemname" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="12sp"
                 android:id="@+id/itemqty" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="12sp"
                 android:id="@+id/price" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="12sp"
                 android:id="@+id/amnt" />
         </TableRow>
 
