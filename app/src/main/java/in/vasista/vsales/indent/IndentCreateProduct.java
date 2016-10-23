@@ -183,7 +183,6 @@ public class IndentCreateProduct extends DashboardAppCompatActivity implements V
                 basicPrice = ((EditText)findViewById(R.id.unitprice)).getText().toString();
                 total_amount = ((TextView) findViewById(R.id.totalAmt)).getText().toString();
                 spec = specificaton.getText().toString();
-
                  hm = new HashMap<String, String>();
                 hm.put("productId",productId);
                 hm.put("quantity",quantity);
@@ -199,55 +198,58 @@ public class IndentCreateProduct extends DashboardAppCompatActivity implements V
                 /**
                  * Quota Calc
                  * */
-                ProductsDataSource productsDataSource = new ProductsDataSource(IndentCreateProduct.this);
-                productsDataSource.open();
-                Product p = productsDataSource.getproductDetails(Integer.parseInt(productId));
-                productsDataSource.close();
-                int quota = prefs.getInt(p.getScheme(),0);
-                int usedquota = 0;
-
-                datasource = new IndentsDataSource(IndentCreateProduct.this);
-                datasource.open();
-                List<IndentItemNHDC> indentItems = datasource.getIndentItems((int)i.getLongExtra("indent_id",0));
-                for (int i=0;i<indentItems.size();i++) {
-                    IndentItemNHDC indentItemNHDC = indentItems.get(i);
+                try {
+                    ProductsDataSource productsDataSource = new ProductsDataSource(IndentCreateProduct.this);
                     productsDataSource.open();
-                    Product p_i = productsDataSource.getproductDetails(Integer.parseInt(indentItemNHDC.getProductId()));
+                    Product p = productsDataSource.getproductDetails(Integer.parseInt(productId));
                     productsDataSource.close();
-                    if (p_i.getScheme().equalsIgnoreCase(p.getScheme()))
-                        usedquota += Integer.parseInt(indentItemNHDC.getQuantity());
-                }
+                    int quota = prefs.getInt(p.getScheme(), 0);
+                    int usedquota = 0;
 
-                usedquota += (int)Float.parseFloat(quantity);
+                    datasource = new IndentsDataSource(IndentCreateProduct.this);
+                    datasource.open();
+                    List<IndentItemNHDC> indentItems = datasource.getIndentItems((int) i.getLongExtra("indent_id", 0));
+                    for (int i = 0; i < indentItems.size(); i++) {
+                        IndentItemNHDC indentItemNHDC = indentItems.get(i);
+                        productsDataSource.open();
+                        Product p_i = productsDataSource.getproductDetails(Integer.parseInt(indentItemNHDC.getProductId()));
+                        productsDataSource.close();
+                        if (p_i.getScheme().equalsIgnoreCase(p.getScheme()))
+                            usedquota += Integer.parseInt(indentItemNHDC.getQuantity());
+                    }
 
-                Log.v("Quota",p.getScheme()+" :: "+quota);
-                Log.v("Used Quota",""+usedquota);
-                if(usedquota > quota) {
+                    usedquota += (int) Float.parseFloat(quantity);
 
-                    AlertDialog.Builder alert = new AlertDialog.Builder(
-                            IndentCreateProduct.this);
-                    alert.setTitle("Quota Exceeded");
-                    alert.setPositiveButton("Continue",
-                            new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog,
-                                                    int whichButton) {
-                                    addProductToIndent();
-                                }
-                            });
+                    Log.v("Quota", p.getScheme() + " :: " + quota);
+                    Log.v("Used Quota", "" + usedquota);
+                    if (usedquota > quota) {
 
-                    alert.setNegativeButton("Cancel",
-                            new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog,
-                                                    int whichButton) {
-                                    // Canceled.
+                        AlertDialog.Builder alert = new AlertDialog.Builder(
+                                IndentCreateProduct.this);
+                        alert.setTitle("Quota Exceeded");
+                        alert.setPositiveButton("Continue",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog,
+                                                        int whichButton) {
+                                        addProductToIndent();
+                                    }
+                                });
 
-                                }
-                            });
-                    alert.show();
+                        alert.setNegativeButton("Cancel",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog,
+                                                        int whichButton) {
+                                        // Canceled.
 
-                }else
-                {
-                    addProductToIndent();
+                                    }
+                                });
+                        alert.show();
+
+                    } else {
+                        addProductToIndent();
+                    }
+                }catch (NumberFormatException e){
+
                 }
 
             }
@@ -312,8 +314,12 @@ public class IndentCreateProduct extends DashboardAppCompatActivity implements V
                 actv1.clearFocus();
                 Product product =  (Product)parent.getItemAtPosition(position);
                 actv1.setText(product.getName());
+                addIndent.setEnabled(true);
+                addIndent.setClickable(true);
+                Log.v("add",""+addIndent.isEnabled());
                 productId = product.getId();
                 //actv.setVisibility(View.GONE);
+
             }
 
         });

@@ -41,6 +41,7 @@ import in.vasista.vsales.db.IndentsDataSource;
 import in.vasista.vsales.db.LeavesDataSource;
 import in.vasista.vsales.db.LocationsDataSource;
 import in.vasista.vsales.db.OrdersDataSource;
+import in.vasista.vsales.db.PODataSource;
 import in.vasista.vsales.db.PaymentsDataSource;
 import in.vasista.vsales.db.PayslipDataSource;
 import in.vasista.vsales.db.ProductsDataSource;
@@ -59,6 +60,11 @@ import in.vasista.vsales.order.OrderListFragment;
 import in.vasista.vsales.payment.PaymentListFragment;
 import in.vasista.vsales.supplier.Supplier;
 import in.vasista.vsales.supplier.SupplierListFragment;
+import in.vasista.vsales.supplier.SupplierPO;
+import in.vasista.vsales.supplier.SupplierPOItem;
+import in.vasista.vsales.supplier.SupplierPOItemListFragment;
+import in.vasista.vsales.supplier.SupplierPOListFragment;
+import in.vasista.vsales.supplier.SupplierPOShip;
 import in.vasista.vsales.sync.xmlrpc.XMLRPCApacheAdapter;
 import in.vasista.vsales.sync.xmlrpc.XMLRPCMethodCallback;
 import in.vasista.vsales.transporter.Transporter;
@@ -188,7 +194,58 @@ public class ServerSync {
 //			Toast.makeText( context, "Upload failed: " + e, Toast.LENGTH_LONG ).show();
 //		}
 	}
-	
+	public void uploadShipments(final MenuItem menuItem, final List<SupplierPOItem> suppitems, String orderId, ProgressBar progressBar, final SupplierPOItemListFragment listFragment){
+
+
+				SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+		String storeId = prefs.getString("storeId", "");
+
+		PODataSource poDataSource = new PODataSource(context);
+		poDataSource.open();
+		Map paramMap = new HashMap();
+		paramMap.put("boothId", storeId);
+		paramMap.put("orderId", orderId);
+	    paramMap.put("shipmentItems", poDataSource.convertToXMLRPC(suppitems));
+		poDataSource.close();
+		try {
+			XMLRPCApacheAdapter adapter = new XMLRPCApacheAdapter(context);
+			adapter.call("createSupplierDispatch", paramMap, progressBar, new XMLRPCMethodCallback() {
+				public void callFinished(Object result, ProgressBar progressBar) {
+					if (result != null) {
+				    	Map indentResults = (Map)((Map)result).get("shipmentResult");
+				    	//Log.d(module, "numIndentItems = " + indentResults.get("numIndentItems"));
+				    	if (listFragment != null) {
+				    		listFragment.notifyChange();
+				    	}
+					}
+					if (progressBar != null) {
+						progressBar.setVisibility(View.INVISIBLE);
+					}
+					if(menuItem !=null){
+						if (progressBar != null) {
+							progressBar.setVisibility(View.VISIBLE);
+						}
+						menuItem.setActionView(null);
+					}
+					Toast.makeText( context, "Goods dispatched successfully", Toast.LENGTH_LONG ).show();
+				}
+			});
+		}
+		catch (Exception e) {
+			Log.e(module, "Exception: ", e);
+			if (progressBar != null) {
+				progressBar.setVisibility(View.INVISIBLE);
+			}
+			if(menuItem !=null){
+				if (progressBar != null) {
+					progressBar.setVisibility(View.VISIBLE);
+				}
+				menuItem.setActionView(null);
+			}
+			Toast.makeText( context, "Upload failed: " + e, Toast.LENGTH_LONG ).show();
+		}
+
+	}
 	public void updateProducts(final MenuItem menuItem, ProgressBar progressBar, final CatalogListFragment listFragment) {
 		Map paramMap = new HashMap();
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
@@ -318,6 +375,126 @@ public class ServerSync {
 			Toast.makeText( context, "getFacilityIndent failed: " + e, Toast.LENGTH_SHORT ).show();
 		}
 
+	}
+
+	public void updateSupplierPOs(final MenuItem menuItem, ProgressBar progressBar, final SupplierPOListFragment listFragment) {
+		Map paramMap = new HashMap();
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+		String storeId = prefs.getString("storeId", "");
+		paramMap.put("partyId", storeId);
+		Date now = new Date();
+		final Date supplyDate = DateUtil.addDays(now, 1);
+		paramMap.put("supplyDate", supplyDate.getTime());
+		Log.d(module, "PO supplyDate = " + supplyDate);
+
+		try {
+			XMLRPCApacheAdapter adapter = new XMLRPCApacheAdapter(context);
+			adapter.call("getSupplierPO", paramMap, progressBar, new XMLRPCMethodCallback() {
+				public void callFinished(Object result, ProgressBar progressBar) {
+					SimpleDateFormat  format = new SimpleDateFormat("yyyy-MM-dd");
+					if (result != null) {
+						PODataSource indentDataSource = new PODataSource(context);
+						indentDataSource.open();
+						indentDataSource.deleteAllPOs();
+						indentDataSource.deleteAllPOItems();
+						Map indentResults = (Map)((Map)result).get("supplierPOList");
+						Log.d(module, "indentResults.size() = " + indentResults.size());
+						if (indentResults.size() > 0) {
+							List <SupplierPO> suppliers = new ArrayList<SupplierPO>();
+							List<SupplierPOShip> supplierPOShips = new ArrayList<SupplierPOShip>();
+
+							for ( Object key : indentResults.keySet() ) {
+								Map boothMap = (Map) indentResults.get(key);
+								String id = (String)boothMap.get("orderId");
+								String name = (String)boothMap.get("orderNo");
+								Date suppDate = null;
+								try {
+									suppDate = format.parse((String)boothMap.get("orderDate"));
+								} catch (ParseException e) {
+									e.printStackTrace();
+								}
+								String partyTypeId = (String)boothMap.get("statusId");
+								SupplierPO supplier = new SupplierPO(key.toString(), (String)boothMap.get("orderDate"),id, name, partyTypeId);
+								suppliers.add(supplier);
+								//Log.d(module, "supplier = " + supplier);
+								Object[] orderItemsList = (Object[])boothMap.get("orderItemsList");
+								for (int i=0;i<orderItemsList.length;i++){
+									Map orderItem = (Map) orderItemsList[i];
+									SupplierPOItem supplierPOItem = new SupplierPOItem(key.toString(),(String)orderItem.get("productId"),
+											(String)orderItem.get("itemName"),
+											(String)orderItem.get("specification"),
+											((BigDecimal)orderItem.get("unitPrice")).floatValue(),
+											((BigDecimal)orderItem.get("indentQuantity")).floatValue(),
+											((BigDecimal)orderItem.get("dispatchedQty")).floatValue(),
+											((BigDecimal)orderItem.get("balanceQty")).floatValue());
+									indentDataSource.insertSuppPOItem(supplierPOItem);
+								}
+
+								Map shipmentHistory = (Map)(boothMap).get("shipmentHistory");
+								if (shipmentHistory != null) {
+									for (Object ship_key : shipmentHistory.keySet()) {
+										Log.v("ShipKey", "" + ship_key.toString());
+										Object[] shipment = (Object[]) shipmentHistory.get(ship_key);
+										if (shipment.length > 0) {
+											Log.v("sh",""+shipment);
+											for (int i=0;i<shipment.length;i++){
+												Map shipitem = (Map)shipment[i];
+
+
+												SupplierPOShip supplierPOShip = new SupplierPOShip(ship_key.toString(), key.toString(),
+													(String) shipitem.get("productId"),
+													(String) shipitem.get("itemName"), (String) shipitem.get("orderItemSeqId"),
+													((BigDecimal) shipitem.get("quantity")).floatValue(), ((BigDecimal) shipitem.get("unitPrice")).floatValue(),
+													((BigDecimal) shipitem.get("itemAmount")).floatValue());
+													supplierPOShips.add(supplierPOShip);
+											}
+//
+										}
+									}
+								}
+
+
+							}
+							indentDataSource.insertSuppPO(suppliers);
+							indentDataSource.insertSuppPOShips(supplierPOShips);
+
+						}
+						indentDataSource.close();
+						if (listFragment != null) {
+							//Log.d(module, "calling listFragment notifyChange..." + listFragment.getClass().getName());
+							listFragment.notifyChange();
+						}
+					}
+					if (progressBar != null) {
+						progressBar.setVisibility(View.INVISIBLE);
+
+					}
+					if(menuItem !=null){
+						if (progressBar != null) {
+							progressBar.setVisibility(View.VISIBLE);
+						}
+						menuItem.setActionView(null);
+					}
+				}
+			});
+		}
+		catch (Exception e) {
+			Log.e(module, "Exception: ", e);
+			if (progressBar != null) {
+				progressBar.setVisibility(View.INVISIBLE);
+			}
+			if(menuItem !=null){
+				if (progressBar != null) {
+					progressBar.setVisibility(View.VISIBLE);
+				}
+				menuItem.setActionView(null);
+			}
+			Toast.makeText( context, "getFacilityIndent failed: " + e, Toast.LENGTH_SHORT ).show();
+		}
+		if (listFragment != null) {
+			//Log.d(module, "calling listFragment notifyChange..." + listFragment.getClass().getName());
+			listFragment.notifyChange();
+		}
 	}
 
 	public void fetchActiveIndents(final MenuItem menuItem, ProgressBar progressBar, final IndentListFragment listFragment) {
@@ -452,11 +629,14 @@ public class ServerSync {
 	  	final Date thruDate = new Date();
 		final Date fromDate = DateUtil.addDays(thruDate, -31);
 		paramMap.put("fromDate", fromDate.getTime());					
-		paramMap.put("thruDate", thruDate.getTime());			
+		paramMap.put("thruDate", thruDate.getTime());
+		String PaymentMethodName = "getWeaverPayments";
+		if(prefs.getBoolean(MainActivity.IS_SUP_PORTAL,false))
+			PaymentMethodName = "getSupplierPayments";
 		//::TODO:: add logic to first fetch active indents from server
 		try {   
 			XMLRPCApacheAdapter adapter = new XMLRPCApacheAdapter(context);
-			adapter.call("getWeaverPayments", paramMap, progressBar, new XMLRPCMethodCallback() {
+			adapter.call(PaymentMethodName, paramMap, progressBar, new XMLRPCMethodCallback() {
 				public void callFinished(Object result, ProgressBar progressBar) {
 					if (result != null) {
 						final PaymentsDataSource paymentsDataSource = new PaymentsDataSource (context);

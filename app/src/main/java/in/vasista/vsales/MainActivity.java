@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.NavigationView;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -28,6 +29,9 @@ public class MainActivity extends DrawerCompatActivity  {
     public static final String HR_DB_PERM = "MOB_HR_DB_VIEW";
     public static final String INVENTORY_DB_PERM = "MOB_INVENTORY_DB_VIEW";
 
+	public static final String SUP_DB_PERM = "MOB_SUPLR_DB_VIEW";
+	public static final String IS_SUP_PORTAL = "IS_SUPPLIER_PORTAL";
+
 	public static final String LOCATION_DB_PERM = "MOB_LOCATION_VIEW";
 
 	public static final String USER_FULLNAME = "USER_FULLNAME";
@@ -43,26 +47,46 @@ public class MainActivity extends DrawerCompatActivity  {
     	String retailerPerm = prefs.getString(RETAILER_DB_PERM, "N");
     	String salesRepPerm = prefs.getString(SALESREP_DB_PERM, "N");
     	String hrPerm = prefs.getString(HR_DB_PERM, "N");   
-    	String inventoryPerm = prefs.getString(INVENTORY_DB_PERM, "N");   
+    	String inventoryPerm = prefs.getString(INVENTORY_DB_PERM, "N");
+		String suppPerm = prefs.getString(SUP_DB_PERM, "N");
+
+		Log.v("SUP_DB_PERM",""+suppPerm);
+
 //inventoryPerm = "Y"; //::TODO::
     	prefEditor.putString("onlySalesDashboard", "N");
     	prefEditor.putString("onlyHRDashboard", "N");
+		prefEditor.putString("onlySUPPDashboard", "N");
     	prefEditor.apply();
 
-    	if ((salesRepPerm.equals("Y") || retailerPerm.equals("Y")) && hrPerm.equals("N") && inventoryPerm.equals("N")) {
+    	if ((salesRepPerm.equals("Y") || retailerPerm.equals("Y"))
+				&& hrPerm.equals("N")
+				&& inventoryPerm.equals("N")
+				&& suppPerm.equals('N')) {
         	prefEditor.putString("onlySalesDashboard", "Y");
         	prefEditor.apply();
     	    startActivity (new Intent(getApplicationContext(), SalesDashboardActivity.class));
             finish();    	    
     	    return;
     	}
-    	if ((salesRepPerm.equals("N") && retailerPerm.equals("N")) && inventoryPerm.equals("N") && hrPerm.equals("Y")) {
+    	if ((salesRepPerm.equals("N")
+				&& retailerPerm.equals("N"))
+				&& inventoryPerm.equals("N")
+				&& hrPerm.equals("Y")
+				&& suppPerm.equals("N")) {
         	prefEditor.putString("onlyHRDashboard", "Y");
         	prefEditor.apply();
     	    startActivity (new Intent(getApplicationContext(), HRDashboardActivity.class));
             finish();    	    
     	    return;
-    	}   
+    	}
+
+		if ( suppPerm.equals("Y")) {
+			prefEditor.putString("onlySUPPDashboard", "Y");
+			prefEditor.apply();
+			startActivity (new Intent(getApplicationContext(), SuppDashboardActivity.class));
+			finish();
+			return;
+		}
     	
 	    setContentChildView(R.layout.activity_home);
     	if (salesRepPerm.equals("N") && retailerPerm.equals("N")) {    		

@@ -169,7 +169,71 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 	  public static final String COLUMN_TICKET_TYPE_ID = "TICKET_TYPE_ID";	  
 	  public static final String COLUMN_TICKET_DESC = "TICKET_DESC";	  	
 	  public static final String COLUMN_TICKET_STATUS = "TICKET_STATUS";	  	  
-	  public static final String COLUMN_TICKET_IS_SYNCED = "TICKET_IS_SYNCED";	  
+	  public static final String COLUMN_TICKET_IS_SYNCED = "TICKET_IS_SYNCED";
+
+
+
+	public static final String TABLE_SUPP_PO = "SUPPLIER_PO";
+	public static final String COLUMN_SUPP_POID = "SUPP_POID";
+	public static final String COLUMN_SUPP_ORDERDATE = "SUPP_ORDERDATE";
+	public static final String COLUMN_SUPP_ORDERID = "SUPP_ORDERID";
+	public static final String COLUMN_SUPP_ORDERNUM = "SUPP_ORDERNUM";
+	public static final String COLUMN_SUPP_STATUS = "SUPP_STATUS";
+
+
+	public static final String TABLE_SUPP_PO_ITEMS = "SUPPLIER_PO_ITEMS";
+	public static final String COLUMN_SUPP_POITEM_ID = "PO_ITEM_ID";
+	public static final String COLUMN_SUPP_POPID = "SUPP_POPID";
+	public static final String COLUMN_SUPP_PO_ITEMNAME = "SUPP_PO_ITEMNAME";
+	public static final String COLUMN_SUPP_SPEC = "SUPP_SPEC";
+	public static final String COLUMN_SUPP_UNITPRICE = "SUPP_UNITPRICE";
+	public static final String COLUMN_SUPP_ITEMQ = "SUPP_ITEMQ";
+	public static final String COLUMN_SUPP_DISPATCHQ = "SUPP_DISPATCHQ";
+	public static final String COLUMN_SUPP_BALANCEQ = "SUPP_BALANCEQ";
+
+
+	public static final String TABLE_SUPP_SHIPMENTS = "SUPPLIER_SHIPMENTS";
+	public static final String COLUMN_SHIP_ID = "SHIP_ID";
+	public static final String COLUMN_SHIP_ITEMSEQID = "SHIP_ITEMSEQID";
+	public static final String COLUMN_SHIP_QTY = "SHIP_QTY";
+	public static final String COLUMN_SHIP_UNITPRICE = "SHIP_UNITPRICE";
+	public static final String COLUMN_SHIP_ITEMAMT = "SHIP_ITEMAMT";
+
+
+	private static final String DATABASE_CREATE_SUPP_PO = "create table "
+			+ TABLE_SUPP_PO + " (" + COLUMN_SUPP_POID
+			+ " text primary key , " + COLUMN_SUPP_ORDERDATE
+			+ " text, " + COLUMN_SUPP_ORDERID
+			+ " text, " + COLUMN_SUPP_ORDERNUM
+			+ " text, " + COLUMN_SUPP_STATUS
+			+ " text "
+			+");";
+
+	private static final String DATABASE_CREATE_SUPP_ITEMS = "create table "
+			+ TABLE_SUPP_PO_ITEMS + " (" + COLUMN_SUPP_POITEM_ID
+			+ " integer primary key autoincrement, " + COLUMN_SUPP_POID
+			+ " text, " + COLUMN_SUPP_POPID
+			+ " text, " + COLUMN_SUPP_PO_ITEMNAME
+			+ " text, " + COLUMN_SUPP_SPEC
+			+ " text, " + COLUMN_SUPP_UNITPRICE
+			+ " real, " + COLUMN_SUPP_ITEMQ
+			+ " real, " + COLUMN_SUPP_DISPATCHQ
+			+ " real, " + COLUMN_SUPP_BALANCEQ
+			+ " real "
+			+");";
+
+	private static final String DATABASE_CREATE_SUPP_SHIP = "create table "
+			+ TABLE_SUPP_SHIPMENTS + " (" + COLUMN_SUPP_POITEM_ID
+			+ " integer primary key autoincrement, " + COLUMN_SHIP_ID
+			+ " text, " + COLUMN_SUPP_POID
+			+ " text, " + COLUMN_SUPP_POPID
+			+ " text, " + COLUMN_SUPP_PO_ITEMNAME
+			+ " text, " + COLUMN_SHIP_ITEMSEQID
+			+ " text, " + COLUMN_SHIP_QTY
+			+ " real, " + COLUMN_SHIP_UNITPRICE
+			+ " real, " + COLUMN_SHIP_ITEMAMT
+			+ " real "
+			+");";
 
 	  // Database creation sql statement
 	  private static final String DATABASE_CREATE_PRODUCT = "create table "
@@ -359,7 +423,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 	  private static final String DATABASE_NAME = "vsalesagent.db";
 //	  private static final int DATABASE_VERSION = 24;
 
-		private static final int DATABASE_VERSION = 29; // For Indent Crates
+		private static final int DATABASE_VERSION = 30; // For Indent Crates
 
 	public MySQLiteHelper(Context context) {
 	    super(context, DATABASE_NAME, null, DATABASE_VERSION); 
@@ -382,7 +446,12 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 	    database.execSQL(DATABASE_CREATE_EMPLOYEE_LEAVE);
 	    database.execSQL(DATABASE_CREATE_EMPLOYEE_ATTENDANCE);
 	    database.execSQL(DATABASE_CREATE_LOCATION);		    
-	    database.execSQL(DATABASE_CREATE_TICKET);		    	    
+	    database.execSQL(DATABASE_CREATE_TICKET);
+
+
+		  database.execSQL(DATABASE_CREATE_SUPP_PO);
+		  database.execSQL(DATABASE_CREATE_SUPP_ITEMS);
+		  database.execSQL(DATABASE_CREATE_SUPP_SHIP);
 	  } 
 
 	  @Override
@@ -411,6 +480,12 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 	    
 	    onCreate(db);
 	    }
+
+		  if (newVersion == 30) {
+			  db.execSQL(DATABASE_CREATE_SUPP_PO);
+			  db.execSQL(DATABASE_CREATE_SUPP_ITEMS);
+			  db.execSQL(DATABASE_CREATE_SUPP_SHIP);
+		  }
 
 
 	    //if (oldVersion > 20) {

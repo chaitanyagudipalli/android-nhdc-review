@@ -235,4 +235,10 @@
     <string name="balance_ammount">Balance Amount</string>
     <string name="indent_details">Indent Details</string>
     <string name="transporters">Transporters</string>
+    <string name="scheme_type">Scheme</string>
+    <string name="purchase_orders">Purchase orders</string>
+    <string name="my_profile">My Profile</string>
+
+    <string name="supp_po_title">Purchase orders</string>
+    <string name="supplier_delivery">Supplier Delivery</string>
 </resources>
