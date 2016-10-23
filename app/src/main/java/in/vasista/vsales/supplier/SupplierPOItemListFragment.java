@@ -88,7 +88,7 @@ public class SupplierPOItemListFragment extends ListFragment implements View.OnC
 	public void uploadShipmentAction(final MenuItem menuItem){
 		AlertDialog.Builder alert = new AlertDialog.Builder(
 				getActivity());
-		alert.setTitle("Upload Indent?");
+		alert.setTitle("Upload goods?");
 		alert.setPositiveButton("Ok",
 				new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog,
