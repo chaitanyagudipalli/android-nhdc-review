@@ -168,7 +168,7 @@ public class PODataSource {
 		return supplierPOShips;
 	}
 
-	  public SupplierPO getIndentDetails(String supplierPOid) {
+	  public SupplierPO getSuppDetails(String supplierPOid) {
 		  try {
 
 			Cursor cursor = database.query(MySQLiteHelper.TABLE_SUPP_PO,

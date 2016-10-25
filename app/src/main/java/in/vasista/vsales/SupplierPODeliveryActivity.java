@@ -12,6 +12,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.FrameLayout;
+import android.widget.ScrollView;
+import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,6 +32,7 @@ import in.vasista.vsales.db.PODataSource;
 import in.vasista.vsales.db.SupplierDataSource;
 import in.vasista.vsales.indent.IndentItemsListFragment;
 import in.vasista.vsales.supplier.Supplier;
+import in.vasista.vsales.supplier.SupplierPO;
 import in.vasista.vsales.supplier.SupplierPOItem;
 import in.vasista.vsales.supplier.SupplierPOItemListFragment;
 import in.vasista.vsales.sync.xmlrpc.XMLRPCApacheAdapter;
@@ -43,6 +48,9 @@ public class SupplierPODeliveryActivity extends DashboardAppCompatActivity{
 
 	SupplierPOItemListFragment supplierPOItemListFragment = null;
 
+	ScrollView editPO;
+	Button cancel;
+
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
@@ -52,8 +60,26 @@ public class SupplierPODeliveryActivity extends DashboardAppCompatActivity{
 
 		setSalesDashboardTitle(R.string.supplier_delivery);
 
+		editPO = (ScrollView) findViewById(R.id.framePO);
+		cancel = (Button) findViewById(R.id.cancelEdit);
+
+		cancel.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				editPO.setVisibility(View.GONE);
+			}
+		});
+
 		FragmentManager fm = getFragmentManager();
 		supplierPOItemListFragment= (SupplierPOItemListFragment) fm.findFragmentById(R.id.indent_list_fragment);
+
+		prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+
+		PODataSource datasource = new PODataSource(getApplicationContext());
+		datasource.open();
+		SupplierPO supplierPO = datasource.getSuppDetails(prefs.getString("SUPP_POID",""));
+		datasource.close();
+
 
 	}
 	@Override
@@ -62,9 +88,11 @@ public class SupplierPODeliveryActivity extends DashboardAppCompatActivity{
 		if (editMode){
 			menu.findItem(R.id.action_shipment_upload).setVisible(true);
 			menu.findItem(R.id.action_shipment_edit).setVisible(false);
+			editPO.setVisibility(View.VISIBLE);
 		}else{
 			menu.findItem(R.id.action_shipment_edit).setVisible(true);
 			menu.findItem(R.id.action_shipment_upload).setVisible(false);
+			editPO.setVisibility(View.GONE);
 		}
 		return super.onCreateOptionsMenu(menu);
 	}

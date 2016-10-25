@@ -19,7 +19,9 @@ import android.widget.Toast;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import in.vasista.nhdc.R;
 import in.vasista.vsales.HRDashboardActivity;
@@ -42,6 +44,8 @@ public class SupplierPOItemListFragment extends ListFragment implements View.OnC
 	List<SupplierPOItem> supplierItems;ListView listView;
 	String partyId,orderId,supp_poid;
 	boolean isEditableList =false;
+
+	Map<String,String> po;
 
 	final SupplierPOItemListFragment listFragment = this;
 
@@ -100,6 +104,19 @@ public class SupplierPOItemListFragment extends ListFragment implements View.OnC
 	public void uploadShipmentAction(final MenuItem menuItem){
 		AlertDialog.Builder alert = new AlertDialog.Builder(
 				getActivity());
+
+		po = new HashMap<>();
+		po.put("suppInvoiceDate",((EditText)getActivity().findViewById(R.id.suppInvDate)).getEditableText().toString());
+		po.put("suppInvoiceId",((EditText)getActivity().findViewById(R.id.suppInvId)).getEditableText().toString());
+		po.put("lrNumber",((EditText)getActivity().findViewById(R.id.lrNumber)).getEditableText().toString());
+		po.put("lrDate",((EditText)getActivity().findViewById(R.id.lrDate)).getEditableText().toString());
+		po.put("carrierName",((EditText)getActivity().findViewById(R.id.courierName)).getEditableText().toString());
+		po.put("vehicleId",((EditText)getActivity().findViewById(R.id.vehicleNum)).getEditableText().toString());
+		po.put("freightCharges",((EditText)getActivity().findViewById(R.id.flightCharges)).getEditableText().toString());
+		po.put("remarks",((EditText)getActivity().findViewById(R.id.remarks)).getEditableText().toString());
+		po.put("orderId",prefs.getString("SUPP_ORDERID",""));
+
+
 		alert.setTitle("Upload goods?");
 		alert.setPositiveButton("Ok",
 				new DialogInterface.OnClickListener() {
@@ -113,7 +130,7 @@ public class SupplierPOItemListFragment extends ListFragment implements View.OnC
 							progressBar = (ProgressBar) menuItem.getActionView().findViewById(R.id.menuitem_progress);
 						}
 						ServerSync serverSync = new ServerSync(getActivity());
-						serverSync.uploadShipments(menuItem,supplierItems, prefs.getString("SUPP_ORDERID",""), progressBar, listFragment);
+						serverSync.uploadShipments(menuItem,supplierItems, po, progressBar, listFragment);
 					}
 				});
 

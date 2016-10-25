@@ -194,7 +194,7 @@ public class ServerSync {
 //			Toast.makeText( context, "Upload failed: " + e, Toast.LENGTH_LONG ).show();
 //		}
 	}
-	public void uploadShipments(final MenuItem menuItem, final List<SupplierPOItem> suppitems, String orderId, ProgressBar progressBar, final SupplierPOItemListFragment listFragment){
+	public void uploadShipments(final MenuItem menuItem, final List<SupplierPOItem> suppitems, Map po, ProgressBar progressBar, final SupplierPOItemListFragment listFragment){
 
 
 				SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
@@ -202,15 +202,41 @@ public class ServerSync {
 
 		PODataSource poDataSource = new PODataSource(context);
 		poDataSource.open();
-		Map paramMap = new HashMap();
+		final Map paramMap = new HashMap();
+
+		SimpleDateFormat  format = new SimpleDateFormat("yyyy-MM-dd");
+
+		Date suppInvoiceDate = null, lrDate = null;
+		try {
+			suppInvoiceDate = format.parse((String)po.get("suppInvoiceDate"));
+			lrDate = format.parse((String)po.get("lrDate"));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+
+		paramMap.put("partyId", storeId);
 		paramMap.put("boothId", storeId);
-		paramMap.put("orderId", orderId);
+		paramMap.put("orderId", po.get("orderId"));
+		try {
+			paramMap.put("suppInvoiceDate", suppInvoiceDate.getTime());
+			paramMap.put("lrDate", lrDate.getTime());
+		}catch (NullPointerException e){
+
+		}
+		paramMap.put("suppInvoiceId", po.get("suppInvoiceId"));
+		paramMap.put("lrNumber", po.get("lrNumber"));
+
+		paramMap.put("carrierName", po.get("carrierName"));
+		paramMap.put("vehicleId", po.get("vehicleId"));
+		paramMap.put("freightCharges", po.get("freightCharges"));
+		paramMap.put("remarks", po.get("remarks"));
 	    paramMap.put("shipmentItems", poDataSource.convertToXMLRPC(suppitems));
 		poDataSource.close();
 		try {
 			XMLRPCApacheAdapter adapter = new XMLRPCApacheAdapter(context);
 			adapter.call("createSupplierDispatch", paramMap, progressBar, new XMLRPCMethodCallback() {
 				public void callFinished(Object result, ProgressBar progressBar) {
+					Log.v("Service call","createSupplierDispatch :: "+paramMap.size());
 					if (result != null) {
 				    	Map indentResults = (Map)((Map)result).get("shipmentResult");
 				    	//Log.d(module, "numIndentItems = " + indentResults.get("numIndentItems"));
