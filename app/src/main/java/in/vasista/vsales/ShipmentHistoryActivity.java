@@ -39,7 +39,7 @@ public class ShipmentHistoryActivity extends DashboardAppCompatActivity {
         List<SupplierPOShip> supplierPOShips=poDataSource.getAllSuppShips(poid);
         poDataSource.close();
 
-        Log.v("asda",""+supplierPOShips.size());
+        Log.v("Shipment History",""+supplierPOShips.size());
 
         ListView lv = (ListView) findViewById(R.id.ship_history_list);
         lv.setAdapter(new ShipHistoryBaseAdapter(this,supplierPOShips));

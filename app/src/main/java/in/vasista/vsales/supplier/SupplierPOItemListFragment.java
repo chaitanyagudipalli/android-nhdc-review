@@ -4,7 +4,9 @@ import android.app.AlertDialog;
 import android.app.ListFragment;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.text.InputType;
 import android.util.Log;
 import android.view.MenuItem;
@@ -38,15 +40,19 @@ public class SupplierPOItemListFragment extends ListFragment implements View.OnC
 	SupplierPOItemsAdapter adapter;
 	PODataSource datasource;
 	List<SupplierPOItem> supplierItems;ListView listView;
-	String partyId,orderId;boolean isEditableList =false;
+	String partyId,orderId,supp_poid;
+	boolean isEditableList =false;
 
 	final SupplierPOItemListFragment listFragment = this;
+
+	SharedPreferences prefs;
 
 	public void onActivityCreated(Bundle savedInstanceState) {
 		
 		super.onActivityCreated(savedInstanceState);  
 
 		listView = getListView();
+		prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
 		if (listView.getHeaderViewsCount() == 0) {           
 						
@@ -65,9 +71,15 @@ public class SupplierPOItemListFragment extends ListFragment implements View.OnC
     	    datasource = new PODataSource(getActivity());
     	    datasource.open();
 
-			partyId = getActivity().getIntent().getStringExtra("supp_poId");
-			orderId = getActivity().getIntent().getStringExtra("orderId");
-			supplierItems  = datasource.getSuppPOItems(partyId);
+//			supp_poid = getActivity().getIntent().getStringExtra("supp_poId");
+//			orderId = getActivity().getIntent().getStringExtra("orderId");
+
+			supp_poid = prefs.getString("SUPP_POID","");
+			orderId =  prefs.getString("SUPP_ORDERID","");
+
+
+
+			supplierItems  = datasource.getSuppPOItems(supp_poid);
 
 			Log.d(module, "supplierItems.size() = " + supplierItems.size());
     	    
@@ -101,7 +113,7 @@ public class SupplierPOItemListFragment extends ListFragment implements View.OnC
 							progressBar = (ProgressBar) menuItem.getActionView().findViewById(R.id.menuitem_progress);
 						}
 						ServerSync serverSync = new ServerSync(getActivity());
-						serverSync.uploadShipments(menuItem,supplierItems,orderId, progressBar, listFragment);
+						serverSync.uploadShipments(menuItem,supplierItems, prefs.getString("SUPP_ORDERID",""), progressBar, listFragment);
 					}
 				});
 
@@ -121,7 +133,7 @@ public class SupplierPOItemListFragment extends ListFragment implements View.OnC
 	public void notifyChange() {
 		setListAdapter(null);
 	    datasource.open();
-		supplierItems  = datasource.getSuppPOItems(partyId);
+		supplierItems  = datasource.getSuppPOItems(prefs.getString("SUPP_POID",""));
 
 		Log.d(module, "supplierItems.size() = " + supplierItems.size());
 
@@ -140,9 +152,9 @@ public class SupplierPOItemListFragment extends ListFragment implements View.OnC
 	@Override
 	public void onClick(View v) {
 		if (v.getId() == R.id.shp_history){
-			Log.v("poid",""+getActivity().getIntent().getStringExtra("supp_poId"));
+			Log.v("poid",""+prefs.getString("SUPP_POID",""));
 			Intent i = new Intent(getActivity(), ShipmentHistoryActivity.class);
-			i.putExtra("poid",""+getActivity().getIntent().getStringExtra("supp_poId"));
+			i.putExtra("poid",""+prefs.getString("SUPP_POID",""));
 			startActivity (i);
 
 		}

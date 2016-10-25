@@ -72,10 +72,15 @@ public class PODataSource {
 
 	  public void deleteAllPOs() {
 		  database.delete(MySQLiteHelper.TABLE_SUPP_PO, null, null);
+		  deleteAllPOItems();
 	  }
 		public void deleteAllPOItems() {
-			//database.delete(MySQLiteHelper.TABLE_SUPP_PO_ITEMS, null, null);
+			database.delete(MySQLiteHelper.TABLE_SUPP_PO_ITEMS, null, null);
+			deleteAllPOShipments();
 		}
+	public void deleteAllPOShipments() {
+		database.delete(MySQLiteHelper.TABLE_SUPP_SHIPMENTS, null, null);
+	}
 	public void deleteIndent(String po_id){
 		database.delete(MySQLiteHelper.TABLE_SUPP_PO, MySQLiteHelper.COLUMN_INDENT_ID+"="+po_id, null);
 		database.delete(MySQLiteHelper.TABLE_SUPP_PO_ITEMS, MySQLiteHelper.COLUMN_INDENT_ID+"="+po_id, null);
@@ -140,12 +145,12 @@ public class PODataSource {
 
 	public List<SupplierPOShip> getAllSuppShips(String POid) {
 		Log.v("hghhh",""+POid);
-		POid = "WS11607";
+		//POid = "WS11607";
 		List<SupplierPOShip> supplierPOShips = new ArrayList<SupplierPOShip>();
 		try {
 
 
-		Cursor cursor = database.query(MySQLiteHelper.TABLE_SUPP_SHIPMENTS, allShipColumns, MySQLiteHelper.COLUMN_SUPP_POID + " = \"" + POid+"\"", null, null, null, null);
+		Cursor cursor = database.query(MySQLiteHelper.TABLE_SUPP_SHIPMENTS, allShipColumns, MySQLiteHelper.COLUMN_SUPP_POID + " = \"" + POid +"\"", null, null, null, null);
 
 
 			Log.v("sadsa",""+cursor.getCount());

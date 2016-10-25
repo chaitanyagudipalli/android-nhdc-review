@@ -2,7 +2,9 @@ package in.vasista.vsales.supplier;
 
 import android.app.ListFragment;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -38,11 +40,16 @@ public class SupplierPOListFragment extends ListFragment {
 
 	final SupplierPOListFragment listFragment = this;
 
+	SharedPreferences prefs;
+
+
 	public void onActivityCreated(Bundle savedInstanceState) {
 		
 		super.onActivityCreated(savedInstanceState);  
 		
 		final ListView listView = getListView();
+		prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
+
 
 		if (listView.getHeaderViewsCount() == 0) {           
 						
@@ -77,6 +84,13 @@ public class SupplierPOListFragment extends ListFragment {
 		    SupplierPO facility = (SupplierPO)listView.getItemAtPosition(position);
             if (facility != null) {
             	Intent facilityDetailsIntent = new Intent(getActivity(), SupplierPODeliveryActivity.class);
+				SharedPreferences.Editor prefEditor = prefs.edit();
+
+				prefEditor.putString("SUPP_POID",""+facility.getPoid());
+				prefEditor.putString("SUPP_ORDERID",""+facility.getOrderId());
+
+				prefEditor.apply();
+
             	facilityDetailsIntent.putExtra("supp_poId", facility.getPoid());
 				facilityDetailsIntent.putExtra("orderId",facility.getOrderId());
             	startActivity(facilityDetailsIntent);

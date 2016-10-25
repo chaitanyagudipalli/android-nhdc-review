@@ -396,7 +396,7 @@ public class ServerSync {
 						PODataSource indentDataSource = new PODataSource(context);
 						indentDataSource.open();
 						indentDataSource.deleteAllPOs();
-						indentDataSource.deleteAllPOItems();
+
 						Map indentResults = (Map)((Map)result).get("supplierPOList");
 						Log.d(module, "indentResults.size() = " + indentResults.size());
 						if (indentResults.size() > 0) {
@@ -433,13 +433,13 @@ public class ServerSync {
 								Map shipmentHistory = (Map)(boothMap).get("shipmentHistory");
 								if (shipmentHistory != null) {
 									for (Object ship_key : shipmentHistory.keySet()) {
-										Log.v("ShipKey", "" + ship_key.toString());
+										Log.v("ShipKey", "" + ship_key.toString() +" for "+key.toString());
 										Object[] shipment = (Object[]) shipmentHistory.get(ship_key);
 										if (shipment.length > 0) {
-											Log.v("sh",""+shipment);
+
 											for (int i=0;i<shipment.length;i++){
 												Map shipitem = (Map)shipment[i];
-
+												Log.v("sh",""+ship_key.toString()+" for "+i);
 
 												SupplierPOShip supplierPOShip = new SupplierPOShip(ship_key.toString(), key.toString(),
 													(String) shipitem.get("productId"),
