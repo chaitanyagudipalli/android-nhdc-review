@@ -58,10 +58,14 @@ public class MainActivity extends DrawerCompatActivity  {
 		prefEditor.putString("onlySUPPDashboard", "N");
     	prefEditor.apply();
 
+
+		Log.v("Conditions",""+retailerPerm+","+salesRepPerm+","+inventoryPerm+","+hrPerm+","+suppPerm);
+
     	if ((salesRepPerm.equals("Y") || retailerPerm.equals("Y"))
 				&& hrPerm.equals("N")
 				&& inventoryPerm.equals("N")
-				&& suppPerm.equals('N')) {
+				&& suppPerm.equals("N")) {
+			Log.v("Dash","onlySalesDashboard");
         	prefEditor.putString("onlySalesDashboard", "Y");
         	prefEditor.apply();
     	    startActivity (new Intent(getApplicationContext(), SalesDashboardActivity.class));
