@@ -269,7 +269,7 @@ public class PODataSource {
 		for (SupplierPOItem supplierPOItem:supplierPOItems){
 			Map item= new TreeMap();
 			item.put("productId",supplierPOItem.getProdid());
-			item.put("quantity",""+supplierPOItem.getItemQty());
+			item.put("quantity",""+supplierPOItem.getQty());
 			item.put("orderItemSeqId",""+supplierPOItem.getSeqId());
 			item.put("dispatchedQty",""+supplierPOItem.getDispatchQty());
 			result[i] = item;
