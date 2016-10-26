@@ -12,9 +12,11 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.text.DecimalFormat;
@@ -44,6 +46,7 @@ public class SupplierPOItemListFragment extends ListFragment implements View.OnC
 	List<SupplierPOItem> supplierItems;ListView listView;
 	String partyId,orderId,supp_poid;
 	boolean isEditableList =false;
+
 
 	Map<String,String> po;
 
@@ -110,7 +113,7 @@ public class SupplierPOItemListFragment extends ListFragment implements View.OnC
 		po.put("suppInvoiceId",((EditText)getActivity().findViewById(R.id.suppInvId)).getEditableText().toString());
 		po.put("lrNumber",((EditText)getActivity().findViewById(R.id.lrNumber)).getEditableText().toString());
 		po.put("lrDate",((EditText)getActivity().findViewById(R.id.lrDate)).getEditableText().toString());
-		po.put("carrierName",((EditText)getActivity().findViewById(R.id.courierName)).getEditableText().toString());
+		po.put("carrierName",((AutoCompleteTextView)getActivity().findViewById(R.id.courierName)).getText().toString());
 		po.put("vehicleId",((EditText)getActivity().findViewById(R.id.vehicleNum)).getEditableText().toString());
 		po.put("freightCharges",((EditText)getActivity().findViewById(R.id.flightCharges)).getEditableText().toString());
 		po.put("remarks",((EditText)getActivity().findViewById(R.id.remarks)).getEditableText().toString());
@@ -186,7 +189,7 @@ public class SupplierPOItemListFragment extends ListFragment implements View.OnC
 
 		listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 			@Override
-			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+			public void onItemClick(AdapterView<?> parent, final View view, int position, long id) {
 				AlertDialog.Builder alert = new AlertDialog.Builder(
 						getActivity());
 				final SupplierPOItem item = (SupplierPOItem) listView
@@ -236,12 +239,18 @@ public class SupplierPOItemListFragment extends ListFragment implements View.OnC
 						int newQty = -1;
 						try {
 							newQty = Integer.parseInt(value);
+							if (newQty > item.getItemQty()-item.getDispatchQty())
+								return;
+
 
 						} catch (NumberFormatException e) {
 							//
 						}
-						item.setDispatchQty(newQty);
+						item.setQty(newQty);
+						item.setBalanceQty(item.getItemQty()-item.getQty()-item.getDispatchQty());
+						//item.setDispatchQty(newQty);
 						adapter.notifyDataSetChanged();
+
 						//Do stuff, possibly set wantToCloseDialog to true then...
 						a.dismiss();
 						//else dialog stays open. Make sure you have an obvious way to close the dialog especially if you set cancellable to false.

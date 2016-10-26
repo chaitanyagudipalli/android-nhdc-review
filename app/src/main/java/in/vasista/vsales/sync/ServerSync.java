@@ -449,6 +449,7 @@ public class ServerSync {
 									SupplierPOItem supplierPOItem = new SupplierPOItem(key.toString(),(String)orderItem.get("productId"),
 											(String)orderItem.get("itemName"),
 											(String)orderItem.get("specification"),
+											(String)orderItem.get("orderItemSeqId"),
 											((BigDecimal)orderItem.get("unitPrice")).floatValue(),
 											((BigDecimal)orderItem.get("indentQuantity")).floatValue(),
 											((BigDecimal)orderItem.get("dispatchedQty")).floatValue(),

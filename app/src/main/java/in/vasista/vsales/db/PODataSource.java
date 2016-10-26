@@ -41,7 +41,8 @@ public class PODataSource {
 		      MySQLiteHelper.COLUMN_SUPP_POPID,
 		      MySQLiteHelper.COLUMN_SUPP_PO_ITEMNAME,
 		      MySQLiteHelper.COLUMN_SUPP_SPEC,
-		      MySQLiteHelper.COLUMN_SUPP_UNITPRICE,
+			  MySQLiteHelper.COLUMN_SUPP_SEQID,
+			  MySQLiteHelper.COLUMN_SUPP_UNITPRICE,
 			  MySQLiteHelper.COLUMN_SUPP_ITEMQ,
 			  MySQLiteHelper.COLUMN_SUPP_DISPATCHQ,
 			  MySQLiteHelper.COLUMN_SUPP_BALANCEQ,
@@ -210,6 +211,7 @@ public class PODataSource {
 		  values.put(MySQLiteHelper.COLUMN_SUPP_POPID, supplierPOItem.getProdid());
 		  values.put(MySQLiteHelper.COLUMN_SUPP_PO_ITEMNAME, supplierPOItem.getItemname());
 		  values.put(MySQLiteHelper.COLUMN_SUPP_SPEC, supplierPOItem.getSpec());
+		  values.put(MySQLiteHelper.COLUMN_SUPP_SEQID, supplierPOItem.getSeqId());
 		  values.put(MySQLiteHelper.COLUMN_SUPP_UNITPRICE, supplierPOItem.getUnitPrice());
 		  values.put(MySQLiteHelper.COLUMN_SUPP_ITEMQ, supplierPOItem.getItemQty());
 		  values.put(MySQLiteHelper.COLUMN_SUPP_DISPATCHQ, supplierPOItem.getDispatchQty());
@@ -250,8 +252,8 @@ public class PODataSource {
 
 	  private SupplierPOItem cursorToSuppPOItem(Cursor cursor) {
 		  return new SupplierPOItem(cursor.getString(0),cursor.getString(1),cursor.getString(2),
-				  cursor.getString(3),cursor.getFloat(4),cursor.getFloat(5),
-				  cursor.getFloat(6),cursor.getFloat(7));
+				  cursor.getString(3),cursor.getString(4),cursor.getFloat(5),cursor.getFloat(6),
+				  cursor.getFloat(7),cursor.getFloat(8));
 	  }
 
 	private SupplierPOShip cursorToSuppPOShip(Cursor cursor) {
@@ -268,7 +270,7 @@ public class PODataSource {
 			Map item= new TreeMap();
 			item.put("productId",supplierPOItem.getProdid());
 			item.put("quantity",""+supplierPOItem.getItemQty());
-			item.put("orderItemSeqId",""+i);
+			item.put("orderItemSeqId",""+supplierPOItem.getSeqId());
 			item.put("dispatchedQty",""+supplierPOItem.getDispatchQty());
 			result[i] = item;
 			i++;
