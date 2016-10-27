@@ -68,11 +68,13 @@ public class SupplierPOItemsAdapter extends ArrayAdapter<SupplierPOItem> {
 	    TextView subscriptionTypeView = (TextView)indentView.findViewById(R.id.facilityRowName);
 	    TextView dispView = (TextView)indentView.findViewById(R.id.facilityRowCategory);
 		  TextView balView = (TextView)indentView.findViewById(R.id.facilityRowBal);
+		  TextView qtyView = (TextView)indentView.findViewById(R.id.facilityRowQty);
 
 	    dateView.setText(item.getItemname());
 	    subscriptionTypeView.setText(""+item.getItemQty());
 	    dispView.setText(""+item.getDispatchQty());
 		  balView.setText(""+item.getBalanceQty());
+		  qtyView.setText(""+item.getQty());
 
 		  if (!isEditable) {
 			  dispView.setFocusable(false);

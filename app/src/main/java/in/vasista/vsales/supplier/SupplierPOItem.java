@@ -3,25 +3,42 @@ package in.vasista.vsales.supplier;
 public class SupplierPOItem {
 
 	String poid, prodid, itemname, spec, orderNum,status;
+	String seqId;double quantity = 0;
 	double unitPrice, itemQty, dispatchQty, balanceQty;
 
-	public SupplierPOItem(String poid, String prodid, String itemname, String spec,  double unitPrice, double itemQty, double dispatchQty, double balanceQty) {
+	public SupplierPOItem(String poid, String prodid, String itemname, String spec, String seqId, double unitPrice, double itemQty, double dispatchQty, double balanceQty) {
 		this.poid = poid;
 		this.prodid = prodid;
 		this.itemname = itemname;
 		this.spec = spec;
 		this.orderNum = orderNum;
 		this.status = status;
+		this.seqId = seqId;
 		this.unitPrice = unitPrice;
 		this.itemQty = itemQty;
 		this.dispatchQty = dispatchQty;
 		this.balanceQty = balanceQty;
 	}
 
+	public double getQty() {
+		return quantity;
+	}
+
+	public void setQty(double qty) {
+		this.quantity = qty;
+	}
+
 	public String getPoid() {
 		return poid;
 	}
 
+	public String getSeqId() {
+		return seqId;
+	}
+
+	public void setSeqId(String seqId) {
+		this.seqId = seqId;
+	}
 
 	public String getProdid() {
 		return prodid;

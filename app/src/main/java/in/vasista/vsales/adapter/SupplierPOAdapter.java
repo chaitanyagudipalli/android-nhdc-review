@@ -59,7 +59,7 @@ public class SupplierPOAdapter extends ArrayAdapter<SupplierPO> {
 	    TextView syncedView = (TextView)indentView.findViewById(R.id.facilityRowCategory);
 
 	    dateView.setText(item.getOrderdate());
-	    subscriptionTypeView.setText(item.getPoid());
+	    subscriptionTypeView.setText(item.getOrderNum());
 	    syncedView.setText(status);
 	    return indentView;
 	  }

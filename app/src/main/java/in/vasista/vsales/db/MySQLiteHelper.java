@@ -184,6 +184,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 	public static final String TABLE_SUPP_PO_ITEMS = "SUPPLIER_PO_ITEMS";
 	public static final String COLUMN_SUPP_POITEM_ID = "PO_ITEM_ID";
 	public static final String COLUMN_SUPP_POPID = "SUPP_POPID";
+	public static final String COLUMN_SUPP_SEQID = "SUPP_SEQID";
 	public static final String COLUMN_SUPP_PO_ITEMNAME = "SUPP_PO_ITEMNAME";
 	public static final String COLUMN_SUPP_SPEC = "SUPP_SPEC";
 	public static final String COLUMN_SUPP_UNITPRICE = "SUPP_UNITPRICE";
@@ -213,6 +214,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 			+ TABLE_SUPP_PO_ITEMS + " (" + COLUMN_SUPP_POITEM_ID
 			+ " integer primary key autoincrement, " + COLUMN_SUPP_POID
 			+ " text, " + COLUMN_SUPP_POPID
+			+ " text, " + COLUMN_SUPP_SEQID
 			+ " text, " + COLUMN_SUPP_PO_ITEMNAME
 			+ " text, " + COLUMN_SUPP_SPEC
 			+ " text, " + COLUMN_SUPP_UNITPRICE

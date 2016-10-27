@@ -5,8 +5,7 @@
     android:layout_height="match_parent"
     android:layout_marginTop="?attr/actionBarSize"
     android:fillViewport="true"
-
-    tools:context="in.vasista.vsales.SupplierDetailedActivity">
+    tools:context="in.vasista.vsales.ShipmentHistoryActivity">
 
     <ListView
         android:layout_width="wrap_content"

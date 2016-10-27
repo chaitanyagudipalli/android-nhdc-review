@@ -6,11 +6,270 @@
     android:layout_marginTop="?attr/actionBarSize"
     android:orientation="vertical" >
 
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
     <fragment
         android:id="@+id/indent_list_fragment"
         android:name="in.vasista.vsales.supplier.SupplierPOItemListFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:animateLayoutChanges="true"
+            android:id="@+id/framePO"
+            android:foregroundGravity="bottom"
+            android:background="@color/background"
+            android:visibility="visible"
+            android:layout_gravity="bottom"
+            android:layout_height="wrap_content">
+        <TableLayout
+
+
+            android:padding="10dip"
+            android:shrinkColumns="2"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TableRow android:paddingTop="5dip"
+                android:paddingBottom="5dip">
+                <TextView
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:layout_width="wrap_content"
+                    style="@style/TabeRowTitle"
+                    android:layout_margin="2dp"
+                    android:text="Supplier Inv Date"/>
+                <TextView
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:text=":"/>
+                <EditText
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    style="@style/TabeRowValue"
+                    android:layout_margin="2dp"
+                    android:layout_weight="1"
+                    android:hint="yyyy-MM-dd"
+                    android:textStyle="bold"
+                    android:id="@+id/suppInvDate"/>
+            </TableRow>
+            <TableRow>
+                <TextView
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:layout_width="wrap_content"
+                    style="@style/TabeRowTitle"
+                    android:layout_margin="2dp"
+                    android:text="Supplier Inv Id"/>
+                <TextView
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:text=":"/>
+                <EditText
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    style="@style/TabeRowValue"
+                    android:layout_margin="2dp"
+                    android:textStyle="bold"
+                    android:layout_weight="1"
+                    android:id="@+id/suppInvId"/>
+            </TableRow>
+
+            <TableRow android:paddingTop="5dip"
+                android:paddingBottom="5dip">
+                <TextView
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:layout_width="wrap_content"
+                    style="@style/TabeRowTitle"
+                    android:layout_margin="2dp"
+                    android:text="LR Number"
+                    />
+                <TextView
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:text=":"/>
+                <EditText
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    style="@style/TabeRowValue"
+                    android:layout_weight="1"
+                    android:layout_margin="2dp"
+                    android:textStyle="bold"
+                    android:id="@+id/lrNumber"/>
+            </TableRow>
+
+            <TableRow android:paddingTop="5dip"
+                android:paddingBottom="5dip">
+                <TextView
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:layout_width="wrap_content"
+                    style="@style/TabeRowTitle"
+                    android:layout_margin="2dp"
+                    android:text="LR date"
+                    />
+                <TextView
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:text=":"/>
+                <EditText
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    style="@style/TabeRowValue"
+                    android:layout_weight="1"
+                    android:hint="yyyy-MM-dd"
+                    android:layout_margin="2dp"
+                    android:textStyle="bold"
+                    android:id="@+id/lrDate" />
+            </TableRow>
+
+            <TableRow>
+                <TextView
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:layout_width="wrap_content"
+                    style="@style/TabeRowTitle"
+                    android:layout_margin="2dp"
+                    android:text="Carrier Name"
+                    />
+                <TextView
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:text=":"/>
+
+                <AutoCompleteTextView
+                    android:id="@+id/courierName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/TabeRowValue"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="10dp"
+                    android:completionThreshold="1"
+                    android:ems="10"
+                    android:hint="Select Transporter" >
+
+                    <requestFocus />
+                </AutoCompleteTextView>
+            </TableRow>
+            <TableRow android:paddingTop="5dip"
+                android:paddingBottom="5dip">
+                <TextView
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:layout_width="wrap_content"
+                    style="@style/TabeRowTitle"
+                    android:layout_margin="2dp"
+                    android:text="Freight Charges"
+                    />
+                <TextView
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:text=":"/>
+                <EditText
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    style="@style/TabeRowValue"
+                    android:layout_weight="1"
+                    android:layout_margin="2dp"
+                    android:textStyle="bold"
+                    android:id="@+id/flightCharges" />
+            </TableRow>
+            <TableRow>
+                <TextView
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:layout_width="wrap_content"
+                    style="@style/TabeRowTitle"
+                    android:layout_margin="2dp"
+                    android:text="Vehicle Number"
+                    />
+                <TextView
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:text=":"/>
+                <EditText
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    style="@style/TabeRowValue"
+                    android:layout_margin="2dp"
+                    android:textStyle="bold"
+                    android:layout_weight="1"
+                    android:id="@+id/vehicleNum" />
+            </TableRow>
+
+            <TableRow android:paddingTop="5dip"
+                android:paddingBottom="5dip">
+                <TextView
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:layout_width="wrap_content"
+                    style="@style/TabeRowTitle"
+                    android:layout_margin="2dp"
+                    android:text="Remarks"
+                    />
+                <TextView
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:text=":"/>
+                <EditText
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    style="@style/TabeRowValue"
+                    android:layout_weight="1"
+                    android:layout_margin="2dp"
+                    android:textStyle="bold"
+                    android:id="@+id/remarks"/>
+            </TableRow>
+
+            <TableRow android:paddingTop="5dip"
+                android:paddingBottom="5dip">
+                <TextView
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:layout_width="wrap_content"
+                    style="@style/TabeRowTitle"
+                    android:layout_margin="2dp"
+                    />
+                <TextView
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    />
+                <Button
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_margin="2dp"
+                    android:layout_weight="1"
+                    android:textColor="@color/White"
+                    android:text="Submit"
+                    android:background="@color/colorAccent"
+                    android:textStyle="bold"
+                    android:id="@+id/cancelEdit"/>
+            </TableRow>
+        </TableLayout>
+        </ScrollView>
+
+    </FrameLayout>
 
 </LinearLayout>
