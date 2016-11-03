@@ -22,7 +22,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import in.vasista.hr.attendance.AttendanceListFragment;
-import in.vasista.nhdc.R;
+import in.vasista.nhdcapp.R;
 
 /**
  * This is the activity for feature 1 in the dashboard application.

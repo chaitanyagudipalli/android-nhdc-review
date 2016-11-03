@@ -10,7 +10,7 @@ import android.widget.Spinner;
 
 import java.util.List;
 
-import in.vasista.nhdc.R;
+import in.vasista.nhdcapp.R;
 import in.vasista.vsales.catalog.Product;
 import in.vasista.vsales.db.ProductsDataSource;
 

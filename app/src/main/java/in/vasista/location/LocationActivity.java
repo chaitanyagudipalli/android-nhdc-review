@@ -29,7 +29,7 @@ import com.google.android.gms.location.LocationSettingsRequest;
 import com.google.android.gms.location.LocationSettingsResult;
 import com.google.android.gms.location.LocationSettingsStatusCodes;
 
-import in.vasista.nhdc.R;
+import in.vasista.nhdcapp.R;
 import in.vasista.vsales.DashboardAppCompatActivity;
 import in.vasista.vsales.db.LocationsDataSource;
 

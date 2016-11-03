@@ -15,7 +15,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import in.vasista.global.GlobalApplication;
-import in.vasista.nhdc.R;
+import in.vasista.nhdcapp.R;
 import in.vasista.vsales.facility.Facility;
 
 public class MainActivity extends DrawerCompatActivity  {

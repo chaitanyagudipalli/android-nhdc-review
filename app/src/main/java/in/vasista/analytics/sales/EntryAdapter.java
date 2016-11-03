@@ -14,7 +14,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.Collections;
 
-import in.vasista.nhdc.R;
+import in.vasista.nhdcapp.R;
 
 public class EntryAdapter extends ArrayAdapter<Item> {
 

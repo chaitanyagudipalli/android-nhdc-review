@@ -11,7 +11,7 @@ import android.widget.Toast;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-import in.vasista.nhdc.R;
+import in.vasista.nhdcapp.R;
 import in.vasista.vsales.catalog.Product;
 import in.vasista.vsales.db.IndentsDataSource;
 import in.vasista.vsales.db.ProductsDataSource;

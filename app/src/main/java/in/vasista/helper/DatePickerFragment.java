@@ -14,7 +14,7 @@ import java.util.Locale;
 
 import in.vasista.location.MapItemFragment;
 import in.vasista.location.MapsActivity;
-import in.vasista.nhdc.R;
+import in.vasista.nhdcapp.R;
 
 /**
  * Created by Upendra on 29/2/16.

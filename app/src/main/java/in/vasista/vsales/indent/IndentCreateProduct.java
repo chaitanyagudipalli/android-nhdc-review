@@ -30,7 +30,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import in.vasista.nhdc.R;
+import in.vasista.nhdcapp.R;
 import in.vasista.vsales.DashboardAppCompatActivity;
 import in.vasista.vsales.adapter.ProductAutoAdapter;
 import in.vasista.vsales.catalog.Product;

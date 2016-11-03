@@ -26,7 +26,7 @@ import in.vasista.analytics.sales.SalesActivity;
 import in.vasista.changePassword.ChangePassword;
 import in.vasista.inventory.InventoryActivity;
 import in.vasista.location.MapsActivity;
-import in.vasista.nhdc.R;
+import in.vasista.nhdcapp.R;
 import in.vasista.vsales.preference.FragmentPreferences;
 
 

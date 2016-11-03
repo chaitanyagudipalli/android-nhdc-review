@@ -19,7 +19,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import in.vasista.nhdc.R;
+import in.vasista.nhdcapp.R;
 import in.vasista.vsales.FacilityDetailsActivity;
 import in.vasista.vsales.SupplierDetailsActivity;
 import in.vasista.vsales.adapter.FacilityAdapter;

@@ -25,7 +25,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import in.vasista.nhdc.R;
+import in.vasista.nhdcapp.R;
 import in.vasista.vsales.HRDashboardActivity;
 import in.vasista.vsales.ShipmentHistoryActivity;
 import in.vasista.vsales.SupplierDetailsActivity;

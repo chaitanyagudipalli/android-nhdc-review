@@ -28,7 +28,7 @@ import android.widget.ProgressBar;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
-import in.vasista.nhdc.R;
+import in.vasista.nhdcapp.R;
 import in.vasista.vsales.db.IndentsDataSource;
 import in.vasista.vsales.db.PODataSource;
 import in.vasista.vsales.indent.Indent;

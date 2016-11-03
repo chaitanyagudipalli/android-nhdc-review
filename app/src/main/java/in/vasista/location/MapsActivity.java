@@ -54,7 +54,7 @@ import java.util.List;
 import java.util.Locale;
 
 import in.vasista.helper.DatePickerFragment;
-import in.vasista.nhdc.R;
+import in.vasista.nhdcapp.R;
 import in.vasista.vsales.DashboardAppCompatActivity;
 import in.vasista.vsales.db.LocationsDataSource;
 import in.vasista.vsales.sync.ServerSync;

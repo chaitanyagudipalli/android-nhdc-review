@@ -25,7 +25,7 @@ import java.util.Map.Entry;
 
 import in.vasista.hr.attendance.AttendanceListFragment;
 import in.vasista.location.MapsActivity;
-import in.vasista.nhdc.R;
+import in.vasista.nhdcapp.R;
 import in.vasista.vsales.EmployeeDetailsActivity;
 import in.vasista.vsales.HRDashboardActivity;
 import in.vasista.vsales.IndentDetailed;

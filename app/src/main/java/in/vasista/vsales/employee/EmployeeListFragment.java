@@ -17,7 +17,7 @@ import android.widget.ProgressBar;
 
 import java.util.List;
 
-import in.vasista.nhdc.R;
+import in.vasista.nhdcapp.R;
 import in.vasista.vsales.EmployeeDetailsActivity;
 import in.vasista.vsales.adapter.EmployeeAdapter;
 import in.vasista.vsales.db.EmployeeDataSource;

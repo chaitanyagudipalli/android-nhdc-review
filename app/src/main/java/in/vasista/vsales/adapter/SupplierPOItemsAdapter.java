@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import in.vasista.nhdc.R;
+import in.vasista.nhdcapp.R;
 import in.vasista.vsales.supplier.SupplierPO;
 import in.vasista.vsales.supplier.SupplierPOItem;
 

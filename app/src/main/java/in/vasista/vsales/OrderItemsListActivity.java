@@ -2,7 +2,7 @@ package in.vasista.vsales;
 
 import android.os.Bundle;
 
-import in.vasista.nhdc.R;
+import in.vasista.nhdcapp.R;
 
 public class OrderItemsListActivity extends DashboardAppCompatActivity  {
 	

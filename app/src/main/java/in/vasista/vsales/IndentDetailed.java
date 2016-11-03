@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import in.vasista.nhdc.R;
+import in.vasista.nhdcapp.R;
 import in.vasista.vsales.db.IndentsDataSource;
 import in.vasista.vsales.db.TransporterDataSource;
 import in.vasista.vsales.indent.Indent;

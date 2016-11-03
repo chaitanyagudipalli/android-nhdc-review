@@ -11,7 +11,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-import in.vasista.nhdc.R;
+import in.vasista.nhdcapp.R;
 import in.vasista.vsales.adapter.OrderItemAdapter;
 import in.vasista.vsales.db.OrdersDataSource;
 import in.vasista.vsales.util.DateUtil;

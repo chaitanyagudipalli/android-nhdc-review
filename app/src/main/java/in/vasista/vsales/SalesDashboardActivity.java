@@ -31,7 +31,7 @@ import java.util.List;
 import java.util.Map;
 
 import in.vasista.global.GlobalApplication;
-import in.vasista.nhdc.R;
+import in.vasista.nhdcapp.R;
 import in.vasista.vsales.adapter.FacilityAutoAdapter;
 import in.vasista.vsales.adapter.SupplierAutoAdapter;
 import in.vasista.vsales.catalog.Product;

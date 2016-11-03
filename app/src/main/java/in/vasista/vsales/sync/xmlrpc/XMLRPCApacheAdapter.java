@@ -19,7 +19,7 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
-import in.vasista.nhdc.BuildConfig;
+import in.vasista.nhdcapp.BuildConfig;
 
 public class XMLRPCApacheAdapter {
 	public static final String module = XMLRPCApacheAdapter.class.getName();

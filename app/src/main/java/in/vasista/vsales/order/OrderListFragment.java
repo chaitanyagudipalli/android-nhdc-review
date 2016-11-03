@@ -14,7 +14,7 @@ import android.widget.ProgressBar;
 
 import java.util.List;
 
-import in.vasista.nhdc.R;
+import in.vasista.nhdcapp.R;
 import in.vasista.vsales.OrderItemsListActivity;
 import in.vasista.vsales.adapter.OrderAdapter;
 import in.vasista.vsales.db.OrdersDataSource;

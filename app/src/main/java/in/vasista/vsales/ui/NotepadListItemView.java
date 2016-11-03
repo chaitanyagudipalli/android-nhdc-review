@@ -8,7 +8,7 @@ import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.widget.TextView;
 
-import in.vasista.nhdc.R;
+import in.vasista.nhdcapp.R;
 
 
 public class NotepadListItemView extends TextView {

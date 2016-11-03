@@ -10,7 +10,7 @@ import android.widget.ListView;
 
 import java.util.List;
 
-import in.vasista.nhdc.R;
+import in.vasista.nhdcapp.R;
 import in.vasista.vsales.db.TicketsDataSource;
 
 

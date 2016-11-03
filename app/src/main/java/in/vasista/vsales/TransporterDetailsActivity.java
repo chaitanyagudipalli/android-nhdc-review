@@ -19,7 +19,7 @@ import com.google.android.gms.maps.MapView;
 import java.util.HashMap;
 import java.util.Map;
 
-import in.vasista.nhdc.R;
+import in.vasista.nhdcapp.R;
 import in.vasista.vsales.db.SupplierDataSource;
 import in.vasista.vsales.db.TransporterDataSource;
 import in.vasista.vsales.supplier.Supplier;

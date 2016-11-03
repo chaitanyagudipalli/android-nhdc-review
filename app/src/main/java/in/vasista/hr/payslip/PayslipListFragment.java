@@ -11,7 +11,7 @@ import android.widget.ProgressBar;
 
 import java.util.List;
 
-import in.vasista.nhdc.R;
+import in.vasista.nhdcapp.R;
 import in.vasista.vsales.PayslipItemsListActivity;
 import in.vasista.vsales.adapter.PayslipAdapter;
 import in.vasista.vsales.db.PayslipDataSource;

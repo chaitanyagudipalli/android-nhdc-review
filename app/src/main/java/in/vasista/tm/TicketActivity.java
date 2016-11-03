@@ -18,7 +18,7 @@ package in.vasista.tm;
 
 import android.os.Bundle;
 
-import in.vasista.nhdc.R;
+import in.vasista.nhdcapp.R;
 import in.vasista.vsales.DashboardActivity;
 
 /**

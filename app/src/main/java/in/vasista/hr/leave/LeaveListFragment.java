@@ -8,7 +8,7 @@ import android.widget.ProgressBar;
 
 import java.util.List;
 
-import in.vasista.nhdc.R;
+import in.vasista.nhdcapp.R;
 import in.vasista.vsales.LeaveActivity;
 import in.vasista.vsales.adapter.LeaveAdapter;
 import in.vasista.vsales.db.LeavesDataSource;

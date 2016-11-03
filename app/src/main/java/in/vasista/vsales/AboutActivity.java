@@ -19,7 +19,7 @@ package in.vasista.vsales;
 import android.os.Bundle;
 import android.webkit.WebView;
 
-import in.vasista.nhdc.R;
+import in.vasista.nhdcapp.R;
 
 /**
  * This is the About activity in the dashboard application.

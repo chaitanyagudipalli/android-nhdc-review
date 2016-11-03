@@ -19,7 +19,7 @@ import com.google.gson.Gson;
 
 import java.util.List;
 
-import in.vasista.nhdc.R;
+import in.vasista.nhdcapp.R;
 import in.vasista.rest.ServerRestSync;
 import in.vasista.vsales.catalog.Product;
 import in.vasista.vsales.db.ProductsDataSource;

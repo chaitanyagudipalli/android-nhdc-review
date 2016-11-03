@@ -13,7 +13,7 @@ import android.widget.LinearLayout;
 import java.util.List;
 
 import in.vasista.global.GlobalApplication;
-import in.vasista.nhdc.R;
+import in.vasista.nhdcapp.R;
 
 public class FragmentPreferences extends PreferenceActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
 

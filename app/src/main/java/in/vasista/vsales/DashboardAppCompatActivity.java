@@ -22,7 +22,7 @@ import android.widget.TextView;
 
 import in.vasista.inventory.InventoryActivity;
 import in.vasista.location.LocationActivity;
-import in.vasista.nhdc.R;
+import in.vasista.nhdcapp.R;
 
 
 /**

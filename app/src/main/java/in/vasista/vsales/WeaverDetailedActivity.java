@@ -17,7 +17,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-import in.vasista.nhdc.R;
+import in.vasista.nhdcapp.R;
 import in.vasista.vsales.preference.FragmentPreferences;
 import in.vasista.vsales.sync.xmlrpc.XMLRPCApacheAdapter;
 

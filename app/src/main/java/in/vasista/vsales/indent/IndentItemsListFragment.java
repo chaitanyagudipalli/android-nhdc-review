@@ -25,7 +25,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import in.vasista.nhdc.R;
+import in.vasista.nhdcapp.R;
 import in.vasista.vsales.IndentItemDetailed;
 import in.vasista.vsales.adapter.IndentItemAdapter;
 import in.vasista.vsales.catalog.Product;

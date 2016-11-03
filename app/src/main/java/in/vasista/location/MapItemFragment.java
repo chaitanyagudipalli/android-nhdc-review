@@ -17,7 +17,7 @@ import java.util.Date;
 import java.util.List;
 
 import in.vasista.helper.RecyclerViewItemDecorator;
-import in.vasista.nhdc.R;
+import in.vasista.nhdcapp.R;
 import in.vasista.vsales.db.LocationsDataSource;
 
 /**

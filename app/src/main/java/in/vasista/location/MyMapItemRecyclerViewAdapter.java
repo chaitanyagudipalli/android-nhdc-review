@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Locale;
 
 import in.vasista.location.MapItemFragment.OnListFragmentInteractionListener;
-import in.vasista.nhdc.R;
+import in.vasista.nhdcapp.R;
 
 /**
  * {@link RecyclerView.Adapter} that can display a {@link Location} and makes a call to the

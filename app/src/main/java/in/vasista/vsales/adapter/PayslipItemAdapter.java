@@ -12,7 +12,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import in.vasista.hr.payslip.PayslipItem;
-import in.vasista.nhdc.R;
+import in.vasista.nhdcapp.R;
 
 
 public class PayslipItemAdapter extends ArrayAdapter<PayslipItem>{
