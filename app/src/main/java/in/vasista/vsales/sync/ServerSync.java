@@ -457,11 +457,14 @@ public class ServerSync {
 									indentDataSource.insertSuppPOItem(supplierPOItem);
 								}
 
-								Map shipmentHistory = (Map)(boothMap).get("shipmentHistory");
+								Map shipmentHistory = (Map)(boothMap).get("shipmentItemHistory");
 								if (shipmentHistory != null) {
 									for (Object ship_key : shipmentHistory.keySet()) {
 										Log.v("ShipKey", "" + ship_key.toString() +" for "+key.toString());
-										Object[] shipment = (Object[]) shipmentHistory.get(ship_key);
+
+										Map shipment_details = (Map) shipmentHistory.get(ship_key);
+
+										Object[] shipment = (Object[]) shipment_details.get("shipmentItems");
 										if (shipment.length > 0) {
 
 											for (int i=0;i<shipment.length;i++){
@@ -472,7 +475,8 @@ public class ServerSync {
 													(String) shipitem.get("productId"),
 													(String) shipitem.get("itemName"), (String) shipitem.get("orderItemSeqId"),
 													((BigDecimal) shipitem.get("quantity")).floatValue(), ((BigDecimal) shipitem.get("unitPrice")).floatValue(),
-													((BigDecimal) shipitem.get("itemAmount")).floatValue());
+													((BigDecimal) shipitem.get("itemAmount")).floatValue(),
+														(String) shipment_details.get("customer"),(String) shipment_details.get("destination"));
 													supplierPOShips.add(supplierPOShip);
 											}
 //

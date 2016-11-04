@@ -399,6 +399,17 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="in.vasista.vsales.SupplierPODeliveryActivity" />
         </activity>
+
+        <activity
+            android:name="in.vasista.vsales.SupplierPOItemDetailedActivity"
+            android:label="Product orders"
+            android:parentActivityName="in.vasista.vsales.SupplierPODeliveryActivity"
+            tools:ignore="UnusedAttribute">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="in.vasista.vsales.SupplierPODeliveryActivity" />
+        </activity>
+
         <activity android:name="in.vasista.vsales.IndentItemDetailed"
             android:label="Indent Item Details"
             tools:ignore="UnusedAttribute"

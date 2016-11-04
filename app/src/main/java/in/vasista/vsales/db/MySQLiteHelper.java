@@ -199,6 +199,8 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 	public static final String COLUMN_SHIP_QTY = "SHIP_QTY";
 	public static final String COLUMN_SHIP_UNITPRICE = "SHIP_UNITPRICE";
 	public static final String COLUMN_SHIP_ITEMAMT = "SHIP_ITEMAMT";
+	public static final String COLUMN_SHIP_CUSTOMER = "SHIP_CUSTOMER";
+	public static final String COLUMN_SHIP_DEST = "SHIP_DEST";
 
 
 	private static final String DATABASE_CREATE_SUPP_PO = "create table "
@@ -234,7 +236,9 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 			+ " text, " + COLUMN_SHIP_QTY
 			+ " real, " + COLUMN_SHIP_UNITPRICE
 			+ " real, " + COLUMN_SHIP_ITEMAMT
-			+ " real "
+			+ " real, " + COLUMN_SHIP_CUSTOMER
+			+ " text, " + COLUMN_SHIP_DEST
+			+ " text"
 			+");";
 
 	  // Database creation sql statement

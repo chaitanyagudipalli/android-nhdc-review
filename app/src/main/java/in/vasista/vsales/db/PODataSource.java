@@ -56,6 +56,8 @@ public class PODataSource {
 			MySQLiteHelper.COLUMN_SHIP_QTY,
 			MySQLiteHelper.COLUMN_SHIP_UNITPRICE,
 			MySQLiteHelper.COLUMN_SHIP_ITEMAMT,
+			MySQLiteHelper.COLUMN_SHIP_CUSTOMER,
+			MySQLiteHelper.COLUMN_SHIP_DEST,
 	};
 
 	  public PODataSource(Context context) {
@@ -120,6 +122,9 @@ public class PODataSource {
 			values.put(MySQLiteHelper.COLUMN_SHIP_UNITPRICE, supplierPOShip.getUnitPrice());
 			values.put(MySQLiteHelper.COLUMN_SHIP_QTY, supplierPOShip.getQty());
 			values.put(MySQLiteHelper.COLUMN_SHIP_ITEMAMT, supplierPOShip.getItemAmnt());
+			values.put(MySQLiteHelper.COLUMN_SHIP_CUSTOMER, supplierPOShip.getCustomer());
+			values.put(MySQLiteHelper.COLUMN_SHIP_DEST, supplierPOShip.getDestination());
+
 
 			database.insert(MySQLiteHelper.TABLE_SUPP_SHIPMENTS, null, values);
 		}
@@ -259,7 +264,7 @@ public class PODataSource {
 	private SupplierPOShip cursorToSuppPOShip(Cursor cursor) {
 		return new SupplierPOShip(cursor.getString(0),cursor.getString(1),cursor.getString(2),
 				cursor.getString(3),cursor.getString(4),
-				cursor.getFloat(5),cursor.getFloat(6),cursor.getFloat(7));
+				cursor.getFloat(5),cursor.getFloat(6),cursor.getFloat(7),cursor.getString(8),cursor.getString(9));
 	}
 
 
