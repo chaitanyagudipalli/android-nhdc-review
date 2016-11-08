@@ -5,6 +5,8 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS"
+        android:protectionLevel="signature" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -17,6 +19,7 @@
         android:allowBackup="true"
         android:icon="@mipmap/nhdc_launcher"
         android:label="@string/app_name"
+        tools:replace="icon,theme"
         android:theme="@style/AppTheme.NoActionBar">
         <meta-data
             android:name="com.google.android.gms.version"
@@ -417,6 +420,15 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="in.vasista.vsales.IndentDetailed" />
+        </activity>
+
+        <activity android:name="in.vasista.payumoney.PayumoneyActivity"
+            android:label="Make Payment"
+            tools:ignore="UnusedAttribute"
+            android:parentActivityName="in.vasista.vsales.PaymentActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="in.vasista.vsales.PaymentActivity" />
         </activity>
     </application>
 
