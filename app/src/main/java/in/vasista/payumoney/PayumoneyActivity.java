@@ -45,6 +45,8 @@ import java.util.Iterator;
 
 import in.vasista.nhdcapp.R;
 import in.vasista.vsales.DashboardAppCompatActivity;
+import in.vasista.vsales.PaymentActivity;
+import in.vasista.vsales.sync.ServerSync;
 
 /**
  * Created by upendra on 9/11/16.
@@ -63,8 +65,8 @@ public class PayumoneyActivity extends DashboardAppCompatActivity implements Vie
 
     Boolean smsPermission = true;
 
-    String merchantProductionKeys[] = {"0MQaQP", "smsplus"};
-    String merchantProductionSalts[] = {"13p0PXZk", "1b1b0"};
+    String merchantProductionKeys[] = {"c46yfJ", "smsplus"};
+    String merchantProductionSalts[] = {"LBK2ogX3", "MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDu7tEI5epzlBXJkODrHPCxobP+VUF8oxmUgK3kwS2p33A3O+iBHdDzF2Gn279RgTepC7bzuLfg5DeKdI3klOw714LKuyELlyPOlWF70TckbuarodEJH1IkG2qHNErVYp8riewdoPBWe1mLCYjaOluUtEFXdkZWgluGKqC2Jvodrkfawjm9Jct8TnZ8K41NwF8YlpwAR2dROsn/QYH0qUgYQndVXx+bCjIoyiFl1+Ub2fmLCQKzu+my2QNSi8APGzposAwrYbqgT05+4G8tu/cjRBOwhBfdgCpytMa51LuE4vGGYtlOxlBjxTQXcmtjW6wmeRZgSAyaT1599gPOVxkbAgMBAAECggEARYZccRhl1mfaxyJPMFrlduq0s2cffSMAiIPBFfVYUjvgLVJTX27LpFDDa9K3owHUrm3oOJchemEuAC3WNBNZgjg9qLw262Z5Vt2E1kCUqRdUK9EUQHFKt5L6tojy1ZCy/DpP6HcyOBgAgEKv/cBJccXZ1Zdm9DlOZIX26coBsay63H7yI5aXJz/fzMdmZbWrHXDZvv+YEPzk2uoRY201PHs0YiA1sehfUksG7bzfVif4OX3UUqPTbJPVEjMvGkKQb7qHU2BDl9QOnU6VlYLnY4MRTz9r4oyr0sPt+pDC77zm3uuBwiH3I7j5isevA5N0KKRyghW0EJg6U5qVT7atgQKBgQD/vj8Ij1MWNSI9serXbfxp3dZmyVdyVNWVmZBv6zLgwOw0rMErsQjkzLYpiDr884Zx+LSGZw7pqnjJfKbdlgoCFe3Vrn9PQ21gxw28o9Qh+dwDPnVm+HQHyuMyNjcxOUtYmEvFwD8X3Gz3YrwYnpDI1rx9bcHFv2C5leJMxrNlIQKBgQDvLD+NZXF626GCNjic/11+P8WdhdqSQZ/lwrxsXKhp15zp9dofYVGW4382HfHJiVbMy009LCkKA9JWKQNyk3a5g5wgqUwb1iKFIAF7eKKvkX3oaQbIR7U/r7BHLxYmcG4wW5K0VIMtLQ1CX80KNREFCCaNh5WUET4hTDWjnUr6uwKBgFz5u0zPXnOKaaJoVmpvr/6FCfdgZ4xHT0cOBzbJGTwgpz8XNzs9J3CXA/rhbiCcIFq7AlaCjSdiNHt79+ZDL+xGMKsov1v/tXojo9ja7rpTbis3v9LprLVQi3yrvTEGFWBmLdX86HMyTeM6YAvLSfPaLbij+Hh99RpDZXxoGLxBAoGBANyoxjl9ziS7XVb1D2ZJc8h2rauXQwCM6yjfcVfIZNjBxFNWL9ejwdKkMUmMdvapbxuitbAqffJvdC9px3R9+JtPgUvg5gcImPCZhsSTmATDBpbVzxwYjHAld001dAoi0IZs9fzJu/yCBCmomVNBgmJSEr+gx6/D+L5fwV0iUXrhAoGBAIVrhR0ht/uVGx+t1B7AXI2eA2yCy+5qo8nz5D+3EYOgjg71u/x/DXke35/CTPvb9eiRFvhrAEclhtGZevu7SFxfEEVb4sEpJhyuWqrGo4Sv9i1DVQsmhn1FB/uTkPhIsfQ6hgzZL8kDKUyO7WKsCDCod46gH2HV9JaHSG4xNFe0"};
 
     String offerKeys[] = {"test123@6622", "offer_test@ffer_t5172", "offerfranklin@6636"};
 
@@ -134,8 +136,8 @@ public class PayumoneyActivity extends DashboardAppCompatActivity implements Vie
             leftChild.setText(mandatoryKeys[i]);
             leftChild.setEnabled(false);
             if (idsKey[i] != R.id.k_amount){
-                leftChild.setVisibility(View.GONE);
-                rightChild.setVisibility(View.GONE);
+               // leftChild.setVisibility(View.GONE);
+               // rightChild.setVisibility(View.GONE);
             }
             if(null != mandatoryValues[i])
                 rightChild.setText(mandatoryValues[i]);
@@ -149,7 +151,7 @@ public class PayumoneyActivity extends DashboardAppCompatActivity implements Vie
         // lets tell the people what version of sdk we are using
         PayUSdkDetails payUSdkDetails = new PayUSdkDetails();
 
-        Toast.makeText(this, "Build No: " + payUSdkDetails.getSdkBuildNumber() + "\n Build Type: " + payUSdkDetails.getSdkBuildType() + " \n Build Flavor: " +  payUSdkDetails.getSdkFlavor() + "\n Application Id: " + payUSdkDetails.getSdkApplicationId() + "\n Version Code: " + payUSdkDetails.getSdkVersionCode()+ "\n Version Name: " + payUSdkDetails.getSdkVersionName(), Toast.LENGTH_LONG).show();
+       // Toast.makeText(this, "Build No: " + payUSdkDetails.getSdkBuildNumber() + "\n Build Type: " + payUSdkDetails.getSdkBuildType() + " \n Build Flavor: " +  payUSdkDetails.getSdkFlavor() + "\n Application Id: " + payUSdkDetails.getSdkApplicationId() + "\n Version Code: " + payUSdkDetails.getSdkVersionCode()+ "\n Version Name: " + payUSdkDetails.getSdkVersionName(), Toast.LENGTH_LONG).show();
 
     }
 
@@ -213,14 +215,38 @@ public class PayumoneyActivity extends DashboardAppCompatActivity implements Vie
 //                }
 
 
-                new AlertDialog.Builder(this)
-                        .setCancelable(false)
-                        .setMessage("Payu's Data : " + data.getStringExtra("payu_response") + "\n\n\n Merchant's Data: " + data.getStringExtra("result"))
-                        .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int whichButton) {
+//                new AlertDialog.Builder(this)
+//                        .setCancelable(false)
+//                        .setMessage("Payu's Data : " + data.getStringExtra("payu_response") + "\n\n\n Merchant's Data: " + data.getStringExtra("result"))
+//                        .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+//                            public void onClick(DialogInterface dialog, int whichButton) {
+//
+//                            }
+//                        }).show();
+                String trans = data.getStringExtra("payu_response");
+                try {
+                    JSONObject transjson = new JSONObject(trans);
+                    if (transjson.get("status").toString().equalsIgnoreCase("success")){
+                        HashMap<String,String> transaction= new HashMap<>();
+                        transaction.put("txnid", (String) transjson.get("txnid"));
+                        transaction.put("amount",(String) transjson.get("amount"));
+                        transaction.put("addedon",(String) transjson.get("addedon"));
+                        ServerSync serverSync = new ServerSync(this);
+                        serverSync.uploadPayment(null,transaction,this);
+                    }else{
+                        new AlertDialog.Builder(this)
+                                .setCancelable(false)
+                                .setMessage("Transaction failed.")
+                                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int whichButton) {
+                                        onBackPressed();
+                                    }
+                                }).show();
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
 
-                            }
-                        }).show();
 
             } else {
                 Toast.makeText(this, "Could not receive data", Toast.LENGTH_LONG).show();
@@ -940,5 +966,8 @@ public class PayumoneyActivity extends DashboardAppCompatActivity implements Vie
 
         deleteMerchantHash(cardToken);
 
+    }
+    public void paymentDone(){
+        startActivity(new Intent(this, PaymentActivity.class));
     }
 }

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_feature3">भुगतान</string>
+    <string name="title_feature4">केटलॉग</string>
+
+    <string name="transporters">ट्रांसपोर्टर  </string>
+    <string name="title_feature1_plurer">इंडेंट </string>
+
+</resources>
