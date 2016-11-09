@@ -60,6 +60,7 @@ protected void onCreate(Bundle savedInstanceState)
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.paymentrefresh, menu);
+        onOptionsItemSelected(menu.findItem(R.id.action_refresh));
         return super.onCreateOptionsMenu(menu);
     }
     public boolean onOptionsItemSelected(MenuItem item){
