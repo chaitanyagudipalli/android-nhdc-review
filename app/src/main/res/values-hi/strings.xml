@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="title_feature3">भुगतान</string>
+    <string name="title_feature3">पेमेंट</string>
     <string name="title_feature4">केटलॉग</string>
+    <string name="title_feature5">सप्लायर</string>
+
 
     <string name="transporters">ट्रांसपोर्टर  </string>
     <string name="title_feature1_plurer">इंडेंट </string>
+    <string name="my_profile">माय प्रोफाइल</string>
+    <string name="title_employeeprofile">माय प्रोफाइल</string>
+    <string name="purchase_orders">परचेस आर्डर</string>
+
 
 </resources>
