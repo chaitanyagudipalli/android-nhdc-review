@@ -58,18 +58,21 @@ public class ShipHistoryBaseAdapter extends BaseAdapter {
         }
 
         SupplierPOShip supplierPOShip = getItem(position);
-        mViewHolder.dispatch.setText("Dispatch "+supplierPOShip.getItemSeqId());
+        mViewHolder.dispatch.setText("Dispatch "+supplierPOShip.getShipid());
         mViewHolder.itemname.setText(supplierPOShip.getItemname());
         mViewHolder.itemqty.setText(String.format("%.2f", supplierPOShip.getQty()));
         mViewHolder.amnt.setText(String.format("%.2f", supplierPOShip.getItemAmnt()));
         mViewHolder.price.setText(String.format("%.2f", supplierPOShip.getUnitPrice()));
+
+        mViewHolder.cstm.setText(supplierPOShip.getCustomer());
+        mViewHolder.dest.setText(supplierPOShip.getDestination());
 
 
         return convertView;
     }
 
     private class MyViewHolder {
-        TextView dispatch, itemname, itemqty, price, amnt;
+        TextView dispatch, itemname, itemqty, price, amnt,cstm,dest;
 
 
         public MyViewHolder(View item) {
@@ -78,6 +81,8 @@ public class ShipHistoryBaseAdapter extends BaseAdapter {
             itemqty = (TextView) item.findViewById(R.id.itemqty);
             price = (TextView) item.findViewById(R.id.price);
             amnt = (TextView) item.findViewById(R.id.amnt);
+            cstm = (TextView)item.findViewById(R.id.customer);
+            dest = (TextView)item.findViewById(R.id.destination);
         }
     }
 }

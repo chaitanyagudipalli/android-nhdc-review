@@ -4,8 +4,9 @@ public class SupplierPOShip {
 
 	String shipid, poid, productid, orderdate, itemname, itemSeqId;
 	double qty, unitPrice, itemAmnt;
+	String customer,destination;
 
-	public SupplierPOShip(String shipid, String poid, String productid, String itemname, String itemSeqId, double qty, double unitPrice, double itemAmnt) {
+	public SupplierPOShip(String shipid, String poid, String productid, String itemname, String itemSeqId, double qty, double unitPrice, double itemAmnt,String customer,String destination) {
 		this.shipid = shipid;
 		this.poid = poid;
 		this.productid = productid;
@@ -15,6 +16,8 @@ public class SupplierPOShip {
 		this.qty = qty;
 		this.unitPrice = unitPrice;
 		this.itemAmnt = itemAmnt;
+		this.customer = customer;
+		this.destination = destination;
 	}
 
 	public String getShipid() {
@@ -87,5 +90,21 @@ public class SupplierPOShip {
 
 	public void setItemAmnt(double itemAmnt) {
 		this.itemAmnt = itemAmnt;
+	}
+
+	public String getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(String customer) {
+		this.customer = customer;
+	}
+
+	public String getDestination() {
+		return destination;
+	}
+
+	public void setDestination(String destination) {
+		this.destination = destination;
 	}
 }

@@ -29,6 +29,7 @@ import in.vasista.nhdcapp.R;
 import in.vasista.vsales.HRDashboardActivity;
 import in.vasista.vsales.ShipmentHistoryActivity;
 import in.vasista.vsales.SupplierDetailsActivity;
+import in.vasista.vsales.SupplierPOItemDetailedActivity;
 import in.vasista.vsales.adapter.SupplierPOAdapter;
 import in.vasista.vsales.adapter.SupplierPOItemsAdapter;
 import in.vasista.vsales.db.PODataSource;
@@ -97,9 +98,29 @@ public class SupplierPOItemListFragment extends ListFragment implements View.OnC
 		adapter.setEditable(isEditableList);
 		setListAdapter(adapter);
 		
-		listView.setClickable(false);
+		//listView.setClickable(false);
 
+		listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+				if (isEditableList == false){
+					SupplierPOItem item = (SupplierPOItem) listView
+							.getItemAtPosition(position);
+					Intent i = new Intent(getActivity(), SupplierPOItemDetailedActivity.class);
+					i.putExtra("prod_id",""+item.getProdid());
+					i.putExtra("po_id",""+item.getPoid());
+					i.putExtra("itemname",""+item.getItemname());
+					i.putExtra("spec",""+item.getSpec());
+					i.putExtra("unitprice",""+String.format("%.2f", item.getUnitPrice()));
+					i.putExtra("seqid",""+item.getSeqId());
+					i.putExtra("itemq",""+item.getItemQty());
+					i.putExtra("disp",""+item.getDispatchQty());
+					i.putExtra("balance",""+item.getBalanceQty());
+					startActivity(i);
 
+				}
+			}
+		});
 
 
 	}
@@ -190,6 +211,7 @@ public class SupplierPOItemListFragment extends ListFragment implements View.OnC
 		listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, final View view, int position, long id) {
+
 				AlertDialog.Builder alert = new AlertDialog.Builder(
 						getActivity());
 				final SupplierPOItem item = (SupplierPOItem) listView
@@ -205,7 +227,7 @@ public class SupplierPOItemListFragment extends ListFragment implements View.OnC
 				if (item.getDispatchQty() == -1) {
 					qtyStr = "";
 				}
-				input.setText(qtyStr);
+				input.setText(""+item.getBalanceQty());
 				input.requestFocus();
 				input.selectAll();
 				alert.setView(input);

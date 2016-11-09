@@ -17,12 +17,14 @@
 package in.vasista.vsales;
 
 import android.app.FragmentManager;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ProgressBar;
 
 import in.vasista.nhdcapp.R;
+import in.vasista.payumoney.PayumoneyActivity;
 import in.vasista.vsales.payment.PaymentListFragment;
 
 /**
@@ -57,7 +59,7 @@ protected void onCreate(Bundle savedInstanceState)
 }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.refresh, menu);
+        getMenuInflater().inflate(R.menu.paymentrefresh, menu);
         return super.onCreateOptionsMenu(menu);
     }
     public boolean onOptionsItemSelected(MenuItem item){
@@ -70,6 +72,9 @@ protected void onCreate(Bundle savedInstanceState)
                 PaymentListFragment paymentListFragment = (PaymentListFragment) fm.findFragmentById(R.id.payment_list_fragment);
                 paymentListFragment.syncPayments(item);
                 return true;
+            case R.id.action_payment:
+                startActivity(new Intent(getApplicationContext(), PayumoneyActivity.class));
+                break;
         }
         return false;
     }
