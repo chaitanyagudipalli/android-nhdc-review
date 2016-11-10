@@ -57,15 +57,15 @@ public class PayumoneyActivity extends DashboardAppCompatActivity implements Vie
 
     //    int env = PayuConstants.MOBILE_STAGING_ENV;
     // in case of production make sure that merchantIndex is fixed as 0 (0MQaQP) for other key's payu server cant generate hash
-    //  int env = PayuConstants.PRODUCTION_ENV;
-    int env = PayuConstants.STAGING_ENV;
+      int env = PayuConstants.PRODUCTION_ENV;
+    // int env = PayuConstants.STAGING_ENV;
 
     String merchantTestKeys[] = {"gtKFFx", "DXOF8m","obScKz", "smsplus"};
 //    String merchantTestSalts[] = {"eCwWELxi","2Hl5U0En", "Ml7XBCdR", "350" };
 
     Boolean smsPermission = true;
 
-    String merchantProductionKeys[] = {"c46yfJ", "smsplus"};
+    String merchantProductionKeys[] = {"PyUoT6", "smsplus"};
     String merchantProductionSalts[] = {"LBK2ogX3", "MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDu7tEI5epzlBXJkODrHPCxobP+VUF8oxmUgK3kwS2p33A3O+iBHdDzF2Gn279RgTepC7bzuLfg5DeKdI3klOw714LKuyELlyPOlWF70TckbuarodEJH1IkG2qHNErVYp8riewdoPBWe1mLCYjaOluUtEFXdkZWgluGKqC2Jvodrkfawjm9Jct8TnZ8K41NwF8YlpwAR2dROsn/QYH0qUgYQndVXx+bCjIoyiFl1+Ub2fmLCQKzu+my2QNSi8APGzposAwrYbqgT05+4G8tu/cjRBOwhBfdgCpytMa51LuE4vGGYtlOxlBjxTQXcmtjW6wmeRZgSAyaT1599gPOVxkbAgMBAAECggEARYZccRhl1mfaxyJPMFrlduq0s2cffSMAiIPBFfVYUjvgLVJTX27LpFDDa9K3owHUrm3oOJchemEuAC3WNBNZgjg9qLw262Z5Vt2E1kCUqRdUK9EUQHFKt5L6tojy1ZCy/DpP6HcyOBgAgEKv/cBJccXZ1Zdm9DlOZIX26coBsay63H7yI5aXJz/fzMdmZbWrHXDZvv+YEPzk2uoRY201PHs0YiA1sehfUksG7bzfVif4OX3UUqPTbJPVEjMvGkKQb7qHU2BDl9QOnU6VlYLnY4MRTz9r4oyr0sPt+pDC77zm3uuBwiH3I7j5isevA5N0KKRyghW0EJg6U5qVT7atgQKBgQD/vj8Ij1MWNSI9serXbfxp3dZmyVdyVNWVmZBv6zLgwOw0rMErsQjkzLYpiDr884Zx+LSGZw7pqnjJfKbdlgoCFe3Vrn9PQ21gxw28o9Qh+dwDPnVm+HQHyuMyNjcxOUtYmEvFwD8X3Gz3YrwYnpDI1rx9bcHFv2C5leJMxrNlIQKBgQDvLD+NZXF626GCNjic/11+P8WdhdqSQZ/lwrxsXKhp15zp9dofYVGW4382HfHJiVbMy009LCkKA9JWKQNyk3a5g5wgqUwb1iKFIAF7eKKvkX3oaQbIR7U/r7BHLxYmcG4wW5K0VIMtLQ1CX80KNREFCCaNh5WUET4hTDWjnUr6uwKBgFz5u0zPXnOKaaJoVmpvr/6FCfdgZ4xHT0cOBzbJGTwgpz8XNzs9J3CXA/rhbiCcIFq7AlaCjSdiNHt79+ZDL+xGMKsov1v/tXojo9ja7rpTbis3v9LprLVQi3yrvTEGFWBmLdX86HMyTeM6YAvLSfPaLbij+Hh99RpDZXxoGLxBAoGBANyoxjl9ziS7XVb1D2ZJc8h2rauXQwCM6yjfcVfIZNjBxFNWL9ejwdKkMUmMdvapbxuitbAqffJvdC9px3R9+JtPgUvg5gcImPCZhsSTmATDBpbVzxwYjHAld001dAoi0IZs9fzJu/yCBCmomVNBgmJSEr+gx6/D+L5fwV0iUXrhAoGBAIVrhR0ht/uVGx+t1B7AXI2eA2yCy+5qo8nz5D+3EYOgjg71u/x/DXke35/CTPvb9eiRFvhrAEclhtGZevu7SFxfEEVb4sEpJhyuWqrGo4Sv9i1DVQsmhn1FB/uTkPhIsfQ6hgzZL8kDKUyO7WKsCDCod46gH2HV9JaHSG4xNFe0"};
 
     String offerKeys[] = {"test123@6622", "offer_test@ffer_t5172", "offerfranklin@6636"};
@@ -73,7 +73,7 @@ public class PayumoneyActivity extends DashboardAppCompatActivity implements Vie
     String merchantKey = env == PayuConstants.PRODUCTION_ENV ? merchantProductionKeys[merchantIndex]:merchantTestKeys[merchantIndex];
     //    String merchantSalt = env == PayuConstants.PRODUCTION_ENV ? merchantProductionSalts[merchantIndex] : merchantTestSalts[merchantIndex];
     String mandatoryKeys[] = { PayuConstants.KEY, PayuConstants.AMOUNT, PayuConstants.PRODUCT_INFO, PayuConstants.FIRST_NAME, PayuConstants.EMAIL, PayuConstants.TXNID, PayuConstants.SURL, PayuConstants.FURL, PayuConstants.USER_CREDENTIALS, PayuConstants.UDF1, PayuConstants.UDF2, PayuConstants.UDF3, PayuConstants.UDF4, PayuConstants.UDF5, PayuConstants.ENV, PayuConstants.STORE_ONE_CLICK_HASH, PayuConstants.SMS_PERMISSION};
-    String mandatoryValues[] = { merchantKey, "10.0", "myproduct", "firstname", "me@itsme.com", ""+System.currentTimeMillis(), "https://payu.herokuapp.com/success", "https://payu.herokuapp.com/failure", merchantKey+":payutest@payu.in", "udf1", "udf2", "udf3", "udf4", "udf5", ""+env, ""+PayuConstants.STORE_ONE_CLICK_HASH_SERVER, smsPermission.toString() };
+    String mandatoryValues[] = { merchantKey, "10.0", "myproduct", "firstname", "me@itsme.com", ""+System.currentTimeMillis(), "https://payu.herokuapp.com/success", "https://payu.herokuapp.com/failure", "default", "udf1", "udf2", "udf3", "udf4", "udf5", ""+env, ""+PayuConstants.STORE_ONE_CLICK_HASH_SERVER, smsPermission.toString() };
 
     int idsKey[] = {R.id.k_merchant_key, R.id.k_amount, R.id.k_product_info, R.id.k_first_name, R.id.k_email, R.id.k_txnid, R.id.k_surl, R.id.k_furl, R.id.k_user_credentials, R.id.k_udf1, R.id.k_udf2, R.id.k_udf3, R.id.k_udf4, R.id.k_udf5, R.id.k_env, R.id.k_store_one_click_payment, R.id.k_sms_permission };
     int idsValue[] = {R.id.v_merchant_key, R.id.v_amount, R.id.v_product_info, R.id.v_first_name, R.id.v_email, R.id.v_txnid, R.id.v_surl, R.id.v_furl, R.id.v_user_credentials, R.id.v_udf1, R.id.v_udf2, R.id.v_udf3, R.id.v_udf4, R.id.v_udf5, R.id.v_env, R.id.v_store_one_click_payment, R.id.v_sms_permission };
@@ -136,8 +136,8 @@ public class PayumoneyActivity extends DashboardAppCompatActivity implements Vie
             leftChild.setText(mandatoryKeys[i]);
             leftChild.setEnabled(false);
             if (idsKey[i] != R.id.k_amount){
-               // leftChild.setVisibility(View.GONE);
-               // rightChild.setVisibility(View.GONE);
+                leftChild.setVisibility(View.GONE);
+                rightChild.setVisibility(View.GONE);
             }
             if(null != mandatoryValues[i])
                 rightChild.setText(mandatoryValues[i]);
@@ -390,7 +390,7 @@ public class PayumoneyActivity extends DashboardAppCompatActivity implements Vie
 
         // generate hash from server
         // just a sample. Acturally Merchant should generate from his server.
-//        salt = "eCwWELxi";
+        salt = "LBK2ogX3";
         if(null == salt) generateHashFromServer(mPaymentParams);
         else {
             generateHashFromSDK(mPaymentParams, intent.getStringExtra(PayuConstants.SALT));
@@ -611,6 +611,7 @@ public class PayumoneyActivity extends DashboardAppCompatActivity implements Vie
         // checksum for payemnt related details
         // var1 should be either user credentials or default
         var1 = var1 == null ? PayuConstants.DEFAULT : var1 ;
+
 
         if((postData = calculateHash(key, PayuConstants.PAYMENT_RELATED_DETAILS_FOR_MOBILE_SDK, var1, salt)) != null && postData.getCode() == PayuErrors.NO_ERROR) // Assign post data first then check for success
             payuHashes.setPaymentRelatedDetailsForMobileSdkHash(postData.getResult());

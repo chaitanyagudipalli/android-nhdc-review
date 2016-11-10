@@ -7,6 +7,9 @@
     android:orientation="vertical"
     tools:context="in.vasista.vsales.IndentDetailed">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="200dp">
     <TableLayout
         android:layout_width="match_parent"
         android:shrinkColumns="2"
@@ -251,6 +254,7 @@
                 android:layout_margin="2dp" />
         </TableRow>
     </TableLayout>
+    </ScrollView>
     <fragment
         android:id="@+id/indentitems_list_fragment"
         android:name="in.vasista.vsales.indent.IndentItemsListFragment"
