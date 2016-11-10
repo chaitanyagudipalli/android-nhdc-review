@@ -138,6 +138,26 @@ public class WeaverDetailedActivity extends DashboardAppCompatActivity {
                         ""+wool_10to39.get("description"),""+wool_10to39.get("loomQty"),""+wool_10to39.get("loomQuota"),""+wool_10to39.get("avlQuota"),""+wool_10to39.get("usedQuota"),
                         ""+wool_40above.get("description"),""+wool_40above.get("loomQty"),""+wool_40above.get("loomQuota"),""+wool_40above.get("avlQuota"),""+wool_40above.get("usedQuota"),
                         ""+wool_10below.get("description"),""+wool_10below.get("loomQty"),""+wool_10below.get("loomQuota"),""+wool_10below.get("avlQuota"),""+wool_10below.get("usedQuota")};
+
+                if (((int)cotton_40above.get("loomQty"))==0){
+                    findViewById(R.id.c40a_row).setVisibility(View.GONE);
+                }
+                if (((int)cotton_40upto.get("loomQty"))==0){
+                    findViewById(R.id.c40u_row).setVisibility(View.GONE);
+                }
+                if (((int)silk.get("loomQty"))==0){
+                    findViewById(R.id.silk_row).setVisibility(View.GONE);
+                }
+                if (((int)wool_10to39.get("loomQty"))==0){
+                    findViewById(R.id.w10a_row).setVisibility(View.GONE);
+                }
+                if (((int)wool_40above.get("loomQty"))==0){
+                    findViewById(R.id.w40a_row).setVisibility(View.GONE);
+                }
+                if (((int)wool_10below.get("loomQty"))==0){
+                    findViewById(R.id.w10b_row).setVisibility(View.GONE);
+                }
+
                 for (int i=0;i<loom_ids.length;i++){
                     textView = (TextView) findViewById(loom_ids[i]);
                     textView.setText(loom_values[i]);
