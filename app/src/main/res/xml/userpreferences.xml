@@ -44,7 +44,12 @@
 		<EditTextPreference
         	android:title="Party Name"
             android:summary="Party Name"
-            android:key="storeName"/>                         	
+            android:key="storeName"/>
+		<CheckBoxPreference
+			android:title="Live"
+			android:summary="PayUMoney Live Enable"
+			android:key="payuLive"
+			/>
 	</PreferenceCategory>
 <!--     <PreferenceCategory	
 		android:title="Location Settings"> 

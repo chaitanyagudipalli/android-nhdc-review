@@ -3,8 +3,10 @@ package in.vasista.payumoney;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -57,8 +59,9 @@ public class PayumoneyActivity extends DashboardAppCompatActivity implements Vie
 
     //    int env = PayuConstants.MOBILE_STAGING_ENV;
     // in case of production make sure that merchantIndex is fixed as 0 (0MQaQP) for other key's payu server cant generate hash
-      int env = PayuConstants.PRODUCTION_ENV;
-    // int env = PayuConstants.STAGING_ENV;
+      //int env = PayuConstants.PRODUCTION_ENV;
+     int env = PayuConstants.STAGING_ENV;
+
 
     String merchantTestKeys[] = {"gtKFFx", "DXOF8m","obScKz", "smsplus"};
 //    String merchantTestSalts[] = {"eCwWELxi","2Hl5U0En", "Ml7XBCdR", "350" };
@@ -72,8 +75,8 @@ public class PayumoneyActivity extends DashboardAppCompatActivity implements Vie
 
     String merchantKey = env == PayuConstants.PRODUCTION_ENV ? merchantProductionKeys[merchantIndex]:merchantTestKeys[merchantIndex];
     //    String merchantSalt = env == PayuConstants.PRODUCTION_ENV ? merchantProductionSalts[merchantIndex] : merchantTestSalts[merchantIndex];
-    String mandatoryKeys[] = { PayuConstants.KEY, PayuConstants.AMOUNT, PayuConstants.PRODUCT_INFO, PayuConstants.FIRST_NAME, PayuConstants.EMAIL, PayuConstants.TXNID, PayuConstants.SURL, PayuConstants.FURL, PayuConstants.USER_CREDENTIALS, PayuConstants.UDF1, PayuConstants.UDF2, PayuConstants.UDF3, PayuConstants.UDF4, PayuConstants.UDF5, PayuConstants.ENV, PayuConstants.STORE_ONE_CLICK_HASH, PayuConstants.SMS_PERMISSION};
-    String mandatoryValues[] = { merchantKey, "10.0", "myproduct", "firstname", "me@itsme.com", ""+System.currentTimeMillis(), "https://payu.herokuapp.com/success", "https://payu.herokuapp.com/failure", "default", "udf1", "udf2", "udf3", "udf4", "udf5", ""+env, ""+PayuConstants.STORE_ONE_CLICK_HASH_SERVER, smsPermission.toString() };
+   // String mandatoryKeys[] = { PayuConstants.KEY, PayuConstants.AMOUNT, PayuConstants.PRODUCT_INFO, PayuConstants.FIRST_NAME, PayuConstants.EMAIL, PayuConstants.TXNID, PayuConstants.SURL, PayuConstants.FURL, PayuConstants.USER_CREDENTIALS, PayuConstants.UDF1, PayuConstants.UDF2, PayuConstants.UDF3, PayuConstants.UDF4, PayuConstants.UDF5, PayuConstants.ENV, PayuConstants.STORE_ONE_CLICK_HASH, PayuConstants.SMS_PERMISSION};
+    //String mandatoryValues[] = { merchantKey, "10.0", "myproduct", "firstname", "me@itsme.com", ""+System.currentTimeMillis(), "https://payu.herokuapp.com/success", "https://payu.herokuapp.com/failure", "default", "udf1", "udf2", "udf3", "udf4", "udf5", ""+env, ""+PayuConstants.STORE_ONE_CLICK_HASH_SERVER, smsPermission.toString() };
 
     int idsKey[] = {R.id.k_merchant_key, R.id.k_amount, R.id.k_product_info, R.id.k_first_name, R.id.k_email, R.id.k_txnid, R.id.k_surl, R.id.k_furl, R.id.k_user_credentials, R.id.k_udf1, R.id.k_udf2, R.id.k_udf3, R.id.k_udf4, R.id.k_udf5, R.id.k_env, R.id.k_store_one_click_payment, R.id.k_sms_permission };
     int idsValue[] = {R.id.v_merchant_key, R.id.v_amount, R.id.v_product_info, R.id.v_first_name, R.id.v_email, R.id.v_txnid, R.id.v_surl, R.id.v_furl, R.id.v_user_credentials, R.id.v_udf1, R.id.v_udf2, R.id.v_udf3, R.id.v_udf4, R.id.v_udf5, R.id.v_env, R.id.v_store_one_click_payment, R.id.v_sms_permission };
@@ -107,6 +110,15 @@ public class PayumoneyActivity extends DashboardAppCompatActivity implements Vie
         super.onCreate(savedInstanceState);
         setContentChildView(R.layout.avtivity_payumoney);
         actionBarHomeEnabled();
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        env = prefs.getBoolean("payuLive",false)?PayuConstants.PRODUCTION_ENV:PayuConstants.STAGING_ENV;
+
+        merchantKey = env == PayuConstants.PRODUCTION_ENV ? merchantProductionKeys[merchantIndex]:merchantTestKeys[merchantIndex];
+        //    String merchantSalt = env == PayuConstants.PRODUCTION_ENV ? merchantProductionSalts[merchantIndex] : merchantTestSalts[merchantIndex];
+        String mandatoryKeys[] = { PayuConstants.KEY, PayuConstants.AMOUNT, PayuConstants.PRODUCT_INFO, PayuConstants.FIRST_NAME, PayuConstants.EMAIL, PayuConstants.TXNID, PayuConstants.SURL, PayuConstants.FURL, PayuConstants.USER_CREDENTIALS, PayuConstants.UDF1, PayuConstants.UDF2, PayuConstants.UDF3, PayuConstants.UDF4, PayuConstants.UDF5, PayuConstants.ENV, PayuConstants.STORE_ONE_CLICK_HASH, PayuConstants.SMS_PERMISSION};
+        String mandatoryValues[] = { merchantKey, "10.0", "myproduct", "firstname", "me@itsme.com", ""+System.currentTimeMillis(), "https://payu.herokuapp.com/success", "https://payu.herokuapp.com/failure", "default", "udf1", "udf2", "udf3", "udf4", "udf5", ""+env, ""+PayuConstants.STORE_ONE_CLICK_HASH_SERVER, smsPermission.toString() };
+
+
         OnetapCallback.setOneTapCallback(this);
 
         Payu.setInstance(this);
@@ -390,7 +402,8 @@ public class PayumoneyActivity extends DashboardAppCompatActivity implements Vie
 
         // generate hash from server
         // just a sample. Acturally Merchant should generate from his server.
-        salt = "LBK2ogX3";
+        if (env == PayuConstants.PRODUCTION_ENV)
+            salt = "LBK2ogX3";
         if(null == salt) generateHashFromServer(mPaymentParams);
         else {
             generateHashFromSDK(mPaymentParams, intent.getStringExtra(PayuConstants.SALT));
