@@ -253,20 +253,22 @@
                 android:layout_height="wrap_content"
                 android:layout_width="80dp"
                 style="@style/TabeRowTitle"
-                android:gravity="right"
-                android:textSize="12sp"
-                android:layout_margin="2dp"
-                android:text="Bal Quota"/>
-            <TextView
-                android:layout_height="wrap_content"
-                android:layout_width="80dp"
-                style="@style/TabeRowTitle"
                 android:layout_margin="2dp"
                 android:textSize="12sp"
                 android:gravity="right"
                 android:text="Used Quota"/>
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="80dp"
+                style="@style/TabeRowTitle"
+                android:gravity="right"
+                android:textSize="12sp"
+                android:layout_margin="2dp"
+                android:text="Bal Quota"/>
+
         </TableRow>
         <TableRow android:paddingTop="5dip"
+            android:id="@+id/c40a_row"
             android:paddingBottom="5dip">
             <TextView
                 android:layout_height="wrap_content"
@@ -275,21 +277,18 @@
                 android:layout_margin="2dp"
                 android:textStyle="bold"
                 android:textSize="12sp"
-                android:text="Cotton Yarn Upto 40s"
                 android:id="@+id/c40a"/>
             <TextView
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 style="@style/TabeRowValue"
                 android:layout_margin="2dp"
-                android:text="100"
                 android:textStyle="bold"
                 android:id="@+id/c40an"/>
             <TextView
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 style="@style/TabeRowValue"
-                android:text="2910"
                 android:layout_margin="2dp"
                 android:textStyle="bold"
                 android:id="@+id/c40ae"/>
@@ -298,21 +297,21 @@
                 android:layout_width="wrap_content"
                 style="@style/TabeRowValue"
                 android:layout_margin="2dp"
-                android:text="2322"
                 android:gravity="right"
                 android:textStyle="bold"
-                android:id="@+id/c40ab"/>
+                android:id="@+id/c40au"/>
             <TextView
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 style="@style/TabeRowValue"
                 android:layout_margin="2dp"
-                android:text="12"
                 android:gravity="right"
                 android:textStyle="bold"
-                android:id="@+id/c40au"/>
+                android:id="@+id/c40ab"/>
+
         </TableRow>
         <TableRow android:paddingTop="5dip"
+            android:id="@+id/c40u_row"
             android:paddingBottom="5dip">
             <TextView
                 android:layout_height="wrap_content"
@@ -343,7 +342,7 @@
                 android:layout_margin="2dp"
                 android:gravity="right"
                 android:textStyle="bold"
-                android:id="@+id/c40ub"/>
+                android:id="@+id/c40uu"/>
             <TextView
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
@@ -351,9 +350,11 @@
                 android:layout_margin="2dp"
                 android:gravity="right"
                 android:textStyle="bold"
-                android:id="@+id/c40uu"/>
+                android:id="@+id/c40ub"/>
+
         </TableRow>
         <TableRow android:paddingTop="5dip"
+            android:id="@+id/silk_row"
             android:paddingBottom="5dip">
             <TextView
                 android:layout_height="wrap_content"
@@ -384,7 +385,7 @@
                 android:layout_margin="2dp"
                 android:gravity="right"
                 android:textStyle="bold"
-                android:id="@+id/silkb"/>
+                android:id="@+id/silku"/>
             <TextView
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
@@ -392,9 +393,11 @@
                 android:layout_margin="2dp"
                 android:gravity="right"
                 android:textStyle="bold"
-                android:id="@+id/silku"/>
+                android:id="@+id/silkb"/>
+
         </TableRow>
         <TableRow android:paddingTop="5dip"
+            android:id="@+id/w10a_row"
             android:paddingBottom="5dip">
             <TextView
                 android:layout_height="wrap_content"
@@ -425,7 +428,7 @@
                 android:layout_margin="2dp"
                 android:gravity="right"
                 android:textStyle="bold"
-                android:id="@+id/w10ab"/>
+                android:id="@+id/w10au"/>
             <TextView
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
@@ -433,9 +436,11 @@
                 android:layout_margin="2dp"
                 android:gravity="right"
                 android:textStyle="bold"
-                android:id="@+id/w10au"/>
+                android:id="@+id/w10ab"/>
+
         </TableRow>
         <TableRow android:paddingTop="5dip"
+            android:id="@+id/w40a_row"
             android:paddingBottom="5dip">
             <TextView
                 android:layout_height="wrap_content"
@@ -466,7 +471,7 @@
                 android:layout_margin="2dp"
                 android:gravity="right"
                 android:textStyle="bold"
-                android:id="@+id/w40ab"/>
+                android:id="@+id/w40au"/>
             <TextView
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
@@ -474,9 +479,11 @@
                 android:layout_margin="2dp"
                 android:gravity="right"
                 android:textStyle="bold"
-                android:id="@+id/w40au"/>
+                android:id="@+id/w40ab"/>
+
         </TableRow>
         <TableRow android:paddingTop="5dip"
+            android:id="@+id/w10b_row"
             android:paddingBottom="5dip">
             <TextView
                 android:layout_height="wrap_content"
@@ -507,7 +514,7 @@
                 android:layout_margin="2dp"
                 android:textStyle="bold"
                 android:gravity="right"
-                android:id="@+id/w10bb"/>
+                android:id="@+id/w10bu"/>
             <TextView
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
@@ -515,7 +522,8 @@
                 android:layout_margin="2dp"
                 android:textStyle="bold"
                 android:gravity="right"
-                android:id="@+id/w10bu"/>
+                android:id="@+id/w10bb"/>
+
         </TableRow>
     </TableLayout>
 </LinearLayout>
