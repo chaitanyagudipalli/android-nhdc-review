@@ -76,7 +76,7 @@
                     style="@style/HomeButton"
                     android:drawableTop="@drawable/employeeprofile_button"
                     android:onClick="onClickFeature"
-                    android:text="My Profile" />
+                    android:text="@string/my_profile" />
 
                 <Button
                     android:id="@+id/home_btn_indents"
