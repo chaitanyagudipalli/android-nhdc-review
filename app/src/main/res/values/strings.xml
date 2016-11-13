@@ -97,7 +97,7 @@
     <string name="add_product_hint">Select Product</string>
     <string name="add_product_qty_hint">Qty (pkts)</string>
 
-    <string name="column_indent_id_header">Id</string>
+    <string name="column_indent_id_header">Ref.No</string>
     <string name="column_indent_date_header">Date</string>
     <string name="column_indent_status_header">Status</string>
     <string name="column_indent_supply_header">Tally Ref No</string>

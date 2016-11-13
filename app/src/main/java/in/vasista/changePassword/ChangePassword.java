@@ -117,9 +117,12 @@ public class ChangePassword extends DialogFragment implements View.OnClickListen
                 SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
                 String userName = prefs.getString("userName", "");
 
-                if (presentPass.getText().toString().isEmpty()){
 
+                if (presentPass.getText().toString().isEmpty()){
                     setErrorMsg("This field is required", presentPass);
+                }
+                else if (newPass.getText().toString().length()<6){
+                    setErrorMsg("Password must be atlease 6 characters", newPass);
                 } else if (newPass.getText().toString().isEmpty()){
                     setErrorMsg("This field is required", newPass);
 
@@ -127,7 +130,7 @@ public class ChangePassword extends DialogFragment implements View.OnClickListen
                     setErrorMsg("This field is required", verifyNewPass);
 
                 } else if (!newPass.getText().toString().trim().equals(verifyNewPass.getText().toString().trim())){
-                    setErrorMsg("This field is required", verifyNewPass);
+                    setErrorMsg("New Password and Verify New Password does not match", verifyNewPass);
 
                 } else {
 

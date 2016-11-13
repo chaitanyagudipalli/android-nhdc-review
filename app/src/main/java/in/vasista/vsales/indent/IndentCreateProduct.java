@@ -5,9 +5,13 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
 import android.os.Bundle;
+import android.text.Spannable;
+import android.text.SpannableStringBuilder;
+import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -67,7 +71,7 @@ public class IndentCreateProduct extends DashboardAppCompatActivity implements V
     EditText totalweight,unitprice;
     EditText bundleUnitPriceTv,bundlewt,quantitynos, specificaton;
 
-    TextView totalAmt;
+    TextView totalAmt,selectProduct,qtyKg,unitPriceText;
     HashMap<String,String> hm;
 
     @Override
@@ -101,6 +105,33 @@ public class IndentCreateProduct extends DashboardAppCompatActivity implements V
         quantitynos = (EditText)findViewById(R.id.quantitynos);
         totalAmt = (TextView) findViewById(R.id.totalAmt);
 
+        SpannableStringBuilder builder = new SpannableStringBuilder();
+
+        selectProduct = (TextView)findViewById(R.id.selectProduct);
+        builder.append("Select Product");
+        int start = builder.length();
+        builder.append(" *");
+        int end = builder.length();
+        builder.setSpan(new ForegroundColorSpan(Color.RED), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        selectProduct.setText(builder);
+
+        qtyKg = (TextView)findViewById(R.id.qtyKg);
+        builder.clear();
+        builder.append("Qty (Kgs)");
+        start = builder.length();
+        builder.append(" *");
+        end = builder.length();
+        builder.setSpan(new ForegroundColorSpan(Color.RED), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        qtyKg.setText(builder);
+
+        unitPriceText = (TextView)findViewById(R.id.unitPriceText);
+        builder.clear();
+        builder.append("Unit Price (Kgs)");
+        start = builder.length();
+        builder.append(" *");
+        end = builder.length();
+        builder.setSpan(new ForegroundColorSpan(Color.RED), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        unitPriceText.setText(builder);
 
 
         // Disable edit text editing

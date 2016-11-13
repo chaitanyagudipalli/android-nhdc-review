@@ -103,7 +103,7 @@
                 android:layout_width="wrap_content"
                 style="@style/TabeRowTitle"
                 android:layout_margin="2dp"
-                android:text="IssueDate"/>
+                android:text="Issue Date"/>
             <TextView
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"

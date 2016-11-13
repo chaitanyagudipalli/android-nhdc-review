@@ -5,10 +5,15 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
+import android.text.Html;
+import android.text.Spannable;
+import android.text.SpannableStringBuilder;
+import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -65,7 +70,7 @@ public class IndentCreationActivity extends DashboardAppCompatActivity implement
     IndentsDataSource datasource;
     SharedPreferences.Editor prefEditor;
 
-    TextView indentTotal;
+    TextView indentTotal,selectSupplier;
     Object weaverDet;
     SharedPreferences prefs;
     @Override
@@ -87,7 +92,14 @@ public class IndentCreationActivity extends DashboardAppCompatActivity implement
         prefEditor.apply();
 
         branches = (Spinner)findViewById(R.id.branchid);
-
+        selectSupplier = (TextView)findViewById(R.id.selectSupplier);
+        SpannableStringBuilder builder = new SpannableStringBuilder();
+        builder.append("Select Supplier");
+        int start = builder.length();
+        builder.append(" *");
+        int end = builder.length();
+        builder.setSpan(new ForegroundColorSpan(Color.RED), start, end,Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        selectSupplier.setText(builder);
 
         indentTotal = (TextView) findViewById(R.id.indentTotal);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -119,10 +131,18 @@ public class IndentCreationActivity extends DashboardAppCompatActivity implement
                 datasource.open();
                 indent_id = datasource.insertIndent(indent);
                 datasource.close();
-                showSnackBar("Indent created. Please add products.");
-                fab.show();
+                //showSnackBar("Indent created. Please add products.");
+
+                Intent intent = new Intent(IndentCreationActivity.this,IndentCreateProduct.class);
+                intent.putExtra("supplierPartyId",""+supplierPartyId);
+                intent.putExtra("schemeType",""+schemeType);
+                intent.putExtra("category_type",""+category_type);
+                intent.putExtra("indent_id",indent_id);
+
+                //fab.show();
                 editMode = true;
                 invalidateOptionsMenu();
+                startActivity(intent);
             }
         });
         list = new ArrayList<>();
@@ -213,6 +233,8 @@ public class IndentCreationActivity extends DashboardAppCompatActivity implement
                 actv.setText(supplier.getName());
                 supplierPartyId =supplier.getId();
                 supplierName = supplier.getName();
+                submitindent.setEnabled(true);
+                submitindent.setClickable(true);
             }
 
         });

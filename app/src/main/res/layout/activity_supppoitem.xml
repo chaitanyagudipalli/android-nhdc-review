@@ -188,6 +188,7 @@
                     android:layout_weight="1"
                     android:layout_margin="2dp"
                     android:textStyle="bold"
+                    android:inputType="numberDecimal"
                     android:id="@+id/flightCharges" />
             </TableRow>
             <TableRow>
