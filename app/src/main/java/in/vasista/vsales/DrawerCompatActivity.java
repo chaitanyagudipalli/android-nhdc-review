@@ -82,11 +82,25 @@ public class DrawerCompatActivity extends AppCompatActivity implements Navigatio
         profileName.setText(prefs.getString(MainActivity.USER_FULLNAME, "User Name"));
 
         String contact = prefs.getString(MainActivity.USER_PASSBOOK, "");
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            contactNumber.setText(String.format(getResources().getString(R.string.text_contactnum), PhoneNumberUtils.formatNumber(contact,"IN")));
+        String home_profile_desc = "", home_profile_desc_value = "";
+        if(prefs.getBoolean(MainActivity.IS_SUP_PORTAL, false)){
+            home_profile_desc = "Phone number";
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                home_profile_desc_value = PhoneNumberUtils.formatNumber(contact,"IN");
+            }else{
+                home_profile_desc_value = PhoneNumberUtils.formatNumber(contact);
+            }
         }else{
-            contactNumber.setText(String.format(getResources().getString(R.string.text_contactnum), PhoneNumberUtils.formatNumber(contact)));
+            home_profile_desc = "Passbook number";
+            home_profile_desc_value = contact;
         }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            contactNumber.setText(String.format(getResources().getString(R.string.text_contactnum), home_profile_desc,home_profile_desc_value));
+        }else{
+            contactNumber.setText(String.format(getResources().getString(R.string.text_contactnum), home_profile_desc,home_profile_desc_value));
+        }
+        ((TextView)navigationView.getHeaderView(0).findViewById(R.id.partyId))
+                .setText(String.format(getResources().getString(R.string.text_partyId), prefs.getString("storeId","")));
 
         String locationPerm = prefs.getString(MainActivity.LOCATION_DB_PERM, "N");
         if (locationPerm.equals("Y")) {

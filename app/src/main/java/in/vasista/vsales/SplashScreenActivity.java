@@ -115,6 +115,8 @@ public class SplashScreenActivity extends Activity
 								prefEditor.putString(MainActivity.SUP_DB_PERM, suppPerm);
 
 							}
+
+							prefEditor.putString("storeId",(String) permissions.get("userLoginParty"));
 						}
 
 						String name = (String)((Map)result).get("name");
@@ -146,6 +148,9 @@ public class SplashScreenActivity extends Activity
 					paramMap = new HashMap();
 					String partyId = prefs.getString("storeId", "");
 					paramMap.put("partyId", partyId);
+
+					//kk10635
+					//		nhdc123
 					paramMap.put("effectiveDate", (new Date()).getTime());
 
 					adapter = new XMLRPCApacheAdapter(getBaseContext());
@@ -222,6 +227,12 @@ public class SplashScreenActivity extends Activity
 			String userName = prefs.getString("userName", "");
 			String password = prefs.getString("password", "");
 			String tenantId = prefs.getString("tenantId", "nhdc-test");
+			SharedPreferences.Editor prefEditor = prefs.edit();
+			prefEditor.putString("serverURL",serverURL);
+			prefEditor.putString("tenantId",tenantId);
+			prefEditor.apply();
+
+
 
 			/*if (serverURL.isEmpty() || userName.isEmpty() || password.isEmpty() || tenantId.isEmpty()){
 				//show settings
@@ -233,7 +244,7 @@ public class SplashScreenActivity extends Activity
 				startActivity(i);
 				if (serverURL.isEmpty() || userName.isEmpty() || password.isEmpty() || tenantId.isEmpty()){
 					//show settings
-					SharedPreferences.Editor prefEditor = prefs.edit();
+					prefEditor = prefs.edit();
 					prefEditor.putString("serverURL", serverURL).apply();
 					startActivityForResult( new Intent(getApplicationContext(), FragmentPreferences.class), SHOW_PREFERENCES);
 				}

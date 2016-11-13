@@ -18,7 +18,9 @@ package in.vasista.vsales;
 
 import android.app.FragmentManager;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ProgressBar;
@@ -61,6 +63,10 @@ protected void onCreate(Bundle savedInstanceState)
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.paymentrefresh, menu);
         onOptionsItemSelected(menu.findItem(R.id.action_refresh));
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+        if(prefs.getBoolean(MainActivity.IS_SUP_PORTAL,false)){
+            menu.removeItem(R.id.action_payment);
+        }
         return super.onCreateOptionsMenu(menu);
     }
     public boolean onOptionsItemSelected(MenuItem item){

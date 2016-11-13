@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen	xmlns:android="http://schemas.android.com/apk/res/android">
-    <PreferenceCategory	
+   <!-- <PreferenceCategory
 		android:title="Server Sync Settings"> 
 		<EditTextPreference
         	android:title="Server URL"
+			android:visibility="gone"
             android:summary="Sync Cloud Server"
-            android:key="serverURL"/>
+            android:key="serverURL"/> -->
 <!-- 		<CheckBoxPreference
 		    android:key="PREF_AUTO_UPDATE"
 			android:title="Auto sync"
@@ -20,8 +21,8 @@
 		    android:entryValues="@array/update_freq_values" 
 		    android:dialogTitle="Sync frequency" 
 		    android:defaultValue="60" 
-		/> -->
-	</PreferenceCategory>
+		/>
+	</PreferenceCategory>-->
     <PreferenceCategory	
 		android:title="User Credentials"> 
 		<EditTextPreference
@@ -33,40 +34,32 @@
             android:summary="Password"
             android:key="password"
             android:inputType="textPassword"/>
-		<EditTextPreference
-        	android:title="Tenant Id"
-            android:summary="Tenant Id"
-            android:key="tenantId"/>	
-		<EditTextPreference
-        	android:title="Party Id"
-            android:summary="Party Id"
-            android:key="storeId"/>  
-		<EditTextPreference
-        	android:title="Party Name"
-            android:summary="Party Name"
-            android:key="storeName"/>
-		<CheckBoxPreference
-			android:title="Live"
-			android:summary="PayUMoney Live Enable"
-			android:key="payuLive"
-			/>
-	</PreferenceCategory>
-<!--     <PreferenceCategory	
-		android:title="Location Settings"> 
-		<CheckBoxPreference
-		    android:key="PREF_LOCATION_AUTO_SAVE"
-			android:title="Auto Save Locations"
-			android:summary="Select to turn off automatic saving of locations" 
-			android:defaultValue="false"
-		/> 
-		<ListPreference
-		    android:key="PREF_LOCATION_SAVE_FREQ" 
-		    android:title="Save frequency" 
-		    android:summary="Frequency at which location details are saved" 
-		    android:entries="@array/location_save_freq_options"
-		    android:entryValues="@array/location_save_freq_values" 
-		    android:dialogTitle="Save frequency" 
-		    android:defaultValue="15" 
-		/>
-	</PreferenceCategory> -->		
+	<!-- 		<EditTextPreference
+                android:title="Tenant Id"
+                android:summary="Tenant Id"
+                android:key="tenantId"/> -->
+            <CheckBoxPreference
+                android:title="Live"
+                android:summary="PayUMoney Live Enable"
+                android:key="payuLive"
+                />
+        </PreferenceCategory>
+    <!--     <PreferenceCategory
+            android:title="Location Settings">
+            <CheckBoxPreference
+                android:key="PREF_LOCATION_AUTO_SAVE"
+                android:title="Auto Save Locations"
+                android:summary="Select to turn off automatic saving of locations"
+                android:defaultValue="false"
+            />
+            <ListPreference
+                android:key="PREF_LOCATION_SAVE_FREQ"
+                android:title="Save frequency"
+                android:summary="Frequency at which location details are saved"
+                android:entries="@array/location_save_freq_options"
+                android:entryValues="@array/location_save_freq_values"
+                android:dialogTitle="Save frequency"
+                android:defaultValue="15"
+            />
+        </PreferenceCategory> -->
 </PreferenceScreen>

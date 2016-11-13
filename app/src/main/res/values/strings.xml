@@ -205,7 +205,8 @@
     <string name="text_map_filter_clear">Clear filter</string>
 
     <string name="text_map_infowindow">%1$d. %2$s</string>
-    <string name="text_contactnum">Phone number :%1$s</string>
+    <string name="text_contactnum">%1$s :%2$s</string>
+    <string name="text_partyId">Party Id :%1$s</string>
     <string name="indent_edit_alert_message">Milk in crates and Product in Pkts</string>
 
 

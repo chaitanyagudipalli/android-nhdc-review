@@ -8,5 +8,7 @@
         android:title="@string/title_refresh"/>
     <item
         android:id="@+id/action_payment"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_credit_card"
         android:title="Make Payment"/>
 </menu>

@@ -125,6 +125,41 @@ public class ServerSync {
 
 	}
 
+	public void getWeaverShipments(ProgressBar progressBar){
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+		String storeId = prefs.getString("storeId", "");
+
+		Map paramMap = new HashMap();
+		paramMap.put("partyId", storeId);
+
+		try {
+			XMLRPCApacheAdapter adapter = new XMLRPCApacheAdapter(context);
+			adapter.call("getWeaverShipments", paramMap, progressBar, new XMLRPCMethodCallback() {
+				public void callFinished(Object result, ProgressBar progressBar) {
+					if (result != null) {
+
+					}
+					if (progressBar != null) {
+						progressBar.setVisibility(View.INVISIBLE);
+					}
+
+					Toast.makeText( context, "Indent upload succeeded!", Toast.LENGTH_LONG ).show();
+
+				}
+			});
+		}
+		catch (Exception e) {
+			Log.e(module, "Exception: ", e);
+			if (progressBar != null) {
+				progressBar.setVisibility(View.INVISIBLE);
+			}
+
+			Toast.makeText( context, "Upload failed: " + e, Toast.LENGTH_LONG ).show();
+		}
+
+	}
+
+
 	public  void uploadNHDCIndent(final MenuItem menuItem, ProgressBar progressBar, List<HashMap> list, String supplierPartyId, String transporterId,String schemeCategory, final long indent_id, String prodStoreId){
 				SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
 		String storeId = prefs.getString("storeId", "");
@@ -158,6 +193,7 @@ public class ServerSync {
 						menuItem.setActionView(null);
 					}
 					Toast.makeText( context, "Indent upload succeeded!", Toast.LENGTH_LONG ).show();
+
 				}
 			});
 		}
