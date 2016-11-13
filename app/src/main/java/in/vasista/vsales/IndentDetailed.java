@@ -35,7 +35,7 @@ public class IndentDetailed extends DashboardAppCompatActivity {
     TextView textView;
     Indent indent;
     List<HashMap> list;
-    int indentId;
+    static int indentId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

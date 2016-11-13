@@ -30,14 +30,18 @@ public class IndentShipmentActivity extends DashboardAppCompatActivity {
     SharedPreferences prefs;
     XMLRPCApacheAdapter adapter = null;
     Map paramMap;String orderId;
+    ProgressBar progressBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentChildView(R.layout.activity_indent_shipments);
 
         setPageTitle("Shipment History");
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
-        orderId = getIntent().getStringExtra("orderId");
+        orderId = "";
+        if(getIntent().getStringExtra("orderId") != null)
+            orderId = getIntent().getStringExtra("orderId");
         //orderId = "WS129270";
 
 
@@ -49,7 +53,8 @@ public class IndentShipmentActivity extends DashboardAppCompatActivity {
             e.printStackTrace();
         }
 
-        new LoadViewTask().execute();
+        if (!orderId.equalsIgnoreCase("") && orderId != null)
+            new LoadViewTask().execute();
 
 
 
@@ -65,7 +70,7 @@ public class IndentShipmentActivity extends DashboardAppCompatActivity {
         @Override
         protected void onPreExecute()
         {
-
+            progressBar.setVisibility(View.VISIBLE);
         }
 
         //The code to be executed in a background thread.
@@ -106,6 +111,7 @@ public class IndentShipmentActivity extends DashboardAppCompatActivity {
         protected void onPostExecute(Void result) {
             ListView lv = (ListView) findViewById(R.id.ship_history_list);
             lv.setAdapter(new IndentShipHistoryBaseAdapter(IndentShipmentActivity.this,supplierPOShips));
+            progressBar.setVisibility(View.GONE);
         }
 
     }
