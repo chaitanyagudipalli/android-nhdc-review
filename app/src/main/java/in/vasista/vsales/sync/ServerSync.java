@@ -95,6 +95,7 @@ public class ServerSync {
 		paramMap.put("transactionId", list.get("txnid"));
 		paramMap.put("amount", list.get("amount"));
 		paramMap.put("paymentDate", list.get("addedon"));
+		paramMap.put("orderId", list.get("orderId"));
 
 		try {
 			XMLRPCApacheAdapter adapter = new XMLRPCApacheAdapter(context);
@@ -182,6 +183,17 @@ public class ServerSync {
 						IndentsDataSource datasource = new IndentsDataSource(context);
 						datasource.open();
 						datasource.updateIndentStatus(indent_id,"Created");
+						if (result != null) {
+							Map indentResults = (Map)((Map)result).get("indentResults");
+
+							Intent i = new Intent(context,PayumoneyActivity.class);
+							//i.putExtra("numIndentItems",(int)indentResults.get("numIndentItems"));
+							i.putExtra("orderId",(String)indentResults.get("orderId"));
+							i.putExtra("amount",((BigDecimal) indentResults.get("amount")).floatValue());
+							Log.v("amnt",""+((BigDecimal) indentResults.get("amount")).floatValue());
+							context.startActivity(i);
+
+						}
 					}
 					if (progressBar != null) {
 						progressBar.setVisibility(View.INVISIBLE);

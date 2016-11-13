@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -100,23 +101,36 @@ public class PayumoneyActivity extends DashboardAppCompatActivity implements Vie
     private PaymentParams mPaymentParams;
     private PayuConfig payuConfig;
     private String cardBin;
+    private float amount;
     private int storeOneClickHash;
 
     EditText leftChild;
     EditText rightChild;
+    String orderId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentChildView(R.layout.avtivity_payumoney);
         actionBarHomeEnabled();
+
+        Intent intent = getIntent();
+        amount = 10.0f;
+
+        Log.v("amount",""+intent.getFloatExtra("amount",10.0f));
+        if(""+intent.getFloatExtra("amount",10.0f) != null) {
+            amount = intent.getFloatExtra("amount",10.0f);
+            orderId = intent.getStringExtra("orderId");
+        }
+
+
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         env = prefs.getBoolean("payuLive",false)?PayuConstants.PRODUCTION_ENV:PayuConstants.STAGING_ENV;
 
         merchantKey = env == PayuConstants.PRODUCTION_ENV ? merchantProductionKeys[merchantIndex]:merchantTestKeys[merchantIndex];
         //    String merchantSalt = env == PayuConstants.PRODUCTION_ENV ? merchantProductionSalts[merchantIndex] : merchantTestSalts[merchantIndex];
         String mandatoryKeys[] = { PayuConstants.KEY, PayuConstants.AMOUNT, PayuConstants.PRODUCT_INFO, PayuConstants.FIRST_NAME, PayuConstants.EMAIL, PayuConstants.TXNID, PayuConstants.SURL, PayuConstants.FURL, PayuConstants.USER_CREDENTIALS, PayuConstants.UDF1, PayuConstants.UDF2, PayuConstants.UDF3, PayuConstants.UDF4, PayuConstants.UDF5, PayuConstants.ENV, PayuConstants.STORE_ONE_CLICK_HASH, PayuConstants.SMS_PERMISSION};
-        String mandatoryValues[] = { merchantKey, "10.0", "myproduct", "firstname", "me@itsme.com", ""+System.currentTimeMillis(), "https://payu.herokuapp.com/success", "https://payu.herokuapp.com/failure", "default", "udf1", "udf2", "udf3", "udf4", "udf5", ""+env, ""+PayuConstants.STORE_ONE_CLICK_HASH_SERVER, smsPermission.toString() };
+        String mandatoryValues[] = { merchantKey, ""+amount, "myproduct", "firstname", "me@itsme.com", ""+System.currentTimeMillis(), "https://payu.herokuapp.com/success", "https://payu.herokuapp.com/failure", "default", "udf1", "udf2", "udf3", "udf4", "udf5", ""+env, ""+PayuConstants.STORE_ONE_CLICK_HASH_SERVER, smsPermission.toString() };
 
 
         OnetapCallback.setOneTapCallback(this);
@@ -243,6 +257,7 @@ public class PayumoneyActivity extends DashboardAppCompatActivity implements Vie
                         transaction.put("txnid", (String) transjson.get("txnid"));
                         transaction.put("amount",(String) transjson.get("amount"));
                         transaction.put("addedon",(String) transjson.get("addedon"));
+                        transaction.put("orderId",orderId);
                         ServerSync serverSync = new ServerSync(this);
                         serverSync.uploadPayment(null,transaction,this);
                     }else{
@@ -306,7 +321,8 @@ public class PayumoneyActivity extends DashboardAppCompatActivity implements Vie
                     key = inputData;
                     break;
                 case PayuConstants.AMOUNT:
-                    mPaymentParams.setAmount(inputData);
+                    //mPaymentParams.setAmount(inputData);
+                    mPaymentParams.setAmount(""+amount);
                     break;
                 case PayuConstants.PRODUCT_INFO:
                     mPaymentParams.setProductInfo(inputData);
