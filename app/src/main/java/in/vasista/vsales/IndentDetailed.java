@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -75,6 +76,7 @@ try {
             this.getResources().getString(R.string.Rs) + " " + new BigDecimal(indent.getTotDiscountAmt()).setScale(2, RoundingMode.HALF_UP).doubleValue(),
     indent.gettId(),indent.getSchemeType()};
 
+
     if (!indent.isgeneratedPO()){
         findViewById(R.id.po_seq_row).setVisibility(View.GONE);
     }
@@ -93,6 +95,16 @@ try {
 }catch (NullPointerException e){
 
 }
+
+        ((Button)findViewById(R.id.gotoShipments)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.v("orderid",""+indent.getOrderId());
+                Intent intent = new Intent(getBaseContext(),IndentShipmentActivity.class);
+                intent.putExtra("orderId",indent.getOrderId());
+                startActivity(intent);
+            }
+        });
 
     }
 

@@ -332,6 +332,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="in.vasista.vsales.IndentActivity" />
         </activity>
+        <activity
+            android:name="in.vasista.vsales.IndentShipmentActivity"
+            android:label="Indent Shipment"
+            android:parentActivityName="in.vasista.vsales.IndentDetailed"
+            tools:ignore="UnusedAttribute">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="in.vasista.vsales.IndentDetailed" />
+        </activity>
 
         <service
             android:name="in.vasista.location.LocationService"
