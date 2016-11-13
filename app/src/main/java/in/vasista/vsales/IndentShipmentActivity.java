@@ -38,7 +38,7 @@ public class IndentShipmentActivity extends DashboardAppCompatActivity {
         setPageTitle("Shipment History");
 
         orderId = getIntent().getStringExtra("orderId");
-        orderId = "WS129270";
+        //orderId = "WS129270";
 
 
         paramMap = new HashMap();
