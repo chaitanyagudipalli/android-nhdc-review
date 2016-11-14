@@ -139,7 +139,7 @@ public class IndentCreationActivity extends DashboardAppCompatActivity implement
                 intent.putExtra("category_type",""+category_type);
                 intent.putExtra("indent_id",indent_id);
 
-                //fab.show();
+                fab.show();
                 editMode = true;
                 invalidateOptionsMenu();
                 startActivity(intent);
