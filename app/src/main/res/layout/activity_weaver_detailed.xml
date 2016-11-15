@@ -291,6 +291,7 @@
                 style="@style/TabeRowValue"
                 android:layout_margin="2dp"
                 android:textStyle="bold"
+                android:textColor="@color/Blue"
                 android:id="@+id/c40ae"/>
             <TextView
                 android:layout_height="wrap_content"
@@ -307,6 +308,7 @@
                 android:layout_margin="2dp"
                 android:gravity="right"
                 android:textStyle="bold"
+                android:textColor="@color/DarkGreen"
                 android:id="@+id/c40ab"/>
 
         </TableRow>
@@ -334,6 +336,7 @@
                 style="@style/TabeRowValue"
                 android:layout_margin="2dp"
                 android:textStyle="bold"
+                android:textColor="@color/Blue"
                 android:id="@+id/c40ue"/>
             <TextView
                 android:layout_height="wrap_content"
@@ -350,6 +353,7 @@
                 android:layout_margin="2dp"
                 android:gravity="right"
                 android:textStyle="bold"
+                android:textColor="@color/DarkGreen"
                 android:id="@+id/c40ub"/>
 
         </TableRow>
@@ -377,6 +381,7 @@
                 style="@style/TabeRowValue"
                 android:layout_margin="2dp"
                 android:textStyle="bold"
+                android:textColor="@color/Blue"
                 android:id="@+id/silke"/>
             <TextView
                 android:layout_height="wrap_content"
@@ -393,6 +398,7 @@
                 android:layout_margin="2dp"
                 android:gravity="right"
                 android:textStyle="bold"
+                android:textColor="@color/DarkGreen"
                 android:id="@+id/silkb"/>
 
         </TableRow>
@@ -420,6 +426,7 @@
                 style="@style/TabeRowValue"
                 android:layout_margin="2dp"
                 android:textStyle="bold"
+                android:textColor="@color/Blue"
                 android:id="@+id/w10ae"/>
             <TextView
                 android:layout_height="wrap_content"
@@ -436,6 +443,7 @@
                 android:layout_margin="2dp"
                 android:gravity="right"
                 android:textStyle="bold"
+                android:textColor="@color/DarkGreen"
                 android:id="@+id/w10ab"/>
 
         </TableRow>
@@ -463,6 +471,7 @@
                 style="@style/TabeRowValue"
                 android:layout_margin="2dp"
                 android:textStyle="bold"
+                android:textColor="@color/Blue"
                 android:id="@+id/w40ae"/>
             <TextView
                 android:layout_height="wrap_content"
@@ -479,6 +488,7 @@
                 android:layout_margin="2dp"
                 android:gravity="right"
                 android:textStyle="bold"
+                android:textColor="@color/DarkGreen"
                 android:id="@+id/w40ab"/>
 
         </TableRow>
@@ -506,6 +516,7 @@
                 style="@style/TabeRowValue"
                 android:layout_margin="2dp"
                 android:textStyle="bold"
+                android:textColor="@color/Blue"
                 android:id="@+id/w10be"/>
             <TextView
                 android:layout_height="wrap_content"
@@ -522,6 +533,7 @@
                 android:layout_margin="2dp"
                 android:textStyle="bold"
                 android:gravity="right"
+                android:textColor="@color/DarkGreen"
                 android:id="@+id/w10bb"/>
 
         </TableRow>

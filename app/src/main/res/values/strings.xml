@@ -215,7 +215,7 @@
     <string name="title_analytica_sales">Sales Analytics</string>
 
     <string name="present_password">Current Password</string>
-    <string name="new_password">New Password</string>
+    <string name="new_password">New Password(Min.6 Characters)</string>
     <string name="verify_new_password">Verify New Password</string>
 
     <string name="column_analytic_sales_qty_header">Qty(Pkts)</string>

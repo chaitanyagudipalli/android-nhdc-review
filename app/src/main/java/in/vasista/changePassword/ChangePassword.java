@@ -122,7 +122,7 @@ public class ChangePassword extends DialogFragment implements View.OnClickListen
                     setErrorMsg("This field is required", presentPass);
                 }
                 else if (newPass.getText().toString().length()<6){
-                    setErrorMsg("Password must be atlease 6 characters", newPass);
+                    setErrorMsg("Password must be at least 6 characters", newPass);
                 } else if (newPass.getText().toString().isEmpty()){
                     setErrorMsg("This field is required", newPass);
 
