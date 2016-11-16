@@ -32,4 +32,14 @@
     <item>AM</item>
     <item>PM</item>
   </string-array>
+  <string-array name="lang_list_preference">
+    <item>English</item>
+    <item>हिंदी</item>
+  </string-array>
+
+  <string-array name="langvalues_list_preference">
+    <item>en</item>
+    <item>hi</item>
+  </string-array>
+
 </resources>

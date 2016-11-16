@@ -56,7 +56,7 @@ public class FragmentPreferences extends PreferenceActivity implements SharedPre
   public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
     //Toast.makeText(getApplicationContext(), "Pref changed " + key, Toast.LENGTH_LONG).show();
 
-    if (key.equalsIgnoreCase("password")||key.equalsIgnoreCase("serverURL")||key.equalsIgnoreCase("userName")||key.equalsIgnoreCase("tenantId")){
+    if (key.equalsIgnoreCase("password")||key.equalsIgnoreCase("serverURL")||key.equalsIgnoreCase("userName")||key.equalsIgnoreCase("tenantId") ||key.equalsIgnoreCase("lang_preference")){
       ((GlobalApplication)getApplication()).setPrefChange(true);
     }
 

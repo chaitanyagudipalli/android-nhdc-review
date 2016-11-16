@@ -16,45 +16,45 @@
     <string name="app_name">NHDC</string>
     <string name="description_logo">NHDC</string>
 
-    <string name="description_about">About</string>
-    <string name="description_home">Home</string>
-    <string name="description_search">Search</string>
-    <string name="description_feature1">Indent</string>
-    <string name="description_feature2">Orders</string>
-    <string name="description_feature3">Payments</string>
-    <string name="description_feature4">Catalog</string>
-    <string name="description_feature5">Outlets</string>
-    <string name="description_feature6">Feature 6</string>
+    <string name="description_about">केबारेमें</string>
+    <string name="description_home">होम</string>
+    <string name="description_search">खोजे</string>
+    <string name="description_feature1">मांगपत्र</string>
+    <string name="description_feature2">आदेश</string>
+    <string name="description_feature3">भुगतान</string>
+    <string name="description_feature4">सूची</string>
+    <string name="description_feature5">आउटलेट</string>
+    <string name="description_feature6">फ़ीचर 6</string>
 
-    <string name="title_about">About NHDC</string>
-    <string name="title_home">Home</string>
-    <string name="title_search">Search</string>
-    <string name="title_feature1">Indent</string>
-    <string name="title_feature2">Orders</string>
+    <string name="title_about">एनएचडीसीकेबारेमें</string>
+    <string name="title_home">होम</string>
+    <string name="title_search">खोजे</string>
+    <string name="title_feature1">मांगपत्र</string>
+    <string name="title_feature2">आदेश</string>
 
-    <string name="title_feature6">Transporters</string>
-    <string name="title_sales">Sales</string>
-    <string name="title_hr">HR</string>
-    <string name="title_leave">Leaves</string>
-    <string name="title_payslip">Payslips</string>
-    <string name="title_emplsearch">Search</string>
-    <string name="title_attendance">Attendance</string>
-    <string name="title_feature1_list">Indent Details</string>
-    <string name="title_feature2_list">Order Details</string>
-    <string name="title_employeeattendance">My Attendance</string>
-    <string name="title_employeeleave">My Leaves</string>
-    <string name="title_employeeplayslip">My Payslips</string>
-    <string name="title_employees">Employees</string>
+    <string name="title_feature6">ट्रांसपोर्टर</string>
+    <string name="title_sales">बिक्री</string>
+    <string name="title_hr">मानवसंसाधन</string>
+    <string name="title_leave">अवकाश</string>
+    <string name="title_payslip">वेतनपर्ची</string>
+    <string name="title_emplsearch">खोजे</string>
+    <string name="title_attendance">उपस्थिति</string>
+    <string name="title_feature1_list">मांगपत्रविवरण</string>
+    <string name="title_feature2_list">आदेशविवरण</string>
+    <string name="title_employeeattendance">मेरीउपस्थिति</string>
+    <string name="title_employeeleave">मेरेअवकाश</string>
+    <string name="title_employeeplayslip">मेरेवेतनपर्ची</string>
+    <string name="title_employees">कर्मचारियों</string>
 
     <string name="account_summary"><u>Account Summary for </u></string>
 
     <string name="default_intro">This is the default content view for an activity. Be sure to change your activity\'s onCreate method. Use setContentView on a custom layout.</string>
-    <string name="feature1_intro">Coming soon!</string>
-    <string name="feature2_intro">Coming soon!</string>
-    <string name="feature3_intro">Coming soon!</string>
-    <string name="feature4_intro">Coming soon!</string>
-    <string name="feature5_intro">Feature 5 content goes here.</string>
-    <string name="feature6_intro">Feature 6 content goes here.</string>
+    <string name="feature1_intro">जल्दआरहाहै</string>
+    <string name="feature2_intro">जल्दआरहाहै</string>
+    <string name="feature3_intro">जल्दआरहाहै</string>
+    <string name="feature4_intro">जल्दआरहाहै</string>
+    <string name="feature5_intro">फीचर 5 विवरणयहाँउपलब्धहै</string>
+    <string name="feature6_intro">फीचर 6 विवरणयहाँउपलब्धहै</string>
 
     <string name="about_intro1">Milkosoft is the first cloud-based Dairy ERP built exclusively for the Indian Dairy
         Industry developed by Vasista Enterprise Solutions Pvt Ltd. All operations from procurement, production, sales,
@@ -67,62 +67,62 @@
         for users to track the latest stock position for all materials available in stores</string>
 
 
-    <string name="search_intro">Content for the Search page goes here.</string>
+    <string name="search_intro">विवरणकेलिएयहाँखोजे</string>
 
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">सेटिंग्स</string>
 
-    <string name="menu_preferences">Settings</string>
+    <string name="menu_preferences">सेटिंग्स</string>
 
-    <string name="column_product_id_header">Product Code</string>
-    <string name="column_product_name_header">Name</string>
-    <string name="column_product_description_header">Description</string>
-    <string name="column_product_category_header">Category</string>
+    <string name="column_product_id_header">उत्पादकोड</string>
+    <string name="column_product_name_header">नाम</string>
+    <string name="column_product_description_header">विवरण</string>
+    <string name="column_product_category_header">वर्ग</string>
 
 
-    <string name="column_order_id_header">Order Id</string>
-    <string name="column_order_date_header">Order Date</string>
-    <string name="column_order_supply_header">Supply</string>
-    <string name="column_order_total_header">Amount (Rs)</string>
+    <string name="column_order_id_header">आदेशआईडी</string>
+    <string name="column_order_date_header">आर्डरकीतारीख</string>
+    <string name="column_order_supply_header">आपूर्ति</string>
+    <string name="column_order_total_header">राशि (रुपया)</string>
 
-    <string name="column_orderitem_qty_header">Quantity</string>
-    <string name="column_orderitem_amount_header">Unit Price (Rs)</string>
+    <string name="column_orderitem_qty_header">मात्रा</string>
+    <string name="column_orderitem_amount_header">इकाईमूल्य (रुपए)</string>
 
-    <string name="add_product_hint">Select Product</string>
-    <string name="add_product_qty_hint">Qty (pkts)</string>
+    <string name="add_product_hint">उत्पादकाचयन</string>
+    <string name="add_product_qty_hint">मात्रा</string>
 
-    <string name="column_indent_id_header">Ref.No</string>
-    <string name="column_indent_date_header">Date</string>
-    <string name="column_indent_status_header">Status</string>
-    <string name="column_indent_supply_header">Tally Ref No</string>
-    <string name="column_indent_total_header">Amount (Rs)</string>
+    <string name="column_indent_id_header">संदर्भसंख्या</string>
+    <string name="column_indent_date_header">तारीख</string>
+    <string name="column_indent_status_header">स्थिति</string>
+    <string name="column_indent_supply_header">टैलीरेफरीसंख्या</string>
+    <string name="column_indent_total_header">राशि (रुपया)</string>
 
-    <string name="column_payment_id_header">Id</string>
-    <string name="column_payment_date_header">Payment Date</string>
-    <string name="column_payment_method_header">Method</string>
-    <string name="column_payment_amount_header">Amount (Rs)</string>
+    <string name="column_payment_id_header">पहचान</string>
+    <string name="column_payment_date_header">भुगतानतिथि</string>
+    <string name="column_payment_method_header">विधि</string>
+    <string name="column_payment_amount_header">राशि (रुपया)</string>
 
-    <string name="column_facility_id_header">Code</string>
-    <string name="column_facility_name_header">Name</string>
-    <string name="column_facility_category_header">Category</string>
-    <string name="column_facility_route_header">Route</string>
-    <string name="column_facility_phone_header">Phone</string>
+    <string name="column_facility_id_header">कोड</string>
+    <string name="column_facility_name_header">नाम</string>
+    <string name="column_facility_category_header">वर्ग</string>
+    <string name="column_facility_route_header">मार्ग</string>
+    <string name="column_facility_phone_header">फ़ोन</string>
 
-    <string name="column_employee_id_header">Code</string>
-    <string name="column_employee_name_header">Name</string>
-    <string name="column_employee_dept_header">Department</string>
-    <string name="column_employee_position_header">Position</string>
+    <string name="column_employee_id_header">कोड</string>
+    <string name="column_employee_name_header">नाम</string>
+    <string name="column_employee_dept_header">विभाग</string>
+    <string name="column_employee_position_header">पद</string>
 
-    <string name="column_payhead_name_header">Payhead</string>
-    <string name="column_payhead_amount_header">Amount</string>
+    <string name="column_payhead_name_header">वेतनमद</string>
+    <string name="column_payhead_amount_header">रकम</string>
 
-    <string name="column_leave_type_header">Leave Type</string>
-    <string name="column_leave_status_header">Status</string>
-    <string name="column_leave_fromdate_header">From</string>
-    <string name="column_leave_thrudate_header">To</string>
+    <string name="column_leave_type_header">अवकाशप्रकार</string>
+    <string name="column_leave_status_header">स्थिति</string>
+    <string name="column_leave_fromdate_header">से</string>
+    <string name="column_leave_thrudate_header">सेवामे</string>
 
-    <string name="column_attendance_intime_header">In Time</string>
-    <string name="column_attendance_outtime_header">Out Time</string>
-    <string name="column_attendance_duration_header">Duration (hrs)</string>
+    <string name="column_attendance_intime_header">समयकेभीतर</string>
+    <string name="column_attendance_outtime_header">बाहरजानेकासमय</string>
+    <string name="column_attendance_duration_header">अवधि (घंटे)</string>
 
 
     <style name="ButtonText">
@@ -159,20 +159,20 @@
         <item>B80902</item>
     </string-array>
     <string name="title_activity_main_app_compact">MainAppCompactActivity</string>
-    <string name="title_refresh">Refresh</string>
-    <string name="title_edit">Edit</string>
-    <string name="title_done">Done</string>
-    <string name="title_upload">Upload</string>
+    <string name="title_refresh">रेफेरष</string>
+    <string name="title_edit">संपादितकरें</string>
+    <string name="title_done">पूर्ण</string>
+    <string name="title_upload">अपलोड</string>
 
     <string name="dialog_indent_milk_message">Quantity in Pkts (Please enter in multiple of %1$s)</string>
-    <string name="title_inventory">Inventory</string>
+    <string name="title_inventory">वस्तुसूची</string>
 
     <!--Location-->
-    <string name="action_location">Location</string>
-    <string name="error_field_required">This field is required</string>
-    <string name="record_note">Record Note</string>
-    <string name="note_description">Note description</string>
-    <string name="note_title">Note title</string>
+    <string name="action_location">स्थान</string>
+    <string name="error_field_required">यहफ़ील्डआवश्यकहै</string>
+    <string name="record_note">रिकार्डनोट</string>
+    <string name="note_description">नोटविवरण</string>
+    <string name="note_title">नोटशीर्षक</string>
     <string name="title_menu_synclocaltion">Sync locations</string>
     <string name="exception_location">Please enable your location.</string>
     <string name="saved_location">Note recorded. Please sync location with server.</string>
@@ -191,15 +191,15 @@
     <string name="date_format">dd-MMM-yyyy  hh:mm a</string>
     <string name="server_date_format">yyyy-MM-dd HH:mm:ss</string>
     <string name="sync_map_locations">Locations updated</string>
-    <string name="action_filter">Filter</string>
+    <string name="action_filter">फ़िल्टर</string>
 
     <string name="save_map_sync"><![CDATA[Save & Sync]]></string>
     <string name="text_map_switch">Map</string>
-    <string name="text_map_filter_clear">Clear filter</string>
+    <string name="text_map_filter_clear">क्लियरफ़िल्टर</string>
 
     <string name="text_map_infowindow">%1$d. %2$s</string>
     <string name="text_contactnum">%1$s :%2$s</string>
-    <string name="text_partyId">Party Id :%1$s</string>
+    <string name="text_partyId">पार्टीक्रमांक :%1$s</string>
     <string name="indent_edit_alert_message">Milk in crates and Product in Pkts</string>
 
 
@@ -207,30 +207,31 @@
     <string name="arrows">&lt;-&gt;</string>
     <string name="title_analytica_sales">Sales Analytics</string>
 
-    <string name="present_password">Current Password</string>
-    <string name="new_password">New Password</string>
-    <string name="verify_new_password">Verify New Password</string>
+    <string name="present_password">वर्तमानपासवर्ड</string>
+    <string name="new_password">नयापासवर्ड</string>
+    <string name="verify_new_password">नयापासवर्डप्रमाणितकरे</string>
 
-    <string name="column_analytic_sales_qty_header">Qty(Pkts)</string>
-    <string name="supplier_roletypeid">Role type</string>
-    <string name="tally_ref_no">Tally Ref No.</string>
-    <string name="order_date">Indent Date</string>
-    <string name="order_id">Indent Id</string>
-    <string name="order_number">Indent Number</string>
-    <string name="generated_po">Generated PO</string>
-    <string name="po_order">PO Order</string>
-    <string name="po_sequence_no">PO Sequence No.</string>
-    <string name="supplier_party_id">Supplier Party ID</string>
-    <string name="store_name">Store Name</string>
-    <string name="supplier_name">Supplier Name</string>
-    <string name="status_id">Status</string>
-    <string name="order_total">Indent Total</string>
-    <string name="paid_ammount">Paid Amount</string>
-    <string name="balance_ammount">Balance Amount</string>
-    <string name="indent_details">Indent Details</string>
-    <string name="scheme_type">Scheme</string>
+    <string name="column_analytic_sales_qty_header">मात्रा</string>
+    <string name="supplier_roletypeid">भूमिकाप्रकार</string>
+    <string name="tally_ref_no">टैलीरेफरीनहीं</string>
+    <string name="order_date">मांगपत्रदिनांक</string>
+    <string name="order_id">मांगपत्रपहचान</string>
+    <string name="order_number">मांगपत्रसंख्या</string>
+    <string name="generated_po">जारीक्रयादेश</string>
+    <string name="po_order">क्रयादेश</string>
+    <string name="po_sequence_no">क्रयादेशसंख्या</string>
+    <string name="supplier_party_id">आपूर्तिकरथपहचानसंख्या</string>
+    <string name="store_name">स्टोरनाम</string>
+    <string name="supplier_name">आपूर्तिकर्ताकानाम</string>
+    <string name="status_id">स्थिति</string>
+    <string name="order_total">कुलआदेश</string>
+    <string name="paid_ammount">भुगतानराशि</string>
+    <string name="balance_ammount">शेषराशि</string>
+    <string name="indent_details">मांगपत्रविवरण</string>
+    <string name="scheme_type">योजना</string>
 
-    <string name="supp_po_title">Purchase orders</string>
-    <string name="supplier_delivery">Supplier Delivery</string>
-
+    <string name="supp_po_title">क्रयआदेश</string>
+    <string name="supplier_delivery">अप्पूर्तिविवरण</string>
+    <string name="language">भाषा</string>
+    <string name="selectLanguage">भाषा चुनिए</string>
 </resources>

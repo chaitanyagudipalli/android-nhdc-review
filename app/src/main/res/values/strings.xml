@@ -242,4 +242,6 @@
 
     <string name="supp_po_title">Purchase orders</string>
     <string name="supplier_delivery">Supplier Delivery</string>
+    <string name="language">Language</string>
+    <string name="selectLanguage">Select Language</string>
 </resources>

@@ -3,9 +3,12 @@ package in.vasista.vsales;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -13,6 +16,7 @@ import android.widget.Toast;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 import in.vasista.nhdcapp.R;
@@ -227,12 +231,21 @@ public class SplashScreenActivity extends Activity
 			String userName = prefs.getString("userName", "");
 			String password = prefs.getString("password", "");
 			String tenantId = prefs.getString("tenantId", "nhdc-test");
+			String language = prefs.getString("lang_preference", "en");
 			SharedPreferences.Editor prefEditor = prefs.edit();
 			prefEditor.putString("serverURL",serverURL);
 			prefEditor.putString("tenantId",tenantId);
+			prefEditor.putString("lang_preference",language);
 			prefEditor.apply();
 
 
+			Locale myLocale = new Locale(language);
+			Locale.setDefault(myLocale);
+			Resources res = getResources();
+			DisplayMetrics dm = res.getDisplayMetrics();
+			Configuration conf = res.getConfiguration();
+			conf.locale = myLocale;
+			res.updateConfiguration(conf, dm);
 
 			/*if (serverURL.isEmpty() || userName.isEmpty() || password.isEmpty() || tenantId.isEmpty()){
 				//show settings

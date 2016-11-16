@@ -43,6 +43,12 @@
                 android:summary="PayUMoney Live Enable"
                 android:key="payuLive"
                 />
+		<ListPreference
+			android:key="lang_preference"
+			android:title="@string/language"
+			android:entries="@array/lang_list_preference"
+			android:entryValues="@array/langvalues_list_preference"
+			android:dialogTitle="@string/selectLanguage" />
         </PreferenceCategory>
     <!--     <PreferenceCategory
             android:title="Location Settings">
