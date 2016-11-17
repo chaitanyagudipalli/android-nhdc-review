@@ -1019,7 +1019,7 @@ public class ServerSync {
 				}
 				menuItem.setActionView(null);
 			}
-			Toast.makeText( context, "Update outlets failed: " + e, Toast.LENGTH_SHORT ).show();
+			Toast.makeText( context, "Update suppliers failed: " + e, Toast.LENGTH_SHORT ).show();
 		}
 		if (listFragment != null) {
 			//Log.d(module, "calling listFragment notifyChange..." + listFragment.getClass().getName());
@@ -1072,7 +1072,7 @@ public class ServerSync {
 						}
 						menuItem.setActionView(null);
 					}
-					Toast.makeText( context, "Updated suppliers!", Toast.LENGTH_SHORT ).show();
+					Toast.makeText( context, "Updated Transporters!", Toast.LENGTH_SHORT ).show();
 				}
 			});
 		}
@@ -1087,7 +1087,7 @@ public class ServerSync {
 				}
 				menuItem.setActionView(null);
 			}
-			Toast.makeText( context, "Update outlets failed: " + e, Toast.LENGTH_SHORT ).show();
+			Toast.makeText( context, "Update Transporters failed: " + e, Toast.LENGTH_SHORT ).show();
 		}
 		if (listFragment != null) {
 			//Log.d(module, "calling listFragment notifyChange..." + listFragment.getClass().getName());
