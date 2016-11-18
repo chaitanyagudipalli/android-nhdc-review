@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "/home/upendra/Vasista/android-nhdc/libraryMobilePaymentSDK/build/intermediates/res/merged/androidTest/debug/drawable/atom_lib_visa.png",
+        "source": "/home/upendra/Vasista/android-nhdc/libraryMobilePaymentSDK/build/intermediates/bundles/debug/res/drawable/atom_lib_visa.png"
+    },
+    {
+        "merged": "/home/upendra/Vasista/android-nhdc/libraryMobilePaymentSDK/build/intermediates/res/merged/androidTest/debug/drawable/atom_lib_maestro.png",
+        "source": "/home/upendra/Vasista/android-nhdc/libraryMobilePaymentSDK/build/intermediates/bundles/debug/res/drawable/atom_lib_maestro.png"
+    },
+    {
+        "merged": "/home/upendra/Vasista/android-nhdc/libraryMobilePaymentSDK/build/intermediates/res/merged/androidTest/debug/drawable/atomlogo.png",
+        "source": "/home/upendra/Vasista/android-nhdc/libraryMobilePaymentSDK/build/intermediates/bundles/debug/res/drawable/atomlogo.png"
+    },
+    {
+        "merged": "/home/upendra/Vasista/android-nhdc/libraryMobilePaymentSDK/build/intermediates/res/merged/androidTest/debug/drawable/atom_lib_master.png",
+        "source": "/home/upendra/Vasista/android-nhdc/libraryMobilePaymentSDK/build/intermediates/bundles/debug/res/drawable/atom_lib_master.png"
+    }
+]

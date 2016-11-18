@@ -1,0 +1,26 @@
+[
+    {
+        "merged": "/home/upendra/Vasista/android-nhdc/libraryMobilePaymentSDK/build/intermediates/res/merged/androidTest/debug/layout/processing.xml",
+        "source": "/home/upendra/Vasista/android-nhdc/libraryMobilePaymentSDK/build/intermediates/bundles/debug/res/layout/processing.xml"
+    },
+    {
+        "merged": "/home/upendra/Vasista/android-nhdc/libraryMobilePaymentSDK/build/intermediates/res/merged/androidTest/debug/layout/nb_webview_screen.xml",
+        "source": "/home/upendra/Vasista/android-nhdc/libraryMobilePaymentSDK/build/intermediates/bundles/debug/res/layout/nb_webview_screen.xml"
+    },
+    {
+        "merged": "/home/upendra/Vasista/android-nhdc/libraryMobilePaymentSDK/build/intermediates/res/merged/androidTest/debug/layout/nb_txn_screen.xml",
+        "source": "/home/upendra/Vasista/android-nhdc/libraryMobilePaymentSDK/build/intermediates/bundles/debug/res/layout/nb_txn_screen.xml"
+    },
+    {
+        "merged": "/home/upendra/Vasista/android-nhdc/libraryMobilePaymentSDK/build/intermediates/res/merged/androidTest/debug/layout/spinner_item.xml",
+        "source": "/home/upendra/Vasista/android-nhdc/libraryMobilePaymentSDK/build/intermediates/bundles/debug/res/layout/spinner_item.xml"
+    },
+    {
+        "merged": "/home/upendra/Vasista/android-nhdc/libraryMobilePaymentSDK/build/intermediates/res/merged/androidTest/debug/layout/layout_card_payment_screen.xml",
+        "source": "/home/upendra/Vasista/android-nhdc/libraryMobilePaymentSDK/build/intermediates/bundles/debug/res/layout/layout_card_payment_screen.xml"
+    },
+    {
+        "merged": "/home/upendra/Vasista/android-nhdc/libraryMobilePaymentSDK/build/intermediates/res/merged/androidTest/debug/layout/custom_spinner.xml",
+        "source": "/home/upendra/Vasista/android-nhdc/libraryMobilePaymentSDK/build/intermediates/bundles/debug/res/layout/custom_spinner.xml"
+    }
+]

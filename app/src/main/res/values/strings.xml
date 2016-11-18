@@ -244,4 +244,21 @@
     <string name="supplier_delivery">Supplier Delivery</string>
     <string name="language">Language</string>
     <string name="selectLanguage">Select Language</string>
+
+    <string-array name="bank">
+        <item>Select Bank</item>
+        <item>Atom Bank</item>
+    </string-array>
+
+    <string-array name="paymentMode">
+        <item>Select Payment Mode</item>
+        <item>Credit Card</item>
+        <item>Debit Card</item>
+    </string-array>
+    <string-array name="cardAssociate">
+        <item>Select Card Type</item>
+        <item>VISA</item>
+        <item>Maestro</item>
+        <item>Master</item>
+    </string-array>
 </resources>

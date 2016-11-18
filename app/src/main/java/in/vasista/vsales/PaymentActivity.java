@@ -25,6 +25,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ProgressBar;
 
+import in.vasista.atom.AtomActivity;
 import in.vasista.nhdcapp.R;
 import in.vasista.payumoney.PayumoneyActivity;
 import in.vasista.vsales.payment.PaymentListFragment;
@@ -80,7 +81,9 @@ protected void onCreate(Bundle savedInstanceState)
                 paymentListFragment.syncPayments(item);
                 return true;
             case R.id.action_payment:
-                startActivity(new Intent(getApplicationContext(), PayumoneyActivity.class));
+                //startActivity(new Intent(getApplicationContext(), PayumoneyActivity.class));
+                startActivity(new Intent(getApplicationContext(), AtomActivity.class));
+
                 break;
         }
         return false;

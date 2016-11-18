@@ -1,1 +1,2 @@
 include ':app',  ':sdkui', ':PayU-release', ':CustomBrowser-release'
+include ':libraryMobilePaymentSDK'

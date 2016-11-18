@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config="main"><source path="/home/upendra/Vasista/android-nhdc/libraryMobilePaymentSDK/src/main/assets"/><source path="/home/upendra/Vasista/android-nhdc/libraryMobilePaymentSDK/build/generated/assets/shaders/release"/></dataSet><dataSet config="release"><source path="/home/upendra/Vasista/android-nhdc/libraryMobilePaymentSDK/src/release/assets"/></dataSet></merger>

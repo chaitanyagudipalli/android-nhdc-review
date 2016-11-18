@@ -19,7 +19,7 @@
         android:allowBackup="true"
         android:icon="@mipmap/nhdc_launcher"
         android:label="@string/app_name"
-        tools:replace="icon,theme"
+        tools:replace="android:theme"
         android:theme="@style/AppTheme.NoActionBar">
         <meta-data
             android:name="com.google.android.gms.version"
@@ -436,6 +436,22 @@
             android:label="Make Payment"
             tools:ignore="UnusedAttribute"
             android:parentActivityName="in.vasista.vsales.PaymentActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="in.vasista.vsales.PaymentActivity" />
+        </activity>
+        <!--Atom Payment Gateway-->
+        <activity
+            android:name="com.atom.mobilepaymentsdk.PayActivity"
+            android:label="Make Payment">
+
+        </activity>
+
+        <activity
+            android:name="in.vasista.atom.AtomActivity"
+            android:label="Make Payment"
+            tools:ignore="UnusedAttribute"
+            android:parentActivityName="in.vasista.vsales.PaymentActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="in.vasista.vsales.PaymentActivity" />

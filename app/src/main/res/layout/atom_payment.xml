@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_marginTop="?attr/actionBarSize"
+    android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/tt_MerchantDetails"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40dip"
+        android:layout_marginTop="40dip"
+        android:gravity="center"
+        android:text="Details"
+        android:textColor="#0b84aa"
+        android:textSize="20dip" />
+
+    <ScrollView
+        android:id="@+id/mDetails"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:id="@+id/llMerchantDetails"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingLeft="10dip"
+            android:paddingRight="10dip"
+            android:paddingTop="10dp" >
+
+            <EditText
+                android:id="@+id/et_nb_amt"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dip"
+                android:hint="Amount"
+                android:inputType="number"
+                android:maxLength="5" />
+
+            <Spinner
+                android:id="@+id/sp_bank"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:entries="@array/bank" />
+
+            <Button
+                android:id="@+id/btn_payMerchantNB"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Net Banking" />
+
+            <EditText
+                android:id="@+id/et_card_amt"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dip"
+                android:hint="Amount"
+                android:inputType="number"
+                android:maxLength="5" />
+
+            <!--  EditText
+                android:id="@+id/et_hname"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dip"
+                android:hint="Name"
+                android:inputType="text"
+                android:maxLength="45" /-->
+
+
+
+            <Spinner
+                android:id="@+id/sp_paymentType"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:entries="@array/paymentMode" />
+
+            <Spinner
+                android:id="@+id/sp_cardType"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:entries="@array/cardAssociate" />
+
+            <Button
+                android:id="@+id/btn_payMerchantDC"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Card Payment" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
