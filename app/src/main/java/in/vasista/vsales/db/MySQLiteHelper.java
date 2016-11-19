@@ -202,6 +202,28 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 	public static final String COLUMN_SHIP_CUSTOMER = "SHIP_CUSTOMER";
 	public static final String COLUMN_SHIP_DEST = "SHIP_DEST";
 
+	public static final String TABLE_SUPP_STOCKS = "SUPPLIER_STOCKS";
+	public static final String COLUMN_STOCK_ID = "STOCK_ID";
+	public static final String COLUMN_STOCK_PRODID = "STOCK_PRODID";
+	public static final String COLUMN_STOCK_PRODNAME = "STOCK_PRODNAME";
+	public static final String COLUMN_STOCK_DEPOT = "STOCK_DEPOT";
+	public static final String COLUMN_STOCK_SUPPLIER = "STOCK_SUPPLIER";
+	public static final String COLUMN_STOCK_SPEC = "STOCK_SPEC";
+	public static final String COLUMN_STOCK_QTY = "STOCK_QTY";
+	public static final String COLUMN_STOCK_PRICE = "STOCK_PRICE";
+
+
+	private static final String DATABASE_CREATE_STOCK = "create table if not exists "
+			+ TABLE_SUPP_STOCKS + " (" + COLUMN_STOCK_ID
+			+ " integer primary key autoincrement, " + COLUMN_STOCK_PRODID
+			+ " text, " + COLUMN_STOCK_PRODNAME
+			+ " text, " + COLUMN_STOCK_DEPOT
+			+ " text, " + COLUMN_STOCK_SUPPLIER
+			+ " text, " + COLUMN_STOCK_SPEC
+			+ " text, " + COLUMN_STOCK_QTY
+			+ " real, " + COLUMN_STOCK_PRICE
+			+" real"
+			+");";
 
 	private static final String DATABASE_CREATE_SUPP_PO = "create table "
 			+ TABLE_SUPP_PO + " (" + COLUMN_SUPP_POID
@@ -429,7 +451,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 	  private static final String DATABASE_NAME = "vsalesagent.db";
 //	  private static final int DATABASE_VERSION = 24;
 
-		private static final int DATABASE_VERSION = 30; // For Indent Crates
+		private static final int DATABASE_VERSION = 33; // For Indent Crates
 
 	public MySQLiteHelper(Context context) {
 	    super(context, DATABASE_NAME, null, DATABASE_VERSION); 
@@ -458,6 +480,8 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 		  database.execSQL(DATABASE_CREATE_SUPP_PO);
 		  database.execSQL(DATABASE_CREATE_SUPP_ITEMS);
 		  database.execSQL(DATABASE_CREATE_SUPP_SHIP);
+
+		  database.execSQL(DATABASE_CREATE_STOCK);
 	  } 
 
 	  @Override
@@ -481,9 +505,12 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 	    db.execSQL("drop table PAYROLL_HEADER");		    	    
 	    db.execSQL("drop table EMPLOYEE_LEAVE");		    	    
 	    db.execSQL("drop table EMPLOYEE_ATTENDANCE");		    	    
-	    db.execSQL("drop table LOCATION");		    	    
-	    db.execSQL("drop table TICKET");	
-	    
+	    db.execSQL("drop table LOCATION");
+	    db.execSQL("drop table TICKET");
+			db.execSQL("drop table SUPPLIER_PO");
+			db.execSQL("drop table SUPPLIER_PO_ITEMS");
+			db.execSQL("drop table SUPPLIER_SHIPMENTS");
+
 	    onCreate(db);
 	    }
 
@@ -492,6 +519,8 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 			  db.execSQL(DATABASE_CREATE_SUPP_ITEMS);
 			  db.execSQL(DATABASE_CREATE_SUPP_SHIP);
 		  }
+
+		  db.execSQL(DATABASE_CREATE_STOCK);
 
 
 	    //if (oldVersion > 20) {

@@ -49,6 +49,7 @@ import in.vasista.vsales.db.PODataSource;
 import in.vasista.vsales.db.PaymentsDataSource;
 import in.vasista.vsales.db.PayslipDataSource;
 import in.vasista.vsales.db.ProductsDataSource;
+import in.vasista.vsales.db.StocksDataSource;
 import in.vasista.vsales.db.SupplierDataSource;
 import in.vasista.vsales.db.TransporterDataSource;
 import in.vasista.vsales.employee.Employee;
@@ -62,6 +63,7 @@ import in.vasista.vsales.indent.IndentItemsListFragment;
 import in.vasista.vsales.indent.IndentListFragment;
 import in.vasista.vsales.order.OrderListFragment;
 import in.vasista.vsales.payment.PaymentListFragment;
+import in.vasista.vsales.stocks.StockListFragment;
 import in.vasista.vsales.supplier.Supplier;
 import in.vasista.vsales.supplier.SupplierListFragment;
 import in.vasista.vsales.supplier.SupplierPO;
@@ -1715,5 +1717,63 @@ public class ServerSync {
 			//mapsActivity.showSnackBar(mapsActivity.getString(R.string.sync_failed_location));
 		}
 
+	}
+
+	public void fetchStocks(final MenuItem menuItem, ProgressBar progressBar, final StockListFragment listFragment) {
+		final Map paramMap = new HashMap();
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+		String storeId = prefs.getString("storeId", "");
+		paramMap.put("partyId", storeId);
+
+		String PaymentMethodName = "getDepotStock";
+
+		//::TODO:: add logic to first fetch active indents from server
+		try {
+			XMLRPCApacheAdapter adapter = new XMLRPCApacheAdapter(context);
+			adapter.call(PaymentMethodName, paramMap, progressBar, new XMLRPCMethodCallback() {
+				public void callFinished(Object result, ProgressBar progressBar) {
+					if (result != null) {
+						final StocksDataSource stocksDataSource = new StocksDataSource (context);
+						stocksDataSource.open();
+						Map paymentsResult = (Map)((Map)result).get("stockMap");
+						Log.d(module, "paymentsResult.size() = " + paymentsResult.size());
+//						paymentsDataSource.deleteAllPayments();
+// Logic for insertion
+						stocksDataSource.close();
+						if (listFragment != null) {
+							//Log.d(module, "calling listFragment notifyChange..." + listFragment.getClass().getName());
+							listFragment.notifyChange();
+						}
+					}
+					if (progressBar != null) {
+						progressBar.setVisibility(View.INVISIBLE);
+					}
+					if(menuItem !=null){
+						if (progressBar != null) {
+							progressBar.setVisibility(View.VISIBLE);
+						}
+						menuItem.setActionView(null);
+					}
+					Toast.makeText( context, "Updated stocks!", Toast.LENGTH_SHORT ).show();
+				}
+			});
+		}
+		catch (Exception e) {
+			Log.e(module, "Exception: ", e);
+			if (progressBar != null) {
+				progressBar.setVisibility(View.INVISIBLE);
+			}
+			if(menuItem !=null){
+				if (progressBar != null) {
+					progressBar.setVisibility(View.VISIBLE);
+				}
+				menuItem.setActionView(null);
+			}
+			Toast.makeText( context, "getFacilityPayments failed: " + e, Toast.LENGTH_SHORT ).show();
+		}
+		if (listFragment != null) {
+			//Log.d(module, "calling listFragment notifyChange..." + listFragment.getClass().getName());
+			listFragment.notifyChange();
+		}
 	}
 }

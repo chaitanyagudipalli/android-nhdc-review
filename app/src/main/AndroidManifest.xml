@@ -86,6 +86,24 @@
                 android:value="in.vasista.vsales.SalesDashboardActivity" />
         </activity>
         <activity
+            android:name="in.vasista.vsales.StockActivity"
+            android:label="@string/stocks"
+            android:parentActivityName="in.vasista.vsales.SalesDashboardActivity"
+            tools:ignore="UnusedAttribute">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="in.vasista.vsales.SalesDashboardActivity" />
+        </activity>
+        <activity
+            android:name="in.vasista.vsales.StockDetailsActivity"
+            android:label="Stock details"
+            android:parentActivityName="in.vasista.vsales.StockActivity"
+            tools:ignore="UnusedAttribute">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="in.vasista.vsales.StockActivity" />
+        </activity>
+        <activity
             android:name="in.vasista.vsales.IndentActivity"
             android:label="@string/title_feature2"
             android:parentActivityName="in.vasista.vsales.SalesDashboardActivity"

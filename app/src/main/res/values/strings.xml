@@ -244,6 +244,7 @@
     <string name="supplier_delivery">Supplier Delivery</string>
     <string name="language">Language</string>
     <string name="selectLanguage">Select Language</string>
+    <string name="stocks">Stocks</string>
 
     <string-array name="bank">
         <item>Select Bank</item>
