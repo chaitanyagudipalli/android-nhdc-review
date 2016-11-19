@@ -262,4 +262,59 @@
         <item>Maestro</item>
         <item>Master</item>
     </string-array>
+
+    <string name="dashboard">Dashboard</string>
+    <string name="changePassword">Change Password</string>
+    <string name="phoneNumber">Phone Number</string>
+    <string name="passbookNumber">Passbook Number</string>
+    <string name="selectRetailer">Select Retailer</string>
+    <string name="contact">Contact</string>
+    <string name="Id">Id</string>
+    <string name="name">Name</string>
+    <string name="address">Address</string>
+    <string name="transporter_search">Search by Id or name</string>
+    <string name="transporter_details">Transporter Details</string>
+    <string name="catalog_search">Search by Name or Description</string>
+    <string name="supplier_search">Search by Code or Name</string>
+    <string name="supplier_details">Supplier Details</string>
+    <string name="indentStatus">Status</string>
+    <string name="transporter_name">Transporter Name</string>
+    <string name="nhdc_settings">NHDC Settings</string>
+    <string name="user_credentials">User Credentials</string>
+    <string name="username">User Name</string>
+    <string name="password">Password</string>
+    <string name="change">CHANGE</string>
+    <string name="cancel">CANCEL</string>
+    <string name="pass_must_6_chars">Password must be at least 6 characters</string>
+    <string name="new_verify_not_match">New Password and Verify New Password does not match</string>
+    <string name="weaver_details">Weaver Details</string>
+    <string name="party_name">Party Name</string>
+    <string name="issue_date">Issue Date</string>
+    <string name="party_type">Party Type</string>
+    <string name="discount_amount">Discount Amount</string>
+    <string name="loom_details">Loom Details</string>
+    <string name="total_looms">Total Looms</string>
+    <string name="loom_type">Loom Type</string>
+    <string name="no_of_looms">No.Looms</string>
+    <string name="eligible_quota">Elg.Quota</string>
+    <string name="used_quota">Used Quota</string>
+    <string name="balance_quota">Bal Quota</string>
+    <string name="depot">Depot</string>
+    <string name="product_name">Product Name</string>
+    <string name="quantity">Quantity</string>
+    <string name="remarks">Remarks</string>
+    <string name="bale_quantity">Bale Quantiy</string>
+    <string name="bundle_weight">Bundle Weight</string>
+    <string name="unit_price">Unit Price</string>
+    <string name="total_amount">Total Amount</string>
+    <string name="other_charges">Other Charges</string>
+    <string name="shipped_quantity">Shipped Quantity</string>
+    <string name="doa">DOA</string>
+    <string name="indent_item_details">Indent Item Details</string>
+    <string name="shipments">SHIPMENTS</string>
+    <string name="shipment_history">Shipment History</string>
+    <string name="branch">Branch</string>
+    <string name="select_supplier">Select Supplier</string>
+    <string name="select_transporter">Select Transporter</string>
+    <string name="indent_total">Indent Total</string>
 </resources>

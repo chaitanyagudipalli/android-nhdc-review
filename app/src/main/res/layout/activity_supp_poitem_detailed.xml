@@ -24,7 +24,7 @@
                 android:layout_width="wrap_content"
                 style="@style/TabeRowTitle"
                 android:layout_margin="2dp"
-                android:text="Product name"/>
+                android:text="@string/product_name"/>
             <TextView
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
@@ -70,7 +70,7 @@
                 android:layout_width="wrap_content"
                 style="@style/TabeRowTitle"
                 android:layout_margin="2dp"
-                android:text="Unit price"
+                android:text="@string/unit_price"
                  />
             <TextView
                 android:layout_height="match_parent"

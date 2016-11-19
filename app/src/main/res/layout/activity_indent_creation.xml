@@ -28,7 +28,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Branch"/>
+                android:text="@string/branch"/>
             <Spinner
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -46,7 +46,7 @@
                 android:layout_width="match_parent"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="Category"/>
+                android:text="@string/column_product_category_header"/>
             <Spinner
                 android:layout_width="match_parent"
                 android:layout_weight="1"
@@ -64,7 +64,7 @@
                 android:layout_width="match_parent"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="Scheme"/>
+                android:text="@string/scheme_type"/>
             <Spinner
                 android:layout_width="match_parent"
                 android:layout_weight="1"
@@ -82,7 +82,7 @@
             android:layout_width="match_parent"
             android:id="@+id/selectSupplier"
             android:layout_height="wrap_content"
-            android:text="Select Supplier"/>
+            android:text="@string/select_supplier"/>
         <AutoCompleteTextView
             android:id="@+id/autoCompleteRetailer"
             android:layout_width="match_parent"
@@ -90,7 +90,7 @@
             android:layout_gravity="center_horizontal"
             android:completionThreshold="1"
             android:ems="10"
-            android:hint="Select Supplier"
+            android:hint="@string/select_supplier"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_alignParentRight="true"
@@ -110,7 +110,7 @@
                 android:layout_width="match_parent"
 
                 android:layout_height="wrap_content"
-                android:text="Select Transporter"/>
+                android:text="@string/select_transporter"/>
             <AutoCompleteTextView
                 android:id="@+id/autoCompleteTransporter"
                 android:layout_width="match_parent"
@@ -118,7 +118,7 @@
                 android:layout_gravity="center_horizontal"
                 android:completionThreshold="1"
                 android:ems="10"
-                android:hint="Select Transporter"
+                android:hint="@string/select_transporter"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentRight="true"
@@ -154,7 +154,7 @@
                     style="@style/TabeRowTitle"
                     android:textColor="@color/colorAccent"
                     android:layout_margin="2dp"
-                    android:text="Indent total"/>
+                    android:text="@string/indent_total"/>
                 <TextView
                     android:layout_height="match_parent"
                     android:gravity="center_vertical"

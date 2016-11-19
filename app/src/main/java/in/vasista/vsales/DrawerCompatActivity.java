@@ -84,14 +84,14 @@ public class DrawerCompatActivity extends AppCompatActivity implements Navigatio
         String contact = prefs.getString(MainActivity.USER_PASSBOOK, "");
         String home_profile_desc = "", home_profile_desc_value = "";
         if(prefs.getBoolean(MainActivity.IS_SUP_PORTAL, false)){
-            home_profile_desc = "Phone number";
+            home_profile_desc = getString(R.string.phoneNumber);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 home_profile_desc_value = PhoneNumberUtils.formatNumber(contact,"IN");
             }else{
                 home_profile_desc_value = PhoneNumberUtils.formatNumber(contact);
             }
         }else{
-            home_profile_desc = "Passbook number";
+            home_profile_desc = getString(R.string.passbookNumber);
             home_profile_desc_value = contact;
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {

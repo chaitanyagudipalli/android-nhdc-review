@@ -24,14 +24,14 @@
 		/>
 	</PreferenceCategory>-->
     <PreferenceCategory	
-		android:title="User Credentials"> 
+		android:title="@string/user_credentials">
 		<EditTextPreference
-        	android:title="User Name"
-            android:summary="User Name"
+        	android:title="@string/username"
+            android:summary="@string/username"
             android:key="userName"/>
 		<EditTextPreference
-        	android:title="Password"
-            android:summary="Password"
+        	android:title="@string/password"
+            android:summary="@string/password"
             android:key="password"
             android:inputType="textPassword"/>
 	<!-- 		<EditTextPreference
@@ -40,7 +40,7 @@
                 android:key="tenantId"/> -->
             <CheckBoxPreference
                 android:title="Live"
-                android:summary="PayUMoney Live Enable"
+                android:summary="Payment Gateway Live Enable"
                 android:key="payuLive"
                 />
 		<ListPreference

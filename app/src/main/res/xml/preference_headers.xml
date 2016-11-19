@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <preference-headers xmlns:android="http://schemas.android.com/apk/res/android">
   <header android:fragment="in.vasista.vsales.preference.UserPreferenceFragment"
-          android:title="Settings"
-          android:summary="NHDC Settings" />
+          android:title="@string/menu_preferences"
+          android:summary="@string/nhdc_settings" />
 </preference-headers>

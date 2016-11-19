@@ -42,7 +42,7 @@
             android:label="@string/app_name" />
         <activity
             android:name="in.vasista.vsales.SalesDashboardActivity"
-            android:label="Dashboard"
+            android:label="@string/dashboard"
             android:parentActivityName="in.vasista.vsales.MainActivity"
             tools:ignore="UnusedAttribute">
             <meta-data
@@ -193,7 +193,7 @@
             android:label="@string/title_search" />
         <activity
             android:name="in.vasista.vsales.IndentItemsListActivity"
-            android:label="Indent Details"
+            android:label="@string/indent_details"
             android:parentActivityName="in.vasista.vsales.IndentActivity"
             tools:ignore="UnusedAttribute">
             <meta-data
@@ -220,7 +220,7 @@
         </activity>
         <activity
             android:name="in.vasista.vsales.SupplierDetailsActivity"
-            android:label="Supplier Details"
+            android:label="@string/supplier_details"
             android:parentActivityName="in.vasista.vsales.SupplierActivity"
             tools:ignore="UnusedAttribute">
             <meta-data
@@ -343,7 +343,7 @@
         </activity>
         <activity
             android:name="in.vasista.vsales.IndentDetailed"
-            android:label="Indent Details"
+            android:label="@string/indent_details"
             android:launchMode="singleTask"
             android:parentActivityName="in.vasista.vsales.IndentActivity"
             tools:ignore="UnusedAttribute">
@@ -367,7 +367,7 @@
 
         <activity
             android:name="in.vasista.vsales.indent.IndentCreationActivity"
-            android:label="Indent Details"
+            android:label="@string/indent_details"
             android:parentActivityName="in.vasista.vsales.IndentActivity"
             tools:ignore="UnusedAttribute">
             <meta-data
@@ -385,7 +385,7 @@
         </activity>
         <activity
             android:name="in.vasista.vsales.WeaverDetailedActivity"
-            android:label="Weaver details"
+            android:label="@string/weaver_details"
             android:parentActivityName="in.vasista.vsales.SalesDashboardActivity"
             tools:ignore="UnusedAttribute">
             <meta-data
@@ -442,7 +442,7 @@
         </activity>
 
         <activity android:name="in.vasista.vsales.IndentItemDetailed"
-            android:label="Indent Item Details"
+            android:label="@string/indent_item_details"
             tools:ignore="UnusedAttribute"
             android:parentActivityName="in.vasista.vsales.IndentDetailed">
             <meta-data

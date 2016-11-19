@@ -22,7 +22,7 @@
             android:id="@+id/inputSearch"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Search by code or name"
+            android:hint="@string/supplier_search"
             android:inputType="textVisiblePassword" />
 <ImageButton
         android:id="@+id/inputSearchClear"      

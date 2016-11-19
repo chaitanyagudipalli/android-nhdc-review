@@ -224,7 +224,7 @@
                     android:layout_width="wrap_content"
                     style="@style/TabeRowTitle"
                     android:layout_margin="2dp"
-                    android:text="Remarks"
+                    android:text="@string/remarks"
                     />
                 <TextView
                     android:layout_height="match_parent"

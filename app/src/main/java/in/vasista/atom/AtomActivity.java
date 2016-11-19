@@ -71,8 +71,8 @@ public class AtomActivity extends DashboardAppCompatActivity{
         if(""+intent.getFloatExtra("amount",60.000f) != null) {
             et_nb_amt.setText(""+intent.getFloatExtra("amount",60.000f));
             et_card_amt.setText(""+intent.getFloatExtra("amount",60.000f));
-            et_nb_amt.setEnabled(false);
-            et_card_amt.setEnabled(false);
+            et_nb_amt.setEnabled(true);
+            et_card_amt.setEnabled(true);
             orderId = intent.getStringExtra("orderId");
         }
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);

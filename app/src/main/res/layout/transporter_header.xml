@@ -11,7 +11,7 @@
     	android:textSize="12sp" 
     	android:textStyle="bold"        	   
     	android:layout_height="wrap_content" 
-        android:text="Id"
+        android:text="@string/Id"
         />
     <TextView android:id="@+id/column_name_header"
         android:layout_width="0dp"
@@ -29,7 +29,7 @@
     	android:textSize="12sp" 
     	android:textStyle="bold"
     	android:layout_height="wrap_content" 
-        android:text="Contact"
+        android:text="@string/phoneNumber"
         />
 	<ImageView
 		android:id="@+id/transporterRowArrow"

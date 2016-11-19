@@ -24,7 +24,7 @@
                 android:layout_width="wrap_content"
                 style="@style/TabeRowTitle"
                 android:layout_margin="2dp"
-                android:text="Party name"/>
+                android:text="@string/party_name"/>
             <TextView
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
@@ -46,7 +46,7 @@
                 android:layout_width="wrap_content"
                 style="@style/TabeRowTitle"
                 android:layout_margin="2dp"
-                android:text="Address"/>
+                android:text="@string/address"/>
             <TextView
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
@@ -81,7 +81,7 @@
                 android:layout_width="wrap_content"
                 style="@style/TabeRowTitle"
                 android:layout_margin="2dp"
-                android:text="Passbook"/>
+                android:text="@string/passbookNumber"/>
             <TextView
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
@@ -103,7 +103,7 @@
                 android:layout_width="wrap_content"
                 style="@style/TabeRowTitle"
                 android:layout_margin="2dp"
-                android:text="Issue Date"/>
+                android:text="@string/issue_date"/>
             <TextView
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
@@ -126,7 +126,7 @@
                 android:layout_width="wrap_content"
                 style="@style/TabeRowTitle"
                 android:layout_margin="2dp"
-                android:text="Party type"/>
+                android:text="@string/party_type"/>
             <TextView
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
@@ -148,7 +148,7 @@
                 android:layout_width="wrap_content"
                 style="@style/TabeRowTitle"
                 android:layout_margin="2dp"
-                android:text="Depot"/>
+                android:text="@string/depot"/>
             <TextView
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
@@ -171,7 +171,7 @@
                 android:layout_width="wrap_content"
                 style="@style/TabeRowTitle"
                 android:layout_margin="2dp"
-                android:text="DOA"/>
+                android:text="@string/doa"/>
             <TextView
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
@@ -193,7 +193,7 @@
                 android:layout_width="wrap_content"
                 style="@style/TabeRowTitle"
                 android:layout_margin="2dp"
-                android:text="Total Looms"/>
+                android:text="@string/total_looms"/>
             <TextView
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
@@ -220,7 +220,7 @@
         android:layout_height="wrap_content"
         android:paddingLeft="10dp"
         android:textColor="@color/colorAccent"
-        android:text="Loom Details"/>
+        android:text="@string/loom_details"/>
     <TableLayout
         android:padding="10dip"
         android:shrinkColumns="*"
@@ -234,21 +234,21 @@
                 style="@style/TabeRowTitle"
                 android:textSize="12sp"
                 android:layout_margin="2dp"
-                android:text="LoomType"/>
+                android:text="@string/loom_type"/>
             <TextView
                 android:layout_height="wrap_content"
                 android:layout_width="80dp"
                 style="@style/TabeRowTitle"
                 android:textSize="12sp"
                 android:layout_margin="2dp"
-                android:text="No. Looms"/>
+                android:text="@string/no_of_looms"/>
             <TextView
                 android:layout_height="wrap_content"
                 android:layout_width="80dp"
                 style="@style/TabeRowTitle"
                 android:textSize="12sp"
                 android:layout_margin="2dp"
-                android:text="Elg. Quota"/>
+                android:text="@string/eligible_quota"/>
             <TextView
                 android:layout_height="wrap_content"
                 android:layout_width="80dp"
@@ -256,7 +256,7 @@
                 android:layout_margin="2dp"
                 android:textSize="12sp"
                 android:gravity="right"
-                android:text="Used Quota"/>
+                android:text="@string/used_quota"/>
             <TextView
                 android:layout_height="wrap_content"
                 android:layout_width="80dp"
@@ -264,7 +264,7 @@
                 android:gravity="right"
                 android:textSize="12sp"
                 android:layout_margin="2dp"
-                android:text="Bal Quota"/>
+                android:text="@string/balance_quota"/>
 
         </TableRow>
         <TableRow android:paddingTop="5dip"

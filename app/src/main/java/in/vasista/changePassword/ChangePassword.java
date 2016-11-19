@@ -119,18 +119,18 @@ public class ChangePassword extends DialogFragment implements View.OnClickListen
 
 
                 if (presentPass.getText().toString().isEmpty()){
-                    setErrorMsg("This field is required", presentPass);
+                    setErrorMsg(getString(R.string.error_field_required), presentPass);
                 }
                 else if (newPass.getText().toString().length()<6){
-                    setErrorMsg("Password must be at least 6 characters", newPass);
+                    setErrorMsg(getString(R.string.pass_must_6_chars), newPass);
                 } else if (newPass.getText().toString().isEmpty()){
-                    setErrorMsg("This field is required", newPass);
+                    setErrorMsg(getString(R.string.error_field_required), newPass);
 
                 } else if (verifyNewPass.getText().toString().isEmpty()){
-                    setErrorMsg("This field is required", verifyNewPass);
+                    setErrorMsg(getString(R.string.error_field_required), verifyNewPass);
 
                 } else if (!newPass.getText().toString().trim().equals(verifyNewPass.getText().toString().trim())){
-                    setErrorMsg("New Password and Verify New Password does not match", verifyNewPass);
+                    setErrorMsg(getString(R.string.new_verify_not_match), verifyNewPass);
 
                 } else {
 

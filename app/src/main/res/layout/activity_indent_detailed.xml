@@ -169,7 +169,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="2dp"
                 style="@style/TabeRowTitle"
-                android:text="Discount Amount"/>
+                android:text="@string/discount_amount"/>
             <TextView
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
@@ -245,7 +245,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="2dp"
                 style="@style/TabeRowTitle"
-                android:text="Transporter Name"/>
+                android:text="@string/transporter_name"/>
             <TextView
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"

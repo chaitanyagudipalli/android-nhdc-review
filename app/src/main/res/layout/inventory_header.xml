@@ -29,6 +29,6 @@
     	android:textSize="12sp" 
     	android:textStyle="bold"         	 
     	android:layout_height="wrap_content" 
-        android:text="Category"    	
+        android:text="Category"
         />                                        
 </LinearLayout>

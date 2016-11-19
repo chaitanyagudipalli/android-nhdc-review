@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="title_feature3">पेमेंट</string>
-    <string name="title_feature4">केटलॉग</string>
-    <string name="title_feature5">सप्लायर</string>
+    <string name="title_feature3">भुगतान</string>
+    <string name="title_feature4">सूची</string>
+    <string name="title_feature5">आपूर्तिकर्ता</string>
 
 
-    <string name="transporters">ट्रांसपोर्टर  </string>
-    <string name="title_feature1_plurer">इंडेंट </string>
-    <string name="my_profile">माय प्रोफाइल</string>
+    <string name="transporters">ट्रांसपोर्टर</string>
+    <string name="title_feature1_plurer">मांगपत्र</string>
+    <string name="my_profile">व्यक्तिगत सुचना </string>
     <string name="title_employeeprofile">माय प्रोफाइल</string>
     <string name="purchase_orders">परचेस आर्डर</string>
 
@@ -26,7 +26,7 @@
     <string name="description_feature5">आउटलेट</string>
     <string name="description_feature6">फ़ीचर 6</string>
 
-    <string name="title_about">एनएचडीसीकेबारेमें</string>
+    <string name="title_about">एनएचडीसी के बारे में</string>
     <string name="title_home">होम</string>
     <string name="title_search">खोजे</string>
     <string name="title_feature1">मांगपत्र</string>
@@ -97,7 +97,7 @@
     <string name="column_indent_total_header">राशि (रुपया)</string>
 
     <string name="column_payment_id_header">पहचान</string>
-    <string name="column_payment_date_header">भुगतानतिथि</string>
+    <string name="column_payment_date_header">भुगतान तिथि</string>
     <string name="column_payment_method_header">विधि</string>
     <string name="column_payment_amount_header">राशि (रुपया)</string>
 
@@ -169,7 +169,7 @@
 
     <!--Location-->
     <string name="action_location">स्थान</string>
-    <string name="error_field_required">यहफ़ील्डआवश्यकहै</string>
+    <string name="error_field_required">यह फ़ील्ड आवश्यक है</string>
     <string name="record_note">रिकार्डनोट</string>
     <string name="note_description">नोटविवरण</string>
     <string name="note_title">नोटशीर्षक</string>
@@ -199,7 +199,7 @@
 
     <string name="text_map_infowindow">%1$d. %2$s</string>
     <string name="text_contactnum">%1$s :%2$s</string>
-    <string name="text_partyId">पार्टीक्रमांक :%1$s</string>
+    <string name="text_partyId">पार्टी क्रमांक :%1$s</string>
     <string name="indent_edit_alert_message">Milk in crates and Product in Pkts</string>
 
 
@@ -207,27 +207,27 @@
     <string name="arrows">&lt;-&gt;</string>
     <string name="title_analytica_sales">Sales Analytics</string>
 
-    <string name="present_password">वर्तमानपासवर्ड</string>
-    <string name="new_password">नयापासवर्ड</string>
-    <string name="verify_new_password">नयापासवर्डप्रमाणितकरे</string>
+    <string name="present_password">वर्तमान पासवर्ड</string>
+    <string name="new_password">नया पासवर्ड</string>
+    <string name="verify_new_password">नया पासवर्ड प्रमाणितकरे</string>
 
     <string name="column_analytic_sales_qty_header">मात्रा</string>
     <string name="supplier_roletypeid">भूमिकाप्रकार</string>
     <string name="tally_ref_no">टैलीरेफरीनहीं</string>
-    <string name="order_date">मांगपत्रदिनांक</string>
+    <string name="order_date">मांगपत्र दिनांक</string>
     <string name="order_id">मांगपत्रपहचान</string>
-    <string name="order_number">मांगपत्रसंख्या</string>
+    <string name="order_number">मांगपत्र संख्या</string>
     <string name="generated_po">जारीक्रयादेश</string>
     <string name="po_order">क्रयादेश</string>
     <string name="po_sequence_no">क्रयादेशसंख्या</string>
     <string name="supplier_party_id">आपूर्तिकरथपहचानसंख्या</string>
     <string name="store_name">स्टोरनाम</string>
-    <string name="supplier_name">आपूर्तिकर्ताकानाम</string>
+    <string name="supplier_name">आपूर्तिकर्ताका नाम</string>
     <string name="status_id">स्थिति</string>
-    <string name="order_total">कुलआदेश</string>
-    <string name="paid_ammount">भुगतानराशि</string>
-    <string name="balance_ammount">शेषराशि</string>
-    <string name="indent_details">मांगपत्रविवरण</string>
+    <string name="order_total">कुल आदेश</string>
+    <string name="paid_ammount">भुगतान राशि</string>
+    <string name="balance_ammount">शेष राशि</string>
+    <string name="indent_details">मांगपत्र विवरण</string>
     <string name="scheme_type">योजना</string>
 
     <string name="supp_po_title">क्रयआदेश</string>
@@ -252,4 +252,59 @@
         <item>Maestro</item>
         <item>Master</item>
     </string-array>
+
+    <string name="dashboard">डैशबोर्ड</string>
+    <string name="changePassword">पासवर्ड बदलें</string>
+    <string name="phoneNumber">फ़ोन नंबर</string>
+    <string name="passbookNumber">पासबुक संख्या</string>
+    <string name="selectRetailer">Select Retailer</string>
+    <string name="contact">संपर्क करें</string>
+    <string name="Id">पहचान</string>
+    <string name="name">नाम</string>
+    <string name="address">पता</string>
+    <string name="transporter_search">पहचान पत्र या नाम के आधार पर खोजें</string>
+    <string name="transporter_details">ट्रांसपोर्टर विवरण</string>
+    <string name="catalog_search">नाम या विवरण के आधार पर खोजें</string>
+    <string name="supplier_search">पहचान पत्र या नाम के आधार पर खोजें</string>
+    <string name="supplier_details">आपूर्तिकर्ता विवरण</string>
+    <string name="indentStatus">स्थिति</string>
+    <string name="transporter_name">ट्रांसपोर्टर नाम</string>
+    <string name="nhdc_settings">एनएचडीसी सेटिंग्स</string>
+    <string name="user_credentials">यूजर क्रेडेंटियलस</string>
+    <string name="password">पासवर्ड</string>
+    <string name="username">यूजर नाम</string>
+    <string name="change">बदलें</string>
+    <string name="cancel">अभी नहीं</string>
+    <string name="pass_must_6_chars">Password must be at least 6 characters</string>
+    <string name="new_verify_not_match">New Password and Verify New Password does not match</string>
+    <string name="weaver_details">बुनकर विवरण</string>
+    <string name="party_name">पार्टी नाम</string>
+    <string name="issue_date">जारी तिथि</string>
+    <string name="party_type">पार्टी टाइप</string>
+    <string name="discount_amount">छूट राशि</string>
+    <string name="loom_details">करघा की सूचि</string>
+    <string name="total_looms">कुल करघा</string>
+    <string name="loom_type">करघा प्रकार</string>
+    <string name="no_of_looms">करघा की संख्या</string>
+    <string name="eligible_quota">उपलब्ध कोटा</string>
+    <string name="used_quota">कोटा उपभोग</string>
+    <string name="balance_quota">शेष कोटा</string>
+    <string name="depot">डिपो</string>
+    <string name="product_name">उद्पाद नाम</string>
+    <string name="quantity">मात्रा</string>
+    <string name="remarks">टिप्पणी</string>
+    <string name="bale_quantity">मात्रा बेल में</string>
+    <string name="bundle_weight">बंडल वजन</string>
+    <string name="unit_price">दर</string>
+    <string name="total_amount">कुल मूल्य</string>
+    <string name="other_charges">विविध ख़र्च</string>
+    <string name="shipped_quantity">अपुर्थिती मात्रा</string>
+    <string name="doa">आवंटन की तारीख</string>
+    <string name="indent_item_details">मांगपत्र मद विवरण</string>
+    <string name="shipments">SHIPMENTS</string>
+    <string name="shipment_history">Shipment History</string>
+    <string name="branch">डाली</string>
+    <string name="select_supplier">चुनिंदा आपूर्तिकर्ता</string>
+    <string name="select_transporter">चुनिंदा ट्रांसपोर्टर</string>
+    <string name="indent_total">मांगपत्र कुल</string>
 </resources>

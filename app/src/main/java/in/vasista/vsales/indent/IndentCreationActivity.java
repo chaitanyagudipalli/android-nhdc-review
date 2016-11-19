@@ -94,7 +94,7 @@ public class IndentCreationActivity extends DashboardAppCompatActivity implement
         branches = (Spinner)findViewById(R.id.branchid);
         selectSupplier = (TextView)findViewById(R.id.selectSupplier);
         SpannableStringBuilder builder = new SpannableStringBuilder();
-        builder.append("Select Supplier");
+        builder.append(getString(R.string.select_supplier));
         int start = builder.length();
         builder.append(" *");
         int end = builder.length();

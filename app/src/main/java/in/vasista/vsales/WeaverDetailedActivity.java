@@ -30,7 +30,7 @@ public class WeaverDetailedActivity extends DashboardAppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentChildView(R.layout.activity_weaver_detailed);
 
-        setPageTitle("Weaver details");
+        setPageTitle(getString(R.string.weaver_details));
 
         new LoadViewTask().execute();
     }

@@ -27,7 +27,7 @@ public class IndentItemDetailed extends DashboardAppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentChildView(R.layout.activity_indent_item_detailed);
 
-        setPageTitle("Indent Item Details");
+        setPageTitle(getString(R.string.indent_item_details));
 
         //getSupportActionBar().setHomeButtonEnabled(false);
 
