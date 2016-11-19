@@ -268,7 +268,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_margin="2dp"
-                    android:text="Specification: " />
+                    android:text="@string/specification" />
 
                 <TextView
                     android:id="@+id/specification"

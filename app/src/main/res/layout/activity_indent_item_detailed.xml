@@ -217,7 +217,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="2dp"
                 style="@style/TabeRowTitle"
-                android:text="Specification"/>
+                android:text="@string/specification"/>
             <TextView
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"

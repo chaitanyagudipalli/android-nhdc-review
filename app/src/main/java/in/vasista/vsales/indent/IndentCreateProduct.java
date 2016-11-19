@@ -78,7 +78,7 @@ public class IndentCreateProduct extends DashboardAppCompatActivity implements V
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentChildView(R.layout.activity_indent_create_product);
-        setPageTitle("Add product");
+        setPageTitle(getString(R.string.add_product));
         prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         prefEditor = prefs.edit();
 
@@ -108,7 +108,7 @@ public class IndentCreateProduct extends DashboardAppCompatActivity implements V
         SpannableStringBuilder builder = new SpannableStringBuilder();
 
         selectProduct = (TextView)findViewById(R.id.selectProduct);
-        builder.append("Select Product");
+        builder.append(getString(R.string.select_product));
         int start = builder.length();
         builder.append(" *");
         int end = builder.length();
@@ -117,7 +117,7 @@ public class IndentCreateProduct extends DashboardAppCompatActivity implements V
 
         qtyKg = (TextView)findViewById(R.id.qtyKg);
         builder.clear();
-        builder.append("Qty (Kgs)");
+        builder.append(getString(R.string.qty_kg));
         start = builder.length();
         builder.append(" *");
         end = builder.length();
@@ -126,7 +126,7 @@ public class IndentCreateProduct extends DashboardAppCompatActivity implements V
 
         unitPriceText = (TextView)findViewById(R.id.unitPriceText);
         builder.clear();
-        builder.append("Unit Price (Kgs)");
+        builder.append(getString(R.string.unit_price_kg));
         start = builder.length();
         builder.append(" *");
         end = builder.length();

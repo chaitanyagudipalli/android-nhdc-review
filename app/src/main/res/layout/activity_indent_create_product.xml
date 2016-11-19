@@ -342,7 +342,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dip"
                 android:id="@+id/selectProduct"
-                android:text="Select product"/>
+                android:text="@string/select_product"/>
             <AutoCompleteTextView
                 android:id="@+id/autoCompleteProduct"
                 android:layout_width="match_parent"
@@ -350,7 +350,7 @@
                 android:layout_gravity="center_horizontal"
                 android:completionThreshold="1"
                 android:ems="10"
-                android:hint="Select product"
+                android:hint="@string/select_product"
 
                 >
 
@@ -359,11 +359,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dip"
-                android:text="Specifications"/>
+                android:text="@string/specification"/>
             <EditText
                 android:id="@+id/specifications"
                 android:layout_width="match_parent"
-                android:hint="Specifications"
+                android:hint="@string/specification"
                 android:layout_height="wrap_content" />
 
             <LinearLayout
@@ -442,12 +442,12 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Unit Price (Bundle)"/>
+                            android:text="@string/unit_price_bundle"/>
                         <EditText
                             android:id="@+id/bundleUnitPrice"
                             android:layout_width="match_parent"
                             android:inputType="numberDecimal"
-                            android:hint="Unit Price (Bundle)"
+                            android:hint="@string/unit_price_bundle"
                             android:layout_height="wrap_content" />
                     </LinearLayout>
                 </LinearLayout>
@@ -467,12 +467,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/qtyKg"
-                        android:text="Qty (Kgs)"/>
+                        android:text="@string/qty_kg"/>
                     <EditText
                         android:id="@+id/totalweight"
                         android:layout_width="match_parent"
                         android:inputType="numberDecimal"
-                        android:hint="Qty (Kgs)"
+                        android:hint="@string/qty_kg"
                         android:layout_height="wrap_content" />
                 </LinearLayout>
                 <LinearLayout
@@ -485,12 +485,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/unitPriceText"
-                        android:text="Unit Price (Kgs)"/>
+                        android:text="@string/unit_price_kg"/>
                     <EditText
                         android:id="@+id/unitprice"
                         android:layout_width="match_parent"
                         android:inputType="numberDecimal"
-                        android:hint="Unit Price (Kgs)"
+                        android:hint="@string/unit_price_kg"
                         android:layout_height="wrap_content" />
                 </LinearLayout>
             </LinearLayout>
@@ -507,7 +507,7 @@
                         android:layout_margin="2dp"
                         android:textColor="@color/colorAccent"
                         style="@style/TabeRowTitle"
-                        android:text="Amt (Rs) "/>
+                        android:text="@string/amount"/>
                     <TextView
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
@@ -531,7 +531,7 @@
                 android:enabled="false"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Save" />
+                android:text="@string/save" />
         </LinearLayout>
     </LinearLayout>
 </ScrollView>

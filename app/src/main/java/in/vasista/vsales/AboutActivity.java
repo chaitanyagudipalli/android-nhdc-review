@@ -51,7 +51,7 @@ protected void onCreate(Bundle savedInstanceState)
     WebView view = ((WebView)findViewById(R.id.about_content));
     view.setVerticalScrollBarEnabled(false);
 
-    view.loadUrl("file:///android_asset/about.html");
+    view.loadUrl(getString(R.string.about_file));
 }
 
     

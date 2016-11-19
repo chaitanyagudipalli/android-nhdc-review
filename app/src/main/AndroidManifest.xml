@@ -376,7 +376,7 @@
         </activity>
         <activity
             android:name="in.vasista.vsales.indent.IndentCreateProduct"
-            android:label="Add product"
+            android:label="@string/add_product"
             android:parentActivityName="in.vasista.vsales.indent.IndentCreationActivity"
             tools:ignore="UnusedAttribute">
             <meta-data

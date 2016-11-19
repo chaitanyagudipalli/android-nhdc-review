@@ -317,4 +317,13 @@
     <string name="select_supplier">Select Supplier</string>
     <string name="select_transporter">Select Transporter</string>
     <string name="indent_total">Indent Total</string>
+    <string name="save">SAVE</string>
+    <string name="add_product">Add Product</string>
+    <string name="select_product">Select Product</string>
+    <string name="specification">Specification</string>
+    <string name="qty_kg">Qty (kgs)</string>
+    <string name="unit_price_kg">Unit Price (kgs)</string>
+    <string name="unit_price_bundle">Unit Price (Bundle)</string>
+    <string name="amount">Amount (Rs)</string>
+    <string name="about_file">file:///android_asset/about.html</string>
 </resources>

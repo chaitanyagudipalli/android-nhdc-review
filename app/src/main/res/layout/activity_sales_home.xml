@@ -23,7 +23,7 @@
                 android:layout_marginTop="10dp"
                 android:completionThreshold="1"
                 android:ems="10"
-                android:hint="Select Retailer" >
+                android:hint="@string/selectRetailer" >
 
                 <requestFocus />
             </AutoCompleteTextView>
