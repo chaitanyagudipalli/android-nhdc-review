@@ -51,7 +51,7 @@
         </activity>
         <activity
             android:name="in.vasista.vsales.SuppDashboardActivity"
-            android:label="Supplier Dashboard"
+            android:label="@string/supplier_dashboard"
             android:parentActivityName="in.vasista.vsales.MainActivity"
             tools:ignore="UnusedAttribute">
             <meta-data
@@ -96,7 +96,7 @@
         </activity>
         <activity
             android:name="in.vasista.vsales.StockDetailsActivity"
-            android:label="Stock details"
+            android:label="@string/stock_details"
             android:parentActivityName="in.vasista.vsales.StockActivity"
             tools:ignore="UnusedAttribute">
             <meta-data
@@ -395,7 +395,7 @@
 
         <activity
             android:name="in.vasista.vsales.SupplierDetailedActivity"
-            android:label="Supplier details"
+            android:label="@string/supplier_details"
             android:parentActivityName="in.vasista.vsales.SuppDashboardActivity"
             tools:ignore="UnusedAttribute">
             <meta-data

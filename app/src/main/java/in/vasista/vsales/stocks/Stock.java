@@ -5,10 +5,12 @@ import java.util.Date;
 public class Stock {
 
 
-	String prodid,prodname,depot,supp,spec;
+	String prodid,prodname,depot,supp,spec,shipid,invId;
 	double qty,price;
 
-	public Stock(String prodid, String prodname, String depot, String supp, String spec, double qty, double price) {
+	public Stock(String invId,String shipid,String prodid, String prodname, String depot, String supp, String spec, double qty, double price) {
+		this.invId = invId;
+		this.shipid = shipid;
 		this.prodid = prodid;
 		this.prodname = prodname;
 		this.depot = depot;
@@ -18,6 +20,20 @@ public class Stock {
 		this.price = price;
 	}
 
+	public String getShipid() {
+		return shipid;
+	}
+
+	public void setShipid(String shipid) {
+		this.shipid = shipid;
+	}
+	public String getInvId() {
+		return invId;
+	}
+
+	public void setInvId(String invId) {
+		this.invId = invId;
+	}
 	public String getProdid() {
 		return prodid;
 	}
@@ -72,5 +88,10 @@ public class Stock {
 
 	public void setPrice(double price) {
 		this.price = price;
+	}
+
+	@Override
+	public String toString() {
+		return prodname;
 	}
 }

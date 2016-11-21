@@ -201,6 +201,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 	public static final String COLUMN_SHIP_ITEMAMT = "SHIP_ITEMAMT";
 	public static final String COLUMN_SHIP_CUSTOMER = "SHIP_CUSTOMER";
 	public static final String COLUMN_SHIP_DEST = "SHIP_DEST";
+	public static final String COLUMN_SHIP_DATE = "SHIP_DATE";
 
 	public static final String TABLE_SUPP_STOCKS = "SUPPLIER_STOCKS";
 	public static final String COLUMN_STOCK_ID = "STOCK_ID";
@@ -211,11 +212,14 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 	public static final String COLUMN_STOCK_SPEC = "STOCK_SPEC";
 	public static final String COLUMN_STOCK_QTY = "STOCK_QTY";
 	public static final String COLUMN_STOCK_PRICE = "STOCK_PRICE";
+	public static final String COLUMN_STOCK_SHIPID = "STOCK_SHIPID";
+	public static final String COLUMN_STOCK_INVID = "STOCK_INVID";
 
 
 	private static final String DATABASE_CREATE_STOCK = "create table if not exists "
-			+ TABLE_SUPP_STOCKS + " (" + COLUMN_STOCK_ID
-			+ " integer primary key autoincrement, " + COLUMN_STOCK_PRODID
+			+ TABLE_SUPP_STOCKS + " (" + COLUMN_STOCK_INVID
+			+ " text primary key , " + COLUMN_STOCK_PRODID
+			+ " text, " + COLUMN_STOCK_SHIPID
 			+ " text, " + COLUMN_STOCK_PRODNAME
 			+ " text, " + COLUMN_STOCK_DEPOT
 			+ " text, " + COLUMN_STOCK_SUPPLIER

@@ -16,13 +16,14 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
 import in.vasista.nhdcapp.R;
-import in.vasista.vsales.db.TransporterDataSource;
+import in.vasista.vsales.db.StocksDataSource;
 import in.vasista.vsales.sync.xmlrpc.XMLRPCApacheAdapter;
-import in.vasista.vsales.transporter.Transporter;
+import in.vasista.vsales.stocks.Stock;
 
 public class StockDetailsActivity extends DashboardAppCompatActivity{
 
@@ -32,8 +33,8 @@ public class StockDetailsActivity extends DashboardAppCompatActivity{
 	static final int REQUEST_CODE_FINELOCATION = 1;
 	//static final int REQUEST_CODE_COARSELOCATION = 2;
 
+	String invId;
 	String partyId;
-
 	Object suppDet;
 	SharedPreferences prefs;
 
@@ -41,54 +42,38 @@ public class StockDetailsActivity extends DashboardAppCompatActivity{
 		super.onCreate(savedInstanceState);
 
 		// Inflate your view 
-		setContentChildView(R.layout.activity_transporterdetails);
+		setContentChildView(R.layout.activity_stockdetails);
 		actionBarHomeEnabled();
 
-		Intent facilityDetailsIntent = getIntent();
-		partyId = facilityDetailsIntent.getStringExtra("partyId");
-		final Transporter facility;
-		TransporterDataSource datasource = new TransporterDataSource(this);
+		Intent stockDetailsIntent = getIntent();
+		invId = stockDetailsIntent.getStringExtra("invId");
+		final Stock stock;
+		StocksDataSource datasource = new StocksDataSource(this);
 		datasource.open();
-		facility = datasource.getTransporterDetails(partyId);
+		stock = datasource.getStockDetails(invId);
 		datasource.close();
-		if (facility == null) {
+		if (stock == null) {
 			return;
 		}
 
-		TextView idView = (TextView) findViewById(R.id.facilityId);
-		idView.setText(partyId);
-		TextView nameView = (TextView) findViewById(R.id.facilityName);
-		nameView.setText(facility.getName());
+		TextView nameView = (TextView) findViewById(R.id.stock_prod_name);
+		nameView.setText(stock.getProdname());
+		TextView specView = (TextView) findViewById(R.id.stock_prod_spec);
+		specView.setText(stock.getSpec());
+		TextView depotView = (TextView) findViewById(R.id.stock_prod_depot);
+		depotView.setText(stock.getDepot());
+		TextView supplView = (TextView) findViewById(R.id.stock_prod_suppl);
+		supplView.setText(stock.getSupp());
+		TextView qtyView = (TextView) findViewById(R.id.stock_prod_qty);
+		String qtyStr = "";
+		qtyStr = String.format("%.2f", stock.getQty());
+		qtyView.setText(qtyStr);
 
-		TextView textView = (TextView) findViewById(R.id.supplierContact);
-		textView.setText(""+facility.getPhone());
+		TextView priceView = (TextView) findViewById(R.id.stock_prod_price);
+		String priceStr = "";
+		priceStr = String.format("%.2f", stock.getPrice());
+		priceView.setText(priceStr);
 
-		textView = (TextView) findViewById(R.id.supplierAddress);
-
-		textView.setText(""+facility.getAddress());
-
-		Button callBtn = (Button) findViewById(R.id.callButton);
-		if (facility.getPhone() == null || (facility.getPhone()).equalsIgnoreCase("")) {
-			callBtn.setVisibility(View.GONE);
-			return;
-		}
-		callBtn.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				try {
-					// set the data
-					String uri = "tel:" + "+91" + facility.getPhone();
-					Intent callIntent = new Intent(Intent.ACTION_DIAL, Uri.parse(uri));
-
-					startActivity(callIntent);
-				}catch(Exception e) {
-					Toast.makeText(getApplicationContext(),"Your call has failed...",
-							Toast.LENGTH_LONG).show();
-					e.printStackTrace();
-				}
-			}
-		});
 
 		//new LoadViewTask().execute();
 

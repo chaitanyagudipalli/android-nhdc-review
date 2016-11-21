@@ -13,6 +13,7 @@ import java.util.List;
 
 import in.vasista.vsales.payment.Payment;
 import in.vasista.vsales.stocks.Stock;
+import in.vasista.vsales.transporter.Transporter;
 
 public class StocksDataSource {
 	public static final String module = IndentsDataSource.class.getName();
@@ -20,8 +21,8 @@ public class StocksDataSource {
 	  // Database fields
 	  private SQLiteDatabase database;
 	  private MySQLiteHelper dbHelper;
-	  private String[] allColumns = { MySQLiteHelper.COLUMN_STOCK_ID,
-	      MySQLiteHelper.COLUMN_STOCK_PRODID,
+	  private String[] allColumns = { MySQLiteHelper.COLUMN_STOCK_INVID,
+	      MySQLiteHelper.COLUMN_STOCK_PRODID,MySQLiteHelper.COLUMN_STOCK_SHIPID,
 	      MySQLiteHelper.COLUMN_STOCK_PRODNAME,MySQLiteHelper.COLUMN_STOCK_DEPOT,
 			  MySQLiteHelper.COLUMN_STOCK_SUPPLIER,
 			  MySQLiteHelper.COLUMN_STOCK_SPEC,
@@ -51,6 +52,8 @@ public class StocksDataSource {
 			for (int i = 0; i < stocks.size(); ++i) {
 				Stock stock = stocks.get(i);
 				ContentValues values = new ContentValues();
+				values.put(MySQLiteHelper.COLUMN_STOCK_INVID, stock.getInvId());
+				values.put(MySQLiteHelper.COLUMN_STOCK_SHIPID, stock.getShipid());
 				values.put(MySQLiteHelper.COLUMN_STOCK_PRODID, stock.getProdid());
 				values.put(MySQLiteHelper.COLUMN_STOCK_PRODNAME, stock.getProdname());
 				values.put(MySQLiteHelper.COLUMN_STOCK_DEPOT, stock.getDepot());
@@ -59,7 +62,7 @@ public class StocksDataSource {
 				values.put(MySQLiteHelper.COLUMN_STOCK_QTY, stock.getQty());
 				values.put(MySQLiteHelper.COLUMN_STOCK_PRICE, stock.getPrice());
 
-				database.insert(MySQLiteHelper.TABLE_PAYMENT, null, values);
+				database.insert(MySQLiteHelper.TABLE_SUPP_STOCKS, null, values);
 			}
 			database.setTransactionSuccessful();
 		} catch(Exception e){
@@ -68,7 +71,17 @@ public class StocksDataSource {
 			database.endTransaction();
 		}
 	}
-	  
+	public Stock getStockDetails(String invId) {
+		Log.v("trans",""+invId);
+		Cursor cursor = database.query(MySQLiteHelper.TABLE_SUPP_STOCKS,
+				allColumns, MySQLiteHelper.COLUMN_STOCK_INVID + " = '" + invId + "'", null, null, null, null);
+
+		cursor.moveToFirst();
+		Stock stock = cursorToStock(cursor);
+		// Make sure to close the cursor
+		cursor.close();
+		return stock;
+	}
 	  public List<Stock> getAllStocks() {
 		    List<Stock> stocks = new ArrayList<Stock>();
 		    String orderBy =  MySQLiteHelper.COLUMN_STOCK_PRODNAME + " DESC";
@@ -89,8 +102,8 @@ public class StocksDataSource {
 	  private Stock cursorToStock(Cursor cursor) {
 		    return new Stock(cursor.getString(0),
 					cursor.getString(1),
-					cursor.getString(2),cursor.getString(3),cursor.getString(4),
-					cursor.getDouble(6),cursor.getDouble(7));
+					cursor.getString(2),cursor.getString(3),cursor.getString(4),cursor.getString(5),
+					cursor.getString(6),cursor.getDouble(7),cursor.getDouble(8));
 	  }	  
 	  
 	  public void deleteAllStocks() {

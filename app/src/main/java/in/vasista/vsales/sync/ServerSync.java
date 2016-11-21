@@ -63,6 +63,7 @@ import in.vasista.vsales.indent.IndentItemsListFragment;
 import in.vasista.vsales.indent.IndentListFragment;
 import in.vasista.vsales.order.OrderListFragment;
 import in.vasista.vsales.payment.PaymentListFragment;
+import in.vasista.vsales.stocks.Stock;
 import in.vasista.vsales.stocks.StockListFragment;
 import in.vasista.vsales.supplier.Supplier;
 import in.vasista.vsales.supplier.SupplierListFragment;
@@ -575,7 +576,7 @@ public class ServerSync {
 													(String) shipitem.get("itemName"), (String) shipitem.get("orderItemSeqId"),
 													((BigDecimal) shipitem.get("quantity")).floatValue(), ((BigDecimal) shipitem.get("unitPrice")).floatValue(),
 													((BigDecimal) shipitem.get("itemAmount")).floatValue(),
-														(String) shipment_details.get("customer"),(String) shipment_details.get("destination"));
+														(String) shipment_details.get("customer"),(String) shipment_details.get("destination"),(String)shipment_details.get("shipmentDate"));
 													supplierPOShips.add(supplierPOShip);
 											}
 //
@@ -1735,10 +1736,35 @@ public class ServerSync {
 					if (result != null) {
 						final StocksDataSource stocksDataSource = new StocksDataSource (context);
 						stocksDataSource.open();
-						Map paymentsResult = (Map)((Map)result).get("stockMap");
-						Log.d(module, "paymentsResult.size() = " + paymentsResult.size());
-//						paymentsDataSource.deleteAllPayments();
+						Map stockResult = (Map)((Map)result).get("stockMap");
+						Log.d(module, "paymentsResult.size() = " + stockResult.size());
+
+						stocksDataSource.deleteAllStocks();
 // Logic for insertion
+
+						if (stockResult.size() > 0) {
+							List<Stock> stocks = new ArrayList();
+
+							for ( Object key : stockResult.keySet() ) {
+								Map stockMap = (Map) stockResult.get(key);
+								String shipId = (String)stockMap.get("shipmentId");
+								String prodId = (String)stockMap.get("productId");
+								String invId = (String)stockMap.get("inventoryId");
+								String productName = (String)stockMap.get("productName");
+								String depot = (String)stockMap.get("Depot");
+								String supplier = (String)stockMap.get("supplier");
+								String specification = (String)stockMap.get("specification");
+								double qty = ((BigDecimal)stockMap.get("qty")).floatValue();
+								double price = ((BigDecimal)stockMap.get("price")).floatValue();
+								Stock stock = new Stock(invId,shipId,prodId, productName,depot,supplier,specification,qty,price);
+								stocks.add(stock);
+							}
+							stocksDataSource.insertStocks(stocks);
+//							}
+						}
+
+
+
 						stocksDataSource.close();
 						if (listFragment != null) {
 							//Log.d(module, "calling listFragment notifyChange..." + listFragment.getClass().getName());
@@ -1769,7 +1795,7 @@ public class ServerSync {
 				}
 				menuItem.setActionView(null);
 			}
-			Toast.makeText( context, "getFacilityPayments failed: " + e, Toast.LENGTH_SHORT ).show();
+			Toast.makeText( context, "getDepotStock failed: " + e, Toast.LENGTH_SHORT ).show();
 		}
 		if (listFragment != null) {
 			//Log.d(module, "calling listFragment notifyChange..." + listFragment.getClass().getName());

@@ -27,7 +27,7 @@ public class SupplierPOItemDetailedActivity extends DashboardAppCompatActivity {
                 getIntent().getStringExtra("disp"),
                 getIntent().getStringExtra("balance")};
 
-        setPageTitle(getIntent().getStringExtra("prod_id") +" : Product details");
+        setPageTitle(getIntent().getStringExtra("prod_id") +" : "+getString(R.string.product_name));
 
         TextView textView;
         for (int i=0 ; i < ids.length; i++){

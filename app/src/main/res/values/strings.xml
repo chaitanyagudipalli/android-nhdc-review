@@ -325,5 +325,43 @@
     <string name="unit_price_kg">Unit Price (kgs)</string>
     <string name="unit_price_bundle">Unit Price (Bundle)</string>
     <string name="amount">Amount (Rs)</string>
+    <string name="dispatch">Dispatch</string>
+    <string name="customer">Customer</string>
+    <string name="destination">Destination</string>
+    <string name="shipment_date">Shipment Date</string>
+    <string name="item_name">Iten Name</string>
+    <string name="item_qty">Item Qty</string>
+    <string name="item_amount">Item Amount</string>
+    <string name="cst_num">CST Number</string>
+    <string name="tan_num">TAN Number</string>
+    <string name="pan_num">PAN Number</string>
+    <string name="supplier_dashboard">Supplier Dashboard</string>
+    <string name="column_po_id_header">PO ID</string>
+    <string name="column_po_date_header">Date</string>
+    <string name="column_po_status_header">Status</string>
+    <string name="stock_search">Search by Id or name</string>
     <string name="about_file">file:///android_asset/about.html</string>
+    <string name="supplier">Supplier</string>
+    <string name="stock_details">Stock Details</string>
+    <string name="email">Email</string>
+    <string name="product_details">Product Details</string>
+    <string name="no">NO</string>
+    <string name="i_agree">I AGREE</string>
+    <string name="upload_indent">Upload Indent ?</string>
+    <string name="cancel_indent">Cancel Indent ?</string>
+    <string name="ok">OK</string>
+    <string name="term_n_cond">"\n"
+				"These terms and conditions create a contract between you and NHDC (the “Agreement”). Please read the Agreement carefully. To confirm your understanding and acceptance of the Agreement, click “Agree.”\n\n"
+				"INTRODUCTION TO OUR SERVICES\n\n"
+				"This Agreement governs your use of NHDC’s services (“Services”), through which you can place indents.\n"
+				"All Transactions are considered final from your end based on which NHDC shall process indents based on feasibility subject to availability and other risks. Prices indicated for the indent may change at any time. If technical problems prevent or unreasonably delay delivery your exclusive and sole remedy is either replacement of the indent or refund of the amount paid, as determined by NHDC. From time to time, NHDC may refuse a refund request if we find evidence of fraud, refund abuse, or other manipulative behavior that entitles NHDC to a corresponding counterclaim.\n"
+				"You are a registered user of NHDC mobile application and you are of age 18 or above to create an NHDC indent and use our Services.\n\n"
+				"CONTENT AND SERVICE AVAILABILITY\n\n"
+				"Terms found in this Agreement that relate to Services are subject to other applicable laws governing NHDC operations.\n\n"
+				"TERMINATION AND SUSPENSION OF SERVICES\n\n"
+				"If you fail, or NHDC suspects that you have failed, to comply with any of the provisions of this Agreement, NHDC may, without notice to you: (i) terminate services offered, and you will remain liable for all amounts due under your NHDC up to and including the date of termination; and/or (ii) preclude your access to the Services.\n"
+				"NHDC further reserves the right to modify, suspend, or discontinue the Services (or any part or Content thereof) at any time with or without notice to you, and NHDC will not be liable to you or to any third party should it exercise such rights\n\n"
+				"GOVERNING LAW\n\n"
+				"Except to the extent expressly provided in the following paragraph, this Agreement and the relationship between you and NHDC, and all Transactions on the Services shall be governed by the laws"
+    </string>
 </resources>

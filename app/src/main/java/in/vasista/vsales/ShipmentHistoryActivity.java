@@ -29,7 +29,7 @@ public class ShipmentHistoryActivity extends DashboardAppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentChildView(R.layout.activity_supp_shipment_history);
 
-        setPageTitle("Shipment History");
+        setPageTitle(getString(R.string.shipment_history));
 
         String poid = getIntent().getStringExtra("poid");
 

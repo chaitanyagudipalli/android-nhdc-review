@@ -22,7 +22,7 @@ public class SupplierDetailedActivity extends DashboardAppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentChildView(R.layout.activity_supp_detailed);
 
-        setPageTitle("Supplier details");
+        setPageTitle(getString(R.string.supplier_details));
 
         new LoadViewTask().execute();
     }

@@ -379,21 +379,9 @@ public class IndentCreationActivity extends DashboardAppCompatActivity implement
     public void uploadIndentAction(final MenuItem menuItem){
         AlertDialog.Builder alert = new AlertDialog.Builder(
                 IndentCreationActivity.this);
-        alert.setTitle("Upload Indent?");
-        alert.setMessage("\n" +
-                "These terms and conditions create a contract between you and NHDC (the “Agreement”). Please read the Agreement carefully. To confirm your understanding and acceptance of the Agreement, click “Agree.”\n\n" +
-                "A. INTRODUCTION TO OUR SERVICES\n" +
-                "This Agreement governs your use of NHDC’s services (“Services”), through which you can place indents.\n" +
-                "All Transactions are considered final from your end based on which NHDC shall process indents based on feasibility subject to availability and other risks. Prices indicated for the indent may change at any time. If technical problems prevent or unreasonably delay delivery your exclusive and sole remedy is either replacement of the indent or refund of the amount paid, as determined by NHDC. From time to time, NHDC may refuse a refund request if we find evidence of fraud, refund abuse, or other manipulative behavior that entitles NHDC to a corresponding counterclaim.\n" +
-                "You are a registered user of NHDC mobile application and you are of age 18 or above to create an NHDC indent and use our Services.\n\n" +
-                "CONTENT AND SERVICE AVAILABILITY\n" +
-                "Terms found in this Agreement that relate to Services are subject to other applicable laws governing NHDC operations.\n\n" +
-                "TERMINATION AND SUSPENSION OF SERVICES\n" +
-                "If you fail, or NHDC suspects that you have failed, to comply with any of the provisions of this Agreement, NHDC may, without notice to you: (i) terminate services offered, and you will remain liable for all amounts due under your NHDC up to and including the date of termination; and/or (ii) preclude your access to the Services.\n" +
-                "NHDC further reserves the right to modify, suspend, or discontinue the Services (or any part or Content thereof) at any time with or without notice to you, and NHDC will not be liable to you or to any third party should it exercise such rights\n\n" +
-                "GOVERNING LAW\n" +
-                "Except to the extent expressly provided in the following paragraph, this Agreement and the relationship between you and NHDC, and all Transactions on the Services shall be governed by the laws");
-        alert.setPositiveButton("I Agree",
+        alert.setTitle(R.string.upload_indent);
+        alert.setMessage(getString(R.string.term_n_cond));
+        alert.setPositiveButton(getString(R.string.i_agree),
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog,
                                         int whichButton) {
@@ -412,7 +400,7 @@ public class IndentCreationActivity extends DashboardAppCompatActivity implement
                     }
                 });
 
-        alert.setNegativeButton("No",
+        alert.setNegativeButton(getString(R.string.no),
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog,
                                         int whichButton) {

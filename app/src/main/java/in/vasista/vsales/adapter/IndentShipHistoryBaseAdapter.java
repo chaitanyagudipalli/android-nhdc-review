@@ -57,20 +57,20 @@ public class IndentShipHistoryBaseAdapter extends BaseAdapter {
         }
 
         SupplierPOShip supplierPOShip = getItem(position);
-        mViewHolder.dispatch.setText("Dispatch "+supplierPOShip.getShipid());
+        mViewHolder.dispatch.setText(context.getResources().getString(R.string.dispatch)+" "+supplierPOShip.getShipid());
         mViewHolder.itemname.setText(supplierPOShip.getItemname());
         mViewHolder.itemqty.setText(String.format("%.2f", supplierPOShip.getQty()));
         mViewHolder.amnt.setText(String.format("%.2f", supplierPOShip.getItemAmnt()));
         mViewHolder.price.setText(String.format("%.2f", supplierPOShip.getUnitPrice()));
 
         mViewHolder.dest.setText(supplierPOShip.getDestination());
-
+        mViewHolder.shipDate.setText(supplierPOShip.getShipDate());
 
         return convertView;
     }
 
     private class MyViewHolder {
-        TextView dispatch, itemname, itemqty, price, amnt,dest;
+        TextView dispatch, itemname, itemqty, price, amnt,dest,shipDate;
 
 
         public MyViewHolder(View item) {
@@ -80,6 +80,7 @@ public class IndentShipHistoryBaseAdapter extends BaseAdapter {
             price = (TextView) item.findViewById(R.id.price);
             amnt = (TextView) item.findViewById(R.id.amnt);
             dest = (TextView)item.findViewById(R.id.destination);
+            shipDate = (TextView)item.findViewById(R.id.shipment_date);
         }
     }
 }

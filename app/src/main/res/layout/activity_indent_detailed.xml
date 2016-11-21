@@ -9,7 +9,7 @@
 
     <Button
         android:id="@+id/gotoShipments"
-        android:text="Shipments"
+        android:text="@string/shipments"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
     <ScrollView

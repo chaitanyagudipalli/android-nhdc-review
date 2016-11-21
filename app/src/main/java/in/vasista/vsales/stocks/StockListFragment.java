@@ -8,61 +8,69 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import java.util.List;
 
 import in.vasista.nhdcapp.R;
+import in.vasista.vsales.SupplierDetailsActivity;
 import in.vasista.vsales.StockDetailsActivity;
-import in.vasista.vsales.TransporterDetailsActivity;
-import in.vasista.vsales.adapter.PaymentAdapter;
 import in.vasista.vsales.adapter.StockAdapter;
-import in.vasista.vsales.db.PaymentsDataSource;
+import in.vasista.vsales.adapter.SupplierAdapter;
 import in.vasista.vsales.db.StocksDataSource;
-import in.vasista.vsales.payment.Payment;
+import in.vasista.vsales.db.SupplierDataSource;
+import in.vasista.vsales.db.StocksDataSource;
 import in.vasista.vsales.sync.ServerSync;
-import in.vasista.vsales.transporter.Transporter;
+
 
 public class StockListFragment extends ListFragment {
 	public static final String module = StockListFragment.class.getName();
-	List<Stock> stockItems;
+
 	StockAdapter adapter;
 	StocksDataSource datasource;
+	List<Stock> stockItems;
+
 	final StockListFragment stockListFragment = this;
-	
-	public void onActivityCreated(Bundle savedInstanceState) { 
-		
+
+	public void onActivityCreated(Bundle savedInstanceState) {
+
 		super.onActivityCreated(savedInstanceState);
-    	SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
-    	//String retailerId = prefs.getString("storeId", "");
-		
-		if (adapter == null) {			
-    	    datasource = new StocksDataSource(getActivity());
-    	    datasource.open();
-			stockItems = datasource.getAllStocks();
-		}
+
 		final ListView listView = getListView();
 
+		if (listView.getHeaderViewsCount() == 0) {
 
-		if (listView.getHeaderViewsCount() == 0) {	
-	
-			View headerView2 = getActivity().getLayoutInflater().inflate(R.layout.payment_header, null);
+			View headerView2 = getActivity().getLayoutInflater().inflate(R.layout.stock_header, null);
+//			((TextView)headerView2.findViewById(R.id.column_category_header)).setText(R.string.supplier_roletypeid);
 			listView.addHeaderView(headerView2);
 		}
-		if (adapter == null) {			   	    
-		    adapter = new StockAdapter(getActivity(),
-                    R.layout.paymentlist_item,
+		if (adapter == null) {
+			/*
+    		// Create the array list of to do items
+    		ArrayList<Product> catalogItems = new ArrayList<Product>();
+    	    catalogItems.add(new Product("B01", "BUTTER-C 500G",130));
+    	    catalogItems.add(new Product("G05", "GHEE 1LTR (TIN)",290));
+    	    */
+
+			datasource = new StocksDataSource(getActivity());
+			datasource.open();
+			stockItems = datasource.getAllStocks();
+
+			adapter = new StockAdapter(getActivity(),
+					R.layout.stocklist_item,
 					stockItems);
 		}
 		setListAdapter(adapter);
-
 		final EditText inputSearch = (EditText) getActivity().findViewById(R.id.inputSearch);
 		final FrameLayout inputSearchFrame = (FrameLayout) getActivity().findViewById(R.id.inputSearchFrame);
 
@@ -71,11 +79,11 @@ public class StockListFragment extends ListFragment {
 			@Override
 			public void onItemClick(AdapterView<?> listView, View arg1, int position, long arg3) {
 
-				Stock facility = (Stock)listView.getItemAtPosition(position);
-				if (facility != null) {
-					Intent facilityDetailsIntent = new Intent(getActivity(), StockDetailsActivity.class);
-					facilityDetailsIntent.putExtra("prodId", facility.getProdid());
-					startActivity(facilityDetailsIntent);
+				Stock stock = (Stock)listView.getItemAtPosition(position);
+				if (stock != null) {
+					Intent stockDetailsIntent = new Intent(getActivity(), StockDetailsActivity.class);
+					stockDetailsIntent.putExtra("invId", stock.getInvId());
+					startActivity(stockDetailsIntent);
 				}
 			}
 		});
@@ -124,32 +132,37 @@ public class StockListFragment extends ListFragment {
 	 */
 	public void notifyChange() {
 		setListAdapter(null);
-	    datasource.open();
+		datasource.open();
 		stockItems = datasource.getAllStocks();
-	    
-	    adapter = new StockAdapter(getActivity(),
-                R.layout.paymentlist_item,
-				stockItems);
-		setListAdapter(adapter);
+		Log.d(module, "supplierItems.size() = " + stockItems.size());
+		try {
+			adapter = new StockAdapter(getActivity(),
+					R.layout.stocklist_item,
+					stockItems);
+			setListAdapter(adapter);
+		}catch (NullPointerException e){
+			e.printStackTrace();
+		}
 	}
-	
+
 	public void onDestroyView() {
 		super.onDestroyView();
 		setListAdapter(null);
 	}
-	
-    @SuppressLint("NewApi") @Override
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        setUserVisibleHint(true);
-    }
-    
-    @Override
-    public void onResume() {
-    	super.onResume();
-	    datasource.open();
+
+	@SuppressLint("NewApi") @Override
+	public void onSaveInstanceState(Bundle outState) {
+		super.onSaveInstanceState(outState);
+		setUserVisibleHint(true);
+	}
+
+	@Override
+	public void onResume() {
+		super.onResume();
+		datasource.open();
 		stockItems = datasource.getAllStocks();
-	    adapter.clear();
-	    adapter.addAll(stockItems);
-    }	
+		adapter.clear();
+		adapter.addAll(stockItems);
+	}
+
 }

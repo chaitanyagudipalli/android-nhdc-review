@@ -265,7 +265,7 @@ public class SplashScreenActivity extends Activity
             
          // close this activity
             finish();
-		}  
+		}
 	}  
 }  
 

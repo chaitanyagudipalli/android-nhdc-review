@@ -7,7 +7,7 @@
 
     <string name="transporters">ट्रांसपोर्टर</string>
     <string name="title_feature1_plurer">मांगपत्र</string>
-    <string name="my_profile">व्यक्तिगत सुचना </string>
+    <string name="my_profile">व्यक्तिगत सूचना </string>
     <string name="title_employeeprofile">माय प्रोफाइल</string>
     <string name="purchase_orders">परचेस आर्डर</string>
 
@@ -80,7 +80,7 @@
 
 
     <string name="column_order_id_header">आदेशआईडी</string>
-    <string name="column_order_date_header">आर्डरकीतारीख</string>
+    <string name="column_order_date_header">आर्डरकी तारीख</string>
     <string name="column_order_supply_header">आपूर्ति</string>
     <string name="column_order_total_header">राशि (रुपया)</string>
 
@@ -231,7 +231,7 @@
     <string name="scheme_type">योजना</string>
 
     <string name="supp_po_title">क्रयआदेश</string>
-    <string name="supplier_delivery">अप्पूर्तिविवरण</string>
+    <string name="supplier_delivery">अप्पूर्ति विवरण</string>
     <string name="language">भाषा</string>
     <string name="selectLanguage">भाषा चुनिए</string>
 
@@ -253,11 +253,11 @@
         <item>Master</item>
     </string-array>
 
-    <string name="dashboard">डैशबोर्ड</string>
+    <string name="dashboard">मुख्य पृष्ठ</string>
     <string name="changePassword">पासवर्ड बदलें</string>
     <string name="phoneNumber">फ़ोन नंबर</string>
     <string name="passbookNumber">पासबुक संख्या</string>
-    <string name="selectRetailer">चुनिंदा बुनकर</string>
+    <string name="selectRetailer">चुनिए बुनकर</string>
     <string name="contact">संपर्क करें</string>
     <string name="Id">पहचान</string>
     <string name="name">नाम</string>
@@ -267,7 +267,7 @@
     <string name="catalog_search">नाम या विवरण के आधार पर खोजें</string>
     <string name="supplier_search">पहचान पत्र या नाम के आधार पर खोजें</string>
     <string name="supplier_details">आपूर्तिकर्ता विवरण</string>
-    <string name="indentStatus">स्थिति</string>
+    <string name="indentStatus">  स्थिति</string>
     <string name="transporter_name">ट्रांसपोर्टर नाम</string>
     <string name="nhdc_settings">एनएचडीसी सेटिंग्स</string>
     <string name="user_credentials">यूजर क्रेडेंटियलस</string>
@@ -278,11 +278,11 @@
     <string name="pass_must_6_chars">Password must be at least 6 characters</string>
     <string name="new_verify_not_match">New Password and Verify New Password does not match</string>
     <string name="weaver_details">बुनकर विवरण</string>
-    <string name="party_name">पार्टी नाम</string>
+    <string name="party_name">उपभोक्ता</string>
     <string name="issue_date">जारी तिथि</string>
     <string name="party_type">पार्टी टाइप</string>
     <string name="discount_amount">छूट राशि</string>
-    <string name="loom_details">करघा की सूचि</string>
+    <string name="loom_details">करघा की सूची</string>
     <string name="total_looms">कुल करघा</string>
     <string name="loom_type">करघा प्रकार</string>
     <string name="no_of_looms">करघा की संख्या</string>
@@ -290,7 +290,7 @@
     <string name="used_quota">कोटा उपभोग</string>
     <string name="balance_quota">शेष कोटा</string>
     <string name="depot">डिपो</string>
-    <string name="product_name">उद्पाद नाम</string>
+    <string name="product_name">उत्पाद नाम</string>
     <string name="quantity">मात्रा</string>
     <string name="remarks">टिप्पणी</string>
     <string name="bale_quantity">मात्रा बेल में</string>
@@ -298,22 +298,64 @@
     <string name="unit_price">दर</string>
     <string name="total_amount">कुल मूल्य</string>
     <string name="other_charges">विविध ख़र्च</string>
-    <string name="shipped_quantity">अपुर्थिती मात्रा</string>
+    <string name="shipped_quantity">आपूर्तित मात्रा</string>
     <string name="doa">आवंटन की तारीख</string>
     <string name="indent_item_details">मांगपत्र मद विवरण</string>
-    <string name="shipments">SHIPMENTS</string>
-    <string name="shipment_history">Shipment History</string>
-    <string name="branch">डाली</string>
-    <string name="select_supplier">चुनिंदा आपूर्तिकर्ता</string>
-    <string name="select_transporter">चुनिंदा ट्रांसपोर्टर</string>
+    <string name="shipments">शिपमेंट्स</string>
+    <string name="shipment_history">शिपमेंट हिस्टरी</string>
+    <string name="branch">शाखा</string>
+    <string name="select_supplier">आपूर्तिकर्ता चुनिए</string>
+    <string name="select_transporter">ट्रांसपोर्टर चुनिए</string>
     <string name="indent_total">मांगपत्र कुल</string>
-    <string name="save">सेव</string>
+    <string name="save">पूर्ण करे</string>
     <string name="add_product">उत्पाद को जोड़ने</string>
-    <string name="select_product">चुनिंदा उत्पाद</string>
-    <string name="specification">विनिर्देश</string>
+    <string name="select_product">उत्पाद चुनिए</string>
+    <string name="specification">प्रकार</string>
     <string name="qty_kg">मात्रा (kgs)</string>
     <string name="unit_price_kg">दर (kgs)</string>
     <string name="unit_price_bundle">दर (बंडल)</string>
     <string name="amount">मूल्य (रुपया)</string>
+    <string name="dispatch">डिस्पेच</string>
+    <string name="customer">कस्टमर</string>
+    <string name="destination">डेस्टिनेशन</string>
+    <string name="shipment_date">शिपमेंट  तारीख</string>
+    <string name="item_name">उत्पाद नाम</string>
+    <string name="item_qty">Item Qty</string>
+    <string name="item_amount">Item Amount</string>
+    <string name="cst_num">CST नंबर</string>
+    <string name="tan_num">TAN नंबर</string>
+    <string name="pan_num">PAN नंबर</string>
+    <string name="supplier_dashboard">आपूर्तिकर्ता डैशबोर्ड</string>
+    <string name="column_po_id_header">संदर्भसंख्या</string>
+    <string name="column_po_date_header">तारीख</string>
+    <string name="column_po_status_header">स्थिति</string>
+    <string name="stocks">भण्डार</string>
     <string name="about_file">file:///android_asset/about-hi.html</string>
+    <string name="supplier">आपूर्तिकर्ता</string>
+    <string name="stock_details">भण्डार विवरण</string>
+    <string name="stock_search">उत्पाद नाम के आधार पर खोजें</string>
+    <string name="email">ईमेल</string>
+    <string name="product_details">उत्पाद विवरण</string>
+    <string name="no">नहीं</string>
+    <string name="i_agree">मैं सहमत हूँ</string>
+    <string name="upload_indent">अपलोड मांगपत्र ?</string>
+    <string name="cancel_indent">मांगपत्र रद्द ?</string>
+    <string name="ok">ठीक</string>
+    <string name="term_n_cond">"\n"
+        "नियम और शर्तें :\n\n"
+        इन नियमों और शर्तों के द्वारा  आप और एनएचडीसी के बीच एक अनुबंध  करते हैं (एग्रीमेन्ट )। कृपया समझौते को ध्यान से पढ़ें। अपनी समझ और समझौते की स्वीकृति की पुष्टि करने के लिए, "सहमत हैं" , बटन दबाये।"\n"
+        "\nहमारी सेवाओं का परिचय :\n\n"
+        "इस समझौते के द्वारा , आप एनएचडीसी की सेवाओं ( "सेवा"), का उपयोग करके मांगपत्र दे सकते हैं।\n"
+        "सभी सूचनाये आप की तरफ से पूर्ण मानी जाएगी ,जो की आपने मांग पत्र में दिया है । और  उसके आधार पर  ही आप को मात्रा की पूर्ति   की जाएगी । सभी दूसरी आवश्यकताओ को देखते हुए ही आप की मांग पूरी की जाएगी।\n"
+        "मांगपत्र के कीमतों की सूचना किसी भी समय एनएचडीसी  बदल सकते हैं। किसी भी तकनीकी कमी की वजह से अगर सामान सप्लाई में अत्यधिक देरी होती है या सामान ठीक नहीं है तो इसकी भरपाई  कारपोरेशन के मान्य नियमो द्वारा होगा । अगर एनएचडीसी  को किसी प्रकार का या किसी भी दुरूपयोग का, अन्य जोड़ तोड़  के  व्यवहार का सबूत मिलता है तो  समय-समय पर, एनएचडीसी धनवापसी का अनुरोध इंकार कर सकती है ,\n"
+        "आप एनएचडीसी मोबाइल आवेदन का एक पंजीकृत उपयोगकर्ता हैं और आप को एक एनएचडीसी मांगपत्र बना ने और हमारी सेवाओं का उपयोग करने के लिए 18 या अधिक आयु का होना चाहिए।\n"
+        "\nकंटेंट और सेवा की उपलब्धता\n\n"
+        "इसमझौते में सेवाओं से संबंधित नियम, एनएचडीसी द्वारा संचालित अन्य लागू कानूनों के अधीन हैं।\n"
+        "आप  का  सौदा असफल है, या एनएचडीसी को शक है कि आप  एनएचडीसी  कै   समझौते का पालन नही  करते है  या   असफल रहे हैं, तो एनएचडीसी सूचना के बिना, आप  की  सेवाओं  को समाप्त   कर सकती है, और आप को रिफंड के लिया एनएचडीसी के सभी नियम मान्य होंगे ,  और  एनएचडीसी के शर्तों पर आप की सेवा चालू या बंद की जाएगी.\n"
+        "\nसेवाओं का निलंबन ओर समाप्ति :\n\n"
+        "किसी भी समय सूचना या पूर्व सूचना के एनएचडीसी अपने  पास मांग पत्रो में सभी प्रकार के संसोधन ,रोकने या निरस्त करने का अधिकार रखता है, और एनएचडीसी  आपके लिए या किसी तीसरी पार्टी के लिए उत्तरदायी  नहीं होगा |\n"
+        "\nशासकीय कानून :\n\n"
+        "उपरोक्त अनुबंध और शर्त आपके और एनएचडीसी  के बीच  सभी प्रकार के लेन देन  और सुविधावो के लिए मान्य है और कानून के अधीन ,एनएचडीसी  के अनुसार मान्य है |"
+
+    </string>
 </resources>

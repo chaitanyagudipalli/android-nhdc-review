@@ -24,7 +24,7 @@
                 android:layout_width="wrap_content"
                 style="@style/TabeRowTitle"
                 android:layout_margin="2dp"
-                android:text="@string/party_name"/>
+                android:text="@string/supplier_name"/>
             <TextView
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
@@ -93,7 +93,7 @@
                 android:layout_width="wrap_content"
                 style="@style/TabeRowTitle"
                 android:layout_margin="2dp"
-                android:text="email Id"
+                android:text="@string/email"
                  />
             <TextView
                 android:layout_height="match_parent"
@@ -117,7 +117,7 @@
                 android:layout_width="wrap_content"
                 style="@style/TabeRowTitle"
                 android:layout_margin="2dp"
-                android:text="CST Number"
+                android:text="@string/cst_num"
                  />
             <TextView
                 android:layout_height="match_parent"
@@ -140,7 +140,7 @@
                 android:layout_width="wrap_content"
                 style="@style/TabeRowTitle"
                 android:layout_margin="2dp"
-                android:text="TAN Number"
+                android:text="@string/tan_num"
                  />
             <TextView
                 android:layout_height="match_parent"
@@ -164,7 +164,7 @@
                 android:layout_width="wrap_content"
                 style="@style/TabeRowTitle"
                 android:layout_margin="2dp"
-                android:text="PAN Number"
+                android:text="@string/pan_num"
                  />
             <TextView
                 android:layout_height="match_parent"

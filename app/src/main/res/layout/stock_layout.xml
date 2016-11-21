@@ -15,7 +15,7 @@
             android:id="@+id/inputSearch"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Search by id or name"
+            android:hint="@string/stock_search"
             android:inputType="textVisiblePassword" />
         <ImageButton
             android:id="@+id/inputSearchClear"

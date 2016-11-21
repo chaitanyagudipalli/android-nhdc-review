@@ -148,9 +148,9 @@ public class MainActivity extends DrawerCompatActivity  {
 		if (analyticSalesPerm.equals("Y")){
 			navigationView.getMenu().setGroupVisible(R.id.group_analytics_sales, true);
 		}*/
-	    
+
 //	    ServerRestSync sync = new ServerRestSync(this);
-//	    sync.fetchMaterials(); 
+//	    sync.fetchMaterials();
 	}
 	    
 	/**

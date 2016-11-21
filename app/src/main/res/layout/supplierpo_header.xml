@@ -11,7 +11,7 @@
     	android:textSize="12sp" 
     	android:textStyle="bold"        	   
     	android:layout_height="wrap_content" 
-        android:text="Date"
+        android:text="@string/column_po_date_header"
         />
     <TextView android:id="@+id/column_name_header"
         android:layout_width="0dp"
@@ -20,7 +20,7 @@
     	android:textSize="12sp" 
     	android:textStyle="bold"        	   
     	android:layout_height="wrap_content" 
-        android:text="PO ID"
+        android:text="@string/column_po_id_header"
         />    
     <TextView android:id="@+id/column_category_header"
         android:layout_width="0dp"
@@ -30,6 +30,6 @@
     	android:textSize="12sp" 
     	android:textStyle="bold"         	 
     	android:layout_height="wrap_content" 
-        android:text="Status"
+        android:text="@string/column_po_status_header"
         />                     
 </LinearLayout>

@@ -36,7 +36,7 @@ public class IndentShipmentActivity extends DashboardAppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentChildView(R.layout.activity_indent_shipments);
 
-        setPageTitle("Shipment History");
+        setPageTitle(getString(R.string.shipment_history));
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
         orderId = "";
@@ -97,7 +97,7 @@ public class IndentShipmentActivity extends DashboardAppCompatActivity {
                                         (String) shipitem.get("itemName"), (String) shipitem.get("orderItemSeqId"),
                                         ((BigDecimal) shipitem.get("quantity")).floatValue(), ((BigDecimal) shipitem.get("unitPrice")).floatValue(),
                                         ((BigDecimal) shipitem.get("itemAmount")).floatValue(),
-                                        (String) shipment_details.get("customer"), (String) shipment_details.get("destination"));
+                                        (String) shipment_details.get("customer"), (String) shipment_details.get("destination"),(String)shipment_details.get("shipmentDate"));
                                 supplierPOShips.add(supplierPOShip);
                             }
 //
