@@ -83,8 +83,8 @@
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:stretchColumns="*"
-        android:shrinkColumns="*"
+        android:stretchColumns="0"
+        android:shrinkColumns="0"
         android:layout_below="@+id/destinationLayout"
         android:layout_marginTop="10dp"
         android:layout_alignParentLeft="true"
@@ -101,6 +101,7 @@
                 android:text="@string/item_name"
                 android:textSize="12sp"
                 android:textStyle="bold"
+                android:inputType="textMultiLine"
                  />
 
             <TextView
@@ -109,6 +110,7 @@
                 android:textSize="12sp"
                 android:textStyle="bold"
                 android:text="@string/item_qty"
+
                  />
 
             <TextView
@@ -117,6 +119,7 @@
                 android:textStyle="bold"
                 android:text="@string/unit_price"
                 android:textSize="12sp"
+
                  />
 
             <TextView

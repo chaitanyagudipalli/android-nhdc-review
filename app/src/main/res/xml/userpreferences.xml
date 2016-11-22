@@ -38,11 +38,11 @@
                 android:title="Tenant Id"
                 android:summary="Tenant Id"
                 android:key="tenantId"/> -->
-            <CheckBoxPreference
+            <!--<CheckBoxPreference
                 android:title="Live"
                 android:summary="Payment Gateway Live Enable"
                 android:key="payuLive"
-                />
+                />-->
 		<ListPreference
 			android:key="lang_preference"
 			android:title="@string/language"

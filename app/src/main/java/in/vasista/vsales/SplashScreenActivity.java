@@ -132,6 +132,9 @@ public class SplashScreenActivity extends Activity
 						if (contactNumber != null)
 							prefEditor.putString(MainActivity.USER_PASSBOOK, contactNumber);
 
+						String productStoreId = (String) permissions.get("productStoreId");
+						if (productStoreId != null)
+							prefEditor.putString("productStoreId", productStoreId);
 						prefEditor.apply();
 
 					}
@@ -179,6 +182,7 @@ public class SplashScreenActivity extends Activity
 							prefEditor.putString("weaverDetailsMap", "" + weaverDetails);
 							prefEditor.putString(MainActivity.USER_FULLNAME, "" + weaverDetails.get("partyName"));
 							prefEditor.putString(MainActivity.USER_PASSBOOK, "" + weaverDetails.get("passBookNo"));
+							prefEditor.putString("customerName",(String)weaverDetails.get("partyName"));
 							prefEditor.apply();
 
 							Map loomDetails = (Map) ((Map) weaverDetails).get("loomDetails");
@@ -227,10 +231,10 @@ public class SplashScreenActivity extends Activity
 			progressBar.setVisibility(View.GONE);
 
 			SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(SplashScreenActivity.this);
-			String serverURL = prefs.getString("serverURL", "nhdc-test.vasista.in");
+			String serverURL = prefs.getString("serverURL", "erp.nhdcltd.co.in");
 			String userName = prefs.getString("userName", "");
 			String password = prefs.getString("password", "");
-			String tenantId = prefs.getString("tenantId", "nhdc-test");
+			String tenantId = prefs.getString("tenantId", "nhdc");
 			String language = prefs.getString("lang_preference", "en");
 			SharedPreferences.Editor prefEditor = prefs.edit();
 			prefEditor.putString("serverURL",serverURL);

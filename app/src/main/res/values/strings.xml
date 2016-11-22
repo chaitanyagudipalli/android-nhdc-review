@@ -330,8 +330,8 @@
     <string name="destination">Destination</string>
     <string name="shipment_date">Shipment Date</string>
     <string name="item_name">Iten Name</string>
-    <string name="item_qty">Item Qty</string>
-    <string name="item_amount">Item Amount</string>
+    <string name="item_qty">Qty</string>
+    <string name="item_amount">Amount</string>
     <string name="cst_num">CST Number</string>
     <string name="tan_num">TAN Number</string>
     <string name="pan_num">PAN Number</string>

@@ -320,8 +320,8 @@
     <string name="destination">डेस्टिनेशन</string>
     <string name="shipment_date">शिपमेंट  तारीख</string>
     <string name="item_name">उत्पाद नाम</string>
-    <string name="item_qty">Item Qty</string>
-    <string name="item_amount">Item Amount</string>
+    <string name="item_qty">मात्रा</string>
+    <string name="item_amount">मूल्य</string>
     <string name="cst_num">CST नंबर</string>
     <string name="tan_num">TAN नंबर</string>
     <string name="pan_num">PAN नंबर</string>

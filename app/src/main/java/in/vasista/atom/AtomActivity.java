@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Base64;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 import in.vasista.nhdcapp.R;
 import in.vasista.vsales.DashboardAppCompatActivity;
 import in.vasista.vsales.PaymentActivity;
+import in.vasista.vsales.SalesDashboardActivity;
 import in.vasista.vsales.sync.ServerSync;
 
 import com.atom.mobilepaymentsdk.PayActivity;
@@ -24,7 +26,12 @@ import com.payu.india.Payu.PayuConstants;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.HashMap;
 
 /**
@@ -54,9 +61,10 @@ public class AtomActivity extends DashboardAppCompatActivity{
     EditText et_nb_amt, et_card_amt;
 
     String orderId;
-
+    String prodId;
     boolean env_live;
-
+    String customerName;
+    String partyId;
     @Override
     public void onResume()
     {
@@ -77,11 +85,12 @@ public class AtomActivity extends DashboardAppCompatActivity{
         }
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         env_live = prefs.getBoolean("payuLive",false)? true:false;
-
+        prodId = prefs .getString("productStoreId","");
         cardType = (Spinner) findViewById(R.id.sp_cardType);
         PaymentType = (Spinner)findViewById(R.id.sp_paymentType);
         Bank = (Spinner)findViewById(R.id.sp_bank);
-
+        customerName = prefs.getString("customerName","");
+        partyId = prefs.getString("storeId","");
         payMerchantNB = (Button) findViewById(R.id.btn_payMerchantNB);
         payMerchantNB.setOnClickListener(new View.OnClickListener() {
 
@@ -141,33 +150,53 @@ public class AtomActivity extends DashboardAppCompatActivity{
 
                     Intent newPayIntent = new Intent(AtomActivity.this,	PayActivity.class);
 
-                    newPayIntent.putExtra("merchantId", "459");
+                    newPayIntent.putExtra("merchantId", "21089");
                     newPayIntent.putExtra("txnscamt", "0"); //Fixed. Must be �0�
-                    newPayIntent.putExtra("loginid", "459");
-                    newPayIntent.putExtra("password", "Test@123");
-                    newPayIntent.putExtra("prodid", "NSE");
+                    newPayIntent.putExtra("loginid", "21089");
+                    newPayIntent.putExtra("password", "NHDC@1234");
+                    newPayIntent.putExtra("prodid", prodId);
                     newPayIntent.putExtra("txncurr", "INR"); //Fixed. Must be �INR�
-                    newPayIntent.putExtra("clientcode", "001");
+                    byte[] encodePartyId = Base64.encode(partyId.getBytes(), Base64.DEFAULT);
+                    newPayIntent.putExtra("clientcode", new String(encodePartyId));
                     newPayIntent.putExtra("custacc", "100000036600");
                     newPayIntent.putExtra("amt", amt);//Should be 3 decimal number i.e 1.000
-                    newPayIntent.putExtra("txnid", "013");
-                    newPayIntent.putExtra("date", "25/08/2015 18:31:00");//Should be in same format
+                    String tempStr = partyId+customerName;
+                    SimpleDateFormat sdf1 = new SimpleDateFormat("ddmmyyyyHHmmss");
+                    String tempDate = sdf1.format(new Date());
+                    tempStr = tempStr+tempDate;
+                    String txnId = "";
+                    try{
+                        txnId = makeSHA1Hash(tempStr);
+                    } catch(NoSuchAlgorithmException e)
+                    {
+                        e.printStackTrace();
+                    }
+                    catch(UnsupportedEncodingException e)
+                    {
+                        e.printStackTrace();
+                    }
+                    newPayIntent.putExtra("txnid", txnId);
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("dd/mm/yyyy HH:mm:ss");
+                    String date  = dateFormat.format(new Date());
+
+                    newPayIntent.putExtra("date",date);//Should be in same format
                     newPayIntent.putExtra("bankid", ""); //Should be valid bank id
 
-                    if(env_live) {
+                    //if(env_live) {
                         //use below Production url only with Production "Library-MobilePaymentSDK", Located inside PROD folder
                         newPayIntent.putExtra("ru", "https://payment.atomtech.in/mobilesdk/param"); //ru FOR Production
-                    }else {
+                    //}else {
                         //use below UAT url only with UAT "Library-MobilePaymentSDK", Located inside UAT folder
-                        newPayIntent.putExtra("ru", "https://paynetzuat.atomtech.in/mobilesdk/param"); // FOR UAT (Testing)
-                    }
+                        //newPayIntent.putExtra("ru", "https://paynetzuat.atomtech.in/mobilesdk/param"); // FOR UAT (Testing)
+                    //}
 
                     //Optinal Parameters
-                    newPayIntent.putExtra("customerName", "JKL PQR"); //Only for Name
-                    newPayIntent.putExtra("customerEmailID", "jkl.pqr@atomtech.in");//Only for Email ID
-                    newPayIntent.putExtra("customerMobileNo", "9876543210");//Only for Mobile Number
-                    newPayIntent.putExtra("billingAddress", "Mumbai");//Only for Address
-                    newPayIntent.putExtra("optionalUdf9", "OPTIONAL DATA 1");// Can pass any data
+                    newPayIntent.putExtra("udf1", customerName); //Only for Name
+                    newPayIntent.putExtra("udf9", orderId);
+                    //newPayIntent.putExtra("customerEmailID", "raviteja@vasita.in");//Only for Email ID
+                    //newPayIntent.putExtra("customerMobileNo", "965211525");//Only for Mobile Number
+                    //newPayIntent.putExtra("billingAddress", "Hyderabadd");//Only for Address
+                    //newPayIntent.putExtra("optionalUdf9", "OPTIONAL DATA 1");// Can pass any data
 
                     startActivityForResult(newPayIntent, 1);
                 }
@@ -257,33 +286,54 @@ public class AtomActivity extends DashboardAppCompatActivity{
 
 
                     Intent newPayIntent = new Intent(AtomActivity.this,	PayActivity.class);
-                    newPayIntent.putExtra("merchantId", "459");
+                    newPayIntent.putExtra("merchantId", "21089");
                     newPayIntent.putExtra("txnscamt", "0"); //Fixed. Must be �0�
-                    newPayIntent.putExtra("loginid", "459");
-                    newPayIntent.putExtra("password", "Test@123");
-                    newPayIntent.putExtra("prodid", "NSE");
+                    newPayIntent.putExtra("loginid", "21089");
+                    newPayIntent.putExtra("password", "NHDC@1234");
+                    newPayIntent.putExtra("prodid", prodId);
                     newPayIntent.putExtra("txncurr", "INR"); //Fixed. Must be �INR�
-                    newPayIntent.putExtra("clientcode", "007");
+                    byte[] encodePartyId = Base64.encode(partyId.getBytes(), Base64.DEFAULT);
+                    newPayIntent.putExtra("clientcode", new String(encodePartyId));
                     newPayIntent.putExtra("custacc", "100000036600");
                     newPayIntent.putExtra("channelid", "INT");
                     newPayIntent.putExtra("amt", amt);//Should be 3 decimal number i.e 1.000
-                    newPayIntent.putExtra("txnid", "2365F315");
-                    newPayIntent.putExtra("date", "30/12/2015 18:31:00");//Should be in same format
+
+                    String tempStr = partyId+customerName;
+                    SimpleDateFormat sdf1 = new SimpleDateFormat("ddmmyyyyHHmmss");
+                    String tempDate = sdf1.format(new Date());
+                    tempStr = tempStr+tempDate;
+                    String txnId = "";
+                    try{
+                        txnId = makeSHA1Hash(tempStr);
+                    } catch(NoSuchAlgorithmException e)
+                    {
+                        e.printStackTrace();
+                    }
+                    catch(UnsupportedEncodingException e)
+                    {
+                        e.printStackTrace();
+                    }
+                    newPayIntent.putExtra("txnid", txnId);
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("dd/mm/yyyy HH:mm:ss");
+                    String date  = dateFormat.format(new Date());
+
+                    newPayIntent.putExtra("date",date);//Should be in same format
                     newPayIntent.putExtra("cardtype", strPaymentMode);// CC or DC ONLY (value should be same as commented)
                     newPayIntent.putExtra("cardAssociate", strCardType);// VISA or MASTER or MAESTRO ONLY (value should be same as commented)
 
                     //use below Production url only with Production "Library-MobilePaymentSDK", Located inside PROD folder
-                    //newPayIntent.putExtra("ru","https://payment.atomtech.in/mobilesdk/param"); //ru FOR Production
+                    newPayIntent.putExtra("ru","https://payment.atomtech.in/mobilesdk/param"); //ru FOR Production
 
                     //use below UAT url only with UAT "Library-MobilePaymentSDK", Located inside UAT folder
-                    newPayIntent.putExtra("ru", "https://paynetzuat.atomtech.in/mobilesdk/param"); // FOR UAT (Testing)
+                    //newPayIntent.putExtra("ru", "https://paynetzuat.atomtech.in/mobilesdk/param"); // FOR UAT (Testing)
 
                     //Optinal Parameters
-                    newPayIntent.putExtra("customerName", "LMN PQR");//Only for Name
-                    newPayIntent.putExtra("customerEmailID", "pqr.lmn@atomtech.in");//Only for Email ID
-                    newPayIntent.putExtra("customerMobileNo", "9978868666");//Only for Mobile Number
-                    newPayIntent.putExtra("billingAddress", "Pune");//Only for Address
-                    newPayIntent.putExtra("optionalUdf9", "OPTIONAL DATA 2");// Can pass any data
+                    newPayIntent.putExtra("udf1", customerName); //Only for Name
+                    newPayIntent.putExtra("udf9", orderId);
+                    //newPayIntent.putExtra("customerEmailID", "raviteja@vasista.in   ");//Only for Email ID
+                    //newPayIntent.putExtra("customerMobileNo", "9652115255");//Only for Mobile Number
+                    //newPayIntent.putExtra("billingAddress", "HYDERABAD");//Only for Address
+                    //newPayIntent.putExtra("optionalUdf9", "OPTIONAL DATA 2");// Can pass any data
 
                     startActivityForResult(newPayIntent, 1);
 
@@ -346,7 +396,23 @@ public class AtomActivity extends DashboardAppCompatActivity{
 
     }
     public void paymentDone(){
-        startActivity(new Intent(this, PaymentActivity.class));
+        startActivity(new Intent(this, SalesDashboardActivity.class));
+    }
+
+    public static String makeSHA1Hash(String input)
+            throws NoSuchAlgorithmException, UnsupportedEncodingException
+    {
+        MessageDigest md = MessageDigest.getInstance("SHA1");
+        md.reset();
+        byte[] buffer = input.getBytes("UTF-8");
+        md.update(buffer);
+        byte[] digest = md.digest();
+
+        String hexStr = "";
+        for (int i = 0; i < digest.length; i++) {
+            hexStr +=  Integer.toString( ( digest[i] & 0xff ) + 0x100, 16).substring( 1 );
+        }
+        return hexStr;
     }
 
 }
