@@ -35,8 +35,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dip"
                 android:hint="Amount"
-                android:inputType="number"
-                android:maxLength="5" />
+                android:inputType="numberDecimal"
+                android:maxLength="10" />
 
             <Spinner
                 android:id="@+id/sp_bank"
@@ -57,8 +57,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dip"
                 android:hint="Amount"
-                android:inputType="number"
-                android:maxLength="5" />
+                android:inputType="numberDecimal"
+                android:maxLength="10" />
 
             <!--  EditText
                 android:id="@+id/et_hname"
