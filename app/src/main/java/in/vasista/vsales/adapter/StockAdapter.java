@@ -56,6 +56,7 @@ public class StockAdapter extends ArrayAdapter<Stock> {
 		String prodQty = String.format("%.2f", item.getQty());
 		String prodPrice = String.format("%.2f", item.getPrice());
 		String shipId = item.getShipid();
+		String depot = item.getDepot();
 
 		if (convertView == null) {
 			StockView = new LinearLayout(getContext());
@@ -69,12 +70,13 @@ public class StockAdapter extends ArrayAdapter<Stock> {
 
 		TextView nameView = (TextView)StockView.findViewById(R.id.stock_product_name);
 		TextView qtyView = (TextView)StockView.findViewById(R.id.stock_product_qty);
+		TextView depotView = (TextView)StockView.findViewById(R.id.stock_product_depot);
 		TextView priceView = (TextView)StockView.findViewById(R.id.stock_product_price);
-
 
 		nameView.setText(prodName);
 		qtyView.setText(prodQty);
 		priceView.setText(prodPrice);
+		depotView.setText(depot);
 		//routeView.setText(amRouteId + " " + pmRouteId);
 		//phoneNumView.setText(phoneNum);
 		return StockView;

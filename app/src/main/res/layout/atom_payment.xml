@@ -38,12 +38,12 @@
                 android:inputType="numberDecimal"
                 android:maxLength="10" />
 
-            <Spinner
+            <!--<Spinner
                 android:id="@+id/sp_bank"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:entries="@array/bank" />
+                android:entries="@array/bank" />-->
 
             <Button
                 android:id="@+id/btn_payMerchantNB"

@@ -88,7 +88,7 @@ public class AtomActivity extends DashboardAppCompatActivity{
         prodId = prefs .getString("productStoreId","");
         cardType = (Spinner) findViewById(R.id.sp_cardType);
         PaymentType = (Spinner)findViewById(R.id.sp_paymentType);
-        Bank = (Spinner)findViewById(R.id.sp_bank);
+        //Bank = (Spinner)findViewById(R.id.sp_bank);
         customerName = prefs.getString("customerName","");
         partyId = prefs.getString("storeId","");
         payMerchantNB = (Button) findViewById(R.id.btn_payMerchantNB);
@@ -98,15 +98,7 @@ public class AtomActivity extends DashboardAppCompatActivity{
             {
                 String amt = et_nb_amt.getText().toString();
 
-                if(amt.equalsIgnoreCase(""))
-                {
-                    Toast.makeText(AtomActivity.this, "Please enter valid amount", Toast.LENGTH_LONG).show();
-                }
-                else if(Bank.getSelectedItemPosition()==0)
-                {
-                    Toast.makeText(AtomActivity.this, "Please select valid bank", Toast.LENGTH_LONG).show();
-                }
-                else
+                if(true)
                 {
 
                     Double doubleAmt = Double.valueOf(amt);
