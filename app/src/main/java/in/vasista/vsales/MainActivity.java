@@ -126,14 +126,14 @@ public class MainActivity extends DrawerCompatActivity  {
     	String serverURL;
     	serverURL = prefs.getString("serverURL", "");	    	
     	if (serverURL.isEmpty()) {
-    		serverURL = "erp.nhdcltd.co.in";
+    		serverURL = "nhdc-test.vasista.in";
     		prefEditor.putString("serverURL", serverURL);
     		prefEditor.apply();
     	}
     	String tenantId;
     	tenantId = prefs.getString("tenantId", "");	    	
     	if (tenantId.isEmpty()) {
-    		tenantId = "nhdc";
+    		tenantId = "nhdc-test";
     		prefEditor.putString("tenantId", tenantId);
     		prefEditor.apply();
     	}  
