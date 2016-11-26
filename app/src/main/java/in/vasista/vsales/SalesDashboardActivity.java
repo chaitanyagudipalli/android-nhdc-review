@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.graphics.Paint;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -287,6 +288,7 @@ Log.d(module, "onlySalesDashboard equals " + onlySalesDashboard);
 	protected void onResume ()
 	{
 	   super.onResume();
+		getSupportActionBar().setTitle(R.string.dashboard);
 		setupDashboard();
 		if(((GlobalApplication)getApplication()).isPrefChange()){
 			((GlobalApplication)getApplication()).setPrefChange(false);
@@ -702,6 +704,5 @@ public boolean onCreateOptionsMenu(Menu menu) {
 			progress.setProgress(values[0]);
 		}
 	}
-
 
 }

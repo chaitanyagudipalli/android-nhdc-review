@@ -207,6 +207,7 @@ public class MainActivity extends DrawerCompatActivity  {
 	protected void onResume ()
 	{
 		super.onResume();
+		getSupportActionBar().setTitle(R.string.dashboard);
 		if(((GlobalApplication)getApplication()).isPrefChange()){
 			((GlobalApplication)getApplication()).setPrefChange(false);
 			Intent i = new Intent(this.getBaseContext(), SplashScreenActivity.class);

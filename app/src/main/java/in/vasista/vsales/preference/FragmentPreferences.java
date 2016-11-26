@@ -1,19 +1,26 @@
 package in.vasista.vsales.preference;
 
 
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
 import android.support.v7.widget.Toolbar;
+import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import java.util.List;
+import java.util.Locale;
 
 import in.vasista.global.GlobalApplication;
 import in.vasista.nhdcapp.R;
+import in.vasista.vsales.SplashScreenActivity;
 
 public class FragmentPreferences extends PreferenceActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
 
@@ -58,6 +65,22 @@ public class FragmentPreferences extends PreferenceActivity implements SharedPre
 
     if (key.equalsIgnoreCase("password")||key.equalsIgnoreCase("serverURL")||key.equalsIgnoreCase("userName")||key.equalsIgnoreCase("tenantId") ||key.equalsIgnoreCase("lang_preference")){
       ((GlobalApplication)getApplication()).setPrefChange(true);
+    }
+
+    if(key.equalsIgnoreCase("lang_preference")){
+      Log.v("Locale",sharedPreferences.getString("lang_preference","en"));
+      Locale myLocale = new Locale(sharedPreferences.getString("lang_preference","en"));
+      Resources res = getResources();
+      DisplayMetrics dm = res.getDisplayMetrics();
+      Configuration conf = res.getConfiguration();
+      conf.locale = myLocale;
+      res.updateConfiguration(conf, dm);
+
+      Intent i = new Intent(this, SplashScreenActivity.class);
+      i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+      startActivity(i);
+      finish();
+
     }
 
   }
