@@ -5,7 +5,7 @@ android {
     buildToolsVersion "23.0.3"
 
     defaultConfig {
-        applicationId "in.vasista.nhdcapp"
+        applicationId "in.co.nhdcltd.app"
         minSdkVersion 15
         targetSdkVersion 23
         versionCode 1
