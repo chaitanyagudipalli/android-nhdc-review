@@ -22,31 +22,31 @@
     <string name="description_about">About</string>
     <string name="description_home">Home</string>
     <string name="description_search">Search</string>
-    <string name="description_feature1">Indent</string>
+    <string name="description_feature1">ఇండెంట్స్</string>
     <string name="description_feature2">Orders</string>
-    <string name="description_feature3">Payments</string>
-    <string name="description_feature4">Catalog</string>
+    <string name="description_feature3">పేమెంట్స్</string>
+    <string name="description_feature4">ప్రొడక్ట్స్</string>
     <string name="description_feature5">Outlets</string>
     <string name="description_feature6">Feature 6</string>
 
-    <string name="title_about">About NHDC</string>
+    <string name="title_about">ఎన్ హెచ్ డీసీ గురించి</string>
     <string name="title_home">Home</string>
     <string name="title_search">Search</string>
     <string name="title_feature1">Indent</string>
-    <string name="title_feature1_plurer">Indents</string>
+    <string name="title_feature1_plurer">ఇండెంట్స్</string>
     <string name="title_feature2">Orders</string>
-    <string name="title_feature3">Payments</string>
-    <string name="title_feature4">Catalog</string>
-    <string name="title_feature5">Suppliers</string>
-    <string name="title_feature6">Transporters</string>
+    <string name="title_feature3">పేమెంట్స్</string>
+    <string name="title_feature4">ప్రొడక్ట్స్</string>
+    <string name="title_feature5">సప్లయర్స్</string>
+    <string name="title_feature6">ట్రాన్స్ పోర్టర్స్  </string>
     <string name="title_sales">Sales</string>
     <string name="title_hr">HR</string>
-    <string name="title_employeeprofile">My Profile</string>
+    <string name="title_employeeprofile">మై ప్రొఫైల్</string>
     <string name="title_leave">Leaves</string>
     <string name="title_payslip">Payslips</string>
     <string name="title_emplsearch">Search</string>
     <string name="title_attendance">Attendance</string>
-    <string name="title_feature1_list">Indent Details</string>
+    <string name="title_feature1_list">ఇండెంట్ వివరాలు</string>
     <string name="title_feature2_list">Order Details</string>
     <string name="title_employeeattendance">My Attendance</string>
     <string name="title_employeeleave">My Leaves</string>
@@ -63,59 +63,48 @@
     <string name="feature5_intro">Feature 5 content goes here.</string>
     <string name="feature6_intro">Feature 6 content goes here.</string>
 
-    <string name="about_intro1">Milkosoft is the first cloud-based Dairy ERP built exclusively for the Indian Dairy 
-        Industry developed by Vasista Enterprise Solutions Pvt Ltd. All operations from procurement, production, sales,
-        human resources, material management and finance are seamlessly integrated into Milkosoft.</string>
-
-    <string name="about_intro2">This Android app provides easy access to all the daily Marketing 
-        activities related to sales of Milk and Milk Products.  This app is also available for 
-        agents who can track their purchases, payments and even place indents right from their fingertips. The HR 
-        module provides access to key HR data relevant to an employee. The inventory module provides a convenient way 
-        for users to track the latest stock position for all materials available in stores</string>
-
-
     <string name="search_intro">Content for the Search page goes here.</string>
 
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">సెట్టింగ్స్</string>
 
-    <string name="menu_preferences">Settings</string>
+    <string name="menu_preferences">సెట్టింగ్స్</string>
 
-    <string name="column_product_id_header">Product Code</string>
-    <string name="column_product_name_header">Name</string>
-    <string name="column_product_description_header">Description</string>
-    <string name="column_product_category_header">Category</string>
+    <string name="column_product_id_header">ప్రొడక్ట్ కోడ్</string>
+    <string name="column_product_name_header">ప్రొడక్ట్ పేరు</string>
+    <string name="column_product_description_header">వివరణ</string>
+    <string name="column_product_category_header">కేటగిరీ</string>
 
 
     <string name="column_order_id_header">Order Id</string>
     <string name="column_order_date_header">Order Date</string>
     <string name="column_order_supply_header">Supply</string>
-    <string name="column_order_total_header">Amount (Rs)</string>
+    <string name="column_order_total_header">మొత్తం (రూ)</string>
 
     <string name="column_orderitem_qty_header">Quantity</string>
-    <string name="column_orderitem_amount_header">Unit Price (Rs)</string>
+    <string name="column_orderitem_amount_header">యూనిట్ ధర (రూ)</string>
 
     <string name="add_product_hint">Select Product</string>
     <string name="add_product_qty_hint">Qty (pkts)</string>
 
     <string name="column_indent_id_header">Ref.No</string>
-    <string name="column_indent_date_header">Date</string>
-    <string name="column_indent_status_header">Status</string>
+    <string name="column_indent_date_header">తేదీ</string>
+    <string name="column_indent_status_header">స్థితి</string>
     <string name="column_indent_supply_header">Tally Ref No</string>
-    <string name="column_indent_total_header">Amount (Rs)</string>
+    <string name="column_indent_total_header">మొత్తం (రూ)</string>
 
-    <string name="column_payment_id_header">Id</string>
-    <string name="column_payment_date_header">Payment Date</string>
-    <string name="column_payment_method_header">Method</string>
-    <string name="column_payment_amount_header">Amount (Rs)</string>
+    <string name="column_payment_id_header">ఐ డి</string>
+    <string name="column_payment_date_header">చెల్లింపు తేదీ</string>
+    <string name="column_payment_method_header">పద్ధతి</string>
+    <string name="column_payment_amount_header">మొత్తం (రూ)</string>
 
-    <string name="column_facility_id_header">Code</string>
-    <string name="column_facility_name_header">Name</string>
+    <string name="column_facility_id_header">కోడ్</string>
+    <string name="column_facility_name_header">పేరు</string>
     <string name="column_facility_category_header">Category</string>
     <string name="column_facility_route_header">Route</string>
     <string name="column_facility_phone_header">Phone</string>
 
-    <string name="column_employee_id_header">Code</string>
-    <string name="column_employee_name_header">Name</string>
+    <string name="column_employee_id_header">కోడ్</string>
+    <string name="column_employee_name_header">పేరు</string>
     <string name="column_employee_dept_header">Department</string>
     <string name="column_employee_position_header">Position</string>
 
@@ -206,7 +195,7 @@
 
     <string name="text_map_infowindow">%1$d. %2$s</string>
     <string name="text_contactnum">%1$s :%2$s</string>
-    <string name="text_partyId">Party Id :%1$s</string>
+    <string name="text_partyId">ఐ డి :%1$s</string>
     <string name="indent_edit_alert_message">Milk in crates and Product in Pkts</string>
 
 
@@ -221,30 +210,30 @@
     <string name="column_analytic_sales_qty_header">Qty(Pkts)</string>
     <string name="supplier_roletypeid">Role type</string>
     <string name="tally_ref_no">Tally Ref No.</string>
-    <string name="order_date">Indent Date</string>
-    <string name="order_id">Indent Id</string>
-    <string name="order_number">Indent Number</string>
+    <string name="order_date">ఇండెంట్  తేదీ</string>
+    <string name="order_id">ఇండెంట్  ఐ డి</string>
+    <string name="order_number">ఇండెంట్  నెంబర్</string>
     <string name="generated_po">Generated PO</string>
     <string name="po_order">PO Order</string>
     <string name="po_sequence_no">PO Sequence No.</string>
     <string name="supplier_party_id">Supplier Party ID</string>
     <string name="store_name">Store Name</string>
-    <string name="supplier_name">Supplier Name</string>
-    <string name="status_id">Status</string>
+    <string name="supplier_name">సప్లయర్ పేరు</string>
+    <string name="status_id">స్థితి</string>
     <string name="order_total">Indent Total</string>
     <string name="paid_ammount">Paid Amount</string>
     <string name="balance_ammount">Balance Amount</string>
-    <string name="indent_details">Indent Details</string>
-    <string name="transporters">Transporters</string>
-    <string name="scheme_type">Scheme</string>
+    <string name="indent_details">ఇండెంట్ వివరాలు</string>
+    <string name="transporters">ట్రాన్స్ పోర్టర్స్</string>
+    <string name="scheme_type">పథకం</string>
     <string name="purchase_orders">Purchase orders</string>
-    <string name="my_profile">My Profile</string>
+    <string name="my_profile">మై ప్రొఫైల్</string>
 
     <string name="supp_po_title">Purchase orders</string>
     <string name="supplier_delivery">Supplier Delivery</string>
     <string name="language">Language</string>
-    <string name="selectLanguage">Select Language</string>
-    <string name="stocks">Stocks</string>
+    <string name="selectLanguage">భాషను ఎంచుకోండి</string>
+    <string name="stocks">స్టాక్స్</string>
 
     <string-array name="bank">
         <item>Select Bank</item>
@@ -263,33 +252,33 @@
         <item>Master</item>
     </string-array>
 
-    <string name="dashboard">Dashboard</string>
-    <string name="changePassword">Change Password</string>
-    <string name="phoneNumber">Phone Number</string>
-    <string name="passbookNumber">Passbook Number</string>
+    <string name="dashboard">డాష్బోర్డ్</string>
+    <string name="changePassword">చేంజ్ పాస్వర్డ్</string>
+    <string name="phoneNumber">ఫోన్ నెంబర్</string>
+    <string name="passbookNumber">పాస్ బుక్  నెంబర్</string>
     <string name="selectRetailer">Select Retailer</string>
     <string name="contact">Contact</string>
-    <string name="Id">Id</string>
-    <string name="name">Name</string>
-    <string name="address">Address</string>
+    <string name="Id">ఐ డి</string>
+    <string name="name">పేరు</string>
+    <string name="address">అడ్రస్</string>
     <string name="transporter_search">Search by Id or name</string>
-    <string name="transporter_details">Transporter Details</string>
+    <string name="transporter_details">ట్రాన్స్ పోర్టర్  వివరాలు</string>
     <string name="catalog_search">Search by Name or Description</string>
     <string name="supplier_search">Search by Code or Name</string>
-    <string name="supplier_details">Supplier Details</string>
-    <string name="indentStatus">Status</string>
-    <string name="transporter_name">Transporter Name</string>
-    <string name="nhdc_settings">NHDC Settings</string>
-    <string name="user_credentials">User Details</string>
+    <string name="supplier_details">సప్లయర్ వివరాలు</string>
+    <string name="indentStatus">స్థితి</string>
+    <string name="transporter_name">ట్రాన్స్ పోర్టర్ పేరు</string>
+    <string name="nhdc_settings">ఎన్ హెచ్ డీసీ సెట్టింగ్స్</string>
+    <string name="user_credentials">User Credentials</string>
     <string name="username">User Name</string>
     <string name="password">Password</string>
     <string name="change">CHANGE</string>
     <string name="cancel">CANCEL</string>
     <string name="pass_must_6_chars">Password must be at least 6 characters</string>
     <string name="new_verify_not_match">New Password and Verify New Password does not match</string>
-    <string name="weaver_details">Weaver Details</string>
-    <string name="party_name">Party Name</string>
-    <string name="issue_date">Issue Date</string>
+    <string name="weaver_details">కస్టమర్ వివరాలు</string>
+    <string name="party_name">పేరు</string>
+    <string name="issue_date">జారీ తేదీ</string>
     <string name="party_type">Party Type</string>
     <string name="discount_amount">Discount Amount</string>
     <string name="loom_details">Loom Details</string>
@@ -299,34 +288,34 @@
     <string name="eligible_quota">Elg.Quota</string>
     <string name="used_quota">Used Quota</string>
     <string name="balance_quota">Bal Quota</string>
-    <string name="depot">Depot</string>
-    <string name="product_name">Product Name</string>
-    <string name="quantity">Quantity</string>
-    <string name="remarks">Remarks</string>
+    <string name="depot">డిపో</string>
+    <string name="product_name">ప్రొడక్ట్ పేరు</string>
+    <string name="quantity">మొత్తము</string>
+    <string name="remarks">వ్యాఖ్యలు</string>
     <string name="bale_quantity">Bale Quantiy</string>
     <string name="bundle_weight">Bundle Weight</string>
-    <string name="unit_price">Unit Price</string>
+    <string name="unit_price">యూనిట్ ధర</string>
     <string name="total_amount">Total Amount</string>
-    <string name="other_charges">Other Charges</string>
+    <string name="other_charges">ఇతర ఛార్జీలు</string>
     <string name="shipped_quantity">Shipped Quantity</string>
     <string name="doa">DOA</string>
     <string name="indent_item_details">Indent Item Details</string>
     <string name="shipments">SHIPMENTS</string>
     <string name="shipment_history">Shipment History</string>
-    <string name="branch">Branch</string>
-    <string name="select_supplier">Select Supplier</string>
-    <string name="select_transporter">Select Transporter</string>
+    <string name="branch">బ్రాంచ్</string>
+    <string name="select_supplier">సప్లయర్ ఎంచుకోండి</string>
+    <string name="select_transporter">ట్రాన్స్ పోర్టర్ ఎంచుకోండి</string>
     <string name="indent_total">Indent Total</string>
-    <string name="save">SAVE</string>
+    <string name="save">సేవ్</string>
     <string name="add_product">Add Product</string>
-    <string name="select_product">Select Product</string>
-    <string name="specification">Specification</string>
+    <string name="select_product">ప్రొడక్ట్  ఎంచుకోండి</string>
+    <string name="specification">రకం</string>
     <string name="qty_kg">Qty (kgs)</string>
-    <string name="unit_price_kg">Unit Price (kgs)</string>
-    <string name="unit_price_bundle">Unit Price (Bundle)</string>
-    <string name="amount">Amount (Rs)</string>
+    <string name="unit_price_kg">యూనిట్ ధర (కిలోలు)</string>
+    <string name="unit_price_bundle">యూనిట్ ధర (బండిల్)</string>
+    <string name="amount">మొత్తం (రూ)</string>
     <string name="dispatch">Dispatch</string>
-    <string name="customer">Customer</string>
+    <string name="customer">కస్టమర్</string>
     <string name="destination">Destination</string>
     <string name="shipment_date">Shipment Date</string>
     <string name="item_name">Iten Name</string>
@@ -337,12 +326,12 @@
     <string name="pan_num">PAN Number</string>
     <string name="supplier_dashboard">Supplier Dashboard</string>
     <string name="column_po_id_header">PO ID</string>
-    <string name="column_po_date_header">Date</string>
-    <string name="column_po_status_header">Status</string>
+    <string name="column_po_date_header">తేదీ</string>
+    <string name="column_po_status_header">స్థితి</string>
     <string name="stock_search">Search by Id or name</string>
-    <string name="about_file">file:///android_asset/about.html</string>
-    <string name="supplier">Supplier</string>
-    <string name="stock_details">Stock Details</string>
+    <string name="about_file">file:///android_asset/about-te.html</string>
+    <string name="supplier">సప్లయర్</string>
+    <string name="stock_details">స్టాక్ వివరాలు</string>
     <string name="email">Email</string>
     <string name="product_details">Product Details</string>
     <string name="no">NO</string>
@@ -350,7 +339,7 @@
     <string name="upload_indent">Upload Indent ?</string>
     <string name="cancel_indent">Cancel Indent ?</string>
     <string name="ok">OK</string>
-    <string name="passbook_or_username">Passbook Number/Username</string>
+    <string name="passbook_or_username">Passbook Number or Username</string>
     <string name="term_n_cond">"\n"
 				"These terms and conditions create a contract between you and NHDC (the “Agreement”). Please read the Agreement carefully. To confirm your understanding and acceptance of the Agreement, click “Agree.”\n\n"
 				"INTRODUCTION TO OUR SERVICES\n\n"
@@ -365,5 +354,4 @@
 				"GOVERNING LAW\n\n"
 				"Except to the extent expressly provided in the following paragraph, this Agreement and the relationship between you and NHDC, and all Transactions on the Services shall be governed by the laws"
     </string>
-    <string name="please_select_language">Please Select Language / कृपया अपनी भाषा  चुने</string>
 </resources>

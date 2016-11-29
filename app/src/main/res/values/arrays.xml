@@ -35,11 +35,13 @@
   <string-array name="lang_list_preference">
     <item>English</item>
     <item>हिंदी</item>
+    <item>తెలుగు</item>
   </string-array>
 
   <string-array name="langvalues_list_preference">
     <item>en</item>
     <item>hi</item>
+    <item>te</item>
   </string-array>
 
 </resources>

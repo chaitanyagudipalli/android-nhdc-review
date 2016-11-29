@@ -27,8 +27,9 @@
 		android:title="@string/user_credentials">
 		<EditTextPreference
         	android:title="@string/username"
-            android:summary="@string/username"
-            android:key="userName"/>
+            android:summary="@string/passbook_or_username"
+            android:key="userName"
+			android:dialogTitle="@string/passbook_or_username"/>
 		<EditTextPreference
         	android:title="@string/password"
             android:summary="@string/password"

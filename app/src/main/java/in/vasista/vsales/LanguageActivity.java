@@ -27,6 +27,8 @@ public class LanguageActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        SPINNERLIST = getResources().getStringArray(R.array.lang_list_preference);
+        SPINNERLISTID = getResources().getStringArray(R.array.langvalues_list_preference);
         setContentView(R.layout.activity_language);
 
         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(LanguageActivity.this);

@@ -169,7 +169,7 @@
         </activity>
         <activity
             android:name="in.vasista.vsales.TransporterDetailsActivity"
-            android:label="@string/title_feature6"
+            android:label="@string/transporter_details"
             android:parentActivityName="in.vasista.vsales.TranporterActivity"
             android:windowSoftInputMode="stateHidden"
             tools:ignore="UnusedAttribute">

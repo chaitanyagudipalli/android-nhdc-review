@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="title_feature3">भुगतान</string>
-    <string name="title_feature4">सूची</string>
+    <string name="title_feature4">उत्पादों की सूची</string>
     <string name="title_feature5">आपूर्तिकर्ता</string>
 
 
@@ -227,7 +227,7 @@
     <string name="order_total">कुल आदेश</string>
     <string name="paid_ammount">भुगतान राशि</string>
     <string name="balance_ammount">शेष राशि</string>
-    <string name="indent_details">मांगपत्र विवरण</string>
+    <string name="indent_details">इंडेंट विवरण</string>
     <string name="scheme_type">योजना</string>
 
     <string name="supp_po_title">क्रयआदेश</string>
@@ -270,7 +270,7 @@
     <string name="indentStatus">  स्थिति</string>
     <string name="transporter_name">ट्रांसपोर्टर नाम</string>
     <string name="nhdc_settings">एनएचडीसी सेटिंग्स</string>
-    <string name="user_credentials">यूजर क्रेडेंटियलस</string>
+    <string name="user_credentials">यूजर डिटेल्स</string>
     <string name="password">पासवर्ड</string>
     <string name="username">यूजर नाम</string>
     <string name="change">बदलें</string>
@@ -299,14 +299,14 @@
     <string name="total_amount">कुल मूल्य</string>
     <string name="other_charges">विविध ख़र्च</string>
     <string name="shipped_quantity">आपूर्तित मात्रा</string>
-    <string name="doa">आवंटन की तारीख</string>
-    <string name="indent_item_details">मांगपत्र मद विवरण</string>
+    <string name="doa">डिपो आवंटन की तारीख</string>
+    <string name="indent_item_details">इंडेंट विवरण</string>
     <string name="shipments">शिपमेंट्स</string>
     <string name="shipment_history">शिपमेंट हिस्टरी</string>
     <string name="branch">शाखा</string>
     <string name="select_supplier">आपूर्तिकर्ता चुनिए</string>
     <string name="select_transporter">ट्रांसपोर्टर चुनिए</string>
-    <string name="indent_total">मांगपत्र कुल</string>
+    <string name="indent_total">इंडेंट कुल</string>
     <string name="save">पूर्ण करे</string>
     <string name="add_product">उत्पाद को जोड़ने</string>
     <string name="select_product">उत्पाद चुनिए</string>
@@ -329,7 +329,7 @@
     <string name="column_po_id_header">संदर्भसंख्या</string>
     <string name="column_po_date_header">तारीख</string>
     <string name="column_po_status_header">स्थिति</string>
-    <string name="stocks">भण्डार</string>
+    <string name="stocks">उपलब्ध भंडार</string>
     <string name="about_file">file:///android_asset/about-hi.html</string>
     <string name="supplier">आपूर्तिकर्ता</string>
     <string name="stock_details">भण्डार विवरण</string>
@@ -338,9 +338,10 @@
     <string name="product_details">उत्पाद विवरण</string>
     <string name="no">नहीं</string>
     <string name="i_agree">मैं सहमत हूँ</string>
-    <string name="upload_indent">अपलोड मांगपत्र ?</string>
-    <string name="cancel_indent">मांगपत्र रद्द ?</string>
+    <string name="upload_indent">अपलोड इंडेंट ?</string>
+    <string name="cancel_indent">इंडेंट रद्द ?</string>
     <string name="ok">ठीक</string>
+    <string name="passbook_or_username">पासबुक नंबर/यूजर नाम</string>
     <string name="term_n_cond">"\n"
         "नियम और शर्तें :\n\n"
         इन नियमों और शर्तों के द्वारा  आप और एनएचडीसी के बीच एक अनुबंध  करते हैं (एग्रीमेन्ट )। कृपया समझौते को ध्यान से पढ़ें। अपनी समझ और समझौते की स्वीकृति की पुष्टि करने के लिए, "सहमत हैं" , बटन दबाये।"\n"
