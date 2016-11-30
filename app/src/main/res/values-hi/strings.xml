@@ -336,7 +336,7 @@
     <string name="stock_search">उत्पाद नाम के आधार पर खोजें</string>
     <string name="email">ईमेल</string>
     <string name="product_details">उत्पाद विवरण</string>
-    <string name="no">नहीं</string>
+    <string name="no">असहमत</string>
     <string name="i_agree">मैं सहमत हूँ</string>
     <string name="upload_indent">अपलोड इंडेंट ?</string>
     <string name="cancel_indent">इंडेंट रद्द ?</string>

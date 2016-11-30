@@ -17,6 +17,14 @@
         android:gravity="center_horizontal"
         android:layout_height="wrap_content">
 
+        <ImageView
+            android:id="@+id/nhdcLogo"
+            android:layout_width="259dp"
+            android:layout_height="198dp"
+            android:layout_centerInParent="true"
+            android:gravity="center_horizontal"
+            android:src="@drawable/title_logo_default" />
+
         <TextView
             android:text="@string/please_select_language"
             android:layout_width="wrap_content"
@@ -30,7 +38,6 @@
         android:gravity="center_horizontal"
         android:layout_height="wrap_content">
         <android.support.v7.widget.AppCompatTextView
-            android:textColor="@color/White"
             android:layout_width="wrap_content"
             android:layout_marginBottom="@dimen/activity_vertical_margin"
             android:layout_marginRight="@dimen/activity_vertical_margin"

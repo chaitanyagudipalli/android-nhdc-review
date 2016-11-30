@@ -74,13 +74,13 @@ public class AtomActivity extends DashboardAppCompatActivity{
 
         et_nb_amt = (EditText) findViewById(R.id.et_nb_amt);
 
-        et_card_amt = (EditText) findViewById(R.id.et_card_amt);
+        //et_card_amt = (EditText) findViewById(R.id.et_nb_amt);
 
         if(""+intent.getFloatExtra("amount",60.000f) != null) {
             et_nb_amt.setText(""+intent.getFloatExtra("amount",60.000f));
-            et_card_amt.setText(""+intent.getFloatExtra("amount",60.000f));
+            //et_card_amt.setText(""+intent.getFloatExtra("amount",60.000f));
             et_nb_amt.setEnabled(true);
-            et_card_amt.setEnabled(true);
+            //et_card_amt.setEnabled(true);
             orderId = intent.getStringExtra("orderId");
         }
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
@@ -200,7 +200,7 @@ public class AtomActivity extends DashboardAppCompatActivity{
 
             public void onClick(View v) {
 
-                String amt = et_card_amt.getText().toString();
+                String amt = et_nb_amt.getText().toString();
                 String strPaymentMode = null, strCardType = null;
                 int PaymentTypePos = PaymentType.getSelectedItemPosition();
                 int cardTypePos = cardType.getSelectedItemPosition();
