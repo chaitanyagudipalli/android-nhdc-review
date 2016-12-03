@@ -27,6 +27,10 @@ public class LanguageActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().getDecorView().setSystemUiVisibility(
+                View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
+        getWindow().getDecorView().setSystemUiVisibility(
+                View.SYSTEM_UI_FLAG_FULLSCREEN);
         SPINNERLIST = getResources().getStringArray(R.array.lang_list_preference);
         SPINNERLISTID = getResources().getStringArray(R.array.langvalues_list_preference);
         setContentView(R.layout.activity_language);
@@ -59,8 +63,6 @@ public class LanguageActivity extends AppCompatActivity {
 
 
                 editor.putString("lang_preference",SPINNERLISTID[position]);
-                editor.putBoolean("opened",true);
-
                 editor.apply();
 
             }
@@ -75,6 +77,8 @@ public class LanguageActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                editor.putBoolean("opened",true);
+                editor.apply();
                 startActivity(i);
                 finish();
             }
