@@ -138,7 +138,7 @@ public class IndentCreationActivity extends DashboardAppCompatActivity implement
                 intent.putExtra("schemeType",""+schemeType);
                 intent.putExtra("category_type",""+category_type);
                 intent.putExtra("indent_id",indent_id);
-
+                fab.setImageResource(R.drawable.ic_add_white_24dp);
                 fab.show();
                 editMode = true;
                 invalidateOptionsMenu();

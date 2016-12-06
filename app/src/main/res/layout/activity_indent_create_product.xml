@@ -350,7 +350,7 @@
                 android:layout_gravity="center_horizontal"
                 android:completionThreshold="1"
                 android:ems="10"
-                android:hint="@string/select_product"
+                android:hint="@string/product_hint"
 
                 >
 
@@ -363,7 +363,7 @@
             <EditText
                 android:id="@+id/specifications"
                 android:layout_width="match_parent"
-                android:hint="@string/specification"
+                android:hint="@string/spec_hint"
                 android:layout_height="wrap_content" />
 
             <LinearLayout

@@ -550,7 +550,7 @@ public boolean onCreateOptionsMenu(Menu menu) {
 
 
 			progress = new ProgressDialog(SalesDashboardActivity.this);
-			progress.setMessage("Preparing your application...");
+			progress.setMessage(getString(R.string.loading_message));
 			progress.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
 			progress.setIndeterminate(false);
 			progress.setCancelable(false);
@@ -693,12 +693,12 @@ public boolean onCreateOptionsMenu(Menu menu) {
 		protected void onProgressUpdate(Integer... values) {
 			super.onProgressUpdate(values);
 			if(values[0] >=20){
-				progress.setMessage("Preparing products...");
+				progress.setMessage(getString(R.string.loading_message));
 			}else if(values[0] >=60){
-				progress.setMessage("Preparing suppliers...");
+				progress.setMessage(getString(R.string.loading_message));
 			}
 			else if(values[0] >=80){
-				progress.setMessage("Preparing transporters...");
+				progress.setMessage(getString(R.string.loading_message));
 			}
 
 			progress.setProgress(values[0]);

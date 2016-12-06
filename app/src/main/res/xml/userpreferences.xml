@@ -27,14 +27,16 @@
 		android:title="@string/user_credentials">
 		<EditTextPreference
         	android:title="@string/username"
-            android:summary="@string/passbook_or_username"
+            android:summary="@string/passbook_hint"
             android:key="userName"
-			android:dialogTitle="@string/passbook_or_username"/>
+			android:dialogTitle="@string/passbookNumber"
+			android:hint="@string/passbook_hint"/>
 		<EditTextPreference
         	android:title="@string/password"
-            android:summary="@string/password"
+            android:summary="@string/password_hint"
             android:key="password"
-            android:inputType="textPassword"/>
+            android:inputType="textPassword"
+			android:hint="@string/password_hint"/>
 	<!-- 		<EditTextPreference
                 android:title="Tenant Id"
                 android:summary="Tenant Id"

@@ -281,7 +281,7 @@
     <string name="transporter_name">Transporter Name</string>
     <string name="nhdc_settings">NHDC Settings</string>
     <string name="user_credentials">User Details</string>
-    <string name="username">User Name</string>
+    <string name="username">Passbook Number</string>
     <string name="password">Password</string>
     <string name="change">CHANGE</string>
     <string name="cancel">CANCEL</string>
@@ -329,7 +329,7 @@
     <string name="customer">Customer</string>
     <string name="destination">Destination</string>
     <string name="shipment_date">Shipment Date</string>
-    <string name="item_name">Iten Name</string>
+    <string name="item_name">Item Name</string>
     <string name="item_qty">Qty</string>
     <string name="item_amount">Amount</string>
     <string name="cst_num">CST Number</string>
@@ -350,7 +350,8 @@
     <string name="upload_indent">Upload Indent ?</string>
     <string name="cancel_indent">Cancel Indent ?</string>
     <string name="ok">OK</string>
-    <string name="passbook_or_username">Passbook Number/Username</string>
+    <string name="passbook_hint">Enter NHDC Passbook Number</string>
+    <string name="password_hint">Enter Password</string>
     <string name="term_n_cond">"\n"
 				"These terms and conditions create a contract between you and NHDC (the “Agreement”). Please read the Agreement carefully. To confirm your understanding and acceptance of the Agreement, click “Agree.”\n\n"
 				"INTRODUCTION TO OUR SERVICES\n\n"
@@ -366,4 +367,7 @@
 				"Except to the extent expressly provided in the following paragraph, this Agreement and the relationship between you and NHDC, and all Transactions on the Services shall be governed by the laws"
     </string>
     <string name="please_select_language">Please Select Language / कृपया अपनी भाषा  चुने</string>
+    <string name="loading_message">Data is being updated, Please Wait...</string>
+    <string name="product_hint">Enter yarn count</string>
+    <string name="spec_hint">Enter brand,color, etc..</string>
 </resources>
