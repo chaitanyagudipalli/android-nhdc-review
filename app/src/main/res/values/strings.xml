@@ -351,7 +351,7 @@
     <string name="cancel_indent">Cancel Indent ?</string>
     <string name="ok">OK</string>
     <string name="passbook_hint">Enter NHDC Passbook Number</string>
-    <string name="password_hint">Enter Password</string>
+    <string name="password_hint">Enter NHDC ERP Password</string>
     <string name="term_n_cond">"\n"
 				"These terms and conditions create a contract between you and NHDC (the “Agreement”). Please read the Agreement carefully. To confirm your understanding and acceptance of the Agreement, click “Agree.”\n\n"
 				"INTRODUCTION TO OUR SERVICES\n\n"
@@ -367,7 +367,7 @@
 				"Except to the extent expressly provided in the following paragraph, this Agreement and the relationship between you and NHDC, and all Transactions on the Services shall be governed by the laws"
     </string>
     <string name="please_select_language">Please Select Language / कृपया अपनी भाषा  चुने</string>
-    <string name="loading_message">Data is being updated, Please Wait...</string>
+    <string name="loading_message">Data is being updated, please wait...</string>
     <string name="product_hint">Enter yarn count</string>
     <string name="spec_hint">Enter brand,color, etc..</string>
 </resources>

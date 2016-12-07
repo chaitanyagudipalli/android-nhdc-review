@@ -86,8 +86,8 @@ public class AtomActivity extends DashboardAppCompatActivity{
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         env_live = prefs.getBoolean("payuLive",false)? true:false;
         prodId = prefs .getString("productStoreId","");
-        cardType = (Spinner) findViewById(R.id.sp_cardType);
-        PaymentType = (Spinner)findViewById(R.id.sp_paymentType);
+        //cardType = (Spinner) findViewById(R.id.sp_cardType);
+        //PaymentType = (Spinner)findViewById(R.id.sp_paymentType);
         //Bank = (Spinner)findViewById(R.id.sp_bank);
         customerName = prefs.getString("customerName","");
         partyId = prefs.getString("storeId","");
@@ -195,7 +195,7 @@ public class AtomActivity extends DashboardAppCompatActivity{
             }
         });
 
-        payMerchantDC = (Button) findViewById(R.id.btn_payMerchantDC);
+        /*payMerchantDC = (Button) findViewById(R.id.btn_payMerchantDC);
         payMerchantDC.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
@@ -332,7 +332,7 @@ public class AtomActivity extends DashboardAppCompatActivity{
 
                 }
             }
-        });
+        });*/
     }
 
     @Override

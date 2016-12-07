@@ -99,7 +99,7 @@
 
         </AutoCompleteTextView>
         </LinearLayout>
-        <LinearLayout
+        <!--<LinearLayout
             android:layout_width="match_parent"
             android:id="@+id/autoCompleteTransporterL"
             android:orientation="vertical"
@@ -126,7 +126,7 @@
                 >
 
             </AutoCompleteTextView>
-        </LinearLayout>
+        </LinearLayout>-->
 
         <Button
             android:id="@+id/submitindent"
@@ -135,7 +135,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dip"
-            android:layout_below="@+id/autoCompleteTransporterL"
+            android:layout_below="@+id/autoCompleteRetailerL"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true" />
 

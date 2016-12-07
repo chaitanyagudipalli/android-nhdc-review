@@ -342,7 +342,7 @@
     <string name="cancel_indent">इंडेंट रद्द ?</string>
     <string name="ok">ठीक</string>
     <string name="passbook_hint">एनएचडीसी पासबुक नंबर लिखे।</string>
-    <string name="password_hint">पासवर्ड लिखे।</string>
+    <string name="password_hint">एनएचडीसी ईआरपी पासवर्ड लिखे।</string>
     <string name="term_n_cond">"\n"
         "नियम और शर्तें :\n\n"
         इन नियमों और शर्तों के द्वारा  आप और एनएचडीसी के बीच एक अनुबंध  करते हैं (एग्रीमेन्ट )। कृपया समझौते को ध्यान से पढ़ें। अपनी समझ और समझौते की स्वीकृति की पुष्टि करने के लिए, "सहमत हैं" , बटन दबाये।"\n"

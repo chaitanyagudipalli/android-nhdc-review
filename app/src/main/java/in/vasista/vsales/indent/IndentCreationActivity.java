@@ -194,7 +194,7 @@ public class IndentCreationActivity extends DashboardAppCompatActivity implement
 
 
         setupSuppliers();
-        setupTransporters();
+        //setupTransporters();
 
     }
 
@@ -246,7 +246,7 @@ public class IndentCreationActivity extends DashboardAppCompatActivity implement
 
     private Map tMap = new HashMap<String, Transporter>();
 
-    private void setupTransporters() {
+    /*private void setupTransporters() {
         TransporterDataSource transporterDataSource = new TransporterDataSource(this);
         transporterDataSource.open();
         List<Transporter> supplierList = transporterDataSource.getAllTransporters();
@@ -283,7 +283,7 @@ public class IndentCreationActivity extends DashboardAppCompatActivity implement
 
 
 
-    }
+    }*/
 
 
 

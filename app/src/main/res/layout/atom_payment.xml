@@ -49,7 +49,7 @@
                 android:id="@+id/btn_payMerchantNB"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Net Banking" />
+                android:text="Make Payment" />
 
             <!--<EditText
                 android:id="@+id/et_card_amt"
@@ -71,7 +71,7 @@
 
 
 
-            <Spinner
+            <!--<Spinner
                 android:id="@+id/sp_paymentType"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -89,7 +89,7 @@
                 android:id="@+id/btn_payMerchantDC"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Card Payment" />
+                android:text="Card Payment" />-->
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
