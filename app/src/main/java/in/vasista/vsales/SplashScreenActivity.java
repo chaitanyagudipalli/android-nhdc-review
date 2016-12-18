@@ -231,10 +231,10 @@ public class SplashScreenActivity extends Activity
 			progressBar.setVisibility(View.GONE);
 
 			SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(SplashScreenActivity.this);
-			String serverURL = prefs.getString("serverURL", "nhdc-test.vasista.in");
+			String serverURL = prefs.getString("serverURL", "erp.nhdcltd.co.in");
 			String userName = prefs.getString("userName", "");
 			String password = prefs.getString("password", "");
-			String tenantId = prefs.getString("tenantId", "nhdc-test");
+			String tenantId = prefs.getString("tenantId", "nhdc");
 			String language = prefs.getString("lang_preference", "en");
 			SharedPreferences.Editor prefEditor = prefs.edit();
 			prefEditor.putString("serverURL",serverURL);
