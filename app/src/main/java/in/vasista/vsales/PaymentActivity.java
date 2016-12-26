@@ -27,7 +27,6 @@ import android.widget.ProgressBar;
 
 import in.vasista.atom.AtomActivity;
 import in.vasista.nhdcapp.R;
-import in.vasista.payumoney.PayumoneyActivity;
 import in.vasista.vsales.payment.PaymentListFragment;
 
 /**

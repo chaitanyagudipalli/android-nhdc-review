@@ -21,7 +21,6 @@ import in.vasista.vsales.SalesDashboardActivity;
 import in.vasista.vsales.sync.ServerSync;
 
 import com.atom.mobilepaymentsdk.PayActivity;
-import com.payu.india.Payu.PayuConstants;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -62,7 +61,6 @@ public class AtomActivity extends DashboardAppCompatActivity{
 
     String orderId;
     String prodId;
-    boolean env_live;
     String customerName;
     String partyId;
     @Override
@@ -84,7 +82,6 @@ public class AtomActivity extends DashboardAppCompatActivity{
             orderId = intent.getStringExtra("orderId");
         }
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        env_live = prefs.getBoolean("payuLive",false)? true:false;
         prodId = prefs .getString("productStoreId","");
         //cardType = (Spinner) findViewById(R.id.sp_cardType);
         //PaymentType = (Spinner)findViewById(R.id.sp_paymentType);

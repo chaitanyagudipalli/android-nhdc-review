@@ -28,7 +28,6 @@ import in.vasista.atom.AtomActivity;
 import in.vasista.hr.attendance.AttendanceListFragment;
 import in.vasista.location.MapsActivity;
 import in.vasista.nhdcapp.R;
-import in.vasista.payumoney.PayumoneyActivity;
 import in.vasista.vsales.EmployeeDetailsActivity;
 import in.vasista.vsales.HRDashboardActivity;
 import in.vasista.vsales.IndentDetailed;
@@ -89,45 +88,6 @@ public class ServerSync {
 	public ServerSync(Context context) {
 		this.context = context; 
 	    //dbHelper = new MySQLiteHelper(context); 		
-	}
-
-	public void uploadPayment(ProgressBar progressBar, HashMap<String, String> list, final PayumoneyActivity payumoneyActivity){
-		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-		String storeId = prefs.getString("storeId", "");
-		Map paramMap = new HashMap();
-		paramMap.put("partyId", storeId);
-		paramMap.put("transactionId", list.get("txnid"));
-		paramMap.put("amount", list.get("amount"));
-		paramMap.put("paymentDate", list.get("addedon"));
-		paramMap.put("orderId", list.get("orderId"));
-
-		try {
-			XMLRPCApacheAdapter adapter = new XMLRPCApacheAdapter(context);
-			adapter.call("makeWeaverPayment", paramMap, progressBar, new XMLRPCMethodCallback() {
-				public void callFinished(Object result, ProgressBar progressBar) {
-					if (result != null) {
-
-					}
-					if (progressBar != null) {
-						progressBar.setVisibility(View.INVISIBLE);
-					}
-
-					Toast.makeText( context, "Successfully Payment Has Been Created", Toast.LENGTH_LONG ).show();
-					payumoneyActivity.paymentDone();
-				}
-			});
-		}
-		catch (Exception e) {
-
-			Log.e(module, "Exception: ", e);
-			if (progressBar != null) {
-				progressBar.setVisibility(View.INVISIBLE);
-			}
-
-			Toast.makeText( context, "Payment failed: " + e, Toast.LENGTH_LONG ).show();
-			payumoneyActivity.paymentDone();
-		}
-
 	}
 
 	public void uploadAtomPayment(ProgressBar progressBar, HashMap<String, String> list, final AtomActivity payumoneyActivity){
@@ -304,7 +264,7 @@ public class ServerSync {
 		poDataSource.open();
 		final Map paramMap = new HashMap();
 
-		SimpleDateFormat  format = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat  format = new SimpleDateFormat("dd/MM/yyyy");
 
 		Date suppInvoiceDate = null, lrDate = null;
 		try {
