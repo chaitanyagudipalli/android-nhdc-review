@@ -54,9 +54,10 @@
                     style="@style/TabeRowValue"
                     android:layout_margin="2dp"
                     android:layout_weight="1"
-                    android:hint="yyyy-MM-dd"
                     android:textStyle="bold"
-                    android:id="@+id/suppInvDate"/>
+                    android:drawableRight="@drawable/ic_calendar"
+                    android:focusableInTouchMode="false"
+                    android:id="@+id/suppInvDate" />
             </TableRow>
             <TableRow>
                 <TextView
@@ -129,9 +130,10 @@
                     android:layout_width="wrap_content"
                     style="@style/TabeRowValue"
                     android:layout_weight="1"
-                    android:hint="yyyy-MM-dd"
                     android:layout_margin="2dp"
                     android:textStyle="bold"
+                    android:drawableRight="@drawable/ic_calendar"
+                    android:focusableInTouchMode="false"
                     android:id="@+id/lrDate" />
             </TableRow>
 

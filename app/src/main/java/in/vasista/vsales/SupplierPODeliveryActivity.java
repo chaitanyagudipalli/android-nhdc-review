@@ -1,5 +1,6 @@
 package in.vasista.vsales;
 
+import android.app.DatePickerDialog;
 import android.app.FragmentManager;
 import android.content.Context;
 import android.content.Intent;
@@ -17,6 +18,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ScrollView;
@@ -28,11 +30,16 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import in.vasista.nhdcapp.R;
+import in.vasista.ui.customui.DatePickerFragment;
 import in.vasista.vsales.adapter.FacilityAutoAdapter;
 import in.vasista.vsales.adapter.TransporterAutoAdapter;
 import in.vasista.vsales.db.PODataSource;
@@ -60,11 +67,13 @@ public class SupplierPODeliveryActivity extends DashboardAppCompatActivity{
 
 	ScrollView editPO;
 	Button cancel;
-
+	EditText suppInvDate;
+	EditText lrDate;
+	DatePickerDialog datePickerDialog;
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		// Inflate your view 
+		// Inflate your view
 		setContentChildView(R.layout.activity_supppoitem);
 		actionBarHomeEnabled();
 
@@ -113,8 +122,20 @@ public class SupplierPODeliveryActivity extends DashboardAppCompatActivity{
 			}
 
 		});
-
-
+		suppInvDate = (EditText)findViewById(R.id.suppInvDate);
+		suppInvDate.setOnClickListener(new View.OnClickListener(){
+			@Override
+			public void onClick(View v) {
+				showDatePickerDialog(v,suppInvDate);
+			}
+		});
+		lrDate = (EditText)findViewById(R.id.lrDate);
+		lrDate.setOnClickListener(new View.OnClickListener(){
+			@Override
+			public void onClick(View v){
+				showDatePickerDialog(v,lrDate);
+			}
+		});
 	}
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -156,5 +177,27 @@ public class SupplierPODeliveryActivity extends DashboardAppCompatActivity{
 		return false;
 	}
 
+	public void showDatePickerDialog(View v,final EditText et) {
+		final Calendar c = Calendar.getInstance();
+		int mYear = c.get(Calendar.YEAR);
+		int mMonth = c.get(Calendar.MONTH);
+		int mDay = c.get(Calendar.DAY_OF_MONTH);
+		datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+			@Override
+			public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+				SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+				Date selectDate = null;
+				String dt = dayOfMonth + "/" + (monthOfYear + 1) + "/" + year;
+				try {
+					selectDate = sdf.parse(dt);
+					String d = sdf.format(selectDate);
+					et.setText(d);
+				} catch (ParseException e) {
+					e.printStackTrace();
+				}
+			}
+		}, mYear, mMonth, mDay);
+		datePickerDialog.show();
+	}
 
 }

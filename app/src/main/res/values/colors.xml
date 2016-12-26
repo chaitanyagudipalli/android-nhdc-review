@@ -184,7 +184,8 @@
 <!--Matrial Colors-->
  <color name="colorPrimary">#f5650c</color>
  <color name="colorPrimaryDark">#BF4B02</color>
- <color name="colorAccent">#009688</color>
+ <color name="colorAccent">#f5650c</color>
+ <color name="langScreenColor">#009688</color>
 
  <color name="primary_light">#FFCCBC</color>
  <color name="primary_text">#212121</color>
