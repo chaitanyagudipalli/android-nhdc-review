@@ -36,13 +36,13 @@
     <item>English</item>
     <item>Hindi (हिंदी)</item>
     <item>Telugu (తెలుగు)</item>
-    <item>Tamil (தமிழ்)</item>
+    <!--<item>Tamil (தமிழ்)</item>
     <item>Kannada (ಕನ್ನಡ)</item>
     <item>Urdu (اُردُو)</item>
     <item>Bengali (বাংলা)</item>
     <item>Odia (ଓଡ଼ିଆ)</item>
     <item>Assamese (অসমীয়া)</item>
-    <item>Malayalam (മലയാളം)</item>
+    <item>Malayalam (മലയാളം)</item>-->
   </string-array>
 
   <string-array name="langvalues_list_preference">

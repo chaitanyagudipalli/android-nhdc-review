@@ -49,12 +49,12 @@
     <item>en</item>
     <item>hi</item>
     <item>te</item>
-    <item>ta</item>
+    <!--<item>ta</item>
     <item>kn</item>
     <item>ur</item>
     <item>bn-rIN</item>
     <item>or</item>
     <item>as</item>
-    <item>ml</item>
+    <item>ml</item>-->
   </string-array>
 </resources>
