@@ -447,10 +447,10 @@
         <!-- Atom Payment Gateway -->
         <activity
             android:name="com.atom.mobilepaymentsdk.PayActivity"
-            android:label="Make Payment"></activity>
+            android:label="@string/make_payment"></activity>
         <activity
             android:name="in.vasista.atom.AtomActivity"
-            android:label="Make Payment"
+            android:label="@string/make_payment"
             android:parentActivityName="in.vasista.vsales.PaymentActivity"
             tools:ignore="UnusedAttribute">
             <meta-data

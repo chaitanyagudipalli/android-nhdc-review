@@ -257,8 +257,8 @@ public class IndentCreateProduct extends DashboardAppCompatActivity implements V
 
                         AlertDialog.Builder alert = new AlertDialog.Builder(
                                 IndentCreateProduct.this);
-                        alert.setTitle("Quota Exceeded");
-                        alert.setPositiveButton("Continue",
+                        alert.setTitle(getString(R.string.quota_exceed));
+                        alert.setPositiveButton(R.string.quota_continue,
                                 new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog,
                                                         int whichButton) {
@@ -266,7 +266,7 @@ public class IndentCreateProduct extends DashboardAppCompatActivity implements V
                                     }
                                 });
 
-                        alert.setNegativeButton("Cancel",
+                        alert.setNegativeButton(R.string.cancel,
                                 new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog,
                                                         int whichButton) {

@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="dashboard">ಡ್ಯಾಶ್ಬೋರ್ಡ್</string>
+    <string name="action_settings">ಸೆಟ್ಟಿಂಗ್ಗಳು</string>
+    <string name="menu_preferences">ಸೆಟ್ಟಿಂಗ್ಗಳು</string>
+    <string name="nhdc_settings">ಎನ್.ಎಚ್.ಡಿ.ಸಿ ಸೆಟ್ಟಿಂಗ್ಗಳು</string>
+    <string name="user_credentials">ಬಳಕೆದಾರ ವಿವರಗಳು</string>
+    <string name="passbookNumber">ಪಾಸ್ ಬುಕ್ ಸಂಖ್ಯೆ</string>
+    <string name="passbook_hint">ಎನ್.ಎಚ್.ಡಿ.ಸಿ ಪಾಸ್ ಬುಕ್ ಸಂಖ್ಯೆ ನಮೂದಿಸಿ</string>
+    <string name="password">ಪಾಸ್ವರ್ಡ್</string>
+    <string name="password_hint">ಎನ್.ಎಚ್.ಡಿ.ಸಿ ಇ.ಆರ್.ಪಿ ಪಾಸ್ವರ್ಡ್ ನಮೂದಿಸಿ</string>
+    <string name="changePassword">ಪಾಸ್ವರ್ಡ್ ಬದಲಿಸಿ</string>
+    <string name="present_password">ಪ್ರಸ್ತುತ ಪಾಸ್ವರ್ಡ್</string>
+    <string name="new_password">ಹೊಸ ಪಾಸ್ವರ್ಡ್</string>
+    <string name="verify_new_password">ಹೊಸ ಪಾಸ್ವರ್ಡ್ ಮರುನಮೂದಿಸಿ</string>
+    <string name="pass_must_6_chars">ಕನಿಷ್ಠ 6 ಅಕ್ಷರಗಳು</string>
+    <string name="language">ಭಾಷೆ</string>
+    <string name="selectLanguage">ಭಾಷೆಯನ್ನು ಆಯ್ಕೆಮಾಡಿ</string>
+    <string name="loading_message">ಮಾಪಿತಿಯನ್ನು ಅಪ್ಡೇಟ್ ಮಾಡಲಾಗುತ್ತಿದೆ, ದಯಮಾಡಿ ನಿರೀಕ್ಷಿಸಿ</string>
+    <string name="Id">ಐಡಿ</string>
+    <string name="name">ಹೆಸರು</string>
+    <string name="phoneNumber">ದೂರವಾಣಿ ಸಂಖ್ಯೆ</string>
+    <string name="username">ಪಾಸ್ ಬುಕ್ ಸಂಖ್ಯೆ</string>
+    <string name="change">ಬದಲಾಯಿಸಿ</string>
+    <string name="cancel">ರದ್ದುಪಡಿಸಿ</string>
+    <string name="no">ಇಲ್ಲ</string>
+
+    <string name="i_agree">ಸಮ್ಮತಿಸುತ್ತನ</string>
+    <string name="upload_indent">ಅಪ್ಲೋಡ್ ಇಂಡೆಂಟ್ ಮಾಡಬೇಕೇ?</string>
+    <string name="cancel_indent">ಇಂಡೆಂಟ್ ರದ್ದ್ದುಪಡಿಸಬೇಕೇ?</string>
+    <string name="ok">ಸರಿ</string>
+
+    <!--My Profile-->
+    <string name="my_profile">ನನ್ನ ಪ್ರೊಫೈಲ್</string>
+    <string name="weaver_details">ನೇಕಾರ ವಿವರಗಳು</string>
+    <string name="party_name">ಪಕ್ಷದ ಹೆಸರು</string>
+    <string name="address">ವಿಳಾಸ</string>
+    <string name="issue_date">ಹಂಬಿಕಯಾದ ದಿನಾಂಕ</string>
+    <string name="party_type">ಪಕ್ಷದ ವಿಧ</string>
+    <string name="depot">ಡಿಪೊ</string>
+    <string name="doa">ನೇಮಿಸಿದ ದಿನಾಂಕ</string>
+    <string name="total_looms">ಒಟ್ಟು ಮಗ್ಗಗಳು</string>
+    <string name="loom_details">ಮಗ್ಗದ ವಿವರಗಳು</string>
+    <string name="loom_type">ಮಗ್ಗದ ವಿಧ</string>
+    <string name="no_of_looms">ಮಗ್ಗಗಳ ಸಂಖ್ಯೆ</string>
+    <string name="eligible_quota">ಅರ್ಹ ಕೋಟಾ</string>
+    <string name="used_quota">ಬಳಸಿದ ಕೋಟಾ</string>
+    <string name="balance_quota">ಬಾಕಿ ಕೋಟಾ</string>
+
+    <!--Payments-->
+    <string name="column_payment_id_header">ಪಾವತಿ ಐಡಿ</string>
+    <string name="column_payment_date_header">ಪಾವತಿ ದಿನಾಂಕ</string>
+    <string name="column_payment_method_header">ಪಾವತಿ ವಿಧಾನ</string>
+    <string name="column_payment_amount_header">ಮೊತ್ತ (ರೂ)</string>
+
+    <!--Suppliers-->
+    <string name="supplier_details">ಪೂರೈಕೆದಾರರ ವಿವರಗಳು</string>
+    <string name="column_facility_id_header">ಪೂರೈಕೆದಾರರ ಐಡಿ</string>
+    <string name="column_facility_name_header">ಪೂರೈಕೆದಾರರ ಹೆಸರು</string>
+    <string name="supplier_search">ಐಡಿ ಅಥವಾ ಹೆಸರಿನಿಂದ ಹುಡುಕು</string>
+    <string name="select_supplier">ಪೂರೈಕೆದಾರನ್ನು ಆಯ್ಕೆ ಮಾಡಿ</string>
+
+    <!--Transporters-->
+    <string name="transporters">ಸಾಗಾಣಿಕದಾರರು</string>
+    <string name="transporter_search">ಐಡಿ ಅಥವಾ ಹೆಸರಿನಿಂದ ಹುಡುಕು</string>
+    <string name="transporter_details">ಸಾಗಾಣಿಕದಾರರ ವಿವರಗಳು</string>
+    <string name="transporter_name">ಸಾಗಾಣಿಕದಾರರ ಹೆಸರು</string>
+
+    <!--Stocks-->
+    <string name="stocks">ಸರಕುಗಳು</string>
+    <string name="product_name">ಉತ್ಪನ್ನ ಹೆಸರು</string>
+    <string name="column_orderitem_qty_header">ಉತ್ಪನ್ನ ಪ್ರಮಾಣ</string>
+    <string name="column_orderitem_amount_header">ಯೂನಿಟ್ ಬೆಲೆ(ರೂ.)</string>
+    <string name="stock_search">ಐಡಿ ಅಥವಾ ಹೆಸರಿನಿಂದ ಹುಡುಕು</string>
+    <string name="stock_details">ಸರಕು ವಿವರಗಳು</string>
+    <string name="quantity">ಪ್ರಮಾಣ</string>
+    <string name="unit_price">ಯೂನಿಟ್ ಬೆಲೆ(ರೂ.)</string>
+
+    <!--Catalog/Products-->
+    <string name="catalog_search">ಹೆಸರು ಅಥವಾ ವಿವರಣೆಯಾಂದಿಗೆ ಹುಡುಕು</string>
+    <string name="column_product_name_header">ಉತ್ಪನ್ನ ಹೆಸರು</string>
+    <string name="column_product_description_header">ಉತ್ಪನ್ನ ವಿವರಣೆ</string>
+    <string name="column_product_category_header">ಉತ್ಪನ್ನ ವರ್ಗ</string>
+
+    <!--Indents-->
+    <string name="indent_details">ಇಂಡೆಂಟ್ ವಿವರಗಳು</string>
+    <string name="shipments">ಸಾಗಣೆಗಳು</string>
+    <string name="order_date">ಇಂಡೆಂಟ್ ದಿನಾಂಕ</string>
+    <string name="order_number">ಇಂಡೆಂಟ್ ಸಂಖ್ಯೆ</string>
+    <string name="supplier_name">ಪೂರೈಕೆದಾರರ ಹೆಸರು</string>
+    <string name="status_id">ಸ್ಥಿತಿ</string>
+    <string name="discount_amount">ರಿಯಾಯಿತಿ ಮಾತ್ತ</string>
+    <string name="indentStatus">ಇಂಡೆಂಟ್ ಸ್ಥಿತಿ</string>
+    <string name="scheme_type">ಯೋಜನೆ</string>
+    <string name="order_total">ಇಂಡೆಂಟ್ ಒಟ್ಟು</string>
+    <string name="paid_ammount">ಪಾವತಿಸಿದ ಮಾತ್ತ</string>
+    <string name="balance_ammount">ಬಾಕಿ ಮಾತ್ತ</string>
+    <string name="column_indent_id_header">ಉಲ್ಲೇಖ ಸಂಖ್ಯೆ</string>
+    <string name="column_indent_date_header">ಇಂಡೆಂಟ್ ದಿನಾಂಕ</string>
+    <string name="column_indent_total_header">ಮಾತ್ತ(ರೂ.)</string>
+    <string name="indent_item_details">ಇಂಡೆಂಟ್ ಐಟಂ ವಿವರಗಳು</string>
+    <string name="remarks">ಟಿಪ್ಪಣಿಗಳು</string>
+    <string name="bale_quantity">ಬೇಲ್ ಪ್ರಮಾಣ</string>
+    <string name="bundle_weight">ಕಟ್ಟು ತೂಕ</string>
+    <string name="total_amount">ಒಟ್ಟು ಮೊತ್ತ</string>
+    <string name="other_charges">ಇತರೆ ಶುಲ್ಕಗಳು</string>
+    <string name="shipped_quantity">ಸಾಗಾಣಿಕಯ ಪ್ರಮಾಣ</string>
+    <string name="branch">ಶಾಖೆ</string>
+    <string name="product_hint">ನೂಲು ಎಣಿಕೆಯನ್ನು ನಮೂದಿಸಿ</string>
+    <string name="spec_hint">ಬ್ರ್ಯಾಂಡ್,ಬಣ್ಣ,ಇತ್ಯಾದಿ ನಮೂದಿಸಿ</string>
+    <string name="qty_nos">ಪ್ರಮಾಣ(ಸಂಖ್ಯೆಗಳನ್ನು)</string>
+    <string name="uom">ಅಳತೆಯ ಘಟಕ</string>
+    <string name="bundle_wt">ಕಟ್ಟು ತೂಕ(ಕೆಜಿ)</string>
+    <string name="quota_exceed">ಕೋಟಾ ಮೀರಿದೆ</string>
+    <string name="quota_continue">ಮುಂದುವರಿಸು</string>
+
+    <!--Shipment-->
+    <string name="shipment_history">ಸಾಗಾಣಿಕಯ ಇತಿಹಾಸ</string>
+    <string name="dispatch">ರವಾನೆ</string>
+
+    <string name="title_about">ಎನ್.ಎಚ್.ಡಿ.ಸಿ ಬಗ್ಗೆ</string>
+    <string name="title_feature1_plurer">ಇಂಟೆಂಡ್ಗಳ</string>
+    <string name="title_feature3">ಪಾವತಿಗಳು</string>
+    <string name="title_feature4">ಕ್ಯಾಟಲಾಗ್</string>
+    <string name="title_feature5">ಪೂರೈಕೆದಾರರು</string>
+    <string name="title_feature6">ಸಾಗಾಣಿಕದಾರರು</string>
+    <string name="supplier">ಪೂರೈಕೆದಾರ</string>
+    <string name="destination">ಗಮ್ಯಸ್ಥಾನ</string>
+    <string name="shipment_date">ಸಾಗಾಣಿಕಯ ದಿನಾಂಕ</string>
+    <string name="item_name">ಉತ್ಪನ್ನ ಹೆಸರು</string>
+    <string name="item_qty">ಪ್ರಮಾಣ</string>
+    <string name="item_amount">ಮೊತ್ತ (ರೂ.)</string>
+    <string name="indent_total">ಇಂಡೆಂಟ್ ಒಟ್ಟು</string>
+    <string name="save">ಬದುಕಿಸು</string>
+    <string name="add_product">ಉತ್ಪನ್ನ ಸೇರಿಸಿ</string>
+    <string name="select_product">ಉತ್ಪನ್ನ ಆಯ್ಕೆಮಾಡಿ</string>
+    <string name="specification">ನಿರ್ದಿಷ್ಟ ವಿವರಣೆ</string>
+    <string name="qty_kg">ಪ್ರಮಾಣ (ಕೆಜಿ)</string>
+    <string name="unit_price_kg">ಯೂನಿಟ್ ಬೆಲೆ (ಕೆಜಿ)</string>
+    <string name="unit_price_bundle">ಯೂನಿಟ್ ಬೆಲೆ (ಕಟ್ಟು)</string>
+    <string name="amount">ಮೊತ್ತ (ರೂ.)</string>
+    <string name="column_order_total_header">ಮೊತ್ತ (ರೂ.)</string>
+    <string name="add_product_hint">ಉತ್ಪನ್ನ ಆಯ್ಕೆಮಾಡಿ</string>
+    <string name="po_sequence_no">ಪಿಒ ಅನುಕ್ರಮ ಸಂಖ್ಯೆ</string>
+    <string name="make_payment">ಪಾವತಿ ಮಾಡಿ</string>
+    <string name="payment_amount">ಒಟ್ಟು ಮೊತ್ತ</string>
+    <string name="text_partyId">ಪಕ್ಷದ ಐಡಿ :%1$s</string>
+
+    <!--supplier portal-->
+    <string name="cst_num">CST ಸಂಖ್ಯೆ</string>
+    <string name="tan_num">TAN ಸಂಖ್ಯೆ</string>
+    <string name="pan_num">PAN ಸಂಖ್ಯೆ</string>
+</resources>

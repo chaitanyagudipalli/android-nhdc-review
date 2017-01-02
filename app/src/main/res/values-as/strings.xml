@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="dashboard">ডেছব’ৰ্ড</string>
+    <string name="action_settings">ছেটিংছ</string>
+    <string name="menu_preferences">ছেটিংছ</string>
+    <string name="nhdc_settings">এন.এইচ.ডি.চি. ছেটিংছ</string>
+    <string name="user_credentials">ব্যৱহাৰকৰ্তাৰ বিৱৰণ</string>
+    <string name="passbookNumber">সূতা পাছবহী নম্বৰ</string>
+    <string name="passbook_hint">এন.এইচ.ডি.চি. সূতা পাছবহী নম্বৰ প্ৰবিষ্ট কৰক</string>
+    <string name="password">পাছৱৰ্ড</string>
+    <string name="password_hint">এন.এইচ.ডি.চি.  ই.আৰ.পি. পাছৱৰ্ড প্ৰবিষ্ট কৰক</string>
+    <string name="changePassword">পাছৱৰ্ড পৰিৱৰ্তন কৰক</string>
+    <string name="present_password">বৰ্তমানৰ পাছৱৰ্ড</string>
+    <string name="new_password">নতুন পাছৱৰ্ড  (নিম্নতম ৬ টা বৰ্ণ  ) </string>
+    <string name="verify_new_password">নতুন পাছৱৰ্ড সত্যাপিত কৰক</string>
+    <string name="pass_must_6_chars">নিম্নতম ৬ টা বৰ্ণ</string>
+    <string name="language">ভাষা</string>
+    <string name="selectLanguage">ভাষা বাছনি কৰক</string>
+    <string name="loading_message">ডাটা আপডেট হৈ আছে, অনুগ্ৰহ কৰি অপেক্ষা কৰক...</string>
+    <string name="Id">আই.ডি.</string>
+    <string name="name"> নাম</string>
+    <string name="phoneNumber">ফোন নম্বৰ </string>
+    <string name="username">সূতা পাছবহী নম্বৰ</string>
+    <string name="change">পৰিৱৰ্তন কৰক</string>
+    <string name="cancel">বাতিল কৰক</string>
+    <string name="no">নহয়</string>
+
+    <string name="i_agree">মই সন্মত</string>
+    <string name="upload_indent">নিৰ্দেশনামা আপলোড কৰিব?</string>
+    <string name="cancel_indent">নিৰ্দেশনামা বাতিল কৰিব?</string>
+    <string name="ok">ঠিক আসায়</string>
+
+    <!--My Profile-->
+    <string name="my_profile">মোৰ প্ৰ’ফাইল</string>
+    <string name="weaver_details">শিপিনীৰ বিৱৰণ</string>
+    <string name="party_name">পক্ষৰ নাম</string>
+    <string name="address">ঠিকনা</string>
+    <string name="issue_date">জাৰি কৰা তাৰিখ </string>
+    <string name="party_type">পক্ষৰ প্ৰকাৰ</string>
+    <string name="depot">ডিপো</string>
+    <string name="doa">আৱণ্টনৰ তাৰিখ</string>
+    <string name="total_looms">মুঠ শাল</string>
+    <string name="loom_details">শালৰ বিৱৰণ</string>
+    <string name="loom_type">শালৰ প্ৰকাৰ</string>
+    <string name="no_of_looms">শালৰ সংখ্যা</string>
+    <string name="eligible_quota">যোগ্য প্ৰাপ্য পৰিমাণ</string>
+    <string name="used_quota">ব্যৱহৃত প্ৰাপ্য পৰিমাণ</string>
+    <string name="balance_quota">অৱশিষ্ট প্ৰাপ্য পৰিমাণ</string>
+
+    <!--Payments-->
+    <string name="column_payment_id_header">পৰিশোধ আই.ডি.</string>
+    <string name="column_payment_date_header">পৰিশোধ তাৰিখ</string>
+    <string name="column_payment_method_header">পৰিশোধ পদ্ধতি</string>
+    <string name="column_payment_amount_header">পৰিমাণ (টকা)</string>
+
+    <!--Suppliers-->
+    <string name="supplier_details">যোগানকৰ্তাৰ বিৱৰণ</string>
+    <string name="column_facility_id_header">যোগানকৰ্তা আই.ডি.</string>
+    <string name="column_facility_name_header">যোগানকৰ্তাৰ নাম</string>
+    <string name="supplier_search">আই.ডি. বা নামেৰে সন্ধান কৰক</string>
+    <string name="select_supplier">যোগানকৰ্তা বাছনি কৰক</string>
+
+    <!--Transporters-->
+    <string name="transporters">পৰিবহনকৰ্তা</string>
+    <string name="transporter_search">আই.ডি. বা নামেৰে সন্ধান কৰক</string>
+    <string name="transporter_details">পৰিবহনকৰ্তা বিৱৰণ</string>
+    <string name="transporter_name">পৰিবহনকৰ্তাৰ নাম</string>
+
+    <!--Stocks-->
+    <string name="stocks">জমা সামগ্ৰী</string>
+    <string name="product_name">সামগ্ৰীৰ নাম</string>
+    <string name="column_orderitem_qty_header">পৰিমাণ</string>
+    <string name="column_orderitem_amount_header">পৰিমাণ (টকা)</string>
+    <string name="stock_search">নাম বা বিৱৰণেৰে সন্ধান কৰক</string>
+    <string name="stock_details">জমা সামগ্ৰীৰ বিৱৰণ </string>
+    <string name="quantity">পৰিমাণ</string>
+    <string name="unit_price">একক মূল্য (টকা )</string>
+
+    <!--Catalog/Products-->
+    <string name="catalog_search">নাম বা বিৱৰণেৰে সন্ধান কৰক</string>
+    <string name="column_product_name_header">সামগ্ৰীৰ নাম</string>
+    <string name="column_product_description_header">বিৱৰণেৰে</string>
+    <string name="column_product_category_header">শ্ৰেণী</string>
+
+    <!--Indents-->
+    <string name="indent_details">নিৰ্দেশনামা বিৱৰণ</string>
+    <string name="shipments">সামগ্ৰী প্ৰেৰণ</string>
+    <string name="order_date">নিৰ্দেশনামা তাৰিখ</string>
+    <string name="order_number">নিৰ্দেশনামা নম্বৰ</string>
+    <string name="supplier_name">যোগানকৰ্তাৰ নাম</string>
+    <string name="status_id"> স্থিতি</string>
+    <string name="discount_amount">ৰেহাই পৰিমাণ</string>
+    <string name="indentStatus">নিৰ্দেশনামা স্থিতি</string>
+    <string name="scheme_type">আঁচনি</string>
+    <string name="order_total">নিৰ্দেশনামা মুঠ</string>
+    <string name="paid_ammount">পৰিশোধ কৰা পৰিমাণ</string>
+    <string name="balance_ammount">অৱশিষ্ট পৰিমাণ</string>
+    <string name="column_indent_id_header">নিৰ্দেশনামা নম্বৰ</string>
+    <string name="column_indent_date_header">নিৰ্দেশনামা তাৰিখ</string>
+    <string name="column_indent_total_header">নিৰ্দেশনামা মুঠ</string>
+    <string name="indent_item_details">নিৰ্দেশনামা সামগ্ৰী বিৱৰণ</string>
+    <string name="remarks">মন্তব্য </string>
+    <string name="bale_quantity">মোটৰীৰ পৰিমাণ </string>
+    <string name="bundle_weight">বান্দিল ওজন</string>
+    <string name="total_amount">মুঠ পৰিমাণ </string>
+    <string name="other_charges">অন্যান্য মাচুল</string>
+    <string name="shipped_quantity">প্ৰেৰণ কৰা পৰিমাণ</string>
+    <string name="branch">শাখা</string>
+    <string name="product_hint">সামগ্ৰী বাছনি কৰক </string>
+    <string name="spec_hint">ব্ৰেণ্ড, ৰং আদি প্ৰবিষ্ট কৰক </string>
+    <string name="qty_nos">পৰিমাণ</string>
+    <string name="uom">একক</string>
+    <string name="bundle_wt">বান্দিল ওজন (কিগ্ৰা )</string>
+    <string name="quota_exceed">পৰিমাণ সাতচাৰ</string>
+    <string name="quota_continue">চম্ভাল্</string>
+
+    <!--Shipment-->
+    <string name="shipment_history">প্ৰেৰণ কৰা ইতিবৃত্ত</string>
+    <string name="dispatch">প্ৰেৰণ</string>
+
+    <string name="title_about">এন.এইচ.ডি.চি. -ৰ বিষয়ে</string>
+    <string name="title_feature1_plurer">নিৰ্দেশনামা</string>
+    <string name="title_feature3">পৰিশোধ</string>
+    <string name="title_feature4">তালিকা</string>
+    <string name="title_feature5">যোগানকৰ্তা  </string>
+    <string name="title_feature6">পৰিবহনকৰ্তা</string>
+    <string name="supplier">যোগানকৰ্তা </string>
+    <string name="destination">গন্তব্য </string>
+    <string name="shipment_date">প্ৰেৰণ কৰা তাৰিখ </string>
+    <string name="item_name">সামগ্ৰীৰ নাম </string>
+    <string name="item_qty">সামগ্ৰীৰ পৰিমাণ </string>
+    <string name="item_amount">পৰিমাণ (টকা) </string>
+    <string name="indent_total">নিৰ্দেশনামা মুঠ</string>
+    <string name="save">সংৰক্ষণ কৰক</string>
+    <string name="add_product">সামগ্ৰীৰ</string>
+    <string name="select_product">সামগ্ৰী বাছনি কৰক </string>
+    <string name="specification">বিশিষ্টতা</string>
+    <string name="qty_kg">পৰিমাণ (কিগ্ৰা )</string>
+    <string name="unit_price_kg">একক মূল্য (কিগ্ৰা )</string>
+    <string name="unit_price_bundle">একক মূল্য </string>
+    <string name="amount">পৰিমাণ (টকা)</string>
+    <string name="column_order_total_header">মুঠ পৰিমাণ</string>
+    <string name="add_product_hint">সামগ্ৰীৰ</string>
+    <string name="po_sequence_no">প ো নম্বৰ</string>
+    <string name="make_payment">পৰিশোধ</string>
+    <string name="payment_amount">পৰিমাণ </string>
+    <string name="text_partyId">পক্ষৰ আই.ডি. :%1$s</string>
+
+    <!--supplier portal-->
+    <string name="cst_num">CST নম্বৰ</string>
+    <string name="tan_num">TAN নম্বৰ</string>
+    <string name="pan_num">PAN নম্বৰ</string>
+</resources>

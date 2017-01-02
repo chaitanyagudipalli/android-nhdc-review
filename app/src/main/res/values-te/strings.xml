@@ -22,10 +22,10 @@
     <string name="description_about">About</string>
     <string name="description_home">Home</string>
     <string name="description_search">Search</string>
-    <string name="description_feature1">ఇండెంట్స్</string>
+    <string name="description_feature1">దరఖాస్తులు</string>
     <string name="description_feature2">Orders</string>
-    <string name="description_feature3">పేమెంట్స్</string>
-    <string name="description_feature4">ప్రొడక్ట్స్</string>
+    <string name="description_feature3">చెల్లింపులు</string>
+    <string name="description_feature4">కాటలాగ్</string>
     <string name="description_feature5">Outlets</string>
     <string name="description_feature6">Feature 6</string>
 
@@ -33,12 +33,12 @@
     <string name="title_home">Home</string>
     <string name="title_search">Search</string>
     <string name="title_feature1">Indent</string>
-    <string name="title_feature1_plurer">ఇండెంట్స్</string>
+    <string name="title_feature1_plurer">దరఖాస్తులు</string>
     <string name="title_feature2">Orders</string>
-    <string name="title_feature3">పేమెంట్స్</string>
-    <string name="title_feature4">ప్రొడక్ట్స్</string>
-    <string name="title_feature5">సప్లయర్స్</string>
-    <string name="title_feature6">ట్రాన్స్ పోర్టర్స్  </string>
+    <string name="title_feature3">చెల్లింపులు</string>
+    <string name="title_feature4">కాటలాగ్</string>
+    <string name="title_feature5">సరఫరాదారులు</string>
+    <string name="title_feature6">రవాణాదారులు</string>
     <string name="title_sales">Sales</string>
     <string name="title_hr">HR</string>
     <string name="title_employeeprofile">మై ప్రొఫైల్</string>
@@ -69,10 +69,10 @@
 
     <string name="menu_preferences">సెట్టింగ్స్</string>
 
-    <string name="column_product_id_header">ప్రొడక్ట్ కోడ్</string>
-    <string name="column_product_name_header">ప్రొడక్ట్ పేరు</string>
+    <string name="column_product_id_header">ఐడి</string>
+    <string name="column_product_name_header">ఉత్పత్తి పేరు</string>
     <string name="column_product_description_header">వివరణ</string>
-    <string name="column_product_category_header">కేటగిరీ</string>
+    <string name="column_product_category_header">వర్గము</string>
 
 
     <string name="column_order_id_header">Order Id</string>
@@ -80,21 +80,21 @@
     <string name="column_order_supply_header">Supply</string>
     <string name="column_order_total_header">మొత్తం (రూ)</string>
 
-    <string name="column_orderitem_qty_header">Quantity</string>
+    <string name="column_orderitem_qty_header">పరిమాణము</string>
     <string name="column_orderitem_amount_header">యూనిట్ ధర (రూ)</string>
 
     <string name="add_product_hint">Select Product</string>
     <string name="add_product_qty_hint">Qty (pkts)</string>
 
-    <string name="column_indent_id_header">Ref.No</string>
+    <string name="column_indent_id_header">సూచన సంఖ్య</string>
     <string name="column_indent_date_header">తేదీ</string>
     <string name="column_indent_status_header">స్థితి</string>
     <string name="column_indent_supply_header">Tally Ref No</string>
     <string name="column_indent_total_header">మొత్తం (రూ)</string>
 
-    <string name="column_payment_id_header">ఐ డి</string>
+    <string name="column_payment_id_header">చెల్లింపు ఐడి</string>
     <string name="column_payment_date_header">చెల్లింపు తేదీ</string>
-    <string name="column_payment_method_header">పద్ధతి</string>
+    <string name="column_payment_method_header">చెల్లింపు పద్ధతి</string>
     <string name="column_payment_amount_header">మొత్తం (రూ)</string>
 
     <string name="column_facility_id_header">కోడ్</string>
@@ -203,37 +203,37 @@
     <string name="arrows">&lt;-&gt;</string>
     <string name="title_analytica_sales">Sales Analytics</string>
 
-    <string name="present_password">Current Password</string>
-    <string name="new_password">New Password(Min.6 Characters)</string>
-    <string name="verify_new_password">Verify New Password</string>
+    <string name="present_password">ప్రస్తుత పాస్వర్డ్</string>
+    <string name="new_password">కొత్త పాస్వర్డ్(కనీస 6 అక్షరాలు)</string>
+    <string name="verify_new_password">కొత్త పాస్వర్డ్  ధృవీకరించండి </string>
 
     <string name="column_analytic_sales_qty_header">Qty(Pkts)</string>
     <string name="supplier_roletypeid">Role type</string>
     <string name="tally_ref_no">Tally Ref No.</string>
-    <string name="order_date">ఇండెంట్  తేదీ</string>
-    <string name="order_id">ఇండెంట్  ఐ డి</string>
-    <string name="order_number">ఇండెంట్  నెంబర్</string>
+    <string name="order_date">దరఖాస్తు తేదీ</string>
+    <string name="order_id">దరఖాస్తు  ఐ డి</string>
+    <string name="order_number">దరఖాస్తు  నెంబర్</string>
     <string name="generated_po">Generated PO</string>
     <string name="po_order">PO Order</string>
-    <string name="po_sequence_no">PO Sequence No.</string>
+    <string name="po_sequence_no">పి.ఒ. క్రమ సంఖ్య</string>
     <string name="supplier_party_id">Supplier Party ID</string>
     <string name="store_name">Store Name</string>
-    <string name="supplier_name">సప్లయర్ పేరు</string>
+    <string name="supplier_name">సరఫరాదారు పేరు</string>
     <string name="status_id">స్థితి</string>
-    <string name="order_total">Indent Total</string>
-    <string name="paid_ammount">Paid Amount</string>
-    <string name="balance_ammount">Balance Amount</string>
-    <string name="indent_details">ఇండెంట్ వివరాలు</string>
-    <string name="transporters">ట్రాన్స్ పోర్టర్స్</string>
+    <string name="order_total">ధరఖాస్తు మొత్తం</string>
+    <string name="paid_ammount">చెల్లించిన మొత్తం</string>
+    <string name="balance_ammount">మిగిలిన మొత్తం</string>
+    <string name="indent_details">దరఖాస్తు వివరాలు</string>
+    <string name="transporters">రవాణాదారులు</string>
     <string name="scheme_type">పథకం</string>
     <string name="purchase_orders">Purchase orders</string>
-    <string name="my_profile">మై ప్రొఫైల్</string>
+    <string name="my_profile">వ్యక్తి గత వివరాలు</string>
 
     <string name="supp_po_title">Purchase orders</string>
     <string name="supplier_delivery">Supplier Delivery</string>
-    <string name="language">Language</string>
+    <string name="language">భాష</string>
     <string name="selectLanguage">భాషను ఎంచుకోండి</string>
-    <string name="stocks">స్టాక్స్</string>
+    <string name="stocks">నిలువ సరకు</string>
 
     <string-array name="bank">
         <item>Select Bank</item>
@@ -253,74 +253,74 @@
     </string-array>
 
     <string name="dashboard">డాష్బోర్డ్</string>
-    <string name="changePassword">చేంజ్ పాస్వర్డ్</string>
+    <string name="changePassword">పాస్వర్డ్ మార్పు</string>
     <string name="phoneNumber">ఫోన్ నెంబర్</string>
-    <string name="passbookNumber">పాస్ బుక్  నెంబర్</string>
+    <string name="passbookNumber">ఖాతా పుస్తకం సంఖ్య</string>
     <string name="selectRetailer">Select Retailer</string>
     <string name="contact">Contact</string>
     <string name="Id">ఐ డి</string>
     <string name="name">పేరు</string>
     <string name="address">అడ్రస్</string>
-    <string name="transporter_search">Search by Id or name</string>
-    <string name="transporter_details">ట్రాన్స్ పోర్టర్  వివరాలు</string>
-    <string name="catalog_search">Search by Name or Description</string>
-    <string name="supplier_search">Search by Code or Name</string>
-    <string name="supplier_details">సప్లయర్ వివరాలు</string>
+    <string name="transporter_search">పేరు లేదా ఐ డి ద్వారా శోధన</string>
+    <string name="transporter_details">రవాణాదారు వివరాలు</string>
+    <string name="catalog_search">పేరు లేదా వివరణ ద్వారా శోధన</string>
+    <string name="supplier_search">పేరు లేదా కోడ్ ద్వారా శోధన</string>
+    <string name="supplier_details">సరఫరాదారు వివరాలు</string>
     <string name="indentStatus">స్థితి</string>
     <string name="transporter_name">ట్రాన్స్ పోర్టర్ పేరు</string>
     <string name="nhdc_settings">ఎన్ హెచ్ డీసీ సెట్టింగ్స్</string>
-    <string name="user_credentials">User Credentials</string>
+    <string name="user_credentials">వాడుకరి వివరాలు</string>
     <string name="username">పాస్ బుక్ నంబర్</string>
     <string name="password">పాస్వర్డ్</string>
-    <string name="change">CHANGE</string>
-    <string name="cancel">CANCEL</string>
-    <string name="pass_must_6_chars">Password must be at least 6 characters</string>
-    <string name="new_verify_not_match">New Password and Verify New Password does not match</string>
-    <string name="weaver_details">కస్టమర్ వివరాలు</string>
+    <string name="change">మార్పు</string>
+    <string name="cancel">రద్దు</string>
+    <string name="pass_must_6_chars">పాస్వర్డ్ కనీసం 6 అక్షరాల పొడవు ఉండాలి</string>
+    <string name="new_verify_not_match">పాస్వర్డ్స్  సరిపోలడం లేదు</string>
+    <string name="weaver_details">వీవర్ వివరాలు</string>
     <string name="party_name">పేరు</string>
-    <string name="issue_date">జారీ తేదీ</string>
-    <string name="party_type">Party Type</string>
-    <string name="discount_amount">Discount Amount</string>
-    <string name="loom_details">Loom Details</string>
-    <string name="total_looms">Total Looms</string>
-    <string name="loom_type">Loom Type</string>
-    <string name="no_of_looms">No.Looms</string>
-    <string name="eligible_quota">Elg.Quota</string>
-    <string name="used_quota">Used Quota</string>
-    <string name="balance_quota">Bal Quota</string>
-    <string name="depot">డిపో</string>
-    <string name="product_name">ప్రొడక్ట్ పేరు</string>
-    <string name="quantity">మొత్తము</string>
+    <string name="issue_date">జారీ చేసిన తేదీ</string>
+    <string name="party_type">వీవర్  రకం</string>
+    <string name="discount_amount">డిస్కౌంట్ మొత్తం</string>
+    <string name="loom_details">మగ్గము  వివరాలు</string>
+    <string name="total_looms">మొత్తం మగ్గాలు</string>
+    <string name="loom_type">మగ్గం రకం</string>
+    <string name="no_of_looms">మగ్గాలు సంఖ్య</string>
+    <string name="eligible_quota">అర్హత కోటా</string>
+    <string name="used_quota">వాడిన కోటా</string>
+    <string name="balance_quota">సంతులనం కోటా</string>
+    <string name="depot">గోదాం</string>
+    <string name="product_name">ఉత్పత్తి పేరు</string>
+    <string name="quantity">పరిమాణం</string>
     <string name="remarks">వ్యాఖ్యలు</string>
-    <string name="bale_quantity">Bale Quantiy</string>
-    <string name="bundle_weight">Bundle Weight</string>
+    <string name="bale_quantity">బేల్ పరిమాణం</string>
+    <string name="bundle_weight">కట్ట బరువు</string>
     <string name="unit_price">యూనిట్ ధర</string>
-    <string name="total_amount">Total Amount</string>
+    <string name="total_amount">మొత్తం</string>
     <string name="other_charges">ఇతర ఛార్జీలు</string>
-    <string name="shipped_quantity">Shipped Quantity</string>
-    <string name="doa">DOA</string>
-    <string name="indent_item_details">Indent Item Details</string>
-    <string name="shipments">SHIPMENTS</string>
-    <string name="shipment_history">Shipment History</string>
+    <string name="shipped_quantity">రవాణా పరిమాణం</string>
+    <string name="doa">కేటాయింపు తేదీ</string>
+    <string name="indent_item_details">ధరఖాస్తు ఉత్పత్తి వివరాలు</string>
+    <string name="shipments">ఎగుమతులపై</string>
+    <string name="shipment_history">రవాణా చరిత్ర</string>
     <string name="branch">బ్రాంచ్</string>
-    <string name="select_supplier">సప్లయర్ ఎంచుకోండి</string>
-    <string name="select_transporter">ట్రాన్స్ పోర్టర్ ఎంచుకోండి</string>
-    <string name="indent_total">Indent Total</string>
+    <string name="select_supplier">సరఫరాదారు ఎంచుకోండి</string>
+    <string name="select_transporter">రవాణాదారు ఎంచుకోండి</string>
+    <string name="indent_total">ధరఖాస్తు  మొత్తం</string>
     <string name="save">సేవ్</string>
-    <string name="add_product">Add Product</string>
-    <string name="select_product">ప్రొడక్ట్  ఎంచుకోండి</string>
+    <string name="add_product">ఉత్పత్తి జోడించు</string>
+    <string name="select_product">ఉత్పత్తి  ఎంచుకోండి</string>
     <string name="specification">రకం</string>
-    <string name="qty_kg">Qty (kgs)</string>
+    <string name="qty_kg">పరిమాణం (కిలోలు)</string>
     <string name="unit_price_kg">యూనిట్ ధర (కిలోలు)</string>
     <string name="unit_price_bundle">యూనిట్ ధర (బండిల్)</string>
     <string name="amount">మొత్తం (రూ)</string>
-    <string name="dispatch">Dispatch</string>
+    <string name="dispatch">రవాణా</string>
     <string name="customer">కస్టమర్</string>
-    <string name="destination">Destination</string>
-    <string name="shipment_date">Shipment Date</string>
-    <string name="item_name">Item Name</string>
-    <string name="item_qty">Qty</string>
-    <string name="item_amount">Amount</string>
+    <string name="destination">గమ్యం</string>
+    <string name="shipment_date">రవాణా తేది</string>
+    <string name="item_name">ఉత్పత్తి నామం</string>
+    <string name="item_qty">పరిమాణం</string>
+    <string name="item_amount">మొత్తం</string>
     <string name="cst_num">CST Number</string>
     <string name="tan_num">TAN Number</string>
     <string name="pan_num">PAN Number</string>
@@ -330,17 +330,17 @@
     <string name="column_po_status_header">స్థితి</string>
     <string name="stock_search">Search by Id or name</string>
     <string name="about_file">file:///android_asset/about-te.html</string>
-    <string name="supplier">సప్లయర్</string>
-    <string name="stock_details">స్టాక్ వివరాలు</string>
+    <string name="supplier">సరఫరాదారు</string>
+    <string name="stock_details">సరకు వివరాలు</string>
     <string name="email">Email</string>
     <string name="product_details">Product Details</string>
-    <string name="no">NO</string>
-    <string name="i_agree">I AGREE</string>
-    <string name="upload_indent">Upload Indent ?</string>
-    <string name="cancel_indent">Cancel Indent ?</string>
-    <string name="ok">OK</string>
-    <string name="passbook_hint">Enter NHDC Passbook Number</string>
-    <string name="password_hint">Enter Password</string>
+    <string name="no">వద్దు</string>
+    <string name="i_agree">నేను అంగీకరిస్తున్నాను</string>
+    <string name="upload_indent">ఇండెంట్ అప్లోడ్? ?</string>
+    <string name="cancel_indent">ఇండెంట్ రద్దు? ?</string>
+    <string name="ok">సరే</string>
+    <string name="passbook_hint">NHDC పుస్తకం సంఖ్యను ఎంటర్ చేయండి</string>
+    <string name="password_hint">NHDC ERP పాస్వర్డ్ను ఎంటర్ చేయండి</string>
     <string name="term_n_cond">"\n"
 				"These terms and conditions create a contract between you and NHDC (the “Agreement”). Please read the Agreement carefully. To confirm your understanding and acceptance of the Agreement, click “Agree.”\n\n"
 				"INTRODUCTION TO OUR SERVICES\n\n"
@@ -356,7 +356,14 @@
 				"Except to the extent expressly provided in the following paragraph, this Agreement and the relationship between you and NHDC, and all Transactions on the Services shall be governed by the laws"
     </string>
     <string name="please_select_language">Please Select Language / कृपया अपनी भाषा  चुने</string>
-    <string name="loading_message">Data is being updated, Please Wait...</string>
-    <string name="product_hint">Enter yarn count</string>
-    <string name="spec_hint">Enter brand,color, etc..</string>
+    <string name="loading_message">సమాచారం దిగుమతి అవుతుంది , దయచేసి వేచి ఉండండి...</string>
+    <string name="product_hint">నూలు కౌంట్ ఎంటర్  చేయండి</string>
+    <string name="spec_hint">బ్రాండ్,రంగు...</string>
+    <string name="uom">కొలత ప్రమాణం</string>
+    <string name="bundle_wt">బండిల్ వెయిట్ (కిలోగ్రామ్ )</string>
+    <string name="quota_exceed">కోటా మించింది</string>
+    <string name="quota_continue">కొనసాగించు</string>
+    <string name="make_payment">చెల్లింపు చేయండి</string>
+    <string name="payment_amount">మొత్తం</string>
+    <string name="qty_nos">మొత్తము (సంఖ్యలు)</string>
 </resources>

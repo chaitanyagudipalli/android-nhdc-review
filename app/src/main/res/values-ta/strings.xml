@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="dashboard">கோடு பலகை</string>
+    <string name="action_settings">அமைப்பு</string>
+    <string name="menu_preferences">அமைப்பு</string>
+    <string name="nhdc_settings">தே.கை.வ.க அமைப்பு</string>
+    <string name="user_credentials">பயனாளிகள் விவரம்</string>
+    <string name="passbookNumber">கைச்சாத்து புத்தக எண்</string>
+    <string name="passbook_hint">பயனாளிகள் விவரம்</string>
+    <string name="password">கடவுச்சொல்</string>
+    <string name="password_hint">தே.கை.வ.க E R P கடவு சொல் நுழை</string>
+    <string name="changePassword">கடவுச்சொல் மாற்று</string>
+    <string name="present_password">தற்போதய கடவுச்சொல்</string>
+    <string name="new_password">புதிய கடவுச்சொல்   (குறைந்தபட்சம் 6 எழுத்து)</string>
+    <string name="verify_new_password">புதிய கடவுச்சொல்லை சரிபார்க்க</string>
+    <string name="pass_must_6_chars">கடவுச்சொல் குறைந்தது 6 எழுத்துக்கள் இருக்க வேண்டும்</string>
+    <string name="new_verify_not_match">புதிய கடவுச்சொல் மற்றும் சரிபார்க்கவும் புதிய கடவுச்சொல் பொருந்தவில்லை</string>
+    <string name="language">மொழி</string>
+    <string name="selectLanguage">மொழி தேர்வு</string>
+    <string name="loading_message">தகவல் மேம்படுத்தப்பட்டு வருகிறது...</string>
+    <string name="Id">அடையாளம்</string>
+    <string name="name">பெயர்</string>
+    <string name="phoneNumber">தொலைபேசி எண்</string>
+    <string name="username">கைச்சாத்து புத்தக எண்</string>
+    <string name="change">மாற்று</string>
+    <string name="cancel">ரத்து செய்</string>
+    <string name="no">இல்லை</string>
+    <string name="i_agree">நான் ஒப்புக்கொள்கிறேன்</string>
+    <string name="upload_indent">தேவைப்பட்டியல் பதிவேற்றம்?</string>
+    <string name="cancel_indent">தேவைப்பட்டியல் ரத்து?</string>
+    <string name="ok">சரி</string>
+
+    <!--My Profile-->
+    <string name="my_profile">என் சுயவிவரம்</string>
+    <string name="weaver_details">நெசவாளர் விவரங்கள்</string>
+    <string name="party_name">வாங்குபவர் பெயர்</string>
+    <string name="address">விலாசம்</string>
+    <string name="issue_date">வழங்கப்பட்ட நாள்</string>
+    <string name="party_type">வாங்குபவர் வகை</string>
+    <string name="depot">கிடங்கு</string>
+    <string name="doa">ஒதுக்கீடு தேதி</string>
+    <string name="total_looms">மொத்தத் தறிகள்</string>
+    <string name="loom_details">தறி விவரங்கள் .</string>
+    <string name="loom_type">தறி வகை</string>
+    <string name="no_of_looms">தறிகளின் எண்ணிக்கை</string>
+    <string name="eligible_quota">தகுதி ஒதுக்கீடு</string>
+    <string name="used_quota">பயன்படுத்திய ஒதுக்கீடு</string>
+    <string name="balance_quota">மீதமுள்ள ஒதுக்கீடு</string>
+
+    <!--Payments-->
+    <string name="column_payment_id_header">கட்டண அடையாளம்</string>
+    <string name="column_payment_date_header">கட்டண தேதி</string>
+    <string name="column_payment_method_header">கட்டண முறை</string>
+    <string name="column_payment_amount_header">தொகை(ரூ)</string>
+
+    <!--Suppliers-->
+    <string name="supplier_details">வழங்குபவர் விவரம்</string>
+    <string name="column_facility_id_header">அடையாளம்</string>
+    <string name="column_facility_name_header">பெயர்</string>
+    <string name="supplier_search">பெயர் அல்லது அடையாளம் மூலம் தேடு</string>
+    <string name="select_supplier">வழங்குபவரை தேர்ந்தெடு</string>
+
+    <!--Transporters-->
+    <string name="transporters">இடமாற்றிகள்</string>
+    <string name="transporter_search">பெயர் அல்லது அடையாளம் மூலம் தேடு</string>
+    <string name="transporter_details">இடம்மாற்றி விவரம்</string>
+    <string name="transporter_name">இடம்மாற்றி பெயர்</string>
+
+    <!--Stocks-->
+    <string name="stocks">இருப்பு</string>
+    <string name="product_name">பொருளின் பெயர்</string>
+    <string name="column_orderitem_qty_header">அளவு</string>
+    <string name="column_orderitem_amount_header">அலகு விலை</string>
+    <string name="stock_search">பெயர் அல்லது அடையாளம் மூலம் தேடு</string>
+    <string name="stock_details">இருப்பு விவரம்</string>
+    <string name="quantity">அளவு</string>
+    <string name="unit_price">அலகு விலை</string>
+
+    <!--Catalog/Products-->
+    <string name="catalog_search">பெயர் அல்லது விளக்கம் மூலம் தேடல்</string>
+    <string name="column_product_name_header">பெயர்</string>
+    <string name="column_product_description_header">விளக்கம்</string>
+    <string name="column_product_category_header">வகை</string>
+
+    <!--Indents-->
+    <string name="indent_details">தேவைப்பட்டியல் விவரம்</string>
+    <string name="shipments">ஏற்றுமதி</string>
+    <string name="order_date">தேவைப்பட்டியல் நாள்</string>
+    <string name="order_number">தேவைப்பட்டியல் எண்</string>
+    <string name="supplier_name">வழங்குபவர் பெயர்</string>
+    <string name="status_id">தேவைப்பட்டியல் நிலை</string>
+    <string name="discount_amount">தள்ளுபடி தொகை</string>
+    <string name="indentStatus">தேவைப்பட்டியல் நிலை</string>
+    <string name="scheme_type">திட்டம்</string>
+    <string name="order_total">மொத்த தேவைப்பட்டியல்</string>
+    <string name="paid_ammount">செலுத்திய தொகை</string>
+    <string name="balance_ammount">நிலுவைத்தொகை</string>
+    <string name="column_indent_id_header">குறிப்பு எண்</string>
+    <string name="column_indent_date_header">நாள்</string>
+    <string name="column_indent_total_header">தொகை</string>
+    <string name="indent_item_details">தேவைப்பட்டியல் பொருள் விவரம்</string>
+    <string name="remarks">கருத்துக்கள்</string>
+    <string name="bale_quantity">பேல் அளவு</string>
+    <string name="bundle_weight">பண்டில் எடை</string>
+    <string name="total_amount">மொத்ததொகை</string>
+    <string name="other_charges">இதர கட்டணங்கள்</string>
+    <string name="shipped_quantity">அனுப்பப்பட்ட அளவு</string>
+    <string name="branch">கிளை</string>
+    <string name="product_hint">நூல் வகையை நுழை</string>
+    <string name="spec_hint">வகை நிறம் முதலியவை நுழை..</string>
+    <string name="qty_nos">அளவு (எண்கள்)</string>
+    <string name="uom">அளவீட்டு அலகு</string>
+    <string name="bundle_wt">மூட்டை எடை (கிலோ)</string>
+    <string name="quota_exceed">ஒதுக்கீடு மீறப்பட்டது</string>
+    <string name="quota_continue">தொடர்ந்து</string>
+
+    <!--Shipment-->
+    <string name="shipment_history">ஏற்றுமதி வரலாறு</string>
+    <string name="dispatch">அனுப்புதல்</string>u
+
+    <string name="title_about">தே.கை.வ.க பற்றி</string>
+    <string name="title_feature1_plurer">தேவைப்பட்டியல்</string>
+    <string name="title_feature3">கட்டணம்</string>
+    <string name="title_feature4">பட்டியல் </string>
+    <string name="title_feature5">வழங்குபவர்</string>
+    <string name="title_feature6">இடமாற்றிகள்</string>
+    <string name="supplier">வழங்குபவர்</string>
+    <string name="destination">சேருமிடம்</string>
+    <string name="shipment_date">ஏற்றுமதி நாள்</string>
+    <string name="item_name">பொருளின் பெயர்</string>
+    <string name="item_qty">அளவு</string>
+    <string name="item_amount">தொகை</string>
+    <string name="indent_total">மொத்த தேவைப்பட்டியல்</string>
+    <string name="save">சேமிக்க</string>
+    <string name="add_product">தயாரிப்பு சேர்க்க</string>
+    <string name="select_product">பொருள் தேர்ந்தெடு</string>
+    <string name="specification">தனிக்குறிப்பேடு</string>
+    <string name="qty_kg">அளவு (கிலோ)</string>
+    <string name="unit_price_kg">அலகு விலை (கிலோ)</string>
+    <string name="unit_price_bundle">அலகு விலை (மூட்டை)</string>
+    <string name="amount">அளவு (ரூ)</string>
+    <string name="column_order_total_header">தொகை</string>
+    <string name="add_product_hint">பொருள் தேர்ந்தெடு</string>
+    <string name="add_product_qty_hint">அளவு (pkts)</string>
+    <string name="po_sequence_no">வாங்கும் பொருட்டு வரிசை எண்</string>
+    <string name="make_payment">பணம் கட்டு</string>
+    <string name="payment_amount">தொகை</string>
+    <string name="title_home">Home</string>
+    <string name="title_search">Search</string>
+    <string name="title_feature1">Indent</string>
+    <string name="title_feature2">Orders</string>
+
+    <!--supplier portal-->
+    <string name="email">மின்னஞ்சல்</string>
+    <string name="cst_num">CST எண்</string>
+    <string name="tan_num">TAN எண்</string>
+    <string name="pan_num">PAN எண்</string>
+    <string name="customer">Customer</string>
+
+    <string name="hello">Choose one of the features below.</string>
+    <string name="description_about">About</string>
+    <string name="description_home">Home</string>
+    <string name="description_search">Search</string>
+    <string name="description_feature1">Indent</string>
+    <string name="description_feature2">Orders</string>
+    <string name="description_feature3">கட்டணம்</string>
+    <string name="description_feature4">பட்டியல்</string>
+    <string name="description_feature5">Outlets</string>
+    <string name="description_feature6">Feature 6</string>
+
+
+
+    <string name="title_sales">Sales</string>
+    <string name="title_hr">HR</string>
+    <string name="title_employeeprofile">My Profile</string>
+    <string name="title_leave">Leaves</string>
+    <string name="title_payslip">Payslips</string>
+
+
+
+
+    <string name="column_indent_status_header">Status</string>
+    <string name="column_indent_supply_header">Tally Ref No</string>
+
+
+    <string name="column_employee_id_header">Code</string>
+    <string name="column_employee_name_header">Name</string>
+    <string name="column_employee_dept_header">Department</string>
+
+    <!--Location-->
+    <string name="action_location">Location</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="record_note">Record Note</string>
+    <string name="note_description">Note description</string>
+    <string name="note_title">Note title</string>
+    <string name="title_menu_synclocaltion">Sync locations</string>
+    <string name="exception_location">Please enable your location.</string>
+    <string name="saved_location">Note recorded. Please sync location with server.</string>
+    <string name="synced_location">Already Synced. Please record new Note.</string>
+    <string name="sync_success_location">Successfully synced with server.</string>
+    <string name="sync_failed_location">Sync failed. Please contact admin.</string>
+
+    <!-- Navigation Drawer -->
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="date_format">dd-MMM-yyyy  hh:mm a</string>
+    <string name="server_date_format">yyyy-MM-dd HH:mm:ss</string>
+    <string name="sync_map_locations">Locations updated</string>
+    <string name="action_filter">Filter</string>
+    <string name="save_map_sync"><![CDATA[Save & Sync]]></string>
+    <string name="text_map_switch">Map</string>
+    <string name="text_map_filter_clear">Clear filter</string>
+    <string name="text_map_infowindow">%1$d. %2$s</string>
+    <string name="text_contactnum">%1$s :%2$s</string>
+    <string name="text_partyId">வாங்குபவர் அடையாளம் :%1$s</string>
+    <string name="Rs">\u20B9</string>
+    <string name="arrows">&lt;-&gt;</string>
+    <string name="title_analytica_sales">Sales Analytics</string>
+    <string name="column_analytic_sales_qty_header">Qty(Pkts)</string>
+    <string name="supplier_roletypeid">Role type</string>
+    <string name="tally_ref_no">Tally Ref No.</string>
+    <string name="order_id">Indent Id</string>
+    <string name="generated_po">Generated PO</string>
+    <string name="po_order">PO Order</string>
+    <string name="supplier_party_id">Supplier Party ID</string>
+    <string name="store_name">Store Name</string>
+    <string name="purchase_orders">Purchase orders</string>
+    <string name="supp_po_title">Purchase orders</string>
+    <string name="supplier_delivery">Supplier Delivery</string>
+    <string-array name="bank">
+        <item>Select Bank</item>
+        <item>Atom Bank</item>
+    </string-array>
+    <string-array name="paymentMode">
+        <item>Select Payment Mode</item>
+        <item>Credit Card</item>
+        <item>Debit Card</item>
+    </string-array>
+    <string-array name="cardAssociate">
+        <item>Select Card Type</item>
+        <item>VISA</item>
+        <item>Maestro</item>
+        <item>Master</item>
+    </string-array>
+    <string name="selectRetailer">Select Retailer</string>
+    <string name="contact">Contact</string>
+    <string name="select_transporter">Select Transporter</string>
+
+    <string name="supplier_dashboard">Supplier Dashboard</string>
+
+
+</resources>

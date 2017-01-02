@@ -34,13 +34,27 @@
   </string-array>
   <string-array name="lang_list_preference">
     <item>English</item>
-    <item>हिंदी</item>
-    <item>తెలుగు</item>
+    <item>Hindi (हिंदी)</item>
+    <item>Telugu (తెలుగు)</item>
+    <item>Tamil (தமிழ்)</item>
+    <item>Kannada (ಕನ್ನಡ)</item>
+    <item>Urdu (اُردُو)</item>
+    <item>Bengali (বাংলা)</item>
+    <item>Odia (ଓଡ଼ିଆ)</item>
+    <item>Assamese (অসমীয়া)</item>
+    <item>Malayalam (മലയാളം)</item>
   </string-array>
 
   <string-array name="langvalues_list_preference">
     <item>en</item>
     <item>hi</item>
     <item>te</item>
+    <item>ta</item>
+    <item>kn</item>
+    <item>ur</item>
+    <item>bn-rIN</item>
+    <item>or</item>
+    <item>as</item>
+    <item>ml</item>
   </string-array>
 </resources>

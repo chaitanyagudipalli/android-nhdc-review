@@ -230,7 +230,7 @@
     <string name="supplier_party_id">Supplier Party ID</string>
     <string name="store_name">Store Name</string>
     <string name="supplier_name">Supplier Name</string>
-    <string name="status_id">Status</string>
+    <string name="status_id">স্থিতি</string>
     <string name="order_total">Indent Total</string>
     <string name="paid_ammount">Paid Amount</string>
     <string name="balance_ammount">Balance Amount</string>
@@ -370,4 +370,11 @@
     <string name="loading_message">Data is being updated, please wait...</string>
     <string name="product_hint">Enter yarn count</string>
     <string name="spec_hint">Enter brand,color, etc..</string>
+    <string name="qty_nos">Quantity (Nos)</string>
+    <string name="uom">UOM</string>
+    <string name="bundle_wt">Bundle Wt(Kgs)</string>
+    <string name="quota_exceed">Quota Exceeded</string>
+    <string name="quota_continue">CONTINUE</string>
+    <string name="make_payment">Make Payment</string>
+    <string name="payment_amount">Amount</string>
 </resources>
