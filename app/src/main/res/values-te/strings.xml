@@ -203,9 +203,9 @@
     <string name="arrows">&lt;-&gt;</string>
     <string name="title_analytica_sales">Sales Analytics</string>
 
-    <string name="present_password">ప్రస్తుత పాస్వర్డ్</string>
-    <string name="new_password">కొత్త పాస్వర్డ్(కనీస 6 అక్షరాలు)</string>
-    <string name="verify_new_password">కొత్త పాస్వర్డ్  ధృవీకరించండి </string>
+    <string name="present_password">ప్రస్తుత పాస్ వర్డ్  </string>
+    <string name="new_password">కొత్త పాస్ వర్డ్  (కనీస 6 అక్షరాలు)</string>
+    <string name="verify_new_password">కొత్త పాస్ వర్డ్    ధృవీకరించండి </string>
 
     <string name="column_analytic_sales_qty_header">Qty(Pkts)</string>
     <string name="supplier_roletypeid">Role type</string>
@@ -252,8 +252,8 @@
         <item>Master</item>
     </string-array>
 
-    <string name="dashboard">డాష్బోర్డ్</string>
-    <string name="changePassword">పాస్వర్డ్ మార్పు</string>
+    <string name="dashboard">డాష్ బోర్డు </string>
+    <string name="changePassword">పాస్ వర్డ్  మార్పు</string>
     <string name="phoneNumber">ఫోన్ నెంబర్</string>
     <string name="passbookNumber">ఖాతా పుస్తకం సంఖ్య</string>
     <string name="selectRetailer">Select Retailer</string>

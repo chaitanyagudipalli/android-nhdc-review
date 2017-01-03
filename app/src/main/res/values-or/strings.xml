@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="dashboard">ଡ୍ୟାଶବୋର୍ଡ୍‍</string>
+    <string name="dashboard">ଡ୍ୟାସ୍‌ବୋର୍ଡ୍</string>
     <string name="action_settings">ସେଟିଙ୍ଗ</string>
     <string name="menu_preferences">ସେଟିଙ୍ଗ</string>
     <string name="nhdc_settings">NHDC ସେଟିଙ୍ଗ</string>
@@ -26,20 +26,20 @@
     <string name="no">ନା</string>
 
     <string name="i_agree">ମୁଁ ସହମତ ଅଟେ</string>
-    <string name="upload_indent">ଇଣ୍ଡେଣ୍ଟ upload କରନ୍ତୁ</string>
+    <string name="upload_indent">ଇଣ୍ଡେଣ୍ଟ  ଅପଲୋଡ କରନ୍ତୁ</string>
     <string name="cancel_indent">Cancel ଇଣ୍ଡେଣ୍ଟ</string>
     <string name="ok">ଠିକ ଅଛି</string>
 
     <!--My Profile-->
     <string name="my_profile">ନିଜର ବିବରଣୀ</string>
     <string name="weaver_details">ବୁଣାକାରର ବିବରଣୀ</string>
-    <string name="party_name">ପର୍ଟି ନାମ</string>
+    <string name="party_name">ପାର୍ଟୀ ନାମ</string>
     <string name="address">ଠିକଣା</string>
     <string name="issue_date">ଇଷ୍ୟୁ ତାରିଖ</string>
     <string name="party_type">ପାର୍ଟିର ପ୍ରକାର</string>
     <string name="depot">ଡିପୋ</string>
     <string name="doa">ଆବଣ୍ଟନ ତରିଖ</string>
-    <string name="total_looms">ସମସ୍ତ ତନ୍ତ</string>
+    <string name="total_looms">ମୋଟ୍ ତନ୍ତ</string>
     <string name="loom_details">ତନ୍ତର ବିବରଣୀ</string>
     <string name="loom_type">ତନ୍ତର ପ୍ରକାର</string>
     <string name="no_of_looms">ତନ୍ତଗୁଡିକର ସଂଖ୍ୟା</string>
@@ -67,19 +67,19 @@
     <string name="transporter_name">ପରିବହନକାରୀର ନାମ</string>
 
     <!--Stocks-->
-    <string name="stocks">ସ୍ଟୋcକ୍ସ୍</string>
+    <string name="stocks">ଗଚ୍ଛିତ ପରିମାଣ</string>
     <string name="product_name">ଉତ୍ପାଦର ନାମ</string>
     <string name="column_orderitem_qty_header">ପରିମାଣ</string>
     <string name="column_orderitem_amount_header">ରାଶୀ(Rs.)</string>
     <string name="stock_search">Code or Name ଦ୍ୱାରା search କରିବା</string>
-    <string name="stock_details">Stock ବିବରଣୀ</string>
+    <string name="stock_details">ଗଚ୍ଛିତ ପରିମାଣ ବିବରଣୀ</string>
     <string name="quantity">ପରିମାଣ</string>
     <string name="unit_price">ଏକକ ମୂଲ୍ୟ(Rs)</string>
 
     <!--Catalog/Products-->
     <string name="catalog_search">Name or Description ଦ୍ୱାରା search କରନ୍ତୁ</string>
     <string name="column_product_name_header">ଉତ୍ପାଦର ନାମ</string>
-    <string name="column_product_description_header">ଡେସ୍cରିପ୍ଟିଓନ୍</string>
+    <string name="column_product_description_header">ବର୍ଣ୍ଣନା</string>
     <string name="column_product_category_header">ବର୍ଗ</string>
 
     <!--Indents-->
@@ -108,11 +108,11 @@
     <string name="branch">ଶାଖା</string>
     <string name="product_hint">Yarn ସଂଖ୍ୟା ପ୍ରବେଶ କରନ୍ତୁ</string>
     <string name="spec_hint">ବ୍ରାଣ୍ଡ‌, କଲର‍ ଇତ୍ୟାଦି ପ୍ରବେଶ କରାନ୍ତୁ</string>
-    <string name="qty_nos">ପରିମାଣ(ନୁମ୍ବେର୍ସ୍)</string>
+    <string name="qty_nos">ପରିମାଣ</string>
     <string name="uom">ଉନିଟ୍ ଓf ମେଅସୁରେମେନ୍ଟ୍</string>
     <string name="bundle_wt">ଗଣ୍ଠିଲିର ଓଜନ</string>
-    <string name="quota_exceed">qଉଓଟ ଏxcଈଡେଡ୍</string>
-    <string name="quota_continue">cଓନ୍ଟିନୁଏ</string>
+    <string name="quota_exceed">କୋଟା ଏକ୍ସିଡ୍</string>
+    <string name="quota_continue">ଚାଲୁ ରଖିବା</string>
 
     <!--Shipment-->
     <string name="shipment_history">ରପ୍ତାନିର ଇତିହାସ</string>
@@ -135,8 +135,8 @@
     <string name="add_product">ସିଲେକ୍ଟ କରନ୍ତୁ</string>
     <string name="select_product">ଉତ୍ପାଦ ସିଲେକ୍ଟ କରନ୍ତୁ</string>
     <string name="specification">ସ୍ପେସିଫିକେସନ୍‍</string>
-    <string name="qty_kg">ପରିମାଣ(କ୍ଗ୍)</string>
-    <string name="unit_price_kg">ଏକକ ମୂଲ୍ୟ(Kgs)</string>
+    <string name="qty_kg">ପରିମାଣ(କେ.ଜି)</string>
+    <string name="unit_price_kg">ଏକକ ମୂଲ୍ୟ(କେ.ଜି)</string>
     <string name="unit_price_bundle">ଏକକ ମୂଲ୍ୟ(bundle)</string>
     <string name="amount">ରାଶୀ(Rs.)</string>
     <string name="column_order_total_header">ରାଶୀ(Rs.)</string>
