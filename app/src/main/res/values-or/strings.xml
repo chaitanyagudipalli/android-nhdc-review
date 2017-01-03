@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="dashboard">ଡ୍ୟାଶବୋର୍ଡ୍‍</string>
+    <string name="action_settings">ସେଟିଙ୍ଗ</string>
+    <string name="menu_preferences">ସେଟିଙ୍ଗ</string>
+    <string name="nhdc_settings">NHDC ସେଟିଙ୍ଗ</string>
+    <string name="user_credentials">ୟୁଜର ବିବରଣୀ</string>
+    <string name="passbookNumber">ଯମାଖାତା ସଂଖ୍ୟା</string>
+    <string name="passbook_hint">NHDC ଯମାଖାତା ସଂଖ୍ୟା ପ୍ରବେଶ କରନ୍ତୁ</string>
+    <string name="password">ପାସୱର୍ଡ</string>
+    <string name="password_hint">NHDC ERP ପାସୱର୍ଡ ପ୍ରବେଶ କରନ୍ତୁ</string>
+    <string name="changePassword">ପାସୱର୍ଡ ବଦଳାନ୍ତୁ</string>
+    <string name="present_password">ବର୍ତ୍ତମାନଥିବା ପାସୱର୍ଡ</string>
+    <string name="new_password">ନୂଆ ପାସୱର୍ଡ</string>
+    <string name="verify_new_password">ନୂଆ ପାସୱର୍ଡକୁ verify କରନ୍ତୁ</string>
+    <string name="pass_must_6_chars">ଅତିକମରେ 6ଟି ଅକ୍ଷର</string>
+    <string name="language">ଭାଷା</string>
+    <string name="selectLanguage">ଚୟନ ଭାଷା</string>
+    <string name="loading_message">ଡେଟା ଅପଡେଟ ହେଉଛି, ଦୟାକରି ଅପେକ୍ଷା କରନ୍ତୁ</string>
+    <string name="Id">ଆଇଡି</string>
+    <string name="name">ନାମ</string>
+    <string name="phoneNumber">ଫୋନ୍‍ ନମ୍ବର</string>
+    <string name="username">ଯମାଖାତା ସଂଖ୍ୟା</string>
+    <string name="change">ପରିବର୍ତ୍ତନ</string>
+    <string name="cancel">କ୍ୟାନସଲ୍‍</string>
+    <string name="no">ନା</string>
+
+    <string name="i_agree">ମୁଁ ସହମତ ଅଟେ</string>
+    <string name="upload_indent">ଇଣ୍ଡେଣ୍ଟ upload କରନ୍ତୁ</string>
+    <string name="cancel_indent">Cancel ଇଣ୍ଡେଣ୍ଟ</string>
+    <string name="ok">ଠିକ ଅଛି</string>
+
+    <!--My Profile-->
+    <string name="my_profile">ନିଜର ବିବରଣୀ</string>
+    <string name="weaver_details">ବୁଣାକାରର ବିବରଣୀ</string>
+    <string name="party_name">ପର୍ଟି ନାମ</string>
+    <string name="address">ଠିକଣା</string>
+    <string name="issue_date">ଇଷ୍ୟୁ ତାରିଖ</string>
+    <string name="party_type">ପାର୍ଟିର ପ୍ରକାର</string>
+    <string name="depot">ଡିପୋ</string>
+    <string name="doa">ଆବଣ୍ଟନ ତରିଖ</string>
+    <string name="total_looms">ସମସ୍ତ ତନ୍ତ</string>
+    <string name="loom_details">ତନ୍ତର ବିବରଣୀ</string>
+    <string name="loom_type">ତନ୍ତର ପ୍ରକାର</string>
+    <string name="no_of_looms">ତନ୍ତଗୁଡିକର ସଂଖ୍ୟା</string>
+    <string name="eligible_quota">ଯୋଗ୍ୟ କୋଟା</string>
+    <string name="used_quota">ଉପଯୋଗ ହୋଇଥିବା କୋଟା</string>
+    <string name="balance_quota">ବଳକା କୋଟା</string>
+
+    <!--Payments-->
+    <string name="column_payment_id_header">ଦେଣ ଆଇଡି</string>
+    <string name="column_payment_date_header">ତାରିଖ</string>
+    <string name="column_payment_method_header">ଦେଣ ଉପାୟ</string>
+    <string name="column_payment_amount_header">ରାଶୀ(Rs.)</string>
+
+    <!--Suppliers-->
+    <string name="supplier_details">ଯୋଗାଣକାରୀର ବିବରଣୀ</string>
+    <string name="column_facility_id_header">ଆଇଡି</string>
+    <string name="column_facility_name_header">ନାମ</string>
+    <string name="supplier_search">ID or Name ଦ୍ୱାରା search କରିବା</string>
+    <string name="select_supplier">ଯୋଗାଣକାରୀ ସିଲେକ୍ଟ କରନ୍ତୁ</string>
+
+    <!--Transporters-->
+    <string name="transporters">ପରିବହନକାରୀ</string>
+    <string name="transporter_search">ID or Name ଦ୍ୱାରା search କରିବା</string>
+    <string name="transporter_details">ପରିବହନକାରୀର ବିବରଣୀ</string>
+    <string name="transporter_name">ପରିବହନକାରୀର ନାମ</string>
+
+    <!--Stocks-->
+    <string name="stocks">ସ୍ଟୋcକ୍ସ୍</string>
+    <string name="product_name">ଉତ୍ପାଦର ନାମ</string>
+    <string name="column_orderitem_qty_header">ପରିମାଣ</string>
+    <string name="column_orderitem_amount_header">ରାଶୀ(Rs.)</string>
+    <string name="stock_search">Code or Name ଦ୍ୱାରା search କରିବା</string>
+    <string name="stock_details">Stock ବିବରଣୀ</string>
+    <string name="quantity">ପରିମାଣ</string>
+    <string name="unit_price">ଏକକ ମୂଲ୍ୟ(Rs)</string>
+
+    <!--Catalog/Products-->
+    <string name="catalog_search">Name or Description ଦ୍ୱାରା search କରନ୍ତୁ</string>
+    <string name="column_product_name_header">ଉତ୍ପାଦର ନାମ</string>
+    <string name="column_product_description_header">ଡେସ୍cରିପ୍ଟିଓନ୍</string>
+    <string name="column_product_category_header">ବର୍ଗ</string>
+
+    <!--Indents-->
+    <string name="indent_details">ଇଣ୍ଡେଣ୍ଟ ବିବରଣୀ</string>
+    <string name="shipments">ସିପମେଣ୍ଟ</string>
+    <string name="order_date">ଇଣ୍ଡେଣ୍ଟ ତାରିଖ</string>
+    <string name="order_number">ଇଣ୍ଡେଣ୍ଟ ସଂଖ୍ୟା</string>
+    <string name="supplier_name">ଯୋଗାଣକାରୀର ନାମ</string>
+    <string name="status_id">ସ୍ଥିତି</string>
+    <string name="discount_amount">ରିହାତୀ ରାଶୀ</string>
+    <string name="indentStatus">ଇଣ୍ଡେଣ୍ଟ‌ ସ୍ଥିତି</string>
+    <string name="scheme_type">ଯୋଜନା</string>
+    <string name="order_total">ମୋଟ୍‍ ଇଣ୍ଡେଣ୍ଟ</string>
+    <string name="paid_ammount">ଦେୟ ରାଶୀ</string>
+    <string name="balance_ammount">ବଳକା ରାଶୀ</string>
+    <string name="column_indent_id_header">ରେଫରେନ୍ସ ତାରିଖ</string>
+    <string name="column_indent_date_header">ଇଣ୍ଡେଣ୍ଟ‌ ତାରିଖ</string>
+    <string name="column_indent_total_header">ମୋଟ୍‍ ଇଣ୍ଡେଣ୍ଟ</string>
+    <string name="indent_item_details">ଇଣ୍ଡେଣ୍ଟରେ ଥିବା ଜିନିଷର ବିବରଣୀ</string>
+    <string name="remarks">ଟିପ୍ପଣୀ</string>
+    <string name="bale_quantity">ଗାଣ୍ଠିର ପରିମାଣ</string>
+    <string name="bundle_weight">ଗଣ୍ଠିଲିର ଓଜନ</string>
+    <string name="total_amount">ମୋଟ୍‍ ରାଶୀ</string>
+    <string name="other_charges">ଅନ୍ୟାନ୍ୟ ଶୁଳ୍କ</string>
+    <string name="shipped_quantity">ରପ୍ତାନିର ପରିମାଣ</string>
+    <string name="branch">ଶାଖା</string>
+    <string name="product_hint">Yarn ସଂଖ୍ୟା ପ୍ରବେଶ କରନ୍ତୁ</string>
+    <string name="spec_hint">ବ୍ରାଣ୍ଡ‌, କଲର‍ ଇତ୍ୟାଦି ପ୍ରବେଶ କରାନ୍ତୁ</string>
+    <string name="qty_nos">ପରିମାଣ(ନୁମ୍ବେର୍ସ୍)</string>
+    <string name="uom">ଉନିଟ୍ ଓf ମେଅସୁରେମେନ୍ଟ୍</string>
+    <string name="bundle_wt">ଗଣ୍ଠିଲିର ଓଜନ</string>
+    <string name="quota_exceed">qଉଓଟ ଏxcଈଡେଡ୍</string>
+    <string name="quota_continue">cଓନ୍ଟିନୁଏ</string>
+
+    <!--Shipment-->
+    <string name="shipment_history">ରପ୍ତାନିର ଇତିହାସ</string>
+    <string name="dispatch">ପ୍ରେଷଣ</string>
+
+    <string name="title_about">NHDC ସମ୍ବନ୍ଧରେ</string>
+    <string name="title_feature1_plurer">ଇଣ୍ଡେଣ୍ଟ‌</string>
+    <string name="title_feature3">ପେମେଣ୍ଟ</string>
+    <string name="title_feature4">କାଟାଲଗ୍‍</string>
+    <string name="title_feature5">ସମସ୍ତ ଯୋଗାଣକାରୀ</string>
+    <string name="title_feature6">ପରିବହନକାରୀ</string>
+    <string name="supplier">ଯୋଗାଣକାରୀର</string>
+    <string name="destination">ଗନ୍ତବ୍ୟସ୍ଥାନ</string>
+    <string name="shipment_date">ରପ୍ତାନି ତାରିଖ</string>
+    <string name="item_name">ଉତ୍ପାଦର ନାମ</string>
+    <string name="item_qty">ଉତ୍ପାଦର ପରିମାଣ</string>
+    <string name="item_amount">ରାଶୀ</string>
+    <string name="indent_total">ମୋଟ୍‍ ଇଣ୍ଡେଣ୍ଟ</string>
+    <string name="save">ସବେ</string>
+    <string name="add_product">ସିଲେକ୍ଟ କରନ୍ତୁ</string>
+    <string name="select_product">ଉତ୍ପାଦ ସିଲେକ୍ଟ କରନ୍ତୁ</string>
+    <string name="specification">ସ୍ପେସିଫିକେସନ୍‍</string>
+    <string name="qty_kg">ପରିମାଣ(କ୍ଗ୍)</string>
+    <string name="unit_price_kg">ଏକକ ମୂଲ୍ୟ(Kgs)</string>
+    <string name="unit_price_bundle">ଏକକ ମୂଲ୍ୟ(bundle)</string>
+    <string name="amount">ରାଶୀ(Rs.)</string>
+    <string name="column_order_total_header">ରାଶୀ(Rs.)</string>
+    <string name="add_product_hint">ଉତ୍ପାଦ ସିଲେକ୍ଟ କରନ୍ତୁ</string>
+    <string name="po_sequence_no">ପୋ ସେqଉଏନ୍cଏ ନୁମ୍ବେର୍</string>
+    <string name="make_payment">ମକେ ପଯ୍ମେନ୍ଟ୍</string>
+    <string name="payment_amount">ରାଶୀ</string>
+    <string name="text_partyId"> ଆଇଡି :%1$s</string>
+
+    <!--supplier portal-->
+    <string name="cst_num">CST ନମ୍ବର</string>
+    <string name="tan_num">TAN ନମ୍ବର</string>
+    <string name="pan_num">PAN ନମ୍ବର</string>
+</resources>

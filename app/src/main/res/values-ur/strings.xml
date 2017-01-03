@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="dashboard">ڈیش بورڈ</string>
+    <string name="action_settings">ترتیبات</string>
+    <string name="menu_preferences">ترتیبات</string>
+    <string name="nhdc_settings"></string>
+    <string name="user_credentials">یوزر کی تفصیلات</string>
+    <string name="passbookNumber">پاسبک نمبر</string>
+    <string name="passbook_hint">پاسبک نمبر درج کریں</string>
+    <string name="password">پاس ورڈ</string>
+    <string name="password_hint">پاس ورڈ درج کریں</string>
+    <string name="changePassword">پاس ورڈ تبدیل کریں</string>
+    <string name="present_password">موجودہ پاس ورڈ</string>
+    <string name="new_password">نیا پاس ورڈ</string>
+    <string name="verify_new_password">نئے پاس ورڈ کی توثیق</string>
+    <string name="pass_must_6_chars">کم از کم کے 6 حروف</string>
+    <string name="language">زبان</string>
+    <string name="selectLanguage">زبان منتخب کریں</string>
+    <string name="loading_message">اعداد و شمار کو اپ ڈیٹ کیا جا رہا ہے، براہ کرم انتظار کریں</string>
+    <string name="Id">کی شناخت</string>
+    <string name="name">نام</string>
+    <string name="phoneNumber">فون نمبر</string>
+    <string name="username">پاسبک نمبر</string>
+    <string name="change">تبدیل کریں</string>
+    <string name="cancel">منسوخ کریں</string>
+    <string name="no">نہیں</string>
+
+    <string name="i_agree">میں راضی ہوں</string>
+    <string name="upload_indent">پوٹ اپ لوڈ کریں؟</string>
+    <string name="cancel_indent">حاشیہ منسوخ کریں؟</string>
+    <string name="ok">ٹھیک ہے</string>
+
+    <!--My Profile-->
+    <string name="my_profile">میری پروفائل</string>
+    <string name="weaver_details">ویور تفصیلات</string>
+    <string name="party_name">پارٹی کا نام</string>
+    <string name="address">ایڈریس</string>
+    <string name="issue_date">تاریخ اجراء</string>
+    <string name="party_type">پارٹی کی قسم</string>
+    <string name="depot">ڈپو</string>
+    <string name="doa">الاٹمنٹ کی تاریخ</string>
+    <string name="total_looms">کل لومز</string>
+    <string name="loom_details">لوم تفصیلات</string>
+    <string name="loom_type">لوم قسم</string>
+    <string name="no_of_looms">لومز کے کوئی</string>
+    <string name="eligible_quota">اہل کوٹہ</string>
+    <string name="used_quota">استعمال کیا جاتا کوٹہ</string>
+    <string name="balance_quota">بیلنس کوٹہ</string>
+
+    <!--Payments-->
+    <string name="column_payment_id_header">ادائیگی کی شناخت</string>
+    <string name="column_payment_date_header">ادائیگی کی تاریخ</string>
+    <string name="column_payment_method_header"> طریقہ </string>
+    <string name="column_payment_amount_header">رقم (روپے)</string>
+
+    <!--Suppliers-->
+    <string name="supplier_details">سپلائر کی تفصیلات دیکھیں</string>
+    <string name="column_facility_id_header">سپلائر کی شناخت</string>
+    <string name="column_facility_name_header">سپلائر کے نام</string>
+    <string name="supplier_search">نام یا تفصیل کی طرف سے تلاش کریں</string>
+    <string name="select_supplier">منتخب پردایک</string>
+
+    <!--Transporters-->
+    <string name="transporters">ٹرانسپورٹروں</string>
+    <string name="transporter_search">کوڈ یا نام سے تلاش کریں</string>
+    <string name="transporter_details">ٹرانسپورٹر تفصیلات</string>
+    <string name="transporter_name">ٹرانسپورٹر نام</string>
+
+    <!--Stocks-->
+    <string name="stocks">سٹاکس</string>
+    <string name="product_name">پروڈکٹ کا نام</string>
+    <string name="column_orderitem_qty_header">یونٹ</string>
+    <string name="column_orderitem_amount_header">رقم (روپے)</string>
+    <string name="stock_search">کوڈ یا نام سے تلاش کریں</string>
+    <string name="stock_details">اسٹاک کی تفصیلات</string>
+    <string name="quantity">یونٹ</string>
+    <string name="unit_price">اکائی قیمت</string>
+
+    <!--Catalog/Products-->
+    <string name="catalog_search">نام یا تفصیل کی طرف سے تلاش کریں</string>
+    <string name="column_product_name_header">پروڈکٹ کا نام</string>
+    <string name="column_product_description_header">تفصیل</string>
+    <string name="column_product_category_header">قسم</string>
+
+    <!--Indents-->
+    <string name="indent_details">حاشیہ تفصیلات</string>
+    <string name="shipments">ترسیل</string>
+    <string name="order_date">حاشیہ تاریخ</string>
+    <string name="order_number">حاشیہ نمبر</string>
+    <string name="supplier_name">سپلائر کے نام</string>
+    <string name="status_id">سٹیٹس</string>
+    <string name="discount_amount">ڈسکاؤنٹ رقم</string>
+    <string name="indentStatus">سٹیٹس</string>
+    <string name="scheme_type">سکیم</string>
+    <string name="order_total">حاشیہ کل</string>
+    <string name="paid_ammount">ادا کی گئی رقم</string>
+    <string name="balance_ammount">باقی رقم</string>
+    <string name="column_indent_id_header">حوالہ نمبر</string>
+    <string name="column_indent_date_header">حاشیہ تاریخ</string>
+    <string name="column_indent_total_header">حاشیہ کل</string>
+    <string name="indent_item_details">حاشیہ آئٹم تفصیلات</string>
+    <string name="remarks">ریمارکس</string>
+    <string name="bale_quantity">گٹھری مقدار</string>
+    <string name="bundle_weight">بنڈل وزن</string>
+    <string name="total_amount">کل رقم</string>
+    <string name="other_charges">دیگر الزامات</string>
+    <string name="shipped_quantity">ارسال کردہ مقدار</string>
+    <string name="branch">برانچ</string>
+    <string name="product_hint">سوت شمار میں داخل</string>
+    <string name="spec_hint">برانڈ درج، رنگ</string>
+    <string name="qty_nos">یونٹ</string>
+    <string name="uom">پیما ئش کا یونٹ</string>
+    <string name="bundle_wt">بنڈل کے وزن</string>
+    <string name="quota_exceed">کوٹہ سے تجاوز</string>
+    <string name="quota_continue">جاری رہے</string>
+
+    <!--Shipment-->
+    <string name="shipment_history">کھیپ کی سرگزشت</string>
+    <string name="dispatch">ڈسپیچ</string>
+
+    <string name="title_about">NHDC بارے</string>
+    <string name="title_feature1_plurer">حاشیہ</string>
+    <string name="title_feature3">ادائیگیاں</string>
+    <string name="title_feature4">تفصیلی فہر ست</string>
+    <string name="title_feature5">سپلائرز</string>
+    <string name="title_feature6">ٹرانسپورٹروں</string>
+    <string name="supplier">سپلائر کے</string>
+    <string name="destination">مقصود</string>
+    <string name="shipment_date">بھیجنے کی تاریخ</string>
+    <string name="item_name">نام</string>
+    <string name="item_qty">یونٹ</string>
+    <string name="item_amount">رقم (روپے)</string>
+    <string name="indent_total">حاشیہ کل</string>
+    <string name="save">کو بچانے کے</string>
+    <string name="add_product">مصنوعات شامل</string>
+    <string name="select_product">منتخب کریں پروڈکٹ</string>
+    <string name="specification">تصریح</string>
+    <string name="qty_kg">یونٹ(کلو)</string>
+    <string name="unit_price_kg">اکائی قیمت(کلو)</string>
+    <string name="unit_price_bundle">اکائی قیمت(بنڈل)</string>
+    <string name="amount">رقم</string>
+    <string name="column_order_total_header">حاشیہ کل</string>
+    <string name="add_product_hint">منتخب کریں پروڈکٹ</string>
+    <string name="po_sequence_no">خریداری کے آرڈر ترتیب تعداد</string>
+    <string name="make_payment">ادائیگی کرنا</string>
+    <string name="payment_amount">کل رقم</string>
+    <string name="text_partyId"> کی شناخت :%1$s</string>
+
+    <!--supplier portal-->
+    <string name="cst_num">CST تعداد کی</string>
+    <string name="tan_num">TAN تعداد کی</string>
+    <string name="pan_num">PAN تعداد کی</string>
+</resources>
