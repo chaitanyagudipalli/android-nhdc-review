@@ -16,7 +16,7 @@
     <string name="pass_must_6_chars">ಕನಿಷ್ಠ 6 ಅಕ್ಷರಗಳು</string>
     <string name="language">ಭಾಷೆ</string>
     <string name="selectLanguage">ಭಾಷೆಯನ್ನು ಆಯ್ಕೆಮಾಡಿ</string>
-    <string name="loading_message">ಮಾಪಿತಿಯನ್ನು ಅಪ್ಡೇಟ್ ಮಾಡಲಾಗುತ್ತಿದೆ, ದಯಮಾಡಿ ನಿರೀಕ್ಷಿಸಿ</string>
+    <string name="loading_message">ಮಾಹಿತಿಯನ್ನು ಅಪ್ಡೇಟ್ ಮಾಡಲಾಗುತ್ತಿದೆ, ದಯಮಾಡಿ ನಿರೀಕ್ಷಿಸಿ</string>
     <string name="Id">ಐಡಿ</string>
     <string name="name">ಹೆಸರು</string>
     <string name="phoneNumber">ದೂರವಾಣಿ ಸಂಖ್ಯೆ</string>
@@ -61,10 +61,10 @@
     <string name="select_supplier">ಪೂರೈಕೆದಾರನ್ನು ಆಯ್ಕೆ ಮಾಡಿ</string>
 
     <!--Transporters-->
-    <string name="transporters">ಸಾಗಾಣಿಕದಾರರು</string>
+    <string name="transporters">ಸಾಗಾಣಿಕೆದಾರರು</string>
     <string name="transporter_search">ಐಡಿ ಅಥವಾ ಹೆಸರಿನಿಂದ ಹುಡುಕು</string>
     <string name="transporter_details">ಸಾಗಾಣಿಕದಾರರ ವಿವರಗಳು</string>
-    <string name="transporter_name">ಸಾಗಾಣಿಕದಾರರ ಹೆಸರು</string>
+    <string name="transporter_name">ಸಾಗಾಣಿಕೆದಾರರ ಹೆಸರು</string>
 
     <!--Stocks-->
     <string name="stocks">ಸರಕುಗಳು</string>
@@ -78,9 +78,9 @@
 
     <!--Catalog/Products-->
     <string name="catalog_search">ಹೆಸರು ಅಥವಾ ವಿವರಣೆಯಾಂದಿಗೆ ಹುಡುಕು</string>
-    <string name="column_product_name_header">ಉತ್ಪನ್ನ ಹೆಸರು</string>
-    <string name="column_product_description_header">ಉತ್ಪನ್ನ ವಿವರಣೆ</string>
-    <string name="column_product_category_header">ಉತ್ಪನ್ನ ವರ್ಗ</string>
+    <string name="column_product_name_header">ಉತ್ಪನ್ನದ ಹೆಸರು</string>
+    <string name="column_product_description_header">ಉತ್ಪನ್ನದ ವಿವರಣೆ</string>
+    <string name="column_product_category_header">ಉತ್ಪನ್ನದ ವರ್ಗ</string>
 
     <!--Indents-->
     <string name="indent_details">ಅರ್ಜಿಯ ವಿವರಗಳು</string>
@@ -97,7 +97,7 @@
     <string name="balance_ammount">ಬಾಕಿ ಮಾತ್ತ</string>
     <string name="column_indent_id_header">ಉಲ್ಲೇಖ ಸಂಖ್ಯೆ</string>
     <string name="column_indent_date_header">ಅರ್ಜಿಯ ದಿನಾಂಕ</string>
-    <string name="column_indent_total_header">ಮಾತ್ತ(ರೂ.)</string>
+    <string name="column_indent_total_header">ಮೊತ್ತ(ರೂ.)</string>
     <string name="indent_item_details">ಅರ್ಜಿಯ ಐಟಂ ವಿವರಗಳು</string>
     <string name="remarks">ಟಿಪ್ಪಣಿಗಳು</string>
     <string name="bale_quantity">ಬೇಲ್ ಪ್ರಮಾಣ</string>
@@ -118,12 +118,12 @@
     <string name="shipment_history">ಸಾಗಾಣಿಕಯ ಇತಿಹಾಸ</string>
     <string name="dispatch">ರವಾನೆ</string>
 
-    <string name="title_about">ಎನ್.ಎಚ್.ಡಿ.ಸಿ ಬಗ್ಗೆ</string>
+    <string name="title_about">ಎನ್‍ಎಚ್‍ಡಿಸಿಯ ಕುರಿತು</string>
     <string name="title_feature1_plurer">ಅರ್ಜಿಗಳು</string>
     <string name="title_feature3">ಪಾವತಿಗಳು</string>
     <string name="title_feature4">ಕ್ಯಾಟಲಾಗ್</string>
     <string name="title_feature5">ಪೂರೈಕೆದಾರರು</string>
-    <string name="title_feature6">ಸಾಗಾಣಿಕದಾರರು</string>
+    <string name="title_feature6">ಸಾಗಾಣಿಕೆದಾರರು</string>
     <string name="supplier">ಪೂರೈಕೆದಾರ</string>
     <string name="destination">ಗಮ್ಯಸ್ಥಾನ</string>
     <string name="shipment_date">ಸಾಗಾಣಿಕಯ ದಿನಾಂಕ</string>
@@ -131,7 +131,7 @@
     <string name="item_qty">ಪ್ರಮಾಣ</string>
     <string name="item_amount">ಮೊತ್ತ (ರೂ.)</string>
     <string name="indent_total">ಅರ್ಜಿಯ ಒಟ್ಟು</string>
-    <string name="save">ಬದುಕಿಸು</string>
+    <string name="save">ಉಳಿಸು</string>
     <string name="add_product">ಉತ್ಪನ್ನ ಸೇರಿಸಿ</string>
     <string name="select_product">ಉತ್ಪನ್ನ ಆಯ್ಕೆಮಾಡಿ</string>
     <string name="specification">ನಿರ್ದಿಷ್ಟ ವಿವರಣೆ</string>
@@ -144,11 +144,27 @@
     <string name="po_sequence_no">ಪಿಒ ಅನುಕ್ರಮ ಸಂಖ್ಯೆ</string>
     <string name="make_payment">ಪಾವತಿ ಮಾಡಿ</string>
     <string name="payment_amount">ಒಟ್ಟು ಮೊತ್ತ</string>
-    <string name="text_partyId">ಪಕ್ಷದ ಐಡಿ :%1$s</string>
+    <string name="text_partyId">ಅರ್ಜಿದಾರರ ಐಡಿ :%1$s</string>
     <string name="about_file">file:///android_asset/about-kn.html</string>
 
     <!--supplier portal-->
     <string name="cst_num">CST ಸಂಖ್ಯೆ</string>
     <string name="tan_num">TAN ಸಂಖ್ಯೆ</string>
     <string name="pan_num">PAN ಸಂಖ್ಯೆ</string>
+
+    <string name="term_n_cond">"\n"
+                "ಷರತ್ತುಗಳು ಮತ್ತು ನಿಬಂಧನೆಗಳು\n\n"
+				"ಈ ಷರತ್ತುಗಳು ಮತ್ತು ನಿಬಂಧನೆಗಳು ನಿಮ್ಮ ಮತ್ತು ಎನ್‍ಎಚ್‍ಡಿಸಿಯ ನಡುವೆ ಒಂದು ಕರಾರನ್ನು ಸೃಷ್ಟಿಸುತ್ತವೆ (“ಒಪ್ಪಂದ”). ದಯವಿಟ್ಟು ಕರಾರನ್ನು ಎಚ್ಚರಿಕೆಯಿಂದ ಓದಿ. ಒಪ್ಪಂದದ ಕುರಿತು ನಿಮ್ಮ ತಿಳುವಳಿಕೆ ಮತ್ತು ಒಪ್ಪಿಗೆಯನ್ನು ದೃಢೀಕರಿಸಲು, “ಒಪ್ಪುತ್ತೇನೆ” ಕ್ಲಿಕ್ ಮಾಡಿ.\n\n"
+				"ನಮ್ಮ ಸೇವೆಗಳ ಪರಿಚಯ\n\n"
+				"ಈ ಒಪ್ಪಂದವು, ನೀವು ಇಂಡೆಂಟ್‍ಗಳನ್ನು ಇರಿಸಲು ಬಳಸಬಹುದಾದ ಎನ್‍ಎಚ್‍ಡಿಸಿ ಯ ಸೇವೆಗಳ (“ಸೇವೆಗಳು”) ನಿಮ್ಮ ಬಳಕೆಗೆ ಸಂಬಂಧಿಸಿರುವುದು.\n"
+				"ನಿಮ್ಮ ಕಡೆಯಿಂದ ಎಲ್ಲಾ ವ್ಯವಹಾರಗಳು ಅಂತಿಮವಾಗಿರುವುದೆಂಬ ಪರಿಗಣನೆಯನ್ನು ಆಧರಿಸಿ ಎನ್‍ಎಚ್‍ಡಿಸಿಯು ಲಭ್ಯತೆ ಮತ್ತು ಇತರ ಅಪಾಯಗಳಿಗೆ ಒಳಪಡಿಸಿದಂತೆ ಕಾರ್ಯಸಾಧ್ಯತೆಯ ಆಧಾರದ ಮೇಲೆ ಇಂಡೆಂಟ್‍ಗಳನ್ನು ಪರಿಷ್ಕರಿಸುವುದು. ಇಂಡೆಂಟ್‍ಗಾಗಿ ಸೂಚಿಸಿದ ಬೆಲೆಗಳು ಯಾವುದೇ ಸಮಯದಲ್ಲಿ ಬದಲಾಗಬಹುದು. ತಾಂತ್ರಿಕ ಸಮಸ್ಯೆಗಳು ವಿತರಣೆಯನ್ನು ತಡೆಗಟ್ಟಿದರೆ ಅಥವಾ ಅತಿಯೆನ್ನುವಷ್ಟು ವಿಳಂಬ ಸೃಷ್ಟಿಸಿದರೆ, ನಿಮಗಿರುವ ಪ್ರತ್ಯೇಕ ಮತ್ತು ಏಕೈಕ ಪರಿಹಾರ ಒಂದೋ ಇಂಡೆಂಟ್‍ನ ಬದಲಾವಣೆ ಅಥವಾ ಎನ್‍ಎಚ್‍ಡಿಸಿಯ ನಿರ್ಧಾರದಂತೆ ಹಣದ ಮರುಪಾವತಿ. ಎನ್‍ಎಚ್‍ಡಿಸಿಗೆ ಪ್ರಕರಣಕ್ಕೆ ಅನುಗುಣವಾದ ಕೌಂಟರ್‍ಕ್ಲೈಮ್‍ಗೆ ಅರ್ಹತೆ ಒದಗಿಸುವ ವಂಚನೆ, ಮರುಪಾವತಿ ದುರುಪಯೋಗ, ಅಥವಾ ಇತರ ಕುತಂತ್ರಗಳ ಪುರಾವೆ ದೊರಕಿದರೆ, ಕಾಲಾಕಾಲಕ್ಕೆ ಎನ್‍ಎಚ್‍ಡಿಸಿಯು ಮರುಪಾವತಿಯ ವಿನಂತಿಯನ್ನು ನಿರಾಕರಿಸಬಹುದು. \n"
+				"ನೀವು ಎನ್‍ಎಚ್‍ಡಿಸಿ ಮೊಬೈಲ್ ಅಪ್ಲಿಕೇಶನ್‍ನ ನೋಂದಾಯಿತ ಬಳಕೆದಾರರು ಮತ್ತು ನೀವು ಎನ್‍ಎಚ್‍ಡಿಸಿ ಇಂಡೆಂಟ್ ಅನ್ನು ರಚಿಸಲು ಮತ್ತು ನಮ್ಮ ಸೇವೆಗಳನ್ನು ಬಳಸಲು 18 ಅಥವಾ ಮೇಲಿನ ವಯಸ್ಸಿನವರಾಗಿರುತ್ತೀರಿ.\n\n"
+				"ಮಾಹಿತಿ ಮತ್ತು ಸೇವಾಲಭ್ಯತೆ\n\n"
+				"ಈ ಒಪ್ಪಂದದಲ್ಲಿರುವ ಸೇವೆಗಳಿಗೆ ಸಂಬಂಧಿಸಿದ ಷರತ್ತುಗಳು, ಎನ್‍ಎಚ್‍ಡಿಸಿ ಕಾರ್ಯಚರಣೆಯನ್ನು ಆಳುವ ಇತರ ಅನ್ವಯವಾಗುವ ಕಾನೂನುಗಳಿಗೆ ಒಳಪಟ್ಟಿವೆ.\n\n"
+				"ರದ್ದುಪಡಿಸುವಿಕೆ ಮತ್ತು ಸೇವೆಗಳ ಅಮಾನತು\n\n"
+				"ಈ ಒಪ್ಪಂದದ ಯಾವುದೇ ನಿಂಬಂಧನೆಗಳನ್ನು ಅನುಸರಿಸುವಲ್ಲಿ ನೀವು ವಿಫಲಗೊಂಡರೆ ಅಥವಾ ನೀವು ವಿಫಲಗೊಂಡಿದ್ದೀರಿ ಎಂದು ಎನ್‍ಎಚ್‍ಡಿಸಿಗೆ ಸಂದೇಹವೆನಿಸಿದರೆ, ಎನ್‍ಎಚ್‍ಡಿಸಿಯು ಯಾವುದೇ ಸೂಚನೆ ನೀಡದೆ: \n(ಅ)	ಒದಗಿಸಲಾದ ಸೇವೆಗಳನ್ನು ರದ್ದುಗೊಳಿಸಬಹುದು, ಮತ್ತು ಮುಕ್ತಾಯದ ದಿನಾಂಕವೂ ಸೇರಿದಂತೆ ನಿಮ್ಮ ಎನ್‍ಎಚ್‍ಡಿಸಿಯಲ್ಲಿರುವ ಎಲ್ಲಾ ಬಾಕಿ ಮೊತ್ತಗಳ ಪಾವತಿಗೆ ನೀವು ಜವಾಬ್ದಾರರಾಗಿರುತ್ತೀರಿ; ಮತ್ತು/ಅಥವಾ \n(ಆ)	ಸೇವೆಗಳು ನಿಮಗೆ ದೊರಕದಂತೆ ಮಾಡಬಹುದು.
+ಯಾವುದೇ ಸಂದರ್ಭದಲ್ಲಿ ನಿಮಗೆ ಸೂಚನೆ ನೀಡಿ ಅಥವಾ ನೀಡದೆ, ಒದಗಿಸಲಾದ ಸೇವೆಗಳನ್ನು (ಅಥವಾ ಯಾವುದಾದರೊಂದು ಭಾಗವನ್ನು ಅಥವಾ ವಿಷಯವನ್ನು) ಮಾರ್ಪಡಿಸುವ, ಅಮಾನತುಗೊಳಿಸುವ ಅಥವಾ ನಿಲ್ಲಿಸುವ ಅಧಿಕಾರವನ್ನು ಎನ್‍ಎಚ್‍ಡಿಸಿಯು ಕಾಯ್ದಿರಿಸಿಕೊಂಡಿರುತ್ತದೆ ಮತ್ತು ಅಂಥ ಹಕ್ಕುಗಳ ಚಲಾವಣೆ ಮಾಡಿದ ಸಂದರ್ಭದಲ್ಲಿ ಎನ್‍ಎಚ್‍ಡಿಸಿಯು ನಿಮ್ಮೆಡೆಗೆ ಅಥವಾ ಯಾವುದೇ ಮೂರನೇ ಪಕ್ಷದೆಡೆಗೆ ಯಾವುದೇ ಬಾಧ್ಯತೆ ಹೊಂದಿರುವುದಿಲ್ಲ.\n\n"
+				"ಆಡಳಿತ ಕಾನೂನು \n\n"
+				"ಕೆಳಗಿನ ಪರಿಚ್ಛೇದದಲ್ಲಿ ಅಭಿವ್ಯಕ್ತಪಡಿಸಿರುವ ವಿಷಯಗಳ ಹೊರತಾಗಿ, ನಿಮ್ಮ ಮತ್ತು ಎನ್‍ಎಚ್‍ಡಿಸಿಯ ನಡುವಿನ ಒಪ್ಪಂದ ಮತ್ತು ಸಂಬಂಧ, ಹಾಗೂ ಸೇವೆಗಳಿಗೆ ಸಂಬಂಧಿಸಿದ ಎಲ್ಲಾ ವ್ಯವಹಾರಗಳನ್ನು ಕಾನೂನು ಪ್ರಕಾರ ಚಲಾಯಿಸಲಾಗುವುದು."
+    </string>
 </resources>

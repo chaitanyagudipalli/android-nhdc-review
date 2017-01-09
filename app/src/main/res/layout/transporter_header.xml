@@ -20,7 +20,7 @@
     	android:textSize="12sp" 
     	android:textStyle="bold"        	   
     	android:layout_height="wrap_content" 
-        android:text="@string/column_facility_name_header"    	
+        android:text="@string/transporter_name"
         />    
     <TextView android:id="@+id/column_category_header"
         android:layout_width="0dp"

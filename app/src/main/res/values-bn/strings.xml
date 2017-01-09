@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="dashboard">ব্যবহারকারীর তথ্যভান্ডার</string>
+    <string name="action_settings">বিন্যাস/গঠন</string>
+    <string name="menu_preferences">বিন্যাস/গঠন</string>
+    <string name="nhdc_settings">এন.এইচ.ডি.সি বিন্যাস</string>
+    <string name="user_credentials">ব্যবহারকারীর বিবরণ</string>
+    <string name="passbookNumber">পাসবই নং</string>
+    <string name="passbook_hint">এন.এইচ.ডি.সি. পাসবই নং দিন</string>
+    <string name="password">সংকেত-শব্দ লিখুন</string>
+    <string name="password_hint">এন.এইচ.ডি.সি ইআরপি সংকেত শব্দ লিখুন</string>
+    <string name="changePassword">পাসওয়ার্ড বদলান</string>
+    <string name="present_password">এখনকার পাসওয়ার্ড</string>
+    <string name="new_password">নতুন পাসওয়ার্ড</string>
+    <string name="verify_new_password">নতুন পাসওয়ার্ড</string>
+    <string name="pass_must_6_chars">ন্যূনতম ছয় অক্ষরে</string>
+    <string name="language">ভাষা</string>
+    <string name="selectLanguage">ভাষা বাছুন</string>
+    <string name="loading_message">	নতুন তথ্য যোগান দেওয়া হয়েছে, দয়া করে অপেক্ষা করুন..</string>
+    <string name="Id">সনাক্তকরণ নং</string>
+    <string name="name">নাম</string>
+    <string name="phoneNumber">ফোন নং</string>
+    <string name="username">পাসবই নং</string>
+    <string name="change">পান্টান</string>
+    <string name="cancel">বাতিল করুন</string>
+    <string name="no">না</string>
+
+    <string name="i_agree">আমি রাজি</string>
+    <string name="upload_indent">চুক্তিপত্র?</string>
+    <string name="cancel_indent">চুক্তি বাতিল করবে?</string>
+    <string name="ok">ঠিক আছে</string>
+
+    <!--My Profile-->
+    <string name="my_profile">আমার পরিলেখ</string>
+    <string name="weaver_details">বয়ন-শিল্পীর</string>
+    <string name="party_name">পক্ষ বা দলের নাম</string>
+    <string name="address">ঠিকানা</string>
+    <string name="issue_date">পাঠানোর তারিখ</string>
+    <string name="party_type">পক্ষ বা দলের ধরণ</string>
+    <string name="depot">ডিপো</string>
+    <string name="doa">বন্টনের তারিখ</string>
+    <string name="total_looms">মোট তাঁতের সংখ্যা</string>
+    <string name="loom_details">তাঁতের বিশদ বিবরণ</string>
+    <string name="loom_type">তাঁতের প্রকার বা ধরণ</string>
+    <string name="no_of_looms">তাঁতের সংখ্যা</string>
+    <string name="eligible_quota">উপযুক্ত আনুপাতিক অংশ</string>
+    <string name="used_quota">ব্যবহৃত আনুপাতিক অংশ</string>
+    <string name="balance_quota">অবশিষ্ট আনুপাতিক অংশ</string>
+
+    <!--Payments-->
+    <string name="column_payment_id_header">অর্থপ্রদানের সনাক্তকরণ নং</string>
+    <string name="column_payment_date_header">তারিখ</string>
+    <string name="column_payment_method_header">অর্থপ্রদানের পদ্ধতি</string>
+    <string name="column_payment_amount_header">মূল্য (টাকায়)</string>
+
+    <!--Suppliers-->
+    <string name="supplier_details">সরবরাহকারীর বিশদ বিবরণ</string>
+    <string name="column_facility_id_header">সরবরাহকারীর পরিচয়</string>
+    <string name="column_facility_name_header">সরবরাহকারীর নাম</string>
+    <string name="supplier_search">আই.ডি অথবা নাম ধরে খুঁজুন</string>
+    <string name="select_supplier">সরবরাহকারী বাছুন</string>
+
+    <!--Transporters-->
+    <string name="transporters">পরিবহনকারী</string>
+    <string name="transporter_search">কোড অথবা নাম ধরে খুঁজুন</string>
+    <string name="transporter_details">মাল প্রেরকের বিশদ বিবরণ</string>
+    <string name="transporter_name">পরিবহনকারীর নাম</string>
+
+    <!--Stocks-->
+    <string name="stocks">মজুত সামগ্রী</string>
+    <string name="product_name">পণ্যের নাম</string>
+    <string name="column_orderitem_qty_header">পণ্যের পরিমাণ</string>
+    <string name="column_orderitem_amount_header">মূল্য (টাকায়)</string>
+    <string name="stock_search">আই.ডি অথবা নাম ধরে খুঁজুন</string>
+    <string name="stock_details">মজুতের বিস্তৃত বিবরণ</string>
+    <string name="quantity">পরিমাণ</string>
+    <string name="unit_price">একক প্রতি মূল্য (টাকায়)</string>
+
+    <!--Catalog/Products-->
+    <string name="catalog_search">নাম অথবা বর্ণনা অনুসারে খুঁজুন</string>
+    <string name="column_product_name_header">পণ্যের নাম</string>
+    <string name="column_product_description_header">পণ্যের বর্ণনা</string>
+    <string name="column_product_category_header">প্রকার</string>
+
+    <!--Indents-->
+    <string name="indent_details">চুক্তিপত্রের বিবরণ</string>
+    <string name="shipments">জাহাজে প্রেরিত মালের পরিমাণ</string>
+    <string name="order_date">চুক্তিপত্রের তারিখ</string>
+    <string name="order_number">চুক্তিপত্রের নং</string>
+    <string name="supplier_name">সরবরাহকারীর নাম</string>
+    <string name="status_id">চুক্তিপত্রের বর্তমান স্থিতি</string>
+    <string name="discount_amount">	ছাড়ের অর্থ</string>
+    <string name="indentStatus">চুক্তিপত্রের বর্তমান স্থিতি</string>
+    <string name="scheme_type">প্রকল্প</string>
+    <string name="order_total">চুক্তির মোট পরিমাণ</string>
+    <string name="paid_ammount">দেওয়া </string>
+    <string name="balance_ammount">বাকী অর্থ</string>
+    <string name="column_indent_id_header">উল্লেখ নং</string>
+    <string name="column_indent_total_header">চুক্তির মোট পরিমাণ</string>
+    <string name="column_indent_date_header">চুক্তিপত্রের তারিখ</string>
+    <string name="indent_item_details">চুক্তিবদ্ধ বিষয়ের বিবরণ</string>
+    <string name="remarks">মন্তব্য</string>
+    <string name="bale_quantity">মালের গাঁইটের পরিমাণ</string>
+    <string name="bundle_weight">বান্ডিলের ওজন</string>
+    <string name="total_amount">মোট মূল্য</string>
+    <string name="other_charges">অন্যান্য ব্যয়</string>
+    <string name="shipped_quantity">জাহাজে প্রেরিত মালের পরিমাণ</string>
+    <string name="branch">শাখা</string>
+    <string name="product_hint">বোনা সুতোর সংখ্যা দিন</string>
+    <string name="spec_hint">চিহ্ন, রং প্রভৃতি দিন</string>
+    <string name="qty_nos">পরিমাণ (নাম্বার)</string>
+    <string name="uom">পরিমাপের একক</string>
+    <string name="bundle_wt">পাঁজা ওজন (কিলোগ্রাম)</string>
+    <string name="quota_exceed">কোটা অতিক্রম করেছে</string>
+    <string name="quota_continue">চলতে থাকা</string>
+
+    <!--Shipment-->
+    <string name="shipment_history">জাহাজে প্রেরিত মালের ইতিবৃত্ত</string>
+    <string name="dispatch">প্রেরণ করা</string>
+
+    <string name="title_about">এন.এইচ.ডি.সি সম্পর্কে </string>
+    <string name="title_feature1_plurer">চুক্তিপত্র</string>
+    <string name="title_feature3">অর্থপ্রদান</string>
+    <string name="title_feature4">তালিকা</string>
+    <string name="title_feature5">সরবরাহকারী</string>
+    <string name="title_feature6">পরিবহনকারীর</string>
+    <string name="supplier">সরবরাহকারী</string>
+    <string name="destination">গন্তব্য</string>
+    <string name="shipment_date">জাহাজে মাল পাঠানোর তারিখ</string>
+    <string name="item_name">পণ্যের নাম</string>
+    <string name="item_qty">পণ্যের পরিমাণ</string>
+    <string name="item_amount">মূল্য (টাকায়)</string>
+    <string name="indent_total">চুক্তির মোট পরিমাণ</string>
+    <string name="save">যোগ</string>
+    <string name="add_product">পণ্য যোগ করুন</string>
+    <string name="select_product">নির্বাচন পণ্য</string>
+    <string name="specification">বিশদ বিবরণ দিন</string>
+    <string name="qty_kg">পরিমাণ (কিলোগ্রাম)</string>
+    <string name="unit_price_kg">একক মূল্য (কিলোগ্রাম)</string>
+    <string name="unit_price_bundle">একক মূল্য (বান্ডেল)</string>
+    <string name="amount">মূল্য (টাকায়)</string>
+    <string name="column_order_total_header">চুক্তির মোট পরিমাণ</string>
+    <string name="add_product_hint">পণ্যসামগ্রী বাছুন</string>
+    <string name="po_sequence_no">পোঃ ক্রম সংখ্যা</string>
+    <string name="make_payment">অর্থ প্রদান করুন</string>
+    <string name="payment_amount">মূল্য </string>
+    <string name="text_partyId">আইডি :%1$s</string>
+
+    <!--supplier portal-->
+    <string name="cst_num">CST সংখ্যা</string>
+    <string name="tan_num">TAN সংখ্যা</string>
+    <string name="pan_num">PAN সংখ্যা</string>
+
+    <string name="term_n_cond">"\n"
+                "প্রয়োজনীয় শর্তাবলী :\n"
+				"এই শর্তাবলী আপনার এবং এন.এইচ.ডি.সি-র মধ্যে একটি "চুক্তি" (দি "এগ্রিমেন্ট") তৈরি করছে। এই চুক্তিপত্রটি মন দিয়ে পড়ুন। শর্তগুলি ঠিকঠিক বুঝে এগুলির সঙ্গে সহমত হলে "রাজি" (এগ্রি)-তে "ক্লিক" করুন।\n\n"
+				"আমাদের পরিষেবার পরিচায়িকা :\n\n"
+				"এই চুক্তিপত্রটির দ্বারা আপনার এন.এইচ.ডি.সি পরিষেবা পরিচালিত হবে এবং এর মাধ্যমে আপনি পণ্যের ফরমায়েশ পেশ করতে পারবেন। আপনার তরফ থেকে এই যোগাযোগ "চূড়ান্ত" বলে বিবেচিত হবে, যার ভিত্তিতে এন.এইচ.ডি.সি পণ্যসামগ্রীর প্রাপ্যতার ভিত্তিতে এবং সবরকম ঝুঁকি বিবেচনা করে আপনাকে পণ্য পাঠাবে। পণ্যসামগ্রীর জন্য নির্ধারিত মূল্য যে-কোনও সময় পরিবর্তিত হতে পারে। যদি প্রযুক্তিগত ত্রুটির কারণে পণ্য পাঠানো না যায় অথবা পণ্য-সরবরাহে অস্বাভাবিক দেরি হয়, তবে আপনার একমাত্র প্রতিকার হল এন.এইচ.ডি.সি-র পরামর্শমতো পণ্য নতুন করে পাঠাতে বলা অথবা টাকা ফেরৎ নেওয়া। তবে, সময়ে-সময়ে, প্রতারণা কিংবা টাকা প্রর্ত্যপণের বিষয়ে নিয়ম ভঙ্গ করা অথবা অন্য কোনও হঠকারিতা ক্ষেত্রে এন.এইচ.ডি.সি টাকা ফেরতের প্রস্তাব না মানতে পারে কিংবা পাল্টা টাকা চেয়ে চিঠিপত্র আদানপ্রদান করতে পারবে।\n"
+				"মনে রাখবেন, আপনি এন.এইচ.ডি.সি মোবাইলের একজন নথিভুক্ত ব্যবহারকারী এবং এন.এইচ.ডি.সি-র পণ্য ও অন্যান্য পরিষেবা ব্যবহারের ক্ষেত্রে উপযুক্ত ব্যক্তি, কেননা আপনার বয়স আঠারো বা তার ঊর্দ্ধে।\n\n"
+				"পরিষেবা সন্তোষজনক প্রাপ্যতা :\n\n"
+				"চুক্তিপত্রে পরিষেবা-সম্পর্কিত যে শর্তাবলী বলা হল তা এন.এইচ.ডি.সি-র অন্যান্য পরিষেবার ক্ষেত্রে চালু নিয়মবিধি মোতাবেক প্রযোজ্য হবে।\n\n"
+				"চুক্তি সমাপন ও পরিষেবার সমাপ্তি :\n\n"
+				"আপনি যদি চুক্তির কোনও ধারা ভঙ্গ করেন বা এন.এইচ.ডি.সি মনে করে যে, আপনার দ্বারা চুক্তিভঙ্গ হয়েছে তাহলে বিনা নোটিশে ক) এন.এইচ.ডি.সি আপনার পরিষেবাটি তৎক্ষণাৎ বাতিল করে দেবে এবং বাতিলকরণের দিন পর্যন্ত আপনার কাছে এন.এইচ.ডি.সি-র যা পাওনা রয়েছে তা মেটানোর জন্য আপনি দায়বদ্ধ থাকবেন, এবং / অথবা খ) এন.এইচ.ডি.সি-র পরিষেবায় আপনার অংশগ্রহণ বন্ধ করে দেওয়া হবে।\n"
+				"এছাড়াও, আপনাকে কোনোরকম বিজ্ঞপ্তি না দিয়েই এন.এইচ.ডি.সি পরিষেবা-চুক্তিটি পরিমার্জন অথবা বাতিল করে সংশ্লিষ্ট কোনও অংশের অথবা সমগ্র পরিষেবাটি বন্ধ করে দিতে পারবে এবং এই ধরণের ক্ষমতা প্রয়োগের ক্ষেত্রে এন.এইচ.ডি.সি আপনার বা তৃতীয় কোনও পক্ষের কাছে দায়বদ্ধ থাকবে না।\n\n"
+				"আইনগত প্রয়োগবিধি :\n\n"
+				"নিচের পরিচ্ছেদে বর্ণিত ক্ষেত্রগুলি ছাড়া এই চুক্তি এবং আপনার সংঙ্গে এন.এইচ.ডি.সি-র সম্বন্ধ ও পরিষেবাগত সকল লেনদেন আইন মোতাবেক ধার্য ও পরিচালিত হবে।"
+    </string>
+    <string name="about_file">file:///android_asset/about-bn.html</string>
+</resources>

@@ -4,16 +4,16 @@
     <string name="action_settings">ସେଟିଙ୍ଗ</string>
     <string name="menu_preferences">ସେଟିଙ୍ଗ</string>
     <string name="nhdc_settings">NHDC ସେଟିଙ୍ଗ</string>
-    <string name="user_credentials">ୟୁଜର ବିବରଣୀ</string>
-    <string name="passbookNumber">ଯମାଖାତା ସଂଖ୍ୟା</string>
-    <string name="passbook_hint">NHDC ଯମାଖାତା ସଂଖ୍ୟା ପ୍ରବେଶ କରନ୍ତୁ</string>
-    <string name="password">ପାସୱର୍ଡ</string>
-    <string name="password_hint">NHDC ERP ପାସୱର୍ଡ ପ୍ରବେଶ କରନ୍ତୁ</string>
-    <string name="changePassword">ପାସୱର୍ଡ ବଦଳାନ୍ତୁ</string>
-    <string name="present_password">ବର୍ତ୍ତମାନଥିବା ପାସୱର୍ଡ</string>
+    <string name="user_credentials">ଜମାଖାତା ସଂଖ୍ୟା</string>
+    <string name="passbookNumber">ଜମାଖାତା ସଂଖ୍ୟା</string>
+    <string name="passbook_hint">NHDC ଜମାଖାତା ସଂଖ୍ୟା ଲେଖନ୍ତୁ</string>
+    <string name="password">ପାସୱାର୍ଡ</string>
+    <string name="password_hint">NHDC ERP ପାସୱାର୍ଡ ଲେଖନ୍ତୁ</string>
+    <string name="changePassword">ପାସୱାର୍ଡ  ବଦଳାନ୍ତୁ</string>
+    <string name="present_password">ବର୍ତ୍ତମାନ  ଥିବା ପାସୱାର୍ଡ</string>
     <string name="new_password">ନୂଆ ପାସୱର୍ଡ</string>
-    <string name="verify_new_password">ନୂଆ ପାସୱର୍ଡକୁ verify କରନ୍ତୁ</string>
-    <string name="pass_must_6_chars">ଅତିକମରେ 6ଟି ଅକ୍ଷର</string>
+    <string name="verify_new_password">ନୂଆ ପାସୱାର୍ଡ କୁ ପ୍ରମାଣିତ କରନ୍ତୁ</string>
+    <string name="pass_must_6_chars">ନୂଆ ପାସୱାର୍ଡ ( ନ୍ୟୁନତମ ୬ ଅଙ୍କ  ବିଶିଷ୍ଟ)</string>
     <string name="language">ଭାଷା</string>
     <string name="selectLanguage">ଚୟନ ଭାଷା</string>
     <string name="loading_message">ଡେଟା ଅପଡେଟ ହେଉଛି, ଦୟାକରି ଅପେକ୍ଷା କରନ୍ତୁ</string>
@@ -118,7 +118,7 @@
     <string name="shipment_history">ରପ୍ତାନିର ଇତିହାସ</string>
     <string name="dispatch">ପ୍ରେଷଣ</string>
 
-    <string name="title_about">NHDC ସମ୍ବନ୍ଧରେ</string>
+    <string name="title_about">ଏନଏଚଡିସି ସମ୍ବନ୍ଧରେ</string>
     <string name="title_feature1_plurer">ଇଣ୍ଡେଣ୍ଟ‌</string>
     <string name="title_feature3">ପେମେଣ୍ଟ</string>
     <string name="title_feature4">କାଟାଲଗ୍‍</string>
@@ -142,7 +142,7 @@
     <string name="column_order_total_header">ରାଶୀ(Rs.)</string>
     <string name="add_product_hint">ଉତ୍ପାଦ ସିଲେକ୍ଟ କରନ୍ତୁ</string>
     <string name="po_sequence_no">ପୋ ସେqଉଏନ୍cଏ ନୁମ୍ବେର୍</string>
-    <string name="make_payment">ମକେ ପଯ୍ମେନ୍ଟ୍</string>
+    <string name="make_payment">ପେମେଣ୍ଟ କରନ୍ତୁ</string>
     <string name="payment_amount">ରାଶୀ</string>
     <string name="text_partyId"> ଆଇଡି :%1$s</string>
 
@@ -150,4 +150,22 @@
     <string name="cst_num">CST ନମ୍ବର</string>
     <string name="tan_num">TAN ନମ୍ବର</string>
     <string name="pan_num">PAN ନମ୍ବର</string>
+
+    <string name="about_file">file:///android_asset/about-or.html</string>
+    <string name="term_n_cond">"\n"
+        "ନିୟମ ଏବଂ ସର୍ତ୍ତାବଳି\n\n"
+        "ନିମ୍ନଲିଖିତ ନିୟମ ଏବଂ ସର୍ତ୍ତାବଳୀ ଆପଣ ଏବଂ ଏନଏଚଡିସି ମଧ୍ୟରେ ଏକ ଅନୁବନ୍ଧ (ଏଗ୍ରୀମେଣ୍ଟ)  ମାତ୍ର I ଦୟାକରି  ଅନୁବନ୍ଧ କୁ ଧ୍ୟାନ ଦେଇ ପଢନ୍ତୁI ପଡିବାପରେ ଆପଣଙ୍କର ସହମତି ଏବଂ ଅବଗତି ସ୍ପଷ୍ଟ କରିବା ପାଇଂ ''ସହମତି" ବଟନ ଦବାନ୍ତୁ  I\n\n"
+        "ଆମ୍ଭ ସେବା ର ବିବରଣୀ \n\n"
+        "ଆପଣଙ୍କର ସହମତି କ୍ରମେ ଏନଏଚଡିସି ସେବା (ସମସ୍ତ ସେବା ) କୁ ଉପଯୋଗ କରି କଞ୍ଚାମାଲ ପାଇଁ  ଇଣ୍ଡେଣ୍ଟ ଦେଇପାରିବେ |\n"
+        "ଆପଣଙ୍କ ତରଫରୁ ଇଣ୍ଡେଣ୍ଟ ରେ ଦିଆ ଯାଇଥିବା ସମସ୍ତ ସୂଚନା କୁ ସମ୍ପୂର୍ଣ ମାନି ତଦନୁସାରେ ଏନଏଚଡିସି  ଇଣ୍ଡେଣ୍ଟ କୁ ଅଗ୍ରସାରିତ କରିବା ତଥା ଅନ୍ୟ ସମସ୍ତ ଆବଶ୍ୟକତା କୁ ପରଖି ଆପଣଙ୍କ ଇଣ୍ଡେଣ୍ଟ  କାର୍ଯ୍ୟକାରୀ କରାଯିବ I ଆପଣଙ୍କ ଦ୍ଵାରା ଦିଆଯାଇଥିବା ଇଣ୍ଡେଣ୍ଟ ରେ କଞ୍ଚାମାଲ ର ଦର ଏନଏଚଡିସି ଯେ କୌଣସି ସମୟରେ ବଦଳାଇ ପାରେ I ଯଦି କୌଣସି ପ୍ରକାର ବୈଷୟିକ  ତ୍ରୁଟି କିମ୍ବା କଞ୍ଚାମାଲ ଯୋଗାଇବାରେ ମାତ୍ରାଧିକ ବିଳମ୍ବ ହୁଏ କିମ୍ବା କଞ୍ଚାମାଲ ର ମାନ ସଠିକ ନଥାଏ, ତାହାହେଲେ ଏନଏଚଡିସି ତଦନୁଯାୟୀ କଞ୍ଚାମାଲ କୁ ପୁନଃ ଫେରାଇଦେବାରେ ସହଯୋଗ କରିବ କିମ୍ବା ଆପଣ ଦେଇଥବା କଞ୍ଚାମାଲ ର ମୂଲ୍ୟ କୁ ଫେରସ୍ଥ କରିବା ପାଇଁ କର୍ପୋରେସନ ର ନିୟମାବଳୀ ଅନୁଯାୟୀ ବ୍ୟବସ୍ଥା କରିବ I ସମୟ ସମୟରେ ଯଦି କୌଣସି ପ୍ରକାର ଅର୍ଥ ଦୁରୂପଯୋଗ  କିମ୍ବା ଜୋର ଜବରଦସ୍ତି ଏବଂ ଦୁର୍ବ୍ୟବହାର ର ପ୍ରମାଣ ମିଳେ ତେବେ ଏନଏଚଡିସି ବିନିଯୋଗକାରି  କୁ ଅର୍ଥ ଫେରାଇବାରେ ମଧ୍ୟ ଅସ୍ବୀକାର କରିପାରେ I\n"
+        "ଆପଣ ଏନଏଚଡିସି ମୋବାଇଲ ଆବେଦନ ର ଏକ ପାଞ୍ଚିକୃତ ଉପଭୋକ୍ତା ଅଟନ୍ତି ଏବଂ ଏନଏଚଡିସି ଇଣ୍ଡେଣ୍ଟ ଭରିବାପାଇଁ ଏବଂ ଆମ୍ଭର ସେବା ପାଇବା ପାଇଁ ଆପଣଙ୍କ ବୟସ ସର୍ବନିମ୍ନ ୧୮ ବର୍ଷ ହୋଇଥିବା ଦରକାର I\n\n"
+        "କଣ୍ଟେଣ୍ଟ ଏବଂ ସେବାର ଉପଲବ୍ଧତା\n\n"
+        "ଏହି ସହମତି ରେ ସେବା ସମ୍ବନ୍ଧୀୟ ନିୟମାବଳୀ ଏନଏଚଡିସି ଦ୍ୱାରା ପ୍ରଚଳିତ ହେଉଥିବା ଅନ୍ୟ ସମସ୍ତ ନିୟମାବଳୀ ରେ ଅନ୍ତର୍ଭୁକ୍ତ ଅଟେ I\n\n"
+        "ସେବା ର ନିଲମ୍ବନ ଏବଂ ସମାପ୍ତି\n\n"
+        "ଯଦି ଆପଣ ଅସଫଳ ରୁହନ୍ତି କିମ୍ବା ଏନଏଚଡିସି ର ସନ୍ଧେହ ହୁଏ ଯେ ଆପଣଙ୍କର ସହମତି କୁ ଆପଣ ପାଳନ କରିବାରେ ଅସମର୍ଥ, ତେବେ ଏନଏଚଡିସି ବିନା ସୂଚନରେ ଆପଣଙ୍କୁ ଯୋଗାଇ ଦିଆ ଯାଉ ଥିବା ସେବା କୁ ସମାପ୍ତ କରିପାରେ ଏବଂ ଆପଣଙ୍କ ଅର୍ଥ ଫେରସ୍ତ ବାବଦ ରେ ଏନଏଚଡିସି ର ସମସ୍ତ ନିୟମାବଳୀ ମାନ୍ୟ ହେବ I ଏନଏଚଡିସି ର ସର୍ତ୍ତ ଅନୁଯାୟୀ ଆପଣଙ୍କୁ ଦିଆଯାଇଥିବା ସେବା ର ପୁନଃ ବିଚାର କିମ୍ବା ପରିସମାପ୍ତି ମଧ୍ୟ ହୋଇପାରେ | \n"
+        "ଯେ କୌଣସି ସମୟ ରେ ସୂଚନା କିମ୍ବା ପୂର୍ବସୂଚନା ଅନୁଯାୟୀ ଏନଏଚଡିସି ଆପଣ ଦେଇଥିବା ଇଣ୍ଡେଣ୍ଟ ରେ ସବୁ ପ୍ରକାର ସଂଶୋଧନ କିମ୍ବା ନିରସ୍ତ୍ରୀକରଣ କରିବାରେ ଅଧିକାର ରଖିଥାଏ ଏଥିପାଇଁ ଏନଏଚଡିସି  ଆପଣଙ୍କ ପାଇଁ କିମ୍ବା କୋଣସି ତୃତୀୟ ବ୍ୟକ୍ତି ପାଇଁ ଉତ୍ତରଦାୟୀ ହେବନାହିଁ |\n\n"
+        "ଶାସକିୟ  ଆଇନ\n\n"
+        "ଉପରୋକ୍ତ ଅନୁବନ୍ଧ (ଏଗ୍ରୀମେଣ୍ଟ) କିମ୍ବା ସର୍ତ୍ତ ମାଧ୍ୟମ ରେ ଆପଣ ଏବଂ ଏନଏଚଡିସି ମଧ୍ୟ ରେ ସବୁ ପ୍ରକାର ବ୍ୟବସାୟିକ କାରବାର ମାନ୍ୟ ହେବ ଏବଂ ସମସ୍ତ ସୁବିଧା ଆଇନ  ଅନୁଯାୟୀ ଏନଏଚଡିସି ଅନୁସାରେ ମାନ୍ୟ ହେବ |"
+    </string>
+
 </resources>
