@@ -25,9 +25,9 @@
     <string name="cancel">ರದ್ದುಪಡಿಸಿ</string>
     <string name="no">ಇಲ್ಲ</string>
 
-    <string name="i_agree">ಸಮ್ಮತಿಸುತ್ತನ</string>
-    <string name="upload_indent">ಅಪ್ಲೋಡ್ ಅರ್ಜಿಯ ಮಾಡಬೇಕೇ?</string>
-    <string name="cancel_indent">ಅರ್ಜಿಯ ರದ್ದ್ದುಪಡಿಸಬೇಕೇ?</string>
+    <string name="i_agree">ಒಪ್ಪುತ್ತೇನೆ</string>
+    <string name="upload_indent">ಅರ್ಜಿಯನ್ನು ಅಪ್ಲೋಡ್ ಮಾಡಬೇಕೆ ?</string>
+    <string name="cancel_indent">ಅರ್ಜಿಯನ್ನು ರದ್ದುಪಡಿಸಬೇಕೆ ?</string>
     <string name="ok">ಸರಿ</string>
 
     <!--My Profile-->
@@ -68,7 +68,7 @@
 
     <!--Stocks-->
     <string name="stocks">ಸರಕುಗಳು</string>
-    <string name="product_name">ಉತ್ಪನ್ನ ಹೆಸರು</string>
+    <string name="product_name">ಉತ್ಪನ್ನದ ಹೆಸರು</string>
     <string name="column_orderitem_qty_header">ಉತ್ಪನ್ನ ಪ್ರಮಾಣ</string>
     <string name="column_orderitem_amount_header">ಯೂನಿಟ್ ಬೆಲೆ(ರೂ.)</string>
     <string name="stock_search">ಐಡಿ ಅಥವಾ ಹೆಸರಿನಿಂದ ಹುಡುಕು</string>
@@ -104,7 +104,7 @@
     <string name="bundle_weight">ಕಟ್ಟು ತೂಕ</string>
     <string name="total_amount">ಒಟ್ಟು ಮೊತ್ತ</string>
     <string name="other_charges">ಇತರೆ ಶುಲ್ಕಗಳು</string>
-    <string name="shipped_quantity">ಸಾಗಾಣಿಕಯ ಪ್ರಮಾಣ</string>
+    <string name="shipped_quantity">ಸಾಗಾಣಿಕೆಯ ಪ್ರಮಾಣ</string>
     <string name="branch">ಶಾಖೆ</string>
     <string name="product_hint">ನೂಲು ಕೌಂಟ್ ನಮೂದಿಸಿ</string>
     <string name="spec_hint">ಬ್ರ್ಯಾಂಡ್,ಬಣ್ಣ,ಇತ್ಯಾದಿ ನಮೂದಿಸಿ</string>

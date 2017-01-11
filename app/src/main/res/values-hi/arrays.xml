@@ -36,25 +36,25 @@
     <item>English</item>
     <item>Hindi (हिंदी)</item>
     <item>Telugu (తెలుగు)</item>
-    <!--<item>Kannada (ಕನ್ನಡ)</item>-->
+    <item>Kannada (ಕನ್ನಡ)</item>
     <item>Odia (ଓଡ଼ିଆ)</item>
     <item>Tamil (தமிழ்)</item>
-    <!--<item>Urdu (اُردُو)</item>-->
+    <item>Urdu (اُردُو)</item>
     <item>Bengali (বাংলা)</item>
-    <!--<item>Assamese (অসমীয়া)</item>
-    <item>Malayalam (മലയാളം)</item>-->
+    <!--<item>Assamese (অসমীয়া)</item>-->
+    <item>Malayalam (മലയാളം)</item>
   </string-array>
 
   <string-array name="langvalues_list_preference">
     <item>en</item>
     <item>hi</item>
     <item>te</item>
-    <!--<item>kn</item>-->
+    <item>kn</item>
     <item>or</item>
     <item>ta</item>
-    <!--<item>ur</item>-->
+    <item>ur</item>
     <item>bn</item>
-    <!--<item>as</item>
-    <item>ml</item>-->
+    <!--<item>as</item>-->
+    <item>ml</item>
   </string-array>
 </resources>

@@ -149,21 +149,18 @@ public class AtomActivity extends DashboardAppCompatActivity{
                     newPayIntent.putExtra("clientcode", new String(encodePartyId));
                     newPayIntent.putExtra("custacc", "100000036600");
                     newPayIntent.putExtra("amt", amt);//Should be 3 decimal number i.e 1.000
-                    String tempStr = partyId+customerName;
+
                     SimpleDateFormat sdf1 = new SimpleDateFormat("ddmmyyyyHHmmss");
                     String tempDate = sdf1.format(new Date());
-                    tempStr = tempStr+tempDate;
+
                     String txnId = "";
-                    try{
-                        txnId = makeSHA1Hash(tempStr);
-                    } catch(NoSuchAlgorithmException e)
-                    {
-                        e.printStackTrace();
+                    if(orderId != null && orderId.length() != 0){
+                        txnId = orderId+tempDate;
                     }
-                    catch(UnsupportedEncodingException e)
-                    {
-                        e.printStackTrace();
+                    else{
+                        txnId = partyId+tempDate;
                     }
+
                     newPayIntent.putExtra("txnid", txnId);
                     SimpleDateFormat dateFormat = new SimpleDateFormat("dd/mm/yyyy HH:mm:ss");
                     String date  = dateFormat.format(new Date());
@@ -388,20 +385,6 @@ public class AtomActivity extends DashboardAppCompatActivity{
         startActivity(new Intent(this, SalesDashboardActivity.class));
     }
 
-    public static String makeSHA1Hash(String input)
-            throws NoSuchAlgorithmException, UnsupportedEncodingException
-    {
-        MessageDigest md = MessageDigest.getInstance("SHA1");
-        md.reset();
-        byte[] buffer = input.getBytes("UTF-8");
-        md.update(buffer);
-        byte[] digest = md.digest();
 
-        String hexStr = "";
-        for (int i = 0; i < digest.length; i++) {
-            hexStr +=  Integer.toString( ( digest[i] & 0xff ) + 0x100, 16).substring( 1 );
-        }
-        return hexStr;
-    }
 
 }

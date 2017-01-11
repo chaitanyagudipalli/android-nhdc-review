@@ -336,24 +336,20 @@
     <string name="product_details">Product Details</string>
     <string name="no">వద్దు</string>
     <string name="i_agree">నేను అంగీకరిస్తున్నాను</string>
-    <string name="upload_indent">ఇండెంట్ అప్లోడ్? ?</string>
-    <string name="cancel_indent">ఇండెంట్ రద్దు? ?</string>
+    <string name="upload_indent">ధరఖాస్తు అప్లోడ్? ?</string>
+    <string name="cancel_indent">ధరఖాస్తు రద్దు? ?</string>
     <string name="ok">సరే</string>
     <string name="passbook_hint">NHDC పుస్తకం సంఖ్యను ఎంటర్ చేయండి</string>
     <string name="password_hint">NHDC ERP పాస్వర్డ్ను ఎంటర్ చేయండి</string>
     <string name="term_n_cond">"\n"
-				"These terms and conditions create a contract between you and NHDC (the “Agreement”). Please read the Agreement carefully. To confirm your understanding and acceptance of the Agreement, click “Agree.”\n\n"
-				"INTRODUCTION TO OUR SERVICES\n\n"
-				"This Agreement governs your use of NHDC’s services (“Services”), through which you can place indents.\n"
-				"All Transactions are considered final from your end based on which NHDC shall process indents based on feasibility subject to availability and other risks. Prices indicated for the indent may change at any time. If technical problems prevent or unreasonably delay delivery your exclusive and sole remedy is either replacement of the indent or refund of the amount paid, as determined by NHDC. From time to time, NHDC may refuse a refund request if we find evidence of fraud, refund abuse, or other manipulative behavior that entitles NHDC to a corresponding counterclaim.\n"
-				"You are a registered user of NHDC mobile application and you are of age 18 or above to create an NHDC indent and use our Services.\n\n"
-				"CONTENT AND SERVICE AVAILABILITY\n\n"
-				"Terms found in this Agreement that relate to Services are subject to other applicable laws governing NHDC operations.\n\n"
-				"TERMINATION AND SUSPENSION OF SERVICES\n\n"
-				"If you fail, or NHDC suspects that you have failed, to comply with any of the provisions of this Agreement, NHDC may, without notice to you: (i) terminate services offered, and you will remain liable for all amounts due under your NHDC up to and including the date of termination; and/or (ii) preclude your access to the Services.\n"
-				"NHDC further reserves the right to modify, suspend, or discontinue the Services (or any part or Content thereof) at any time with or without notice to you, and NHDC will not be liable to you or to any third party should it exercise such rights\n\n"
-				"GOVERNING LAW\n\n"
-				"Except to the extent expressly provided in the following paragraph, this Agreement and the relationship between you and NHDC, and all Transactions on the Services shall be governed by the laws"
+                "నిబంధనలు మరియు షరతులు:\n\n"
+				"నిభంధనలు మరియు షరతులు ప్రకారం మీకు మరియు నేషనల్ హ్యాండ్లూమ్ డెవలప్మెంట్ కార్పోరేషన్  మధ్య ఏర్పడినఒప్పందాన్ని జాగ్రతగా చదివిన తర్వాత ఒప్పందాన్ని మీరు అంగీకరిస్తూ క్లిక్ చేయండి "నేను అంగీకరిస్తున్నాను".\n\n"
+				"ఒప్పందం యొక్క నియమ నిబంధనలు మరియు షరతులు ద్వారా నేషనల్  హ్యాండ్లూమ్ డెవలప్మెంట్ కార్పోరేషన్ కి ధరఖాస్తు పెట్టుకోవచ్చు .  మీ  యొక్క ధరఖాస్తులు సరియినది   విచారించి మా  నేషనల్  హ్యాండ్లూమ్ డెవలప్మెంట్ కార్పోరేషన్ యొక్క నియమాలు  , మా దగ్గర వున్న  నిలువలు  మరి ఇతర షరతులను  అనుసారం  మీరు చేసిన  ధరఖాస్తులు మార్పులు కావచ్చు . ధరలు హెచ్చు తగులను దృష్టి లో  వుంచుకొని మీ ధరఖాస్తుని మార్పు చేసుకోవచ్చు.  ఏ కారణం చేతనైన  ఇచ్చిన గడుపు  కు  మెటీరియల్  అందని యెడల  మరియు  ఇచ్చిన మెటీరియల్  సరికాని  యెడల నేషనల్  హ్యాండ్లూమ్ డెవలప్మెంట్ కార్పొరేషన్ కి ధరఖాస్తు పెట్టుకోవచ్చు,  మీకు  చెందవలసిన  రొక్కం  కార్పొరేషన్  యొక్క  షరతుల ప్రకారం  లభించును  కానీ  మిరుపెట్టిన  దరకాస్తు  సరి కానిఎడల  మీ  ధరఖాస్తుని  తిరస్కరించవచ్చు  మరియ   మీ  ధరఖాస్తు రద్దు చేయవచ్చు .\n"
+				"వినియోగదారుడు నేషనల్  హ్యాండ్లూమ్ డెవలప్మెంట్ కార్పోరేషన్  అప్లికేషన్  ను ఉపయోగించుకోటానికి 18 ఏళ్ళ వయసు   పైబడి ఉండవలెను  మరియు  కార్పొరేషన్ లో  రిజిస్ట్రేషన్ చేసుకోవాలి.\n\n"
+				"కంటెంట్ మరియు సేవల లభ్యత \n\n"
+				"నేషనల్  హ్యాండ్లూమ్ డెవలప్మెంట్ కార్పొరేషన్ లిమిటెడ్ చేసిన అన్ని కార్యకలాపాలు మరియు ఇతర ఒప్పందాలు చట్టానికి లోబడి ఉంటాయి\n\n"
+				"ఒకవేళ మీరు విఫలమైతే లేదా నేషనల్  హ్యాండ్లూమ్ డెవలప్మెంట్ కార్పొరేషన్ లిమిటెడ్  మీ ఒప్పందం యొక్క నిభంధనలను అనుమానిస్తే  మీకు ఎటువంటి నోటీసులు జారీ చేయకుండా  దరఖాస్తులు  రద్దు చేయవచ్చు దీనికి ఎటువంటి నిబంధనలు మరియు షరతుల  వర్తించవు.\n"
+                "నేషనల్ హ్యాండ్లూమ్ డెవలప్మెంట్ కార్పొరేషన్  అన్ని  ఒపొందాలు   మరియు  షరతులు చట్టానికి   లోబడి  ఉండును\n"
     </string>
     <string name="please_select_language">Please Select Language / कृपया अपनी भाषा  चुने</string>
     <string name="loading_message">సమాచారం దిగుమతి అవుతుంది , దయచేసి వేచి ఉండండి...</string>
