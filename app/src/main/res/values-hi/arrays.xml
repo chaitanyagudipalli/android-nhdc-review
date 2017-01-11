@@ -41,7 +41,7 @@
     <item>Tamil (தமிழ்)</item>
     <item>Urdu (اُردُو)</item>
     <item>Bengali (বাংলা)</item>
-    <!--<item>Assamese (অসমীয়া)</item>-->
+    <item>Assamese (অসমীয়া)</item>
     <item>Malayalam (മലയാളം)</item>
   </string-array>
 
@@ -54,7 +54,7 @@
     <item>ta</item>
     <item>ur</item>
     <item>bn</item>
-    <!--<item>as</item>-->
+    <item>as</item>
     <item>ml</item>
   </string-array>
 </resources>
