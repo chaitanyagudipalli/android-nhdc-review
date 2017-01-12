@@ -29,7 +29,7 @@
     <string name="description_feature5">Outlets</string>
     <string name="description_feature6">Feature 6</string>
 
-    <string name="title_about">ఎన్ హెచ్ డీసీ గురించి</string>
+    <string name="title_about">NHDC గురించి</string>
     <string name="title_home">Home</string>
     <string name="title_search">Search</string>
     <string name="title_feature1">Indent</string>
@@ -88,9 +88,9 @@
 
     <string name="column_indent_id_header">సూచన సంఖ్య</string>
     <string name="column_indent_date_header">తేదీ</string>
-    <string name="column_indent_status_header">స్థితి</string>
+    <string name="column_indent_status_header">దరఖాస్తు స్థితి</string>
     <string name="column_indent_supply_header">Tally Ref No</string>
-    <string name="column_indent_total_header">మొత్తం (రూ)</string>
+    <string name="column_indent_total_header">దరఖాస్తు విలువ (రూ.)</string>
 
     <string name="column_payment_id_header">చెల్లింపు ఐడి</string>
     <string name="column_payment_date_header">చెల్లింపు తేదీ</string>
@@ -221,8 +221,8 @@
     <string name="supplier_name">సరఫరాదారు పేరు</string>
     <string name="status_id">స్థితి</string>
     <string name="order_total">ధరఖాస్తు మొత్తం</string>
-    <string name="paid_ammount">చెల్లించిన మొత్తం</string>
-    <string name="balance_ammount">మిగిలిన మొత్తం</string>
+    <string name="paid_ammount">చెల్లించిన విలువ (రూ.)</string>
+    <string name="balance_ammount">మిగిలిన విలువ (రూ.)</string>
     <string name="indent_details">దరఖాస్తు వివరాలు</string>
     <string name="transporters">రవాణాదారులు</string>
     <string name="scheme_type">పథకం</string>
@@ -233,7 +233,7 @@
     <string name="supplier_delivery">Supplier Delivery</string>
     <string name="language">భాష</string>
     <string name="selectLanguage">భాషను ఎంచుకోండి</string>
-    <string name="stocks">నిలువ సరకు</string>
+    <string name="stocks">డిపో లో ఉన్న సరుకు</string>
 
     <string-array name="bank">
         <item>Select Bank</item>
@@ -255,19 +255,19 @@
     <string name="dashboard">డాష్ బోర్డు </string>
     <string name="changePassword">పాస్ వర్డ్  మార్పు</string>
     <string name="phoneNumber">ఫోన్ నెంబర్</string>
-    <string name="passbookNumber">ఖాతా పుస్తకం సంఖ్య</string>
+    <string name="passbookNumber">ఖాతా (పాస్ బుక్) నెంబర్</string>
     <string name="selectRetailer">Select Retailer</string>
     <string name="contact">Contact</string>
     <string name="Id">ఐ డి</string>
     <string name="name">పేరు</string>
     <string name="address">అడ్రస్</string>
     <string name="transporter_search">పేరు లేదా ఐ డి ద్వారా శోధన</string>
-    <string name="transporter_details">రవాణాదారు వివరాలు</string>
+    <string name="transporter_details">రవాణాదారుని వివరాలు</string>
     <string name="catalog_search">పేరు లేదా వివరణ ద్వారా శోధన</string>
     <string name="supplier_search">పేరు లేదా కోడ్ ద్వారా శోధన</string>
     <string name="supplier_details">సరఫరాదారు వివరాలు</string>
-    <string name="indentStatus">స్థితి</string>
-    <string name="transporter_name">ట్రాన్స్ పోర్టర్ పేరు</string>
+    <string name="indentStatus">దరఖాస్తు స్థితి</string>
+    <string name="transporter_name">రవాణాదారుని పేరు</string>
     <string name="nhdc_settings">ఎన్ హెచ్ డీసీ సెట్టింగ్స్</string>
     <string name="user_credentials">వాడుకరి వివరాలు</string>
     <string name="username">పాస్ బుక్ నంబర్</string>
@@ -280,32 +280,32 @@
     <string name="party_name">పేరు</string>
     <string name="issue_date">జారీ చేసిన తేదీ</string>
     <string name="party_type">వీవర్  రకం</string>
-    <string name="discount_amount">డిస్కౌంట్ మొత్తం</string>
+    <string name="discount_amount">డిస్కౌంట్ విలువ (రూ.)</string>
     <string name="loom_details">మగ్గము  వివరాలు</string>
     <string name="total_looms">మొత్తం మగ్గాలు</string>
     <string name="loom_type">మగ్గం రకం</string>
     <string name="no_of_looms">మగ్గాలు సంఖ్య</string>
     <string name="eligible_quota">అర్హత కోటా</string>
     <string name="used_quota">వాడిన కోటా</string>
-    <string name="balance_quota">సంతులనం కోటా</string>
+    <string name="balance_quota">మిగిలిన కోటా</string>
     <string name="depot">గోదాం</string>
     <string name="product_name">ఉత్పత్తి పేరు</string>
     <string name="quantity">పరిమాణం</string>
     <string name="remarks">వ్యాఖ్యలు</string>
     <string name="bale_quantity">బేల్ పరిమాణం</string>
-    <string name="bundle_weight">కట్ట బరువు</string>
+    <string name="bundle_weight">బండిల్ బరువు</string>
     <string name="unit_price">యూనిట్ ధర</string>
     <string name="total_amount">మొత్తం</string>
     <string name="other_charges">ఇతర ఛార్జీలు</string>
-    <string name="shipped_quantity">రవాణా పరిమాణం</string>
+    <string name="shipped_quantity">పంపించిన పరిమాణం</string>
     <string name="doa">కేటాయింపు తేదీ</string>
     <string name="indent_item_details">ధరఖాస్తు ఉత్పత్తి వివరాలు</string>
-    <string name="shipments">ఎగుమతులపై</string>
+    <string name="shipments">రవాణా వివరాలు</string>
     <string name="shipment_history">రవాణా చరిత్ర</string>
     <string name="branch">బ్రాంచ్</string>
     <string name="select_supplier">సరఫరాదారు ఎంచుకోండి</string>
-    <string name="select_transporter">రవాణాదారు ఎంచుకోండి</string>
-    <string name="indent_total">ధరఖాస్తు  మొత్తం</string>
+    <string name="select_transporter">రవాణాదారుని ఎంచుకోండి</string>
+    <string name="indent_total">దరఖాస్తు విలువ (రూ.)</string>
     <string name="save">సేవ్</string>
     <string name="add_product">ఉత్పత్తి జోడించు</string>
     <string name="select_product">ఉత్పత్తి  ఎంచుకోండి</string>
@@ -339,24 +339,23 @@
     <string name="upload_indent">ధరఖాస్తు అప్లోడ్? ?</string>
     <string name="cancel_indent">ధరఖాస్తు రద్దు? ?</string>
     <string name="ok">సరే</string>
-    <string name="passbook_hint">NHDC పుస్తకం సంఖ్యను ఎంటర్ చేయండి</string>
-    <string name="password_hint">NHDC ERP పాస్వర్డ్ను ఎంటర్ చేయండి</string>
+    <string name="passbook_hint">NHDC పాస్ బుక్ నెంబర్ ఎంటర్ చేయండి</string>
+    <string name="password_hint">NHDC ERP పాస్ వర్డ్ ఎంటర్ చేయండి</string>
     <string name="term_n_cond">"\n"
-                "నిబంధనలు మరియు షరతులు:\n\n"
-				"నిభంధనలు మరియు షరతులు ప్రకారం మీకు మరియు నేషనల్ హ్యాండ్లూమ్ డెవలప్మెంట్ కార్పోరేషన్  మధ్య ఏర్పడినఒప్పందాన్ని జాగ్రతగా చదివిన తర్వాత ఒప్పందాన్ని మీరు అంగీకరిస్తూ క్లిక్ చేయండి "నేను అంగీకరిస్తున్నాను".\n\n"
-				"ఒప్పందం యొక్క నియమ నిబంధనలు మరియు షరతులు ద్వారా నేషనల్  హ్యాండ్లూమ్ డెవలప్మెంట్ కార్పోరేషన్ కి ధరఖాస్తు పెట్టుకోవచ్చు .  మీ  యొక్క ధరఖాస్తులు సరియినది   విచారించి మా  నేషనల్  హ్యాండ్లూమ్ డెవలప్మెంట్ కార్పోరేషన్ యొక్క నియమాలు  , మా దగ్గర వున్న  నిలువలు  మరి ఇతర షరతులను  అనుసారం  మీరు చేసిన  ధరఖాస్తులు మార్పులు కావచ్చు . ధరలు హెచ్చు తగులను దృష్టి లో  వుంచుకొని మీ ధరఖాస్తుని మార్పు చేసుకోవచ్చు.  ఏ కారణం చేతనైన  ఇచ్చిన గడుపు  కు  మెటీరియల్  అందని యెడల  మరియు  ఇచ్చిన మెటీరియల్  సరికాని  యెడల నేషనల్  హ్యాండ్లూమ్ డెవలప్మెంట్ కార్పొరేషన్ కి ధరఖాస్తు పెట్టుకోవచ్చు,  మీకు  చెందవలసిన  రొక్కం  కార్పొరేషన్  యొక్క  షరతుల ప్రకారం  లభించును  కానీ  మిరుపెట్టిన  దరకాస్తు  సరి కానిఎడల  మీ  ధరఖాస్తుని  తిరస్కరించవచ్చు  మరియ   మీ  ధరఖాస్తు రద్దు చేయవచ్చు .\n"
-				"వినియోగదారుడు నేషనల్  హ్యాండ్లూమ్ డెవలప్మెంట్ కార్పోరేషన్  అప్లికేషన్  ను ఉపయోగించుకోటానికి 18 ఏళ్ళ వయసు   పైబడి ఉండవలెను  మరియు  కార్పొరేషన్ లో  రిజిస్ట్రేషన్ చేసుకోవాలి.\n\n"
-				"కంటెంట్ మరియు సేవల లభ్యత \n\n"
-				"నేషనల్  హ్యాండ్లూమ్ డెవలప్మెంట్ కార్పొరేషన్ లిమిటెడ్ చేసిన అన్ని కార్యకలాపాలు మరియు ఇతర ఒప్పందాలు చట్టానికి లోబడి ఉంటాయి\n\n"
-				"ఒకవేళ మీరు విఫలమైతే లేదా నేషనల్  హ్యాండ్లూమ్ డెవలప్మెంట్ కార్పొరేషన్ లిమిటెడ్  మీ ఒప్పందం యొక్క నిభంధనలను అనుమానిస్తే  మీకు ఎటువంటి నోటీసులు జారీ చేయకుండా  దరఖాస్తులు  రద్దు చేయవచ్చు దీనికి ఎటువంటి నిబంధనలు మరియు షరతుల  వర్తించవు.\n"
-                "నేషనల్ హ్యాండ్లూమ్ డెవలప్మెంట్ కార్పొరేషన్  అన్ని  ఒపొందాలు   మరియు  షరతులు చట్టానికి   లోబడి  ఉండును\n"
+                "మా సేవలు - షరతులు:\n"
+                "NHDC కి, మీకు మధ్య జరిగే ఒప్పందానికి ఈ క్రింది షరతులు వర్తిస్తాయి కనుక, దయచేసి జాగ్రత్తగా చదివి అర్ధం చేసుకొని మీ అంగీకారాన్ని ఖరారు చేయడానికి 'నేను అంగీకరిస్తున్నాను' అని లేదంటే 'వద్దు' అని క్లిక్ చేయండి.\n\n"
+                "మా సేవల పరిచయం:\n"
+                "ఈ ఒప్పందం ఆధారంగా మీరు NHDC సేవలను పొందవచ్చు. మీకు కావలసిన సరుకు కోసం 'ఇండెంట్' పెట్టవచ్చును. అప్పుడే మీ పక్షాన ఒప్పందం ఖరారు అయినట్లు భావింపబడుతుంది. దానిని బట్టి NHDC కి సాధ్యమైతేను సరుకు అందుబాటులో ఉంటేను మీ ఇండెంట్ ను పరిశీలిస్తుంది. మీరు పేర్కొన్న ధరలు ఎప్పుడైనా మారవచ్చును. సాంకేతిక సమస్యలు ఎదురైనా లేదా అసంజసమైన ఆలస్యం జరిగిన మీరు మరొక ఇండెంట్ పెట్టవచ్చు లేదా ఇచ్చిన సొమ్మును NHDC తిరిగి మీకు చెల్లిస్తుంది. ఈ విషయము NHDC యే నిర్ణయిస్తుంది.\n\n"
+                "సేవలు గురించి: \n"
+                "ఒప్పందంలోని షరతులు NHDC నిర్వహణకు సంబంధించిన చట్టాలకు లోబడి వర్తిస్తాయి. మీరు విఫలమైన లేదా మీరు విఫలమైనట్టు NHDC భావించినా ఈసేవలు నిలుపుదల చేయవచ్చు. అంతేకాకుండా NHDC ఎప్పుడైనా షరతులు ముందుగా తెలియపరచకుండా సవరించవచ్చును లేదా ముందుగాని తెలియపరచకుండా నిలుపుదల చేయవచ్చును. ఈ విషయం లో మీకుగాని మరి ఏ ఇతర వ్యక్తికి గాని NHDC బాధ్యత వహించదు.\n\n"
+                "విషయం మీకు స్పష్టమైనది గనుక ఈ ఒప్పందం ప్రకారం మీకు NHDC కి మధ్య చట్టబద్ధమైన సహకారం కొనసాగగలదు."
     </string>
     <string name="please_select_language">Please Select Language / कृपया अपनी भाषा  चुने</string>
     <string name="loading_message">సమాచారం దిగుమతి అవుతుంది , దయచేసి వేచి ఉండండి...</string>
     <string name="product_hint">నూలు కౌంట్ ఎంటర్  చేయండి</string>
     <string name="spec_hint">బ్రాండ్,రంగు...</string>
     <string name="uom">కొలత ప్రమాణం</string>
-    <string name="bundle_wt">బండిల్ వెయిట్ (కిలోగ్రామ్ )</string>
+    <string name="bundle_wt">బండిల్ బరువు(కిలోగ్రామ్ )</string>
     <string name="quota_exceed">కోటా మించింది</string>
     <string name="quota_continue">కొనసాగించు</string>
     <string name="make_payment">చెల్లింపు చేయండి</string>
