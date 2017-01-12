@@ -291,7 +291,7 @@
     <string name="depot">గోదాం</string>
     <string name="product_name">ఉత్పత్తి పేరు</string>
     <string name="quantity">పరిమాణం</string>
-    <string name="remarks">వ్యాఖ్యలు</string>
+    <string name="remarks">రంగు, బ్రాండ్ వంటి వివరములు</string>
     <string name="bale_quantity">బేల్ పరిమాణం</string>
     <string name="bundle_weight">బండిల్ బరువు</string>
     <string name="unit_price">యూనిట్ ధర</string>
